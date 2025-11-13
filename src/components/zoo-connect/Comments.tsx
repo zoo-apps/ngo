@@ -41,9 +41,9 @@ function Comments({name,img,date,content,like_text,like_flag}: {
         <p className='text-sm'>{like_text}</p>
         <div className='flex items-center space-x-2 text-[#13B156]'>
             {like_flag? <FaHeart /> : <FaRegHeart />}
-            <span className='text-white pr-4'>Like</span>
+            <span className='text-foreground pr-4'>Like</span>
             <FaShareAlt />
-            <span className='text-white'>Share</span>
+            <span className='text-foreground'>Share</span>
         </div>
       </div>
     </div>

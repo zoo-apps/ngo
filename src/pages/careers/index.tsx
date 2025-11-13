@@ -168,7 +168,7 @@ export default function Careers() {
                   onClick={() => setSelectedDepartment(dept)}
                   className={`px-6 py-2 rounded-full font-medium transition-all ${
                     selectedDepartment === dept
-                      ? 'bg-black text-white'
+                      ? 'bg-background text-foreground'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -199,7 +199,7 @@ export default function Careers() {
                       </span>
                     </div>
                   </div>
-                  <button className="mt-4 md:mt-0 bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-all">
+                  <button className="mt-4 md:mt-0 bg-background text-foreground px-6 py-2 rounded-lg hover:bg-gray-800 transition-all">
                     Apply Now
                   </button>
                 </div>
@@ -229,7 +229,7 @@ export default function Careers() {
               </p>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <div className="w-6 h-6 rounded-full bg-black mt-1 mr-4"></div>
+                  <div className="w-6 h-6 rounded-full bg-background mt-1 mr-4"></div>
                   <div>
                     <h4 className="font-semibold mb-1">Global & Remote-First</h4>
                     <p className="text-gray-600">Team members in 23 countries working flexibly</p>
@@ -243,7 +243,7 @@ export default function Careers() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-6 h-6 rounded-full bg-black border border-gray-600 mt-1 mr-4"></div>
+                  <div className="w-6 h-6 rounded-full bg-background border border-gray-600 mt-1 mr-4"></div>
                   <div>
                     <h4 className="font-semibold mb-1">Innovation Focused</h4>
                     <p className="text-gray-600">Pioneering new approaches to conservation</p>
@@ -259,12 +259,12 @@ export default function Careers() {
       {/* Internship Program */}
       <section className="bg-white py-20">
         <div className="container mx-auto px-4">
-          <div className="bg-black border-2 border-white rounded-2xl p-12 text-white">
+          <div className="bg-background border-2 border-white rounded-2xl p-12 text-foreground">
             <div className="max-w-3xl">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Conservation Leadership Program
               </h2>
-              <p className="text-xl mb-8 text-white/90">
+              <p className="text-xl mb-8 text-foreground/90">
                 Our 12-month fellowship program for early-career conservationists provides 
                 hands-on experience in field research, technology development, and nonprofit management.
               </p>
@@ -297,28 +297,28 @@ export default function Careers() {
 
           <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
-              <div className="w-16 h-16 bg-black text-white rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-bold">
+              <div className="w-16 h-16 bg-background text-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-bold">
                 1
               </div>
               <h3 className="font-bold mb-2">Apply Online</h3>
               <p className="text-gray-600 text-sm">Submit your application and resume</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-black text-white rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-bold">
+              <div className="w-16 h-16 bg-background text-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-bold">
                 2
               </div>
               <h3 className="font-bold mb-2">Initial Interview</h3>
               <p className="text-gray-600 text-sm">30-min video call with hiring manager</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-black text-white rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-bold">
+              <div className="w-16 h-16 bg-background text-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-bold">
                 3
               </div>
               <h3 className="font-bold mb-2">Team Interview</h3>
               <p className="text-gray-600 text-sm">Meet your potential teammates</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-black text-white rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-bold">
+              <div className="w-16 h-16 bg-background text-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-bold">
                 4
               </div>
               <h3 className="font-bold mb-2">Decision</h3>

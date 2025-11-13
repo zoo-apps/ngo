@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 function Fundraiser() {
   return (
-    <div className="bg-black text-white md:px-12 lg:px-24 xl:px-32  max-md:py-4 max-md:px-4 md:pt-24 md:flex-1">
+    <div className="bg-background text-foreground md:px-12 lg:px-24 xl:px-32  max-md:py-4 max-md:px-4 md:pt-24 md:flex-1">
       <div className='flex flex-col space-y-4'>
         <p className='text-xl'>Fundraiser</p>
         <div className='flex items-center space-x-4 w-full md:w-[400px]'>

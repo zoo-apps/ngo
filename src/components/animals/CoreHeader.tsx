@@ -472,14 +472,14 @@ function CoreHeader({index}: {
     const [activeTab, setActiveTab] = useState("description");
     const animal = productsData[index];
   return (
-    <div className="bg-black md:px-16 lg:px-16 xl:px-24 2xl:px-32 max-md:pt-20 pt-32 max-md:px-8">
+    <div className="bg-background md:px-16 lg:px-16 xl:px-24 2xl:px-32 max-md:pt-20 pt-32 max-md:px-8">
       <div
         // className="gap-4 px-6  md:flex md:flex-col md:items-center lg:flex-row lg:max-w-7xl lg:mx-auto lg:justify-center"
         className="w-full lg:flex lg:flex-row xl:gap-16 2xl:gap-32 lg:gap-8 md:space-y-16 lg:space-y-0"
       >
         <div className="w-full relative flex items-center justify-center lg:basis-2/5 border border-white rounded-xl p-1">
             <div className="right-0 bg-[#333] p-4 md:border rounded-xl border-white absolute top-0  max-md:top-2 max-md:right-2 z-10">
-                <p className='text-md text-white'>{animal?.status}</p>
+                <p className='text-md text-foreground'>{animal?.status}</p>
               {/* {animal?.status && (
                 <CustomTooltip title={animal?.status}>
                   <div
@@ -504,7 +504,7 @@ function CoreHeader({index}: {
                 glb={animal.glb}
               ></ModelViewer>
             </div>
-            <div className="absolute bottom-0 flex text-white p-2 lg:p-4 w-full gap-4">
+            <div className="absolute bottom-0 flex text-foreground p-2 lg:p-4 w-full gap-4">
               <button className="h-20 bg-[#333] rounded-xl w-full mr-2">Browse</button>
               <button className="h-20 border rounded-xl w-full flex items-center justify-center mr-4">
                 <span className="mr-2">Sweep</span>
@@ -526,10 +526,10 @@ function CoreHeader({index}: {
           </div>
         </div>
 
-        <div className="flex flex-col items-start gap-2 px-4 py-8 rounded bg-black lg:basis-3/5  md:border border-white rounded-xl"
+        <div className="flex flex-col items-start gap-2 px-4 py-8 rounded bg-background lg:basis-3/5  md:border border-white rounded-xl"
           key={animal.id}
         >
-          <h2 className="mb-8 text-3xl max-md:text-4xl 2xl:text-7xl text-white font-bold text-left">
+          <h2 className="mb-8 text-3xl max-md:text-4xl 2xl:text-7xl text-foreground font-bold text-left">
             {animal.name}
           </h2>
 
@@ -538,36 +538,36 @@ function CoreHeader({index}: {
               className="text-lg"
               dangerouslySetInnerHTML={{ __html: animal?.description }}
             /> */}
-            <p className="pb-4 text-[24px] text-white uppercase border-white cursor-pointer mt-4">
+            <p className="pb-4 text-[24px] text-foreground uppercase border-white cursor-pointer mt-4">
               Properties
             </p>
             <div className="grid grid-cols-2 md:grid-cols-2 gap-2.5 md:gap-4 mb-2.5 md:mb-4">
               <div className="bg-[#333] p-3.5 rounded-xl">
                 <p className="text-2xl max-md:text-lg font-bold text-[#7D7D7D]">Maturity</p>
-                <p className="text-lg font-bold text-white">
+                <p className="text-lg font-bold text-foreground">
                   {animal.Maturity}
                 </p>
               </div>
               <div className="bg-[#333] p-3.5 rounded-xl">
                 <p className="text-2xl max-md:text-lg font-bold text-[#7D7D7D]">Generations</p>
-                <p className="text-lg font-bold text-white">{animal.Generations}</p>
+                <p className="text-lg font-bold text-foreground">{animal.Generations}</p>
               </div>
               <div className="bg-[#333] p-3.5 rounded-xl">
                 <p className="text-2xl max-md:text-lg font-bold text-[#7D7D7D]">Status</p>
-                <p className="text-lg font-bold text-white">
+                <p className="text-lg font-bold text-foreground">
                   {animal.status}
                 </p>
               </div>
               <div className="bg-[#333] p-3.5 rounded-xl">
                 <p className="text-2xl max-md:text-lg font-bold text-[#7D7D7D]">Rewards</p>
-                <p className="text-lg font-bold text-white">{animal.Rewards}</p>
+                <p className="text-lg font-bold text-foreground">{animal.Rewards}</p>
               </div>
               <div className="bg-[#333] p-3.5 rounded-xl">
                 <p className="text-2xl max-md:text-lg font-bold text-[#7D7D7D]">
                   Original Egg Price{" "}
-                  <span className="text-white font-bold">(OEP)</span>
+                  <span className="text-foreground font-bold">(OEP)</span>
                 </p>
-                <p className="text-lg font-bold text-white">
+                <p className="text-lg font-bold text-foreground">
                   {animal.Price}
                 </p>
               </div>
@@ -575,7 +575,7 @@ function CoreHeader({index}: {
                 <p className="text-2xl max-md:text-lg font-bold text-[#7D7D7D]">
                   Price to Mint
                 </p>
-                <p className="text-lg font-bold text-white">
+                <p className="text-lg font-bold text-foreground">
                   {animal.Price_Mint}
                 </p>
               </div>
@@ -583,7 +583,7 @@ function CoreHeader({index}: {
                 <p className="text-2xl max-md:text-lg font-bold text-[#7D7D7D]">
                   Scientific Name
                 </p>
-                <p className="text-lg font-bold text-white">
+                <p className="text-lg font-bold text-foreground">
                   {animal.scientificName}
                 </p>
               </div>
@@ -591,7 +591,7 @@ function CoreHeader({index}: {
                 <p className="text-2xl max-md:text-lg font-bold text-[#7D7D7D]">
                   Boosts Allowed
                 </p>
-                <p className="text-lg font-bold text-white">
+                <p className="text-lg font-bold text-foreground">
                   {animal.Boosts}
                 </p>
               </div>
@@ -600,7 +600,7 @@ function CoreHeader({index}: {
               <p className="text-[#7D7D7D] text-xl">Click to</p>
             </div>
 
-            <div className="flex max-md:hidden flex-col text-white  items-center md:flex-row justify-evenly mt-8">
+            <div className="flex max-md:hidden flex-col text-foreground  items-center md:flex-row justify-evenly mt-8">
                 <div
                     className="p-px mb-4 items-center flex flex-col gap-4 overflow-hidden animals-backdrop"
                   >
@@ -619,7 +619,7 @@ function CoreHeader({index}: {
                     className="p-px mb-4 items-center flex flex-col gap-4 overflow-hidden animals-backdrop"
                     key={index}
                   >
-                    <div className="overflow-hidden bg-black w-[120px] h-[120px]">
+                    <div className="overflow-hidden bg-background w-[120px] h-[120px]">
                       <ModelViewer usdz={img.usdz} glb={img.glb}></ModelViewer>
                     </div>
                     <p className='text-md'>{index == 0 ? "BABY" : index == 1 ? "TEEN" : "ADULT"}</p>
@@ -634,13 +634,13 @@ function CoreHeader({index}: {
         <div className="flex  md:text-[20px] max-md:text-lg leading-[24px] gap-8">
           <button
             onClick={() => setActiveTab("description")}
-            className="font-[800] border-b-[2px] border-white text-white"
+            className="font-[800] border-b-[2px] border-white text-foreground"
           >
             Description
           </button>
           <button
             // onClick={() => setActiveTab("description")}
-            className="text-white"
+            className="text-foreground"
           >
             Metadata <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8.1292 0.200322V1.41029H2.63203C2.25257 1.41029 1.94491 1.68116 1.94491 2.01527V10.4852C1.94491 10.8193 2.25257 11.0902 2.63203 11.0902H12.2519C12.6315 11.0902 12.9391 10.8193 12.9391 10.4852V5.64516H14.3134V10.4852C14.3134 11.4875 13.3904 12.3002 12.2519 12.3002H2.63202C1.49354 12.3002 0.570557 11.4876 0.570557 10.4852V2.01527C0.570557 1.01289 1.49345 0.200242 2.63202 0.200242L8.1292 0.200322ZM13.6264 0.200322L13.6396 0.200447C13.6557 0.200697 13.6717 0.201448 13.6877 0.202699L13.6264 0.200322C13.6611 0.200322 13.6953 0.202573 13.7287 0.207014C13.7404 0.208578 13.7524 0.210454 13.7642 0.21258C13.7794 0.215207 13.7943 0.218397 13.809 0.221962C13.8197 0.224589 13.8303 0.227403 13.8408 0.230405C13.8543 0.234283 13.868 0.238599 13.8813 0.243352C13.8935 0.247605 13.9054 0.25217 13.9172 0.256986C13.9314 0.262865 13.9454 0.269182 13.9591 0.275875C13.9674 0.279877 13.9759 0.284193 13.9842 0.288634C14.0017 0.29814 14.0188 0.308335 14.0353 0.319092C14.0622 0.336605 14.0879 0.356117 14.1122 0.377507L14.0502 0.329036C14.0935 0.358995 14.1327 0.393455 14.1667 0.431607C14.1707 0.435922 14.1747 0.44055 14.1786 0.445179C14.1908 0.459814 14.2024 0.474825 14.2131 0.490335C14.2182 0.49759 14.2231 0.50497 14.2278 0.512475C14.2353 0.524421 14.2425 0.536742 14.2491 0.549314C14.2546 0.559634 14.2597 0.570079 14.2645 0.580648C14.2699 0.592594 14.2749 0.604602 14.2795 0.616735C14.2827 0.625741 14.2859 0.63506 14.2888 0.64438C14.293 0.657452 14.2966 0.670523 14.2996 0.683844C14.302 0.694352 14.3041 0.704921 14.3059 0.715492C14.308 0.727563 14.3097 0.740072 14.3109 0.752643C14.312 0.764026 14.3127 0.774908 14.3131 0.785791C14.3133 0.791858 14.3135 0.798612 14.3135 0.805305V3.83029H12.9392V2.26576L7.92798 6.67796C7.68028 6.89605 7.2905 6.91287 7.021 6.72831L6.95622 6.67796C6.68792 6.44173 6.68792 6.05865 6.95622 5.82235L11.9662 1.41016H10.1907V0.200195L13.6264 0.200322Z" fill="white"/>
@@ -649,7 +649,7 @@ function CoreHeader({index}: {
           </button>
           <button
             // onClick={() => setActiveTab("description")}
-            className="text-white"
+            className="text-foreground"
           >
             Rewards <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8.1292 0.200322V1.41029H2.63203C2.25257 1.41029 1.94491 1.68116 1.94491 2.01527V10.4852C1.94491 10.8193 2.25257 11.0902 2.63203 11.0902H12.2519C12.6315 11.0902 12.9391 10.8193 12.9391 10.4852V5.64516H14.3134V10.4852C14.3134 11.4875 13.3904 12.3002 12.2519 12.3002H2.63202C1.49354 12.3002 0.570557 11.4876 0.570557 10.4852V2.01527C0.570557 1.01289 1.49345 0.200242 2.63202 0.200242L8.1292 0.200322ZM13.6264 0.200322L13.6396 0.200447C13.6557 0.200697 13.6717 0.201448 13.6877 0.202699L13.6264 0.200322C13.6611 0.200322 13.6953 0.202573 13.7287 0.207014C13.7404 0.208578 13.7524 0.210454 13.7642 0.21258C13.7794 0.215207 13.7943 0.218397 13.809 0.221962C13.8197 0.224589 13.8303 0.227403 13.8408 0.230405C13.8543 0.234283 13.868 0.238599 13.8813 0.243352C13.8935 0.247605 13.9054 0.25217 13.9172 0.256986C13.9314 0.262865 13.9454 0.269182 13.9591 0.275875C13.9674 0.279877 13.9759 0.284193 13.9842 0.288634C14.0017 0.29814 14.0188 0.308335 14.0353 0.319092C14.0622 0.336605 14.0879 0.356117 14.1122 0.377507L14.0502 0.329036C14.0935 0.358995 14.1327 0.393455 14.1667 0.431607C14.1707 0.435922 14.1747 0.44055 14.1786 0.445179C14.1908 0.459814 14.2024 0.474825 14.2131 0.490335C14.2182 0.49759 14.2231 0.50497 14.2278 0.512475C14.2353 0.524421 14.2425 0.536742 14.2491 0.549314C14.2546 0.559634 14.2597 0.570079 14.2645 0.580648C14.2699 0.592594 14.2749 0.604602 14.2795 0.616735C14.2827 0.625741 14.2859 0.63506 14.2888 0.64438C14.293 0.657452 14.2966 0.670523 14.2996 0.683844C14.302 0.694352 14.3041 0.704921 14.3059 0.715492C14.308 0.727563 14.3097 0.740072 14.3109 0.752643C14.312 0.764026 14.3127 0.774908 14.3131 0.785791C14.3133 0.791858 14.3135 0.798612 14.3135 0.805305V3.83029H12.9392V2.26576L7.92798 6.67796C7.68028 6.89605 7.2905 6.91287 7.021 6.72831L6.95622 6.67796C6.68792 6.44173 6.68792 6.05865 6.95622 5.82235L11.9662 1.41016H10.1907V0.200195L13.6264 0.200322Z" fill="white"/>
@@ -658,11 +658,11 @@ function CoreHeader({index}: {
           </button>
         </div>
         <ReadMore
-          className="text-md mt-12 text-white"
+          className="text-md mt-12 text-foreground"
           
         >{animal?.description}</ReadMore>
       </div>
-      <div className="pt-32 text-white w-full">
+      <div className="pt-32 text-foreground w-full">
         <h1 className="text-3xl md:text-[44px] leading-[3rem] lg:leading-4 font-bold text-center">
           What can you do with your NFT?
         </h1>
@@ -673,7 +673,7 @@ function CoreHeader({index}: {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {utilities.map((data, index) => (
             <div
-              className="border bg-black px-2 py-4 rounded-xl font-[600] xl:text-[36px] lg:text-[28px] text-[32px] flex items-center justify-between"
+              className="border bg-background px-2 py-4 rounded-xl font-[600] xl:text-[36px] lg:text-[28px] text-[32px] flex items-center justify-between"
               key={index}
             >
               <p>{data?.title}</p>

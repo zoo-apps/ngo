@@ -14,7 +14,7 @@ export default function AI() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">AI for Conservation</h1>

@@ -34,14 +34,14 @@ function Navbar() {
   };
 
   return (
-      <nav className="bg-black">
-        <div className="max-md:fixed max-md:w-full max-md:left-0 max-md:z-[999] max-md:bg-black px-4 sm:px-6 lg:px-8 xl:px-12">
+      <nav className="bg-background">
+        <div className="max-md:fixed max-md:w-full max-md:left-0 max-md:z-[999] max-md:bg-background px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex items-center justify-between h-20">
               <div className="md:hidden">
                   <button
                   type="button"
                   onClick={toggleMenu}
-                  className="text-white inline-flex items-center justify-center p-2 "
+                  className="text-foreground inline-flex items-center justify-center p-2 "
                   aria-controls="mobile-menu"
                   aria-expanded={isOpen}
                   >
@@ -73,7 +73,7 @@ function Navbar() {
 
                   <Link
                       href="/"
-                      className="text-gray-300 hover:text-white px-3 py-2 text-md font-medium flex items-center gap-2">
+                      className="text-gray-300 hover:text-foreground px-3 py-2 text-md font-medium flex items-center gap-2">
                       <Image alt="ZOO Icon" src="/favicon/logo.svg" width={48} height={48} />
                       <Image alt="ZOO" src="/zooLogo.svg" width={64} height={64} />
                   </Link>
@@ -83,25 +83,25 @@ function Navbar() {
                   <div className="mx-10 flex items-baseline xl:space-x-10 md:space-x-2 lg:space-x-4 2xl:space-x-12">
                   <Link
                       href="/experiences"
-                      className="text-gray-300 hover:text-white px-3 py-2 text-md font-medium"
+                      className="text-gray-300 hover:text-foreground px-3 py-2 text-md font-medium"
                   >
                       Experiences
                   </Link>
                   <Link
                       href="/about"
-                      className="text-gray-300 hover:text-white px-3 py-2 text-md font-medium"
+                      className="text-gray-300 hover:text-foreground px-3 py-2 text-md font-medium"
                   >
                       About
                   </Link>
                   <Link
                       href="/research"
-                      className="text-gray-300 hover:text-white px-3 py-2 text-md font-medium"
+                      className="text-gray-300 hover:text-foreground px-3 py-2 text-md font-medium"
                   >
                       Research
                   </Link>
                   <Link
                       href="/volunteer"
-                      className="text-gray-300 hover:text-white px-3 py-2 text-md font-medium"
+                      className="text-gray-300 hover:text-foreground px-3 py-2 text-md font-medium"
                   >
                       Volunteer
                   </Link>
@@ -118,29 +118,29 @@ function Navbar() {
           </div>
         </div>
         {isOpen && (
-          <div className="md:hidden fixed z-50 h-[100vh] top-20 w-full bg-black" id="mobile-menu">
+          <div className="md:hidden fixed z-50 h-[100vh] top-20 w-full bg-background" id="mobile-menu">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
                 href="/experiences"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                className="text-gray-300 hover:bg-gray-700 hover:text-foreground block px-3 py-2 rounded-md text-base font-medium"
               >
                 Experiences
               </Link>
               <Link
                 href="/about"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                className="text-gray-300 hover:bg-gray-700 hover:text-foreground block px-3 py-2 rounded-md text-base font-medium"
               >
                 About
               </Link>
               <Link
                 href="/research"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                className="text-gray-300 hover:bg-gray-700 hover:text-foreground block px-3 py-2 rounded-md text-base font-medium"
               >
                 Research
               </Link>
               <Link
                 href="/volunteer"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                className="text-gray-300 hover:bg-gray-700 hover:text-foreground block px-3 py-2 rounded-md text-base font-medium"
               >
                 Volunteer
               </Link>

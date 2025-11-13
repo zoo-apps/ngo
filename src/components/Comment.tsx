@@ -27,13 +27,13 @@ function Comment() {
         }
       ];
   return (
-    <div className="bg-black">
+    <div className="bg-background">
       <div className='flex max-md:flex-col md:pt-32 lg:pt-52 md:px-8 lg:px-20 max-md:px-4 max-md:pt-32'>
       {comments.map((data, index) => (
         <div key={index} className='max-md:w-full flex flex-col w-1/4 px-5'>
-            <h1 className='text-white md:text-3xl xl:text-5xl max-md:text-2xl'>{data.title}</h1>
-            <p className='text-white md:text-md 2xl:min-h-[220px] xl:min-h-[240px] md:min-h-[225px] lg:text-lg xl:text-2xl py-10 max-md:py-4'>{data.comment}</p>
-            <Link href={data.href} className='flex items-center  text-white md:text-md lg:text-lg xl:text-2xl max-md:pb-10' >
+            <h1 className='text-foreground md:text-3xl xl:text-5xl max-md:text-2xl'>{data.title}</h1>
+            <p className='text-foreground md:text-md 2xl:min-h-[220px] xl:min-h-[240px] md:min-h-[225px] lg:text-lg xl:text-2xl py-10 max-md:py-4'>{data.comment}</p>
+            <Link href={data.href} className='flex items-center  text-foreground md:text-md lg:text-lg xl:text-2xl max-md:pb-10' >
               <>
                 <span className='pr-[15px]'>{data.link}</span>
                 <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">

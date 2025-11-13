@@ -16,7 +16,7 @@ export default function Docs() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Documentation</h1>
@@ -49,8 +49,8 @@ export default function Docs() {
                         onClick={() => setSelectedSection(section.id)}
                         className={`block w-full text-left px-4 py-2 rounded-lg transition-colors ${
                           selectedSection === section.id
-                            ? 'bg-green-600 text-white'
-                            : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                            ? 'bg-green-600 text-foreground'
+                            : 'text-gray-400 hover:text-foreground hover:bg-gray-800'
                         }`}
                       >
                         {section.label}
@@ -83,7 +83,7 @@ export default function Docs() {
                       <h3 className="text-2xl font-bold mb-4">Authentication</h3>
                       <div className="bg-gray-900 rounded-lg p-6 mb-4">
                         <p className="text-gray-400 mb-4">Include your API key in the Authorization header:</p>
-                        <pre className="bg-black p-4 rounded overflow-x-auto">
+                        <pre className="bg-background p-4 rounded overflow-x-auto">
                           <code>{`Authorization: Bearer YOUR_API_KEY`}</code>
                         </pre>
                       </div>
@@ -126,7 +126,7 @@ export default function Docs() {
                       <div className="space-y-4">
                         <div>
                           <p className="font-medium mb-2">Request Body:</p>
-                          <pre className="bg-black p-4 rounded overflow-x-auto text-sm">
+                          <pre className="bg-background p-4 rounded overflow-x-auto text-sm">
 {`{
   "image": "base64_encoded_image",
   "location": {
@@ -139,7 +139,7 @@ export default function Docs() {
                         </div>
                         <div>
                           <p className="font-medium mb-2">Response:</p>
-                          <pre className="bg-black p-4 rounded overflow-x-auto text-sm">
+                          <pre className="bg-background p-4 rounded overflow-x-auto text-sm">
 {`{
   "species": {
     "common_name": "Bengal Tiger",
@@ -251,7 +251,7 @@ export default function Docs() {
                       <div className="bg-gray-900 rounded p-4 mb-4">
                         <code className="text-green-400">POST /api/v1/dao/proposals</code>
                       </div>
-                      <pre className="bg-black p-4 rounded overflow-x-auto text-sm">
+                      <pre className="bg-background p-4 rounded overflow-x-auto text-sm">
 {`{
   "dao": "OceanDAO",
   "title": "Fund Coral Reef Restoration",
@@ -326,7 +326,7 @@ export default function Docs() {
                         <div className="bg-gray-900 rounded p-4 mb-4">
                           <code className="text-green-400">npm install @zoo-foundation/sdk</code>
                         </div>
-                        <pre className="bg-black p-4 rounded text-sm">
+                        <pre className="bg-background p-4 rounded text-sm">
 {`import { ZooClient } from '@zoo-foundation/sdk';
 
 const client = new ZooClient({
@@ -342,7 +342,7 @@ const species = await client.identify(image);`}
                         <div className="bg-gray-900 rounded p-4 mb-4">
                           <code className="text-green-400">pip install zoo-foundation</code>
                         </div>
-                        <pre className="bg-black p-4 rounded text-sm">
+                        <pre className="bg-background p-4 rounded text-sm">
 {`from zoo_foundation import ZooClient
 
 client = ZooClient(api_key='YOUR_API_KEY')
@@ -379,7 +379,7 @@ print(species.common_name)`}
                   <div className="space-y-8">
                     <div>
                       <h3 className="text-2xl font-bold mb-4">Wildlife Observation Format</h3>
-                      <pre className="bg-black p-4 rounded overflow-x-auto text-sm">
+                      <pre className="bg-background p-4 rounded overflow-x-auto text-sm">
 {`{
   "observation_id": "obs_123456",
   "timestamp": "2025-09-27T10:00:00Z",
@@ -423,7 +423,7 @@ print(species.common_name)`}
 
                     <div>
                       <h3 className="text-2xl font-bold mb-4">Conservation Project Format</h3>
-                      <pre className="bg-black p-4 rounded overflow-x-auto text-sm">
+                      <pre className="bg-background p-4 rounded overflow-x-auto text-sm">
 {`{
   "project_id": "proj_789",
   "name": "Tiger Habitat Restoration",
@@ -472,7 +472,7 @@ print(species.common_name)`}
                       <h3 className="text-2xl font-bold mb-4">Webhook Configuration</h3>
                       <div className="bg-gray-900 rounded-lg p-6">
                         <p className="text-gray-400 mb-4">Register a webhook endpoint:</p>
-                        <pre className="bg-black p-4 rounded overflow-x-auto text-sm">
+                        <pre className="bg-background p-4 rounded overflow-x-auto text-sm">
 {`POST /api/v1/webhooks
 {
   "url": "https://your-app.com/webhook",
@@ -485,7 +485,7 @@ print(species.common_name)`}
 
                     <div>
                       <h3 className="text-2xl font-bold mb-4">Event Payload</h3>
-                      <pre className="bg-black p-4 rounded overflow-x-auto text-sm">
+                      <pre className="bg-background p-4 rounded overflow-x-auto text-sm">
 {`{
   "event": "species.identified",
   "timestamp": "2025-09-27T10:00:00Z",

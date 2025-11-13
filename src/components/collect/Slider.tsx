@@ -67,7 +67,7 @@ function Slide() {
         arrows: true
       };
     return (
-        <Slider {...settings} className='bg-black w-full py-10 collect-slider'>
+        <Slider {...settings} className='bg-background w-full py-10 collect-slider'>
 
             {animals.map((data, index) => (
             <Link key={index} href={data.url} className='flex flex-col items-center text-center space-y-4 max-sm:p-2 p-4'>

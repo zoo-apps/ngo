@@ -1,6 +1,6 @@
 function Donation_Spent() {
     return (
-      <div className="bg-[#3C9465] max-md:bg-black max-md:text-white text-black max-md:py-32 md:py-12 lg:py-12 max-md:px-0 px-16">
+      <div className="bg-[#3C9465] max-md:bg-background max-md:text-foreground text-black max-md:py-32 md:py-12 lg:py-12 max-md:px-0 px-16">
         <div className='flex max-md:flex-col justify-between max-md:space-y-24 '>
           <div className="flex flex-col flex-1 2xl:pr-56 xl:pr-24 lg:pr-12 md:pr-4 space-y-24 max-md:space-y-12 max-md:px-4">
             <h1 className="2xl:text-7xl xl:text-6xl lg:text-5xl md:text-3xl max-md:text-4xl ">How is your donation spent?</h1>

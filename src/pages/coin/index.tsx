@@ -14,7 +14,7 @@ export default function Coin() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">ZOO Coin</h1>
@@ -33,28 +33,28 @@ export default function Coin() {
                 <li className="flex items-start">
                   <span className="text-green-500 mr-3">🗳️</span>
                   <div>
-                    <strong className="text-white">Governance Voting</strong>
+                    <strong className="text-foreground">Governance Voting</strong>
                     <p className="text-sm mt-1">Vote on conservation proposals and fund allocation</p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-3">💰</span>
                   <div>
-                    <strong className="text-white">Treasury Management</strong>
+                    <strong className="text-foreground">Treasury Management</strong>
                     <p className="text-sm mt-1">Participate in decisions about the $5M+ conservation treasury</p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-3">🎁</span>
                   <div>
-                    <strong className="text-white">Staking Rewards</strong>
+                    <strong className="text-foreground">Staking Rewards</strong>
                     <p className="text-sm mt-1">Earn rewards for long-term commitment to conservation</p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-3">🌍</span>
                   <div>
-                    <strong className="text-white">Experience Access</strong>
+                    <strong className="text-foreground">Experience Access</strong>
                     <p className="text-sm mt-1">Exclusive access to conservation expeditions and events</p>
                   </div>
                 </li>

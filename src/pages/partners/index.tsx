@@ -14,7 +14,7 @@ export default function Partners() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Conservation Partners</h1>
@@ -165,7 +165,7 @@ export default function Partners() {
               communities as the primary stewards of their ancestral lands.
             </p>
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-black rounded-lg p-8">
+              <div className="bg-background rounded-lg p-8">
                 <h3 className="text-xl font-bold mb-4">Amazon Sacred Headwaters Initiative</h3>
                 <p className="text-gray-300 mb-4">
                   Alliance of indigenous nations protecting 86 million acres of rainforest across 
@@ -177,7 +177,7 @@ export default function Partners() {
                 </div>
               </div>
 
-              <div className="bg-black rounded-lg p-8">
+              <div className="bg-background rounded-lg p-8">
                 <h3 className="text-xl font-bold mb-4">Arctic Council Indigenous Peoples</h3>
                 <p className="text-gray-300 mb-4">
                   Partnering with Inuit, Saami, and other Arctic peoples for polar bear and marine 
@@ -189,7 +189,7 @@ export default function Partners() {
                 </div>
               </div>
 
-              <div className="bg-black rounded-lg p-8">
+              <div className="bg-background rounded-lg p-8">
                 <h3 className="text-xl font-bold mb-4">Maasai Wildlife Conservancies</h3>
                 <p className="text-gray-300 mb-4">
                   Supporting Maasai communities in Kenya and Tanzania to protect wildlife corridors 
@@ -201,7 +201,7 @@ export default function Partners() {
                 </div>
               </div>
 
-              <div className="bg-black rounded-lg p-8">
+              <div className="bg-background rounded-lg p-8">
                 <h3 className="text-xl font-bold mb-4">Karen Forest Communities</h3>
                 <p className="text-gray-300 mb-4">
                   Working with Karen people in Thailand and Myanmar for elephant conservation and 
@@ -362,7 +362,7 @@ export default function Partners() {
               </div>
               <Link
                 href="/getinvolved"
-                className="inline-block bg-green-600 text-white px-8 py-3 rounded-full font-medium hover:bg-green-700 transition-colors"
+                className="inline-block bg-green-600 text-foreground px-8 py-3 rounded-full font-medium hover:bg-green-700 transition-colors"
               >
                 Partner With Us
               </Link>

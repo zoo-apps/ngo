@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 function TradingCard() {
   return (
-    <div className="bg-black pb-32 max-md:pb-16 xl:px-64 lg:px-32 md:px-16 px-4">
-      <h1 className='text-white max-md:text-3xl max-md:block hidden pb-8'>Select any trading card to start learning.</h1>
+    <div className="bg-background pb-32 max-md:pb-16 xl:px-64 lg:px-32 md:px-16 px-4">
+      <h1 className='text-foreground max-md:text-3xl max-md:block hidden pb-8'>Select any trading card to start learning.</h1>
       <div className="flex items-center justify-between md:pt-20 flex-row-reverse">
         <div className='w-1/2 lg:pl-32 pl-8'>
             {/* <Image
@@ -21,10 +21,10 @@ function TradingCard() {
             </Link>
         </div>
         <div className='w-1/2  flex flex-col justify-between'>
-            <h1 className='text-white md:text-5xl xl:text-6xl max-md:text-3xl max-md:my-5 md:pb-16 max-md:hidden'>Select any trading card to start learning.</h1>
-            <p className='text-white md:text-lg lg:text-xl max-md:text-xl xl:text-2xl max-md:pb-10 md:pb-10'>Discover our vibrant, fact-packed Zoo trading cards – a virtual treasure trove of animal knowledge and endangered species insights!</p>
+            <h1 className='text-foreground md:text-5xl xl:text-6xl max-md:text-3xl max-md:my-5 md:pb-16 max-md:hidden'>Select any trading card to start learning.</h1>
+            <p className='text-foreground md:text-lg lg:text-xl max-md:text-xl xl:text-2xl max-md:pb-10 md:pb-10'>Discover our vibrant, fact-packed Zoo trading cards – a virtual treasure trove of animal knowledge and endangered species insights!</p>
 
-            <Link href='/animals/amur_leopard'  className='flex items-center md:pt-10 cursor-pointer text-white md:text-sm lg:text-md max-md:text-md xl:text-lg max-md:pb-10'>
+            <Link href='/animals/amur_leopard'  className='flex items-center md:pt-10 cursor-pointer text-foreground md:text-sm lg:text-md max-md:text-md xl:text-lg max-md:pb-10'>
               <>
                 <span className='pr-[15px]'>View Amur Leopard</span>
                 <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -57,7 +57,7 @@ export default function ExperienceDetailPage() {
       <Layout>
         <Seo templateTitle="Experience Not Found" />
         <Navbar />
-        <div className="bg-black text-white min-h-screen">
+        <div className="bg-background text-foreground min-h-screen">
           <div className="container mx-auto px-4 py-16 text-center">
             <h1 className="text-3xl md:text-4xl mb-6">Experience Not Found</h1>
             <p className="mb-8">The experience you&apos;re looking for doesn&apos;t exist or has been removed.</p>
@@ -78,7 +78,7 @@ export default function ExperienceDetailPage() {
       <Layout>
         <Seo />
         <Navbar />
-        <div className="bg-black text-white min-h-screen">
+        <div className="bg-background text-foreground min-h-screen">
           <div className="container mx-auto px-4 py-16 text-center">
             <div className="animate-pulse">
               <div className="h-10 bg-gray-800 rounded w-3/4 mx-auto mb-6"></div>
@@ -97,7 +97,7 @@ export default function ExperienceDetailPage() {
       <Seo templateTitle={experience.title} />
       <Navbar />
       
-      <main className="bg-black text-white">
+      <main className="bg-background text-foreground">
         <div className="container mx-auto px-4 py-12">
           <div className="mb-8">
             <Button
@@ -149,7 +149,7 @@ export default function ExperienceDetailPage() {
                 <TabsContent value="overview" className="text-gray-300 space-y-4">
                   {experience.overview.includes('Create Your Conservation Experience') ? (
                     <>
-                      <h2 className="text-xl font-bold text-white mb-4">Create Your Conservation Experience</h2>
+                      <h2 className="text-xl font-bold text-foreground mb-4">Create Your Conservation Experience</h2>
                       <p>{experience.overview.replace('Create Your Conservation Experience\n\n', '')}</p>
                     </>
                   ) : (
@@ -205,7 +205,7 @@ export default function ExperienceDetailPage() {
                             onClick={() => setSelectedDate(dateOption.date)}
                             className={`p-3 rounded-lg border transition-all text-left ${
                               selectedDate === dateOption.date
-                                ? 'bg-gray-600 border-gray-600 text-white'
+                                ? 'bg-gray-600 border-gray-600 text-foreground'
                                 : 'bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-600'
                             }`}
                           >
@@ -267,7 +267,7 @@ export default function ExperienceDetailPage() {
                             step="10"
                             value={optionalDonation}
                             onChange={(e) => setOptionalDonation(Math.max(0, parseInt(e.target.value) || 0))}
-                            className="w-full bg-gray-700 text-white rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-white"
+                            className="w-full bg-gray-700 text-foreground rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-white"
                             placeholder="0"
                           />
                         </div>

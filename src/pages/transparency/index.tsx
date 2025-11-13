@@ -16,7 +16,7 @@ export default function Transparency() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Transparency & Accountability</h1>
@@ -66,7 +66,7 @@ export default function Transparency() {
                 onClick={() => setSelectedYear(year)}
                 className={`px-6 py-2 rounded-full font-medium transition-colors ${
                   selectedYear === year
-                    ? 'bg-green-600 text-white'
+                    ? 'bg-green-600 text-foreground'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
@@ -176,7 +176,7 @@ export default function Transparency() {
           <div className="mt-12 bg-gray-900 rounded-lg p-8">
             <h3 className="text-2xl font-bold mb-6">Program Expense Breakdown</h3>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-black rounded-lg p-6">
+              <div className="bg-background rounded-lg p-6">
                 <h4 className="font-bold mb-3">Wildlife Protection</h4>
                 <p className="text-2xl font-bold text-green-500 mb-2">$5,867,234</p>
                 <ul className="text-sm text-gray-400 space-y-1">
@@ -185,7 +185,7 @@ export default function Transparency() {
                   <li>• Ranger training programs</li>
                 </ul>
               </div>
-              <div className="bg-black rounded-lg p-6">
+              <div className="bg-background rounded-lg p-6">
                 <h4 className="font-bold mb-3">Habitat Conservation</h4>
                 <p className="text-2xl font-bold text-green-500 mb-2">$4,234,567</p>
                 <ul className="text-sm text-gray-400 space-y-1">
@@ -194,7 +194,7 @@ export default function Transparency() {
                   <li>• Protected area management</li>
                 </ul>
               </div>
-              <div className="bg-black rounded-lg p-6">
+              <div className="bg-background rounded-lg p-6">
                 <h4 className="font-bold mb-3">Research & Education</h4>
                 <p className="text-2xl font-bold text-green-500 mb-2">$3,456,789</p>
                 <ul className="text-sm text-gray-400 space-y-1">
@@ -203,7 +203,7 @@ export default function Transparency() {
                   <li>• Community outreach</li>
                 </ul>
               </div>
-              <div className="bg-black rounded-lg p-6">
+              <div className="bg-background rounded-lg p-6">
                 <h4 className="font-bold mb-3">Technology & Innovation</h4>
                 <p className="text-2xl font-bold text-green-500 mb-2">$1,789,234</p>
                 <ul className="text-sm text-gray-400 space-y-1">
@@ -212,7 +212,7 @@ export default function Transparency() {
                   <li>• Data management systems</li>
                 </ul>
               </div>
-              <div className="bg-black rounded-lg p-6">
+              <div className="bg-background rounded-lg p-6">
                 <h4 className="font-bold mb-3">Community Programs</h4>
                 <p className="text-2xl font-bold text-green-500 mb-2">$731,176</p>
                 <ul className="text-sm text-gray-400 space-y-1">
@@ -221,7 +221,7 @@ export default function Transparency() {
                   <li>• Human-wildlife conflict</li>
                 </ul>
               </div>
-              <div className="bg-black rounded-lg p-6">
+              <div className="bg-background rounded-lg p-6">
                 <h4 className="font-bold mb-3">Emergency Response</h4>
                 <p className="text-2xl font-bold text-green-500 mb-2">$0</p>
                 <ul className="text-sm text-gray-400 space-y-1">
@@ -243,19 +243,19 @@ export default function Transparency() {
               <div>
                 <h3 className="text-2xl font-bold mb-6">Board of Directors</h3>
                 <div className="space-y-4">
-                  <div className="bg-black rounded-lg p-4">
+                  <div className="bg-background rounded-lg p-4">
                     <h4 className="font-bold">Dr. Jane Martinez</h4>
                     <p className="text-gray-400">Board Chair - Conservation Biologist</p>
                   </div>
-                  <div className="bg-black rounded-lg p-4">
+                  <div className="bg-background rounded-lg p-4">
                     <h4 className="font-bold">Michael Chen</h4>
                     <p className="text-gray-400">Vice Chair - Environmental Lawyer</p>
                   </div>
-                  <div className="bg-black rounded-lg p-4">
+                  <div className="bg-background rounded-lg p-4">
                     <h4 className="font-bold">Sarah Thompson</h4>
                     <p className="text-gray-400">Treasurer - CPA, Nonprofit Finance</p>
                   </div>
-                  <div className="bg-black rounded-lg p-4">
+                  <div className="bg-background rounded-lg p-4">
                     <h4 className="font-bold">Dr. Raj Patel</h4>
                     <p className="text-gray-400">Secretary - Wildlife Veterinarian</p>
                   </div>
@@ -265,19 +265,19 @@ export default function Transparency() {
               <div>
                 <h3 className="text-2xl font-bold mb-6">Executive Team</h3>
                 <div className="space-y-4">
-                  <div className="bg-black rounded-lg p-4">
+                  <div className="bg-background rounded-lg p-4">
                     <h4 className="font-bold">David Anderson</h4>
                     <p className="text-gray-400">CEO & President</p>
                   </div>
-                  <div className="bg-black rounded-lg p-4">
+                  <div className="bg-background rounded-lg p-4">
                     <h4 className="font-bold">Dr. Maria Santos</h4>
                     <p className="text-gray-400">Chief Conservation Officer</p>
                   </div>
-                  <div className="bg-black rounded-lg p-4">
+                  <div className="bg-background rounded-lg p-4">
                     <h4 className="font-bold">James Wilson</h4>
                     <p className="text-gray-400">Chief Financial Officer</p>
                   </div>
-                  <div className="bg-black rounded-lg p-4">
+                  <div className="bg-background rounded-lg p-4">
                     <h4 className="font-bold">Lisa Zhang</h4>
                     <p className="text-gray-400">Chief Technology Officer</p>
                   </div>
@@ -285,7 +285,7 @@ export default function Transparency() {
               </div>
             </div>
 
-            <div className="bg-black rounded-lg p-8">
+            <div className="bg-background rounded-lg p-8">
               <h3 className="text-xl font-bold mb-4">Governance Policies</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
@@ -436,13 +436,13 @@ export default function Transparency() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:transparency@zoo.ngo"
-                className="bg-green-600 text-white px-8 py-3 rounded-full font-medium hover:bg-green-700 transition-colors"
+                className="bg-green-600 text-foreground px-8 py-3 rounded-full font-medium hover:bg-green-700 transition-colors"
               >
                 Email Transparency Team
               </a>
               <Link
                 href="/contact"
-                className="bg-gray-700 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-600 transition-colors"
+                className="bg-gray-700 text-foreground px-8 py-3 rounded-full font-medium hover:bg-gray-600 transition-colors"
               >
                 General Contact
               </Link>

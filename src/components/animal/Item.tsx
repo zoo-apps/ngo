@@ -58,7 +58,7 @@ function Item({list, linkFlag=true}: {
         }
       ];
   return (
-    <div className="bg-black lg:py-52 md:py-32 max-md:py-8">
+    <div className="bg-background lg:py-52 md:py-32 max-md:py-8">
       <div className='grid md:grid-cols-3 grid-cols-1 gap-8 xl:px-56 lg:px-40 md:px-24 max-md:px-4'>
       {animals.map((data, index) => (
         <div key={index} className='flex flex-col items-center space-y-4'>
@@ -82,7 +82,7 @@ function Item({list, linkFlag=true}: {
             linkFlag ? (
               <Link
                 href={data.href}
-                className='w-full items-center flex justify-center cursor-pointer text-white md:text-sm lg:text-md xl:text-xl max-md:pb-10 '>
+                className='w-full items-center flex justify-center cursor-pointer text-foreground md:text-sm lg:text-md xl:text-xl max-md:pb-10 '>
                   <>
                     <span className='pr-[15px]'>{data.title}</span>
                     <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +91,7 @@ function Item({list, linkFlag=true}: {
                   </>
               </Link>
             ) : (
-              <p className='text-white md:text-sm lg:text-md xl:text-xl max-md:pb-10'>{data.title}</p>
+              <p className='text-foreground md:text-sm lg:text-md xl:text-xl max-md:pb-10'>{data.title}</p>
             )
           }
           

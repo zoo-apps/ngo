@@ -11,19 +11,19 @@ export default function ZooConnect() {
     <Layout>
         <Seo />
         <Navbar />
-        <div className='bg-black py-32 text-white'>
+        <div className='bg-background py-32 text-foreground'>
           <div className='md:w-[500px] mx-auto w-full rounded-3xl px-12 md:border border-white py-8 flex flex-col'>
-            <p className='text-white text-2xl text-center pb-8'>Sign up for free</p>
+            <p className='text-foreground text-2xl text-center pb-8'>Sign up for free</p>
             <label className='pb-2 pl-4 text-base'>Email *</label>
             <input className='outline-none bg-[#262934] border border-[#333] text-sm rounded-full px-4 py-2' placeholder='Email'/>
             <label className='pb-2 pl-4 mt-6 text-base'>Password *</label>
             <input className='outline-none bg-[#262934] border border-[#333] text-sm rounded-full px-4 py-2' type='password' placeholder='Password'/>
             <div className="pl-4 mt-8 flex items-center">
                 <input id="link-checkbox" type="checkbox" value="" className="w-4 h-4 text-[#13B156] bg-transparent border border-white rounded" />
-                <label className="ml-2 text-sm font-medium text-white">Remember me</label>
+                <label className="ml-2 text-sm font-medium text-foreground">Remember me</label>
             </div>
             <button className='mt-8 rounded-full py-2 px-4 text-lg text-black bg-white'>Sign Up</button>
-            <p className='text-white text-sm text-center mt-8'>or continue with</p>
+            <p className='text-foreground text-sm text-center mt-8'>or continue with</p>
             <div className='flex items-center justify-center space-x-12 mt-6'>
               <button>
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,8 +74,8 @@ export default function ZooConnect() {
               </button>
             </div>
             <div className='flex items-center justify-center space-x-2 mt-8'>
-              <p className='text-white text-sm'>Already have an account?</p>
-              <Link href='/signin' className='hover:text-white text-[#aaa] text-sm'>Sign In</Link>
+              <p className='text-foreground text-sm'>Already have an account?</p>
+              <Link href='/signin' className='hover:text-foreground text-[#aaa] text-sm'>Sign In</Link>
             </div>
           </div>
         </div>

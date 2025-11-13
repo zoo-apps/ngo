@@ -67,12 +67,12 @@ const FilterPanel = ({ filters, onFilterChange, className = '' }: FilterPanelPro
   };
   
   return (
-    <div className={cn("bg-black border border-gray-800 rounded-lg p-4", className)}>
+    <div className={cn("bg-background border border-gray-800 rounded-lg p-4", className)}>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-bold text-white">Filters</h2>
+        <h2 className="text-lg font-bold text-foreground">Filters</h2>
         <button 
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="p-1 rounded hover:bg-gray-800 text-white"
+          className="p-1 rounded hover:bg-gray-800 text-foreground"
         >
           {isCollapsed ? (
             <ChevronDown className="h-5 w-5" />
@@ -94,7 +94,7 @@ const FilterPanel = ({ filters, onFilterChange, className = '' }: FilterPanelPro
             </Button>
           </div>
           
-          <Accordion type="multiple" className="w-full text-white">
+          <Accordion type="multiple" className="w-full text-foreground">
             <AccordionItem value="wildlife-types">
               <AccordionTrigger className="text-md font-medium">
                 Wildlife Types
@@ -105,7 +105,7 @@ const FilterPanel = ({ filters, onFilterChange, className = '' }: FilterPanelPro
                     <label key={type} className="flex items-center cursor-pointer">
                       <input 
                         type="checkbox"
-                        className="rounded border-gray-700 bg-gray-900 text-white focus:ring-white mr-2"
+                        className="rounded border-gray-700 bg-gray-900 text-foreground focus:ring-white mr-2"
                         checked={filters.wildlifeTypes?.includes(type as WildlifeType) || false}
                         onChange={() => handleCheckboxChange('wildlifeTypes', type as WildlifeType)}
                       />
@@ -126,7 +126,7 @@ const FilterPanel = ({ filters, onFilterChange, className = '' }: FilterPanelPro
                     <label key={continent} className="flex items-center cursor-pointer">
                       <input 
                         type="checkbox"
-                        className="rounded border-gray-700 bg-gray-900 text-white focus:ring-white mr-2"
+                        className="rounded border-gray-700 bg-gray-900 text-foreground focus:ring-white mr-2"
                         checked={filters.continent?.includes(continent as Continent) || false}
                         onChange={() => handleCheckboxChange('continent', continent as Continent)}
                       />
@@ -154,7 +154,7 @@ const FilterPanel = ({ filters, onFilterChange, className = '' }: FilterPanelPro
                     <label key={task} className="flex items-center cursor-pointer">
                       <input 
                         type="checkbox"
-                        className="rounded border-gray-700 bg-gray-900 text-white focus:ring-white mr-2"
+                        className="rounded border-gray-700 bg-gray-900 text-foreground focus:ring-white mr-2"
                         checked={filters.volunteerTasks?.includes(task as VolunteerTask) || false}
                         onChange={() => handleCheckboxChange('volunteerTasks', task as VolunteerTask)}
                       />
@@ -201,7 +201,7 @@ const FilterPanel = ({ filters, onFilterChange, className = '' }: FilterPanelPro
             <label className="flex items-center cursor-pointer">
               <input 
                 type="checkbox"
-                className="rounded border-gray-700 bg-gray-900 text-white focus:ring-white mr-2"
+                className="rounded border-gray-700 bg-gray-900 text-foreground focus:ring-white mr-2"
                 checked={filters.accessible || false}
                 onChange={(e) => handleBooleanChange('accessible', e.target.checked)}
               />

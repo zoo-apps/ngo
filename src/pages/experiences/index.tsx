@@ -83,7 +83,7 @@ export default function ExperiencesPage() {
       <Seo templateTitle="Wildlife Volunteer Experiences" />
       <Navbar />
       
-      <main className="bg-black text-white">
+      <main className="bg-background text-foreground">
         <div className="container mx-auto px-4 pt-8 pb-16">
           <div className='mb-8'>
             <div className='flex flex-col md:flex-row items-center gap-6'>
@@ -114,7 +114,7 @@ export default function ExperiencesPage() {
             <div className="flex-1">
               <div className="flex justify-between items-center mb-6">
                 <p className="text-gray-400">
-                  Found <span className="font-medium text-white">{filteredExperiences.length}</span> experiences
+                  Found <span className="font-medium text-foreground">{filteredExperiences.length}</span> experiences
                 </p>
                 
                 <div className="flex items-center gap-2">

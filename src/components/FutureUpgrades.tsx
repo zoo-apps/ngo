@@ -21,7 +21,7 @@ function FutureUpgrades() {
         }
       ];
   return (
-    <div className="bg-black lg:py-32 md:py-20 max-md:py-32 md:px-16 lg:px-16 xl:px-24 2xl:px-32">
+    <div className="bg-background lg:py-32 md:py-20 max-md:py-32 md:px-16 lg:px-16 xl:px-24 2xl:px-32">
       <div className="flex max-md:flex-col items-center justify-between md:pt-20">
         <div className='md:w-2/5 w-full'>
             <Image
@@ -33,9 +33,9 @@ function FutureUpgrades() {
             />
         </div>
         <div className='w-3/5 max-md:w-full flex flex-col   px-8 xl:pl-24 2xl:pl-32 lg:pl-16 md:pl-8 2xl:pr-48'>
-            <h1 className='text-white md:text-4xl lg:text-5xl xl:text-6xl max-md:text-3xl max-md:my-5 md:pb-4 lg:pb-8 xl:pb-10'>Want More?</h1>
-            <p className='text-white md:text-sm lg:text-lg xl:text-2xl max-md:pb-4 md:pb-4 lg:pb-12 '>Join our DAO to suggest upgrades and make votes for developments you want incorporated in Zoo!</p>
-            <Link href='#' className='flex items-center justify-center text-white md:text-sm lg:text-md xl:text-lg max-md:mt-4 border border-white rounded-full px-4 w-[200px] py-2'>
+            <h1 className='text-foreground md:text-4xl lg:text-5xl xl:text-6xl max-md:text-3xl max-md:my-5 md:pb-4 lg:pb-8 xl:pb-10'>Want More?</h1>
+            <p className='text-foreground md:text-sm lg:text-lg xl:text-2xl max-md:pb-4 md:pb-4 lg:pb-12 '>Join our DAO to suggest upgrades and make votes for developments you want incorporated in Zoo!</p>
+            <Link href='#' className='flex items-center justify-center text-foreground md:text-sm lg:text-md xl:text-lg max-md:mt-4 border border-white rounded-full px-4 w-[200px] py-2'>
                 <>
                 <span className='pr-[15px]'>Join Zoo DAO</span>
                 <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -15,10 +15,10 @@ export default function Volunteer() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-black py-20">
+      <section className="bg-background py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
               Get Involved
             </h1>
             <p className="text-xl md:text-2xl text-gray-400">
@@ -66,13 +66,13 @@ export default function Volunteer() {
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Link
                 href="/experiences"
-                className="inline-block bg-black text-white px-8 py-4 font-bold hover:bg-gray-800 transition-all text-center"
+                className="inline-block bg-background text-foreground px-8 py-4 font-bold hover:bg-gray-800 transition-all text-center"
               >
                 VIEW ALL EXPEDITIONS
               </Link>
               <Link
                 href="/donation"
-                className="inline-block border-2 border-black text-black px-8 py-4 font-bold hover:bg-black hover:text-white transition-all text-center"
+                className="inline-block border-2 border-black text-black px-8 py-4 font-bold hover:bg-background hover:text-foreground transition-all text-center"
               >
                 DONATE TO SUPPORT
               </Link>
@@ -82,10 +82,10 @@ export default function Volunteer() {
       </section>
 
       {/* Contact Section */}
-      <section className="bg-black py-20">
+      <section className="bg-background py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground">
               Contact Us
             </h2>
             <p className="text-xl text-gray-400 mb-12">
@@ -96,27 +96,27 @@ export default function Volunteer() {
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-3 text-white">Email</h3>
-                <a href="mailto:hello@zoo.ngo" className="text-gray-400 hover:text-white">
+                <h3 className="text-xl font-bold mb-3 text-foreground">Email</h3>
+                <a href="mailto:hello@zoo.ngo" className="text-gray-400 hover:text-foreground">
                   hello@zoo.ngo
                 </a>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-3 text-white">Experiences</h3>
-                <a href="mailto:experiences@zoo.ngo" className="text-gray-400 hover:text-white">
+                <h3 className="text-xl font-bold mb-3 text-foreground">Experiences</h3>
+                <a href="mailto:experiences@zoo.ngo" className="text-gray-400 hover:text-foreground">
                   experiences@zoo.ngo
                 </a>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-3 text-white">Partnerships</h3>
-                <a href="mailto:partners@zoo.ngo" className="text-gray-400 hover:text-white">
+                <h3 className="text-xl font-bold mb-3 text-foreground">Partnerships</h3>
+                <a href="mailto:partners@zoo.ngo" className="text-gray-400 hover:text-foreground">
                   partners@zoo.ngo
                 </a>
               </div>
             </div>
 
             <div className="border border-white p-8">
-              <h3 className="text-2xl font-bold mb-4 text-white">
+              <h3 className="text-2xl font-bold mb-4 text-foreground">
                 Zoo Foundation
               </h3>
               <p className="text-gray-400 mb-2">
@@ -141,19 +141,19 @@ export default function Volunteer() {
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="border border-black p-6 hover:bg-black hover:text-white transition-all group">
+            <div className="border border-black p-6 hover:bg-background hover:text-foreground transition-all group">
               <h3 className="text-xl font-bold mb-3">Field Research</h3>
               <p className="text-gray-600 group-hover:text-gray-300">
                 Join our research expeditions to study and protect endangered species in their natural habitats.
               </p>
             </div>
-            <div className="border border-black p-6 hover:bg-black hover:text-white transition-all group">
+            <div className="border border-black p-6 hover:bg-background hover:text-foreground transition-all group">
               <h3 className="text-xl font-bold mb-3">Education & Outreach</h3>
               <p className="text-gray-600 group-hover:text-gray-300">
                 Help educate communities about wildlife conservation and the importance of biodiversity.
               </p>
             </div>
-            <div className="border border-black p-6 hover:bg-black hover:text-white transition-all group">
+            <div className="border border-black p-6 hover:bg-background hover:text-foreground transition-all group">
               <h3 className="text-xl font-bold mb-3">Fundraising</h3>
               <p className="text-gray-600 group-hover:text-gray-300">
                 Support our mission by helping organize and participate in fundraising events and campaigns.
@@ -164,7 +164,7 @@ export default function Volunteer() {
           <div className="text-center mt-12">
             <Link
               href="/donation"
-              className="inline-block bg-black text-white px-12 py-5 font-bold text-xl hover:bg-gray-800 transition-all"
+              className="inline-block bg-background text-foreground px-12 py-5 font-bold text-xl hover:bg-gray-800 transition-all"
             >
               DONATE NOW
             </Link>

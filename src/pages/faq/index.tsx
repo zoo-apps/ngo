@@ -210,11 +210,11 @@ export default function FAQ() {
       {/* Contact Section */}
       <section className="bg-white py-20">
         <div className="container mx-auto px-4">
-          <div className="bg-black border border-white rounded-2xl p-12 text-white text-center">
+          <div className="bg-background border border-white rounded-2xl p-12 text-foreground text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Still Have Questions?
             </h2>
-            <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+            <p className="text-xl mb-8 text-foreground/90 max-w-2xl mx-auto">
               Our team is here to help. Reach out and we'll respond within 24 hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

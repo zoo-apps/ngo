@@ -20,12 +20,12 @@ export default function About() {
       />
       <Navbar />
 
-      <div className="bg-black text-white min-h-screen">
+      <div className="bg-background text-foreground min-h-screen">
         {/* Hero Section with Gradient */}
-        <div className="relative overflow-hidden bg-black">
+        <div className="relative overflow-hidden bg-background">
           <div className="container mx-auto px-4 py-20 relative">
             <div className={`max-w-4xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <h1 className="text-5xl md:text-7xl font-bold mb-8 text-white">
+              <h1 className="text-5xl md:text-7xl font-bold mb-8 text-foreground">
                 Protecting Wildlife for Future Generations
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
@@ -73,7 +73,7 @@ export default function About() {
         </div>
 
         {/* Our Story */}
-        <div className="py-20 bg-black border-t border-gray-800">
+        <div className="py-20 bg-background border-t border-gray-800">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold mb-8">Our Story</h2>
@@ -106,25 +106,25 @@ export default function About() {
             <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Core Values</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
               <div className="bg-gray-900 rounded-xl p-8 hover:bg-gray-800 transition-colors">
-                <h3 className="text-xl font-bold mb-4 text-white">Scientific Rigor</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Scientific Rigor</h3>
                 <p className="text-gray-300">
                   Every decision backed by peer-reviewed research and data-driven insights
                 </p>
               </div>
               <div className="bg-gray-900 rounded-xl p-8 hover:bg-gray-800 transition-colors">
-                <h3 className="text-xl font-bold mb-4 text-white">Transparency</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Transparency</h3>
                 <p className="text-gray-300">
                   Public financial reports, annual disclosures, and regular impact updates for all donors
                 </p>
               </div>
               <div className="bg-gray-900 rounded-xl p-8 hover:bg-gray-800 transition-colors">
-                <h3 className="text-xl font-bold mb-4 text-white">Education</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Education</h3>
                 <p className="text-gray-300">
                   Supporting research and educational programs that advance conservation science
                 </p>
               </div>
               <div className="bg-gray-900 rounded-xl p-8 hover:bg-gray-800 transition-colors">
-                <h3 className="text-xl font-bold mb-4 text-white">Collaboration</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Collaboration</h3>
                 <p className="text-gray-300">
                   Centering indigenous knowledge and empowering local communities
                 </p>
@@ -134,7 +134,7 @@ export default function About() {
         </div>
 
         {/* Leadership */}
-        <div className="py-20 bg-black border-t border-gray-800">
+        <div className="py-20 bg-background border-t border-gray-800">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Leadership</h2>
             <div className="max-w-3xl mx-auto text-center">
@@ -157,7 +157,7 @@ export default function About() {
         </div>
 
         {/* Our Focus */}
-        <div className="py-20 bg-black">
+        <div className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Our Focus</h2>
             <div className="max-w-4xl mx-auto space-y-8 text-center">
@@ -213,14 +213,14 @@ export default function About() {
         </div>
 
         {/* Partners Section */}
-        <div className="py-20 bg-black border-t border-gray-800">
+        <div className="py-20 bg-background border-t border-gray-800">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Our Partners</h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center mb-12">
               We collaborate with field conservation organizations to support research and protect endangered species.
             </p>
             <div className="max-w-2xl mx-auto">
-              <div className="bg-black border border-gray-800 rounded-lg p-8 text-center">
+              <div className="bg-background border border-gray-800 rounded-lg p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4">Shark Stewards</h3>
                 <p className="text-gray-400 mb-6">
                   Our primary partner for marine conservation, specializing in shark protection and ocean ecosystem research.
@@ -228,7 +228,7 @@ export default function About() {
                 </p>
                 <Link
                   href="/experiences"
-                  className="inline-block text-white hover:text-gray-400 font-medium"
+                  className="inline-block text-foreground hover:text-gray-400 font-medium"
                 >
                   View Shark Stewards Expeditions →
                 </Link>
@@ -249,7 +249,7 @@ export default function About() {
         </div>
 
         {/* Call to Action */}
-        <div className="py-20 bg-black border-t border-gray-800">
+        <div className="py-20 bg-background border-t border-gray-800">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               Join the Conservation Movement
@@ -267,7 +267,7 @@ export default function About() {
               </Link>
               <Link
                 href="/getinvolved"
-                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-medium hover:bg-white hover:text-black transition-colors text-lg"
+                className="bg-transparent border-2 border-white text-foreground px-8 py-4 rounded-full font-medium hover:bg-white hover:text-black transition-colors text-lg"
               >
                 Get Involved
               </Link>

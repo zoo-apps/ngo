@@ -45,10 +45,10 @@ export default function Team() {
       <Navbar />
 
       {/* Hero Section - Clean & Minimal */}
-      <section className="bg-black py-20">
+      <section className="bg-background py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
               Our Team
             </h1>
             <p className="text-xl md:text-2xl text-gray-400">
@@ -72,8 +72,8 @@ export default function Team() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {leadership.map((person, index) => (
-              <div key={index} className="bg-white border border-black p-8 hover:bg-black hover:text-white transition-all duration-300 group">
-                <div className="w-20 h-20 bg-black group-hover:bg-white mb-6"></div>
+              <div key={index} className="bg-white border border-black p-8 hover:bg-background hover:text-foreground transition-all duration-300 group">
+                <div className="w-20 h-20 bg-background group-hover:bg-white mb-6"></div>
                 <h3 className="text-2xl font-bold mb-2">{person.name}</h3>
                 <p className="text-gray-600 group-hover:text-gray-300 font-medium mb-4">{person.role}</p>
                 <p className="text-gray-600 group-hover:text-gray-300 mb-6">{person.bio}</p>
@@ -91,10 +91,10 @@ export default function Team() {
       </section>
 
       {/* Board of Directors */}
-      <section className="bg-black py-20">
+      <section className="bg-background py-20">
         <div className="container mx-auto px-4">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Board of Directors</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Board of Directors</h2>
             <p className="text-xl text-gray-400 max-w-3xl">
               Our board provides strategic guidance and ensures we maintain the highest
               standards of governance and accountability.
@@ -104,7 +104,7 @@ export default function Team() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {board.map((member, index) => (
               <div key={index} className="border border-white p-6 hover:bg-white hover:text-black transition-all group">
-                <h3 className="text-xl font-bold mb-2 text-white group-hover:text-black">{member.name}</h3>
+                <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-black">{member.name}</h3>
                 <p className="text-gray-400 group-hover:text-gray-700 font-medium mb-2">{member.role}</p>
                 <p className="text-gray-500 group-hover:text-gray-600 text-sm">{member.affiliation}</p>
               </div>
@@ -149,7 +149,7 @@ export default function Team() {
 
           <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
-              <div className="w-16 h-16 bg-black mx-auto mb-4 flex items-center justify-center text-white text-2xl">
+              <div className="w-16 h-16 bg-background mx-auto mb-4 flex items-center justify-center text-foreground text-2xl">
                 🌍
               </div>
               <h3 className="font-bold text-lg mb-2">Science-Driven</h3>
@@ -158,7 +158,7 @@ export default function Team() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-black mx-auto mb-4 flex items-center justify-center text-white text-2xl">
+              <div className="w-16 h-16 bg-background mx-auto mb-4 flex items-center justify-center text-foreground text-2xl">
                 💎
               </div>
               <h3 className="font-bold text-lg mb-2">Transparent</h3>
@@ -167,7 +167,7 @@ export default function Team() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-black mx-auto mb-4 flex items-center justify-center text-white text-2xl">
+              <div className="w-16 h-16 bg-background mx-auto mb-4 flex items-center justify-center text-foreground text-2xl">
                 🤝
               </div>
               <h3 className="font-bold text-lg mb-2">Collaborative</h3>
@@ -176,7 +176,7 @@ export default function Team() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-black mx-auto mb-4 flex items-center justify-center text-white text-2xl">
+              <div className="w-16 h-16 bg-background mx-auto mb-4 flex items-center justify-center text-foreground text-2xl">
                 ⚡
               </div>
               <h3 className="font-bold text-lg mb-2">Innovative</h3>
@@ -189,9 +189,9 @@ export default function Team() {
       </section>
 
       {/* Join Us CTA */}
-      <section className="bg-black py-20 border-t border-white">
+      <section className="bg-background py-20 border-t border-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Join Our Mission
           </h2>
           <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
@@ -200,7 +200,7 @@ export default function Team() {
           </p>
           <Link
             href="/careers"
-            className="inline-block bg-white text-black px-8 py-4 font-medium hover:bg-black hover:text-white border-2 border-white transition-all"
+            className="inline-block bg-white text-black px-8 py-4 font-medium hover:bg-background hover:text-foreground border-2 border-white transition-all"
           >
             View Open Positions
           </Link>

@@ -48,7 +48,7 @@ export default function ComponentsPage() {
           <div
             className={clsx(
               'layout min-h-screen py-20',
-              mode === 'dark' ? 'text-white' : 'text-black'
+              mode === 'dark' ? 'text-foreground' : 'text-black'
             )}
           >
             <h1>Built-in Components</h1>
@@ -116,19 +116,19 @@ export default function ComponentsPage() {
                   <div className='bg-primary-500 flex h-10 w-10 items-center justify-center rounded text-black'>
                     500
                   </div>
-                  <div className='bg-primary-600 flex h-10 w-10 items-center justify-center rounded text-white'>
+                  <div className='bg-primary-600 flex h-10 w-10 items-center justify-center rounded text-foreground'>
                     600
                   </div>
-                  <div className='bg-primary-700 flex h-10 w-10 items-center justify-center rounded text-white'>
+                  <div className='bg-primary-700 flex h-10 w-10 items-center justify-center rounded text-foreground'>
                     700
                   </div>
-                  <div className='bg-primary-800 flex h-10 w-10 items-center justify-center rounded text-white'>
+                  <div className='bg-primary-800 flex h-10 w-10 items-center justify-center rounded text-foreground'>
                     800
                   </div>
-                  <div className='bg-primary-900 flex h-10 w-10 items-center justify-center rounded text-white'>
+                  <div className='bg-primary-900 flex h-10 w-10 items-center justify-center rounded text-foreground'>
                     900
                   </div>
-                  <div className='bg-primary-950 flex h-10 w-10 items-center justify-center rounded text-white'>
+                  <div className='bg-primary-950 flex h-10 w-10 items-center justify-center rounded text-foreground'>
                     950
                   </div>
                 </div>

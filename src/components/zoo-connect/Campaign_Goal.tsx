@@ -98,7 +98,7 @@ function Campaign_Goal() {
       },
     ];
   return (
-    <div className="bg-black md:px-12 lg:px-24 xl:px-32 text-white md:py-8 lg:py-12 px-16 max-md:py-4 max-md:px-4">
+    <div className="bg-background md:px-12 lg:px-24 xl:px-32 text-foreground md:py-8 lg:py-12 px-16 max-md:py-4 max-md:px-4">
       <div className='flex flex-col space-y-4'>
         <p className='text-xl'>Campaign Goal</p>
         <p className='text-sm pt-2'>To provide an App/platform for vulnerable, ill-treated, and endangered species worldwide, by boosting the reach and influence of organizations of all sizes that are dedicated to their preservation and well-being. <span onClick={()=>setMoreFlag(false)} className={`${moreFlag ? 'inherit' : 'hidden'} cursor-pointer text-[#3C9465]`}>Read less</span></p>
@@ -149,7 +149,7 @@ function Campaign_Goal() {
             <p className='text-xl'>Comments from campaign donors</p>
             <p className='text-sm text-[#13B156]'>See all</p>
         </div>
-        <Slider {...settings} className='comments bg-black w-full pb-8'>
+        <Slider {...settings} className='comments bg-background w-full pb-8'>
             {comments.map((data, index) => (
                 <Comments key={index} name={data.name} img={data.img} date={data.date} like_text={data.like_text} like_flag={data.like_flag} content={data.content}/>
             ))}

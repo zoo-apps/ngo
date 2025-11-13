@@ -18,12 +18,12 @@ function CryptoSection({ isMobile = false }: { isMobile?: boolean }) {
 
 function Header() {
   return (
-    <div className="bg-black max-md:pt-20">
+    <div className="bg-background max-md:pt-20">
       <div className='flex max-md:flex-col items-center justify-between pt-20'>
         <div className='w-1/2 max-md:w-full max-md:px-8 flex flex-col 2xl:pl-52 xl:pl-36 lg:pl-28 md:pl-16 pr-8 lg:pb-32'>
-            <p className='text-xl text-white pb-8 font-semibold'>🆘 End the road to extinction</p>
-            <h1 className='text-white md:text-3xl lg:text-5xl xl:text-7xl max-md:text-3xl max-md:my-5 pb-9'>Donate to the Zoo Labs Foundation</h1>
-            <p className='lg:text-lg md:text-md text-white pb-8 leading-relaxed'>&quot;It is our driving purpose to deepen the connection humans have with animals by creating sustainable animal sanctuaries for endangered species. Share the Zoo Sanctuary with local visitors, educators, host fundraisers/events, and get the Zoo Community as involved as possible to saving endangered animals all over the world. You could save a life today w/ a monthly donation or a one-time contribution.&quot;</p>
+            <p className='text-xl text-foreground pb-8 font-semibold'>🆘 End the road to extinction</p>
+            <h1 className='text-foreground md:text-3xl lg:text-5xl xl:text-7xl max-md:text-3xl max-md:my-5 pb-9'>Donate to the Zoo Labs Foundation</h1>
+            <p className='lg:text-lg md:text-md text-foreground pb-8 leading-relaxed'>&quot;It is our driving purpose to deepen the connection humans have with animals by creating sustainable animal sanctuaries for endangered species. Share the Zoo Sanctuary with local visitors, educators, host fundraisers/events, and get the Zoo Community as involved as possible to saving endangered animals all over the world. You could save a life today w/ a monthly donation or a one-time contribution.&quot;</p>
             <div className='lg:flex hidden items-center justify-start xl:space-x-8 space-x-6'>
                 <div className='flex space-x-4'>
                   <a 

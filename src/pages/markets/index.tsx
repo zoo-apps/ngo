@@ -16,7 +16,7 @@ export default function Markets() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Conservation Markets</h1>
@@ -60,8 +60,8 @@ export default function Markets() {
                   onClick={() => setSelectedTab(tab)}
                   className={`pb-4 px-1 capitalize ${
                     selectedTab === tab
-                      ? 'text-white border-b-2 border-green-500'
-                      : 'text-gray-400 hover:text-white'
+                      ? 'text-foreground border-b-2 border-green-500'
+                      : 'text-gray-400 hover:text-foreground'
                   }`}
                 >
                   {tab}

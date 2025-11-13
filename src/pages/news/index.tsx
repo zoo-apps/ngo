@@ -136,9 +136,9 @@ export default function News() {
       />
       <Navbar />
 
-      <div className="bg-black text-white min-h-screen">
+      <div className="bg-background text-foreground min-h-screen">
         {/* Hero Section */}
-        <div className="relative overflow-hidden py-20 bg-black">
+        <div className="relative overflow-hidden py-20 bg-background">
           <div className="container mx-auto px-4 relative">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               News & Media
@@ -153,7 +153,7 @@ export default function News() {
         {/* Featured Story */}
         {featuredNews && (
           <div className="container mx-auto px-4 pb-16">
-            <div className="bg-black border border-gray-800 rounded-2xl overflow-hidden">
+            <div className="bg-background border border-gray-800 rounded-2xl overflow-hidden">
               <div className="p-8 md:p-12">
                 <span className="inline-block px-3 py-1 bg-white text-black rounded-full text-sm font-medium mb-4">
                   Featured Story
@@ -167,7 +167,7 @@ export default function News() {
                 <div className="flex items-center gap-6 text-gray-400">
                   <span>{new Date(featuredNews.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                   <span>{featuredNews.readTime}</span>
-                  <Link href={`/news/${featuredNews.id}`} className="text-white hover:text-gray-400 font-medium">
+                  <Link href={`/news/${featuredNews.id}`} className="text-foreground hover:text-gray-400 font-medium">
                     Read Full Story →
                   </Link>
                 </div>
@@ -184,12 +184,12 @@ export default function News() {
               placeholder="Search news..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="flex-1 bg-gray-900 text-white px-6 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="flex-1 bg-gray-900 text-foreground px-6 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
             />
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="bg-gray-900 text-white px-6 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="bg-gray-900 text-foreground px-6 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               {categories.map(cat => (
                 <option key={cat} value={cat}>
@@ -227,7 +227,7 @@ export default function News() {
                 )}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-white font-medium">
+                    <span className="text-sm text-foreground font-medium">
                       {item.category}
                     </span>
                     <span className="text-sm text-gray-400">
@@ -246,7 +246,7 @@ export default function News() {
                     </span>
                     <Link
                       href={`/news/${item.id}`}
-                      className="text-white hover:text-gray-400 text-sm font-medium"
+                      className="text-foreground hover:text-gray-400 text-sm font-medium"
                     >
                       Read More →
                     </Link>
@@ -263,7 +263,7 @@ export default function News() {
             <h2 className="text-3xl md:text-4xl font-bold mb-8">Press Releases</h2>
             <div className="space-y-4">
               {pressReleases.map((release, index) => (
-                <div key={index} className="bg-black rounded-lg p-6 flex items-center justify-between hover:bg-gray-800 transition-colors">
+                <div key={index} className="bg-background rounded-lg p-6 flex items-center justify-between hover:bg-gray-800 transition-colors">
                   <div>
                     <p className="text-sm text-gray-400 mb-2">
                       {new Date(release.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
@@ -274,7 +274,7 @@ export default function News() {
                   </div>
                   <a
                     href={release.pdf}
-                    className="text-white hover:text-gray-400 font-medium whitespace-nowrap"
+                    className="text-foreground hover:text-gray-400 font-medium whitespace-nowrap"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -285,7 +285,7 @@ export default function News() {
             </div>
             <Link
               href="/press"
-              className="inline-block mt-8 text-white hover:text-gray-400 font-medium"
+              className="inline-block mt-8 text-foreground hover:text-gray-400 font-medium"
             >
               View All Press Releases →
             </Link>
@@ -294,26 +294,26 @@ export default function News() {
 
         {/* Media Kit */}
         <div className="container mx-auto px-4 py-16">
-          <div className="bg-black border border-gray-800 rounded-2xl p-8 md:p-12">
+          <div className="bg-background border border-gray-800 rounded-2xl p-8 md:p-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Media Kit</h2>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl">
               Access our media resources including logos, brand guidelines, fact sheets, and high-resolution
               images for press use.
             </p>
             <div className="grid md:grid-cols-4 gap-4 mb-8">
-              <div className="bg-black/50 rounded-lg p-4 text-center">
+              <div className="bg-background/50 rounded-lg p-4 text-center">
                 <div className="text-3xl mb-2">📁</div>
                 <p className="font-medium">Brand Assets</p>
               </div>
-              <div className="bg-black/50 rounded-lg p-4 text-center">
+              <div className="bg-background/50 rounded-lg p-4 text-center">
                 <div className="text-3xl mb-2">📸</div>
                 <p className="font-medium">Photo Library</p>
               </div>
-              <div className="bg-black/50 rounded-lg p-4 text-center">
+              <div className="bg-background/50 rounded-lg p-4 text-center">
                 <div className="text-3xl mb-2">📊</div>
                 <p className="font-medium">Fact Sheets</p>
               </div>
-              <div className="bg-black/50 rounded-lg p-4 text-center">
+              <div className="bg-background/50 rounded-lg p-4 text-center">
                 <div className="text-3xl mb-2">📺</div>
                 <p className="font-medium">Video Resources</p>
               </div>
@@ -328,7 +328,7 @@ export default function News() {
         </div>
 
         {/* Press Contact */}
-        <div className="bg-black py-16 border-t border-gray-800">
+        <div className="bg-background py-16 border-t border-gray-800">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">Press Inquiries</h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -338,19 +338,19 @@ export default function News() {
             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
               <div>
                 <p className="text-gray-400 mb-2">Email</p>
-                <a href="mailto:press@zoo.foundation" className="text-white hover:text-gray-400 font-medium">
+                <a href="mailto:press@zoo.foundation" className="text-foreground hover:text-gray-400 font-medium">
                   press@zoo.foundation
                 </a>
               </div>
               <div>
                 <p className="text-gray-400 mb-2">Phone</p>
-                <a href="tel:+14155551234" className="text-white hover:text-gray-400 font-medium">
+                <a href="tel:+14155551234" className="text-foreground hover:text-gray-400 font-medium">
                   +1 (415) 555-1234
                 </a>
               </div>
               <div>
                 <p className="text-gray-400 mb-2">Press Kit</p>
-                <a href="/media-kit" className="text-white hover:text-gray-400 font-medium">
+                <a href="/media-kit" className="text-foreground hover:text-gray-400 font-medium">
                   Download Resources
                 </a>
               </div>

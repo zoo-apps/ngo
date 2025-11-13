@@ -60,9 +60,9 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
           //#region  //*=========== Variants ===========
           [
             variant === 'primary' && [
-              'bg-primary-500 text-white',
+              'bg-primary-500 text-foreground',
               'border-primary-600 border',
-              'hover:bg-primary-600 hover:text-white',
+              'hover:bg-primary-600 hover:text-foreground',
               'active:bg-primary-700',
               'disabled:bg-primary-700',
             ],
@@ -87,7 +87,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
               'active:bg-white/80 disabled:bg-gray-200',
             ],
             variant === 'dark' && [
-              'bg-gray-900 text-white',
+              'bg-gray-900 text-foreground',
               'border border-gray-600',
               'hover:bg-gray-800 active:bg-gray-700 disabled:bg-gray-700',
             ],

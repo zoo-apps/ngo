@@ -16,7 +16,7 @@ export default function Impact() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Our Conservation Impact</h1>
@@ -66,7 +66,7 @@ export default function Impact() {
                 onClick={() => setSelectedYear(year)}
                 className={`px-6 py-2 rounded-full font-medium transition-colors ${
                   selectedYear === year
-                    ? 'bg-green-600 text-white'
+                    ? 'bg-green-600 text-foreground'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
@@ -189,7 +189,7 @@ export default function Impact() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold mb-12">Conservation Success Stories</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-black rounded-lg overflow-hidden">
+              <div className="bg-background rounded-lg overflow-hidden">
                 <div className="aspect-video bg-gray-800"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-3">Javan Rhino Recovery</h3>
@@ -202,7 +202,7 @@ export default function Impact() {
                   </Link>
                 </div>
               </div>
-              <div className="bg-black rounded-lg overflow-hidden">
+              <div className="bg-background rounded-lg overflow-hidden">
                 <div className="aspect-video bg-gray-800"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-3">Vaquita Porpoise Rescue</h3>
@@ -215,7 +215,7 @@ export default function Impact() {
                   </Link>
                 </div>
               </div>
-              <div className="bg-black rounded-lg overflow-hidden">
+              <div className="bg-background rounded-lg overflow-hidden">
                 <div className="aspect-video bg-gray-800"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-3">Snow Leopard Comeback</h3>

@@ -47,9 +47,9 @@ export default function ZooConnect() {
     <Layout>
         <Seo />
         <Navbar />
-        <div className='bg-black py-32 text-white'>
+        <div className='bg-background py-32 text-foreground'>
           <div className='md:w-[500px] mx-auto w-full rounded-3xl px-12 md:border border-white py-8 flex flex-col'>
-            <p className='text-white text-2xl text-center pb-8'>Sign in to your account</p>
+            <p className='text-foreground text-2xl text-center pb-8'>Sign in to your account</p>
             <form onSubmit={handleSignIn}>
               <label className='pb-2 pl-4 text-base block'>Email *</label>
               <input
@@ -77,7 +77,7 @@ export default function ZooConnect() {
                     onChange={(e) => setRememberMe(e.target.checked)}
                     className="w-4 h-4 text-gray-400 bg-transparent border border-white rounded"
                   />
-                  <label className="ml-2 text-sm font-medium text-white">Remember me</label>
+                  <label className="ml-2 text-sm font-medium text-foreground">Remember me</label>
               </div>
               {error && (
                 <div className="mt-4 p-3 bg-gray-500/10 border border-gray-500 rounded-lg text-gray-400 text-sm">
@@ -92,8 +92,8 @@ export default function ZooConnect() {
                 {loading ? 'Signing in...' : 'Sign In'}
               </button>
             </form>
-            <Link href='/forgot-password' className='hover:text-white text-gray-400 text-center mt-4'>Forgot the password?</Link>
-            <p className='text-white text-sm text-center mt-8'>or continue with</p>
+            <Link href='/forgot-password' className='hover:text-foreground text-gray-400 text-center mt-4'>Forgot the password?</Link>
+            <p className='text-foreground text-sm text-center mt-8'>or continue with</p>
             <div className='flex items-center justify-center space-x-12 mt-6'>
               <button>
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -144,8 +144,8 @@ export default function ZooConnect() {
               </button>
             </div>
             <div className='flex items-center justify-center space-x-2 mt-8'>
-              <p className='text-white text-sm'>Don’t have an account?</p>
-              <Link href='/signup' className='hover:text-white text-gray-400 text-sm'>Sign Up</Link>
+              <p className='text-foreground text-sm'>Don’t have an account?</p>
+              <Link href='/signup' className='hover:text-foreground text-gray-400 text-sm'>Sign Up</Link>
             </div>
           </div>
         </div>

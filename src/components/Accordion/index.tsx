@@ -15,7 +15,7 @@ function Accordion({
 
   return (
     <div
-        className={`text-white border border-white rounded-xl ${className}`}
+        className={`text-foreground border border-white rounded-xl ${className}`}
       >
         <div className={`flex px-4 py-3 justify-between items-center ${isOpen ? 'border-b border-white rounded-xl' : ''}`}>
             <p className="2xl:text-2xl xl:text-xl" dangerouslySetInnerHTML={{ __html: header }}></p>

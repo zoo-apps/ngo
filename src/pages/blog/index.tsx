@@ -85,7 +85,7 @@ export default function Blog() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Conservation Blog</h1>
@@ -122,7 +122,7 @@ export default function Blog() {
                 </Link>
               </div>
               <div className="hidden md:block">
-                <div className="aspect-video bg-black/20 rounded-lg"></div>
+                <div className="aspect-video bg-background/20 rounded-lg"></div>
               </div>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function Blog() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-2 rounded-full font-medium transition-colors ${
                   selectedCategory === category
-                    ? 'bg-green-600 text-white'
+                    ? 'bg-green-600 text-foreground'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
@@ -199,7 +199,7 @@ export default function Blog() {
                 <input
                   type="email"
                   placeholder="Your email address"
-                  className="flex-1 bg-gray-800 px-6 py-3 rounded-full text-white placeholder-gray-400 border border-gray-700 focus:border-green-500 focus:outline-none"
+                  className="flex-1 bg-gray-800 px-6 py-3 rounded-full text-foreground placeholder-gray-400 border border-gray-700 focus:border-green-500 focus:outline-none"
                 />
                 <button
                   type="submit"

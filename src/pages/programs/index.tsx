@@ -16,7 +16,7 @@ export default function Programs() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Conservation Programs</h1>
@@ -42,7 +42,7 @@ export default function Programs() {
                 onClick={() => setSelectedProgram(program.id)}
                 className={`px-6 py-3 rounded-full font-medium transition-colors flex items-center gap-2 ${
                   selectedProgram === program.id
-                    ? 'bg-green-600 text-white'
+                    ? 'bg-green-600 text-foreground'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
@@ -96,7 +96,7 @@ export default function Programs() {
                   </div>
                 </div>
 
-                <div className="bg-black rounded-lg p-6">
+                <div className="bg-background rounded-lg p-6">
                   <h4 className="font-bold mb-3">Featured: Tiger Rescue Network</h4>
                   <p className="text-gray-400 mb-4">
                     Specialized program rescuing tigers from illegal trade and circus operations 
@@ -121,17 +121,17 @@ export default function Programs() {
                 </p>
                 
                 <div className="grid md:grid-cols-3 gap-6 mb-8">
-                  <div className="bg-black rounded-lg p-6">
+                  <div className="bg-background rounded-lg p-6">
                     <h3 className="text-lg font-bold mb-3">Land Acquisition</h3>
                     <p className="text-3xl font-bold text-green-500 mb-2">2.4M</p>
                     <p className="text-gray-400">Hectares Protected</p>
                   </div>
-                  <div className="bg-black rounded-lg p-6">
+                  <div className="bg-background rounded-lg p-6">
                     <h3 className="text-lg font-bold mb-3">Restoration</h3>
                     <p className="text-3xl font-bold text-green-500 mb-2">450K</p>
                     <p className="text-gray-400">Hectares Restored</p>
                   </div>
-                  <div className="bg-black rounded-lg p-6">
+                  <div className="bg-background rounded-lg p-6">
                     <h3 className="text-lg font-bold mb-3">Corridors</h3>
                     <p className="text-3xl font-bold text-green-500 mb-2">89</p>
                     <p className="text-gray-400">Wildlife Corridors</p>
@@ -190,15 +190,15 @@ export default function Programs() {
                   <div>
                     <h3 className="text-xl font-bold mb-4">Field Operations</h3>
                     <div className="space-y-4">
-                      <div className="bg-black rounded-lg p-4">
+                      <div className="bg-background rounded-lg p-4">
                         <p className="text-2xl font-bold">456</p>
                         <p className="text-gray-400">Rangers Deployed</p>
                       </div>
-                      <div className="bg-black rounded-lg p-4">
+                      <div className="bg-background rounded-lg p-4">
                         <p className="text-2xl font-bold">89%</p>
                         <p className="text-gray-400">Reduction in Poaching</p>
                       </div>
-                      <div className="bg-black rounded-lg p-4">
+                      <div className="bg-background rounded-lg p-4">
                         <p className="text-2xl font-bold">234</p>
                         <p className="text-gray-400">Arrests Made</p>
                       </div>
@@ -228,7 +228,7 @@ export default function Programs() {
                 </p>
                 
                 <div className="grid md:grid-cols-3 gap-6 mb-8">
-                  <div className="bg-black rounded-lg p-6">
+                  <div className="bg-background rounded-lg p-6">
                     <div className="text-3xl mb-3">🏘️</div>
                     <h3 className="font-bold mb-2">Village Partnerships</h3>
                     <p className="text-gray-400">
@@ -236,7 +236,7 @@ export default function Programs() {
                       development support
                     </p>
                   </div>
-                  <div className="bg-black rounded-lg p-6">
+                  <div className="bg-background rounded-lg p-6">
                     <div className="text-3xl mb-3">📚</div>
                     <h3 className="font-bold mb-2">Education Programs</h3>
                     <p className="text-gray-400">
@@ -244,7 +244,7 @@ export default function Programs() {
                       across 23 countries
                     </p>
                   </div>
-                  <div className="bg-black rounded-lg p-6">
+                  <div className="bg-background rounded-lg p-6">
                     <div className="text-3xl mb-3">💼</div>
                     <h3 className="font-bold mb-2">Green Jobs</h3>
                     <p className="text-gray-400">
@@ -262,10 +262,10 @@ export default function Programs() {
                       community programs led by women.
                     </p>
                     <div className="flex gap-4">
-                      <div className="bg-black rounded px-4 py-2">
+                      <div className="bg-background rounded px-4 py-2">
                         <span className="text-green-500 font-bold">3,456</span> Women Trained
                       </div>
-                      <div className="bg-black rounded px-4 py-2">
+                      <div className="bg-background rounded px-4 py-2">
                         <span className="text-green-500 font-bold">234</span> Leadership Roles
                       </div>
                     </div>
@@ -300,15 +300,15 @@ export default function Programs() {
                   <div>
                     <h3 className="text-xl font-bold mb-4">Ocean Impact</h3>
                     <div className="space-y-3">
-                      <div className="bg-black rounded-lg p-4">
+                      <div className="bg-background rounded-lg p-4">
                         <p className="text-gray-400 text-sm">Protected Waters</p>
                         <p className="text-2xl font-bold">3.4M sq km</p>
                       </div>
-                      <div className="bg-black rounded-lg p-4">
+                      <div className="bg-background rounded-lg p-4">
                         <p className="text-gray-400 text-sm">Coral Restored</p>
                         <p className="text-2xl font-bold">234 hectares</p>
                       </div>
-                      <div className="bg-black rounded-lg p-4">
+                      <div className="bg-background rounded-lg p-4">
                         <p className="text-gray-400 text-sm">Plastic Removed</p>
                         <p className="text-2xl font-bold">450 tons</p>
                       </div>
@@ -352,15 +352,15 @@ export default function Programs() {
                   <div>
                     <h3 className="text-xl font-bold mb-4">Climate Impact</h3>
                     <div className="space-y-3">
-                      <div className="bg-black rounded-lg p-4">
+                      <div className="bg-background rounded-lg p-4">
                         <p className="text-gray-400 text-sm">Carbon Sequestered</p>
                         <p className="text-2xl font-bold">4.5M tons</p>
                       </div>
-                      <div className="bg-black rounded-lg p-4">
+                      <div className="bg-background rounded-lg p-4">
                         <p className="text-gray-400 text-sm">Climate Refugia</p>
                         <p className="text-2xl font-bold">89 sites</p>
                       </div>
-                      <div className="bg-black rounded-lg p-4">
+                      <div className="bg-background rounded-lg p-4">
                         <p className="text-gray-400 text-sm">Species Adapted</p>
                         <p className="text-2xl font-bold">234</p>
                       </div>

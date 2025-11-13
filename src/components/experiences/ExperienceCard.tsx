@@ -13,7 +13,7 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
   
   return (
     <Link href={`/experiences/${id}`} className="block">
-      <Card className="overflow-hidden group h-full bg-black hover:border-gray-600 transition-colors">
+      <Card className="overflow-hidden group h-full bg-background hover:border-gray-600 transition-colors">
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
             src={images[0]}

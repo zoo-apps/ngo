@@ -14,7 +14,7 @@ export default function Research() {
       />
       <Navbar />
 
-      <div className="bg-black text-white">
+      <div className="bg-background text-foreground">
         {/* Hero Section */}
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Conservation Research</h1>
@@ -139,10 +139,10 @@ export default function Research() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold mb-12">Featured Research Projects</h2>
             <div className="space-y-8">
-              <div className="bg-black rounded-lg p-8">
+              <div className="bg-background rounded-lg p-8">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-2xl font-bold">Amazon Biodiversity Baseline Study</h3>
-                  <span className="bg-black px-3 py-1 rounded-full text-sm">Active</span>
+                  <span className="bg-background px-3 py-1 rounded-full text-sm">Active</span>
                 </div>
                 <p className="text-gray-300 mb-4">
                   Comprehensive species inventory using environmental DNA sampling across 50,000 sq km 
@@ -161,10 +161,10 @@ export default function Research() {
                 </div>
               </div>
 
-              <div className="bg-black rounded-lg p-8">
+              <div className="bg-background rounded-lg p-8">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-2xl font-bold">Tiger Connectivity Corridor Genetics</h3>
-                  <span className="bg-black px-3 py-1 rounded-full text-sm">Active</span>
+                  <span className="bg-background px-3 py-1 rounded-full text-sm">Active</span>
                 </div>
                 <p className="text-gray-300 mb-4">
                   Using genetic analysis to identify critical corridors for tiger movement between 
@@ -183,10 +183,10 @@ export default function Research() {
                 </div>
               </div>
 
-              <div className="bg-black rounded-lg p-8">
+              <div className="bg-background rounded-lg p-8">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-2xl font-bold">Coral Resilience to Ocean Warming</h3>
-                  <span className="bg-black px-3 py-1 rounded-full text-sm">Active</span>
+                  <span className="bg-background px-3 py-1 rounded-full text-sm">Active</span>
                 </div>
                 <p className="text-gray-300 mb-4">
                   Identifying heat-resistant coral genotypes and developing assisted evolution techniques 
@@ -279,7 +279,7 @@ export default function Research() {
         </div>
 
         {/* Research Network */}
-        <div className="bg-black border-t border-white py-16">
+        <div className="bg-background border-t border-white py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Global Research Network</h2>
             <div className="grid md:grid-cols-4 gap-8 text-center">
@@ -332,13 +332,13 @@ export default function Research() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/fund/research.html"
-                className="bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors text-center"
+                className="bg-background text-foreground px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors text-center"
               >
                 Apply for Funding
               </Link>
               <Link
                 href="/docs"
-                className="bg-gray-700 text-white px-6 py-3 rounded-full font-medium hover:bg-gray-600 transition-colors text-center"
+                className="bg-gray-700 text-foreground px-6 py-3 rounded-full font-medium hover:bg-gray-600 transition-colors text-center"
               >
                 Research Guidelines
               </Link>
@@ -347,7 +347,7 @@ export default function Research() {
         </div>
 
         {/* Call to Action */}
-        <div className="bg-black py-20">
+        <div className="bg-background py-20">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Support Conservation Science
