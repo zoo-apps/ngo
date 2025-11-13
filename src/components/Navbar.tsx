@@ -73,7 +73,8 @@ function Navbar() {
 
                   <Link
                       href="/"
-                      className="text-gray-300 hover:text-white px-3 py-2 text-md font-medium">
+                      className="text-gray-300 hover:text-white px-3 py-2 text-md font-medium flex items-center gap-2">
+                      <Image alt="ZOO Icon" src="/favicon/logo.svg" width={48} height={48} />
                       <Image alt="ZOO" src="/zooLogo.svg" width={64} height={64} />
                   </Link>
                   </div>
