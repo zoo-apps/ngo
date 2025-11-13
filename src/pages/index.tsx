@@ -127,6 +127,7 @@ export default function Home() {
             <div className="space-y-12">
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 <div className="flex-1">
+                  <div className="text-4xl mb-4">📡</div>
                   <h3 className="text-2xl font-bold mb-4 text-white">Conservation Technology</h3>
                   <p className="text-gray-400 mb-4">
                     We deploy camera traps, GPS tracking, and monitoring systems to study wildlife
@@ -152,6 +153,7 @@ export default function Home() {
 
               <div className="flex flex-col md:flex-row-reverse gap-8 items-start">
                 <div className="flex-1">
+                  <div className="text-4xl mb-4">💰</div>
                   <h3 className="text-2xl font-bold mb-4 text-white">Financial Accountability</h3>
                   <p className="text-gray-400 mb-4">
                     We maintain detailed financial records and publish annual reports showing how
