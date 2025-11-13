@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import {FaTelegram, FaTwitter, FaInstagram, FaDiscord, FaYoutube} from "react-icons/fa";
-import {BsMedium} from "react-icons/bs"
+import {BsMedium} from "react-icons/bs";
+import { ThemeSwitcher } from './ThemeSwitcher';
+
 function Footer() {
   const recipientEmail = "hello@zoo.ngo";
   const subject = "Sending Love to ZOO NGO team";
@@ -16,13 +18,16 @@ function Footer() {
         <div className='flex flex-col space-y-8'>
             <p className='text-sm lg:text-lg text-white'>Zoo Labs Foundation</p>
             <p className='text-sm lg:text-md text-white'>All rights reserved. © 2025 Zoo Labs Foundation Inc. EIN: 88-3538992 - Registered 501(c)(3) Charity. Donations are tax-deductible to the extent allowed by law.</p>
-            <div className='flex items-center space-x-2 text-white'>
-                <Link href="https://twitter.com/zoo_labs" className="cursor-pointer hover:text-gray-300 transition-colors"><FaTwitter /></Link>
-                <Link href="https://t.me/zooofficial" className="cursor-pointer hover:text-gray-300 transition-colors"><FaTelegram /></Link>
-                <Link href="https://instagram.com/zoolabs.io" className="cursor-pointer hover:text-gray-300 transition-colors"><FaInstagram /></Link>
-                <Link href="https://discord.gg/AqrYhChx5b" className="cursor-pointer hover:text-gray-300 transition-colors"><FaDiscord /></Link>
-                <Link href="https://zoolabsofficial.medium.com" className="cursor-pointer hover:text-gray-300 transition-colors"><BsMedium /></Link>
-                <Link href="https://youtu.be/6yYuYtMWgOU" className="cursor-pointer hover:text-gray-300 transition-colors"><FaYoutube /></Link>
+            <div className='flex flex-col space-y-4'>
+              <div className='flex items-center space-x-2 text-white'>
+                  <Link href="https://twitter.com/zoo_labs" className="cursor-pointer hover:text-gray-300 transition-colors"><FaTwitter /></Link>
+                  <Link href="https://t.me/zooofficial" className="cursor-pointer hover:text-gray-300 transition-colors"><FaTelegram /></Link>
+                  <Link href="https://instagram.com/zoolabs.io" className="cursor-pointer hover:text-gray-300 transition-colors"><FaInstagram /></Link>
+                  <Link href="https://discord.gg/AqrYhChx5b" className="cursor-pointer hover:text-gray-300 transition-colors"><FaDiscord /></Link>
+                  <Link href="https://zoolabsofficial.medium.com" className="cursor-pointer hover:text-gray-300 transition-colors"><BsMedium /></Link>
+                  <Link href="https://youtu.be/6yYuYtMWgOU" className="cursor-pointer hover:text-gray-300 transition-colors"><FaYoutube /></Link>
+              </div>
+              <ThemeSwitcher />
             </div>
         </div>
         <div className='flex flex-col space-y-8'>
