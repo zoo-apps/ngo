@@ -42,14 +42,15 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { label: 'Research Grants', detail: 'Supporting conservation science' },
-              { label: 'Educational Programs', detail: 'Wildlife awareness initiatives' },
-              { label: 'Field Partnerships', detail: 'Working with conservation organizations' }
+              { icon: '🔬', label: 'Research Grants', detail: 'Supporting conservation science' },
+              { icon: '📚', label: 'Educational Programs', detail: 'Wildlife awareness initiatives' },
+              { icon: '🤝', label: 'Field Partnerships', detail: 'Working with conservation organizations' }
             ].map((metric, index) => (
               <div
                 key={index}
                 className="bg-black p-8 rounded-lg border border-gray-800 hover:border-gray-600 transition-all"
               >
+                <div className="text-4xl mb-4">{metric.icon}</div>
                 <div className="text-lg font-semibold text-white mb-1">{metric.label}</div>
                 <div className="text-sm text-gray-400">{metric.detail}</div>
               </div>
