@@ -6,7 +6,6 @@ const nextConfig = {
   trailingSlash: true,
 
   eslint: {
-    dirs: ['src'],
     ignoreDuringBuilds: true,
   },
 
