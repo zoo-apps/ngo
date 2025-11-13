@@ -21,6 +21,7 @@ function Detail() {
               usdz="/models/Wolf/WOLF_BABY.usdz"
               glb="/models/Wolf/WOLF_BABY.glb"
               camera_target="0.05m 0.05m 0m"
+              camera_orbit="0deg 75deg 1.2m"
             ></ModelViewer>
         </div>
         <div className='w-1/2 max-md:w-full max-md:z-10 max-md:pt-[280px] flex flex-col  max-md:pl-15 max-md:pr-15   lg:pr-8'>
@@ -70,6 +71,7 @@ function Detail() {
               usdz="/models/Wolf/WOLF_BABY.usdz"
               glb="/models/Wolf/WOLF_BABY.glb"
               camera_target="0.05m 0.05m 0m"
+              camera_orbit="0deg 75deg 1.2m"
             ></ModelViewer>
             
         </div>
