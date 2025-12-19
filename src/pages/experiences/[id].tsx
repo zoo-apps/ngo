@@ -61,11 +61,11 @@ export default function ExperienceDetailPage() {
           <div className="container mx-auto px-4 py-16 text-center">
             <h1 className="text-3xl md:text-4xl mb-6">Experience Not Found</h1>
             <p className="mb-8">The experience you&apos;re looking for doesn&apos;t exist or has been removed.</p>
-            <Button asChild>
-              <Link href="/experiences">
+            <Link href="/experiences">
+              <Button>
                 Browse All Experiences
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
         <Footer />
@@ -100,17 +100,16 @@ export default function ExperienceDetailPage() {
       <main className="bg-background text-foreground">
         <div className="container mx-auto px-4 py-12">
           <div className="mb-8">
-            <Button
-              variant="outline"
-              size="sm"
-              asChild
-              className="text-gray-400 hover:text-black"
-            >
-              <Link href="/experiences" className="flex items-center gap-2">
+            <Link href="/experiences">
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-gray-400 hover:text-black flex items-center gap-2"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to all experiences
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
