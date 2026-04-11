@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Layout from '@/components/layout/Layout';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,16 +7,8 @@ import Link from 'next/link';
 import Intro from '@/components/intro/Intro';
 import Comment from '@/components/Comment';
 import Principles from '@/components/Principles';
-import AnimalDetail from '@/components/animal/Detail';
-import AnimalItems from '@/components/animal/Item';
 
 export default function Home() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   return (
     <Layout>
       <Seo />
@@ -24,277 +16,222 @@ export default function Home() {
 
       <Intro
         breadcrumbs="Zoo Labs Foundation"
-        title="Preserve"
-        comment=" Wildlife biodiversity through aligned charities, education, research and active conservation efforts."
+        title="Open AI Research"
+        comment="Building the Zen family of frontier AI models. 45+ open-source models from 600M to 1T+ parameters. Formal verification. Community governed. Safe by design."
       />
+
+      <div className="h-px bg-gradient-to-r from-transparent via-[#ED1C24] via-[33%] via-[#00A652] via-[66%] to-[#2E3192] opacity-30" />
 
       <Comment />
 
       <Principles />
 
-      <div className='bg-background pt-32'>
-        <AnimalDetail />
-      </div>
-
-      <AnimalItems />
-
-      <section className="bg-background py-20 border-t border-gray-800">
+      {/* Products */}
+      <section id="products" className="bg-transparent py-20 border-t border-neutral-800/50">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Products</h2>
+            <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+              Open-source tools for AI research, training, and deployment
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { icon: '🔬', label: 'Research Grants', detail: 'Supporting conservation science' },
-              { icon: '📚', label: 'Educational Programs', detail: 'Wildlife awareness initiatives' },
-              { icon: '🤝', label: 'Field Partnerships', detail: 'Working with conservation organizations' }
-            ].map((metric, index) => (
-              <div
-                key={index}
-                className="bg-background p-8 rounded-lg border border-gray-800 hover:border-gray-600 transition-all"
-              >
-                <div className="text-4xl mb-4">{metric.icon}</div>
-                <div className="text-lg font-semibold text-foreground mb-1">{metric.label}</div>
-                <div className="text-sm text-gray-400">{metric.detail}</div>
+              { name: 'Zoo Agents', desc: 'AI-powered digital creatures. The original NFT animals, now autonomous agents with memory, goals, and on-chain identity.', href: '/animals' },
+              { name: 'Zoo AI', desc: 'Desktop app for local AI inference. Run Zen models on your hardware — free, open-source, private by default.', href: '/ai' },
+              { name: 'Zoo Gym', desc: 'Open-source training platform. Fine-tune any model with LoRA, GRPO, DPO, and 8 more methods.', href: '/ai#gym' },
+              { name: 'Zoo Exchange', desc: 'Decentralized exchange for $ZOO and $AI tokens. Trade, stake, and participate in governance.', href: 'https://zoo.exchange' },
+              { name: 'Zoo Fund', desc: 'On-chain research funding. Smart contract-governed grants for open AI research.', href: '/donation' },
+              { name: 'Collections', desc: 'Curated NFT collections of AI-generated endangered species art. Each purchase funds conservation research.', href: '/animals' },
+            ].map((card) => (
+              <div key={card.name} className="bg-transparent p-6 rounded-xl border border-neutral-800/60 hover:border-neutral-700 transition-all">
+                <h3 className="text-xl font-bold text-white mb-2">{card.name}</h3>
+                <p className="text-neutral-400 text-sm mb-4">{card.desc}</p>
+                <Link href={card.href} className="text-white text-sm font-medium hover:text-neutral-400 transition-colors">
+                  Learn more &rarr;
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-background py-20 border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground">Our Mission</h2>
-            <p className="text-xl text-gray-400 leading-relaxed">
-              Protecting Earth's most vulnerable species through research, education, and conservation partnerships.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background py-20 border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">How We Protect Wildlife</h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Our comprehensive approach combines direct action, scientific research, and community engagement
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-background p-8 rounded-lg border border-gray-800 hover:border-gray-600 transition-all">
-              <div className="text-5xl mb-6">🔬</div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">Technology-Enhanced Monitoring</h3>
-              <p className="text-gray-400 mb-4">
-                Our research programs use camera traps and wildlife tracking systems to monitor
-                endangered species populations and support conservation efforts.
-              </p>
-              <Link href="/ai" className="text-foreground font-medium hover:text-gray-400 transition-colors">
-                Learn More →
-              </Link>
-            </div>
-
-            <div className="bg-background p-8 rounded-lg border border-gray-800 hover:border-gray-600 transition-all">
-              <div className="text-5xl mb-6">🌍</div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">Direct Conservation</h3>
-              <p className="text-gray-400 mb-4">
-                We protect 2.4 million hectares of critical habitat through partnerships with
-                indigenous communities and local organizations.
-              </p>
-              <Link href="/programs" className="text-foreground font-medium hover:text-gray-400 transition-colors">
-                Our Programs →
-              </Link>
-            </div>
-
-            <div className="bg-background p-8 rounded-lg border border-gray-800 hover:border-gray-600 transition-all">
-              <div className="text-5xl mb-6">💎</div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">Transparent Funding</h3>
-              <p className="text-gray-400 mb-4">
-                We maintain public financial records and provide regular reports on how donations
-                are used, ensuring complete transparency and donor trust.
-              </p>
-              <Link href="/transparency" className="text-foreground font-medium hover:text-gray-400 transition-colors">
-                See Financials →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background py-20 border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-foreground">Conservation Technology</h2>
-
-            <div className="space-y-12">
-              <div className="flex flex-col md:flex-row gap-8 items-start">
-                <div className="flex-1">
-                  <div className="text-4xl mb-4">📡</div>
-                  <h3 className="text-2xl font-bold mb-4 text-foreground">Conservation Technology</h3>
-                  <p className="text-gray-400 mb-4">
-                    We deploy camera traps, GPS tracking, and monitoring systems to study wildlife
-                    populations and inform conservation strategies.
-                  </p>
-                  <ul className="space-y-2 text-gray-400">
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Monitoring programs across multiple species</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Anti-poaching support systems</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Research data available to partners</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="w-full md:w-64 h-64 bg-background rounded-lg border border-gray-800"></div>
+      {/* Zen Models */}
+      <section className="bg-transparent py-20 border-t border-neutral-800/50">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">The Zen Model Family</h2>
+          <p className="text-neutral-400 text-lg md:text-xl mb-12">Open-source frontier models from edge to cloud</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { name: 'Foundation', models: 'zen4-nano (0.6B) to zen4-ultra (1T+)', desc: 'General purpose language models' },
+              { name: 'Code', models: 'zen4-coder-flash to zen4-coder-pro', desc: '59.2% SWE-bench verified' },
+              { name: 'Multimodal', models: 'zen-omni, zen-vl, zen-3d, zen-director', desc: 'Text, vision, audio, video, 3D' },
+              { name: 'Safety', models: 'zen-guard family', desc: 'Content safety and alignment' },
+            ].map((card) => (
+              <div key={card.name} className="border border-neutral-800/60 rounded-lg p-6 hover:border-neutral-700 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-2">{card.name}</h3>
+                <p className="text-sm text-neutral-500 mb-3 font-mono">{card.models}</p>
+                <p className="text-neutral-400">{card.desc}</p>
               </div>
-
-              <div className="flex flex-col md:flex-row-reverse gap-8 items-start">
-                <div className="flex-1">
-                  <div className="text-4xl mb-4">💰</div>
-                  <h3 className="text-2xl font-bold mb-4 text-foreground">Financial Accountability</h3>
-                  <p className="text-gray-400 mb-4">
-                    We maintain detailed financial records and publish annual reports showing how
-                    donations support conservation projects.
-                  </p>
-                  <ul className="space-y-2 text-gray-400">
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Public financial reporting</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Donor-advised project selection</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-2">•</span>
-                      <span>Quarterly impact updates</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="w-full md:w-64 h-64 bg-background rounded-lg border border-gray-800"></div>
-              </div>
-            </div>
+            ))}
+          </div>
+          <div className="mt-10">
+            <Link href="/ai" className="inline-block border border-neutral-800/60 text-white px-6 py-3 rounded-full font-semibold hover:border-neutral-500 transition-colors">
+              View All Models
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="bg-background py-20 border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <h2 className="text-foreground text-3xl md:text-4xl font-bold mb-6 text-center">Wildlife Volunteer Experiences</h2>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
-            Get up close with wildlife conservation through our volunteer programs at animal sanctuaries worldwide. Make a real impact while experiencing unforgettable adventures.
+      {/* Zoo Gym */}
+      <section id="gym" className="bg-transparent py-20 border-t border-neutral-800/50">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">Zoo Gym</h2>
+          <p className="text-neutral-400 text-lg md:text-xl mb-4">Open-source AI training platform</p>
+          <p className="text-neutral-400 max-w-3xl mb-12">
+            Train, fine-tune, and align any model. LoRA, GRPO, DPO, QLoRA — 8 training methods, 100+ model support, multi-GPU distributed training.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Link href="/experiences/1" className="border border-gray-800 rounded-lg overflow-hidden hover:border-gray-600 transition-colors">
-              <div className="relative aspect-video overflow-hidden bg-gray-900">
-                <img
-                  src="/images/volunteer-experiences/luxury-yacht-shark-breach.jpg"
-                  alt="Ultimate Luxury Great White Shark Expedition"
-                  className="w-full h-full object-cover"
-                />
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'Training-Free GRPO', desc: '99.8% cost reduction. $18 vs $10,000+' },
+              { name: 'Decentralized Training', desc: 'DSO protocol for community-coordinated optimization' },
+              { name: 'Formal Verification', desc: '15 Lean 4 proofs. Every critical system verified.' },
+            ].map((card) => (
+              <div key={card.name} className="border border-neutral-800/60 rounded-lg p-6 hover:border-neutral-700 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3">{card.name}</h3>
+                <p className="text-neutral-400">{card.desc}</p>
               </div>
-              <div className="p-4 bg-background">
-                <h3 className="font-bold mb-1 text-foreground">Ultimate Luxury Great White Shark Expedition (20 Guests)</h3>
-                <p className="text-gray-400 text-sm mb-2">Farallone Islands, San Francisco, USA</p>
-                <p className="text-lg font-bold text-foreground">$75,000 / group expedition</p>
-              </div>
-            </Link>
-
-            <Link href="/experiences/7" className="border border-gray-800 rounded-lg overflow-hidden hover:border-gray-600 transition-colors">
-              <div className="relative aspect-video overflow-hidden bg-gray-900">
-                <img
-                  src="/images/volunteer-experiences/intimate-shark-two.jpg"
-                  alt="Intimate Great White Shark Encounter"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-4 bg-background">
-                <h3 className="font-bold mb-1 text-foreground">Intimate Great White Shark Encounter (2 Guests)</h3>
-                <p className="text-gray-400 text-sm mb-2">Farallone Islands, San Francisco, USA</p>
-                <p className="text-lg font-bold text-foreground">$2,500 / intimate experience</p>
-              </div>
-            </Link>
-
-            <Link href="/experiences/8" className="border border-gray-800 rounded-lg overflow-hidden hover:border-gray-600 transition-colors">
-              <div className="relative aspect-video overflow-hidden bg-gray-900">
-                <img
-                  src="/images/volunteer-experiences/modular-shark-adventure.jpg"
-                  alt="Premium Great White Shark Expedition"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-4 bg-background">
-                <h3 className="font-bold mb-1 text-foreground">Premium Great White Shark Expedition</h3>
-                <p className="text-gray-400 text-sm mb-2">Farallone Islands, San Francisco, USA</p>
-                <p className="text-lg font-bold text-foreground">$3,500 / expedition</p>
-              </div>
-            </Link>
+            ))}
           </div>
-          <div className="mt-8 text-center">
-            <Link href="/experiences" className="inline-block bg-white hover:bg-gray-200 border border-white px-6 py-3 rounded-lg text-black font-medium transition-colors">
-              Browse All Experiences
+          <div className="mt-10">
+            <Link href="https://github.com/zoo-labs" className="inline-block border border-neutral-800/60 text-white px-6 py-3 rounded-full font-semibold hover:border-neutral-500 transition-colors">
+              Start Training
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="bg-background py-20 border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground">Join the Movement</h2>
-            <p className="text-xl text-gray-400 mb-12 leading-relaxed">
-              Whether through donations, volunteering, or spreading awareness, everyone can make
-              a difference in protecting our planet's wildlife.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-background p-6 rounded-lg border border-gray-800 hover:border-gray-600 transition-all">
-                <div className="text-4xl mb-4">💰</div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Donate</h3>
-                <p className="text-gray-400 mb-4">
-                  Support conservation projects directly
-                </p>
-                <Link href="/donation" className="text-foreground font-medium hover:text-gray-400">
-                  Give Now →
-                </Link>
+      {/* Research */}
+      <section className="bg-transparent py-20 border-t border-neutral-800/50">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">Research</h2>
+          <p className="text-neutral-400 text-lg md:text-xl mb-12">7 peer-reviewed papers. 102 ZIP specifications. 15 formal proofs.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'HLLM with Training-Free GRPO', desc: '99.8% cost reduction, 82.7% AIME24 accuracy' },
+              { name: 'Experience Ledger & DSO', desc: 'Byzantine-robust decentralized semantic optimization' },
+              { name: 'Zoo Network Architecture', desc: 'L2 AI specialization with federated learning' },
+            ].map((card) => (
+              <div key={card.name} className="border border-neutral-800/60 rounded-lg p-6 hover:border-neutral-700 transition-colors">
+                <h3 className="text-lg font-bold text-white mb-3">{card.name}</h3>
+                <p className="text-neutral-400">{card.desc}</p>
               </div>
-              <div className="bg-background p-6 rounded-lg border border-gray-800 hover:border-gray-600 transition-all">
-                <div className="text-4xl mb-4">🤝</div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Partner</h3>
-                <p className="text-gray-400 mb-4">
-                  Collaborate on conservation initiatives
-                </p>
-                <Link href="/partners" className="text-foreground font-medium hover:text-gray-400">
-                  Learn More →
-                </Link>
+            ))}
+          </div>
+          <div className="mt-10">
+            <Link href="/research" className="inline-block border border-neutral-800/60 text-white px-6 py-3 rounded-full font-semibold hover:border-neutral-500 transition-colors">
+              View All Papers
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Network */}
+      <section className="bg-transparent py-20 border-t border-neutral-800/50">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">Zoo Network</h2>
+          <p className="text-neutral-400 text-lg md:text-xl mb-4">Decentralized AI compute with recursive self-learning</p>
+          <p className="text-neutral-400 max-w-3xl mb-12">
+            Contribute GPU compute, earn $AI tokens. Agentic systems that recursively improve through the Experience Ledger. Post-quantum secure. FHE for private inference.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+            {['$ZOO', '$AI', 'Post-Quantum', 'FHE Privacy'].map((stat) => (
+              <div key={stat} className="border border-neutral-800/60 rounded-lg p-4 text-center">
+                <span className="text-white font-bold text-lg">{stat}</span>
               </div>
-              <div className="bg-background p-6 rounded-lg border border-gray-800 hover:border-gray-600 transition-all">
-                <div className="text-4xl mb-4">📰</div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Stay Informed</h3>
-                <p className="text-gray-400 mb-4">
-                  Get the latest conservation news
-                </p>
-                <Link href="/news" className="text-foreground font-medium hover:text-gray-400">
-                  Read Updates →
-                </Link>
+            ))}
+          </div>
+          <Link href="/coin" className="inline-block border border-neutral-800/60 text-white px-6 py-3 rounded-full font-semibold hover:border-neutral-500 transition-colors">
+            Learn More
+          </Link>
+        </div>
+      </section>
+
+      {/* Leadership */}
+      <section className="bg-transparent py-20 border-t border-neutral-800/50">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Leadership</h2>
+            <p className="text-xl text-neutral-400">Advancing open AI research since 2021</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'Antje Worring', title: 'Executive Director & Co-Founder', desc: 'Building safer AI for children since founding Zoo Labs Foundation in 2021.', img: '/leadership/antje-worring.png' },
+              { name: 'Zach Kelling', title: 'Co-Founder & CTO', desc: 'Technical founder. Leads architecture across Zen models, Gym, and Zoo Network.', img: '/leadership/zach-kelling.png' },
+              { name: 'Woo Bin', title: 'VP Engineering', desc: 'Full-stack and AI engineer leading Zoo AI, Gym, and desktop app development.', img: '/leadership/woo-bin.png' },
+              { name: 'Marcus White', title: 'VP Research', desc: 'Advancing Zen model capabilities. Applied AI research to production.', img: '/leadership/marcus-white.png' },
+              { name: 'Dave Lorenzini', title: 'Chief Strategy Officer', desc: 'Decades of experience in immersive computing and AI strategy.', img: '/leadership/dave-lorenzini.jpg' },
+              { name: 'Major "Dream" Williams', title: 'Chief Visionary Officer', desc: 'International collaboration to transform AI for social good.', img: '/leadership/major-williams.png' },
+              { name: 'Danielle Savage', title: 'Chief Brand Officer', desc: "Elevating Zoo's global presence and research communications.", img: '/leadership/danielle-savage.png' },
+              { name: 'Anastasia Zacharaoff', title: 'VP Engineering', desc: 'Building high-performing engineering teams and scalable AI systems.', img: '/leadership/anastasia-zacharaoff.png' },
+              { name: 'Jackson Mori', title: 'VP Engineering', desc: 'Distributed systems, performance, reliability, and developer experience.', img: '/leadership/jackson-mori.png' },
+            ].map((member) => (
+              <div key={member.name} className="group bg-transparent p-6 rounded-xl border border-neutral-800/60 hover:border-neutral-700 transition-all">
+                <img src={member.img} alt={member.name} className="w-16 h-16 rounded-full object-cover bg-neutral-900 mb-4 group-hover:opacity-90 transition-opacity" />
+                <h3 className="text-lg font-bold text-white">{member.name}</h3>
+                <p className="text-sm text-neutral-500">{member.title}</p>
+                <p className="text-sm text-neutral-400 mt-2">{member.desc}</p>
               </div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/donation"
-                className="inline-block bg-white text-black px-8 py-4 rounded-lg font-medium hover:bg-gray-200 transition-all"
-              >
-                Donate Now
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link href="/team" className="inline-block border border-neutral-800/60 text-white px-6 py-3 rounded-full font-semibold hover:border-neutral-500 transition-colors">
+              Meet the Full Team
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Join */}
+      <section className="bg-transparent py-20 border-t border-neutral-800/50">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">Advance Open AI</h2>
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-neutral-800/60 rounded-lg p-6 hover:border-neutral-700 transition-colors">
+              <h3 className="text-xl font-bold text-white mb-3">Support Research</h3>
+              <p className="text-neutral-400 mb-4">Fund open-source AI models and safety research</p>
+              <Link href="/donation" className="text-white font-medium hover:text-neutral-400 transition-colors">
+                Donate &rarr;
               </Link>
-              <Link
-                href="/getinvolved"
-                className="inline-block bg-background text-foreground border-2 border-white px-8 py-4 rounded-lg font-medium hover:bg-gray-900 transition-all"
-              >
-                Get Involved
+            </div>
+            <div className="border border-neutral-800/60 rounded-lg p-6 hover:border-neutral-700 transition-colors">
+              <h3 className="text-xl font-bold text-white mb-3">Contribute</h3>
+              <p className="text-neutral-400 mb-4">Train models, write ZIPs, submit formal proofs</p>
+              <Link href="https://github.com/zoo-labs" className="text-white font-medium hover:text-neutral-400 transition-colors">
+                GitHub &rarr;
               </Link>
             </div>
+            <div className="border border-neutral-800/60 rounded-lg p-6 hover:border-neutral-700 transition-colors">
+              <h3 className="text-xl font-bold text-white mb-3">Govern</h3>
+              <p className="text-neutral-400 mb-4">Vote on research direction through Zoo Improvement Proposals</p>
+              <Link href="https://zips.zoo.ngo" className="text-white font-medium hover:text-neutral-400 transition-colors">
+                ZIPs &rarr;
+              </Link>
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/donation"
+              className="inline-block bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-neutral-200 transition-colors text-center"
+            >
+              Support Our Research
+            </Link>
+            <Link
+              href="https://github.com/zoo-labs"
+              className="inline-block border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-neutral-900 transition-colors text-center"
+            >
+              Explore on GitHub
+            </Link>
           </div>
         </div>
       </section>

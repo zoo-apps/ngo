@@ -2,28 +2,28 @@ import Link from 'next/link';
 function Comment() {
     const comments = [
         {
-          title: "100+",
-          comment: "It's estimated that 100 African elephants are killed each day by poachers.",
-          link: "Endangered Elephants",
-          href: "/animals/sumatran_elephant"
+          title: "480B",
+          comment: "Parameters in our largest open Zen model—community-trained, verifiable weights, no corporate gatekeepers.",
+          link: "Explore Models",
+          href: "/ai"
         },
         {
-          title: "$23B",
-          comment: "One of the most illicit markets in the world, illegal wildlife trade is worth $7- $23 billion annually.",
-          link: "Animals We Support",
-          href: "/collect"
+          title: "25+",
+          comment: "Zoo Improvement Proposals (ZIPs) governing research direction, model architecture, and funding allocation.",
+          link: "View ZIPs",
+          href: "https://zips.zoo.ngo"
         },
         {
-          title: "18.7M",
-          comment: "Annually, 18.7M acres of forest loss affects 80% of terrestrial species' habitats.",
-          link: "Deforestation",
-          href: "/getinvolved#ground_activity"
+          title: "600+",
+          comment: "Open source repositories across Hanzo, Lux, and Zoo powering the decentralized AI stack.",
+          link: "Open Source",
+          href: "https://github.com/zoo-labs"
         },
         {
-          title: "38,000+",
-          comment: "Over 38,000 species (27% of assessed) are threatened with extinction.",
-          link: "Donate",
-          href:"/donation"
+          title: "99.8%",
+          comment: "Cost reduction in AI training via Training-Free GRPO — $18 vs $10,000+ for traditional fine-tuning.",
+          link: "Read Paper",
+          href: "/research"
         }
       ];
   return (
