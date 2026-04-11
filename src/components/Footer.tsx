@@ -1,97 +1,115 @@
-import Link from 'next/link';
-import {FaTelegram, FaTwitter, FaInstagram, FaDiscord, FaYoutube} from "react-icons/fa";
-import {BsMedium} from "react-icons/bs";
-import { ThemeSwitcher } from './ThemeSwitcher';
+import Link from 'next/link'
+import { FaTelegram, FaTwitter, FaInstagram, FaDiscord, FaYoutube } from 'react-icons/fa'
+import { BsMedium } from 'react-icons/bs'
+import { ThemeSwitcher } from './ThemeSwitcher'
+
+const COLUMNS = [
+  {
+    title: 'Products',
+    links: [
+      { label: 'Zoo Agents', href: '/animals' },
+      { label: 'Zoo AI', href: '/ai' },
+      { label: 'Zoo Exchange', href: 'https://zoo.exchange' },
+      { label: 'Zoo Fund', href: '/donation' },
+      { label: 'Collections', href: '/animals' },
+    ],
+  },
+  {
+    title: 'Research',
+    links: [
+      { label: 'Zen Models', href: '/ai' },
+      { label: 'Zoo Gym', href: '/ai#gym' },
+      { label: 'Papers', href: '/research' },
+      { label: 'ZIPs', href: 'https://zips.zoo.ngo' },
+      { label: 'Formal Proofs', href: '/research#proofs' },
+    ],
+  },
+  {
+    title: 'Community',
+    links: [
+      { label: 'GitHub', href: 'https://github.com/zoo-labs' },
+      { label: 'Discord', href: 'https://discord.gg/AqrYhChx5b' },
+      { label: 'Twitter', href: 'https://twitter.com/zoo_labs' },
+      { label: 'Telegram', href: 'https://t.me/zooofficial' },
+      { label: 'Blog', href: '/blog' },
+    ],
+  },
+  {
+    title: 'Foundation',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Team', href: '/team' },
+      { label: 'Careers', href: '/careers' },
+      { label: 'Terms', href: '/terms' },
+      { label: 'Privacy', href: '/terms' },
+      { label: 'Donate', href: '/donation' },
+    ],
+  },
+]
+
+const SOCIALS = [
+  { icon: FaTwitter, href: 'https://twitter.com/zoo_labs', label: 'Twitter' },
+  { icon: FaTelegram, href: 'https://t.me/zooofficial', label: 'Telegram' },
+  { icon: FaInstagram, href: 'https://instagram.com/zoolabs.io', label: 'Instagram' },
+  { icon: FaDiscord, href: 'https://discord.gg/AqrYhChx5b', label: 'Discord' },
+  { icon: BsMedium, href: 'https://zoolabsofficial.medium.com', label: 'Medium' },
+  { icon: FaYoutube, href: 'https://youtu.be/6yYuYtMWgOU', label: 'YouTube' },
+]
 
 function Footer() {
-  const recipientEmail = "hello@zoo.ngo";
-  const subject = "Sending Love to ZOO NGO team";
-  const sendEmail = () => {
-    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}`;
-    window.location.href = mailtoLink;
-  };
   return (
-    <div>
-    <div className="bg-background pb-32 max-md:hidden">
-        <hr />
-      <div className='grid md:grid-cols-5 grid-cols-1 gap-8 2xl:px-56 xl:px-42 lg:px-28 md:px-16 max-md:px-4 pt-20'>
-        <div className='flex flex-col space-y-8'>
-            <p className='text-sm lg:text-lg text-foreground'>Zoo Labs Foundation</p>
-            <p className='text-sm lg:text-md text-foreground'>All rights reserved. © 2025 Zoo Labs Foundation Inc. EIN: 88-3538992 - Registered 501(c)(3) Charity. Donations are tax-deductible to the extent allowed by law.</p>
-            <div className='flex flex-col space-y-4'>
-              <div className='flex items-center space-x-2 text-foreground'>
-                  <Link href="https://twitter.com/zoo_labs" className="cursor-pointer hover:text-gray-300 transition-colors"><FaTwitter /></Link>
-                  <Link href="https://t.me/zooofficial" className="cursor-pointer hover:text-gray-300 transition-colors"><FaTelegram /></Link>
-                  <Link href="https://instagram.com/zoolabs.io" className="cursor-pointer hover:text-gray-300 transition-colors"><FaInstagram /></Link>
-                  <Link href="https://discord.gg/AqrYhChx5b" className="cursor-pointer hover:text-gray-300 transition-colors"><FaDiscord /></Link>
-                  <Link href="https://zoolabsofficial.medium.com" className="cursor-pointer hover:text-gray-300 transition-colors"><BsMedium /></Link>
-                  <Link href="https://youtu.be/6yYuYtMWgOU" className="cursor-pointer hover:text-gray-300 transition-colors"><FaYoutube /></Link>
-              </div>
-              <ThemeSwitcher />
+    <footer className="bg-background border-t border-border">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        {/* Link columns */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          {COLUMNS.map((col) => (
+            <div key={col.title}>
+              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+                {col.title}
+              </h3>
+              <ul className="space-y-3">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
+          ))}
         </div>
-        <div className='flex flex-col space-y-8'>
-            <Link href="/about" className='text-sm lg:text-lg text-foreground'>About</Link>
-            <Link href="/getinvolved" className='text-sm lg:text-lg text-foreground'>Get Involved</Link>
-            <Link href="/donation" className='text-sm lg:text-lg text-foreground'>Donate</Link>
-            <Link href="/getinvolved#volunteer" className='text-sm lg:text-lg text-foreground'>Volunteer</Link>
-            <Link href="/getinvolved#volunteer" className='text-sm lg:text-lg text-foreground'>Initiatives</Link>
-        </div>
-        <div className='flex flex-col space-y-8'>
-            {/* <Link href="/campaign" className='text-sm lg:text-lg text-foreground'>Campaign</Link> */}
-            <Link href="/experiences" className='text-sm lg:text-lg text-foreground'>Wildlife Experiences</Link>
-            <Link href="/animals/red_wolf"  className='text-sm lg:text-lg text-foreground'>Red Wolf</Link>
-            <Link href="/animals/nubian_giraffe" className='text-sm lg:text-lg text-foreground'>Nubian Giraffe</Link>
-            <Link href="/animals/amur_leopard" className='text-sm lg:text-lg text-foreground'>Amur Leopard</Link>
 
-        </div>
-        <div className='flex flex-col space-y-8'>
-        <Link href="/animals/sumatran_elephant" className='text-sm lg:text-lg text-foreground'>Sumatran Elephant</Link>
-            <Link href="/animals/javan_rhino" className='text-sm lg:text-lg text-foreground'>Javan Rhino</Link>
-            <Link href="/animals/pygmy_hippo" className='text-sm lg:text-lg text-foreground'>Pygmy Hippo</Link>
-            <Link href="/animals/siberian_tiger" className='text-sm lg:text-lg text-foreground'>Siberian Tiger</Link>
-        </div>
-        <div className='flex flex-col space-y-8'>
-            <Link href="/terms" className='text-sm lg:text-lg text-foreground'>Terms of Use</Link>
-            <Link href="/terms-refund" className='text-sm lg:text-lg text-foreground'>Terms of Refund</Link>
-            <Link href="https://zoolabs.io" className='text-lg lg:text-md text-foreground'>Zoo Labs</Link>
-            <p className='text-sm lg:text-lg text-foreground'>hello@zoo.ngo</p>
+        {/* Bottom bar */}
+        <div className="border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground text-center sm:text-left">
+            &copy; 2026 Zoo Labs Foundation Inc. 501(c)(3) &middot; EIN: 88-3538992
+          </p>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              {SOCIALS.map((s) => (
+                <Link
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={s.label}
+                >
+                  <s.icon className="w-4 h-4" />
+                </Link>
+              ))}
+            </div>
+            <ThemeSwitcher />
+          </div>
         </div>
       </div>
-    </div>
-    <div className='bg-background hidden max-md:block'>
-      <div className='flex flex-col items-center justify-center'>
-        <p className='text-xl text-foreground'>Zoo Labs Foundation</p>
-        <div className='flex items-center pt-8 space-x-8'>
-          <Link href="/" className='text-lg text-foreground'>Home</Link>
-          <Link href="/about" className='text-lg text-foreground'>About</Link>
-          {/* <Link href="/campaign" className='text-lg text-foreground'>Campaign</Link> */}
-
-        </div>
-        <div className='flex items-center pt-6 space-x-8'>
-            <Link href="/getinvolved" className='text-lg text-foreground'>Get Involved</Link>
-            <Link href="/animals" className='text-lg text-foreground'>Animals</Link>
-            <Link href="/donation" className='text-lg text-foreground'>Donate</Link>
-        </div>
-        <div className='flex items-center space-x-2 text-foreground pt-10'>
-          <Link href="https://twitter.com/zoo_labs" className="cursor-pointer hover:text-gray-300 transition-colors"><FaTwitter /></Link>
-          <Link href="https://t.me/zooofficial" className="cursor-pointer hover:text-gray-300 transition-colors"><FaTelegram /></Link>
-          <Link href="https://instagram.com/zoolabs.io" className="cursor-pointer hover:text-gray-300 transition-colors"><FaInstagram /></Link>
-          <Link href="https://discord.gg/AqrYhChx5b" className="cursor-pointer hover:text-gray-300 transition-colors"><FaDiscord /></Link>
-          <Link href="https://zoolabsofficial.medium.com" className="cursor-pointer hover:text-gray-300 transition-colors"><BsMedium /></Link>
-          <Link href="https://youtu.be/6yYuYtMWgOU" className="cursor-pointer hover:text-gray-300 transition-colors"><FaYoutube /></Link>
-        </div>
-        <hr className='w-full bg-white my-4'/>
-        <div className='flex items-center space-x-16'>
-          <Link href="/privacy" className='text-lg text-foreground '>Privacy Policy</Link>
-          <Link href="/terms" className='text-lg text-foreground'>Terms of service</Link>
-          <Link href="/terms-refund" className='text-lg text-foreground'>Terms of Refund</Link>
-        </div>
-        <p className='text-lg text-foreground pt-6 pb-16'>© 2025 Zoo Labs Foundation Inc. EIN: 88-3538992 - Registered 501(c)(3) Charity. Donations are tax-deductible to the extent allowed by law.</p>
-      </div>
-    </div>
-    </div>
-  );
+    </footer>
+  )
 }
 
-export default Footer;
+export default Footer

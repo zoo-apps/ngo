@@ -1,48 +1,58 @@
-import Image from 'next/image';
-function Intro({breadcrumbs,title,comment}: {
-    breadcrumbs: String;
+import Link from 'next/link';
+
+function Intro({breadcrumbs, title, comment}: {
+    breadcrumbs: string;
     title: string;
     comment?: string;
   }) {
-  return (
-    <div className="bg-background relative max-md:pt-20">
-      <div className='max-md:hidden block relative'>
-        <video autoPlay loop muted playsInline className="w-full">
-          <source src="/videos/Giraffe_teen.webm" type="video/webm"/>
-          <source src="/videos/Giraffe_teen.mp4" type="video/mp4"/>
-        </video>
-        <div className='absolute xl:top-32 top-20 w-3/5 flex flex-col justify-between  pl-10 md:pl-12 lg:pl-24 xl:pl-32 pr-8'>
-            <p className='text-foreground md:text-sm lg:text-lg xl:text-2xl md:pb-6 lg:pb-12 2xl:pb-24'>{breadcrumbs}</p>
-            <h1 className='text-foreground md:text-7xl  2xl:text-9xl max-md:text-5xl max-md:my-5 md:pb-6 lg:pb-12 2xl:pb-16'>{title}</h1>
-            <p className='text-foreground md:text-lg lg:text-2xl xl:text-3xl pr-20 max-md:pb-10 md:pb-6 lg:pb-12 2xl:pb-16'>{comment}</p>
-            <hr className='max-md:hidden mr-20'/>
-            <p className='text-foreground max-md:hidden pr-20 md:pt-8 lg:pt-16 2xl:pt-18 md:text-sm md:pb-6 lg:pb-20 lg:text-lg lg:pb-24 xl:text-2xl xl:pb-32'>Supporting endangered species via human endeavors and virtual animal sales.</p>
-        </div>
-      </div>
-      <div className='max-md:flex hidden justify-between pt-10 z-10'>
-        <div className='w-1/2 max-md:w-full max-md:z-10 max-md:pt-[350px] flex flex-col justify-between  max-md:pl-15 max-md:pr-15 pl-10 md:pl-32 pr-8'>
-            <p className='text-foreground md:text-sm lg:text-lg xl:text-2xl'>{breadcrumbs}</p>
-            <h1 className='text-foreground md:text-7xl xl:text-9xl max-md:text-5xl max-md:my-5'>{title}</h1>
-            <p className='text-foreground md:text-lg lg:text-2xl xl:text-3xl max-md:pb-10'>{comment}</p>
-            <hr className='max-md:hidden'/>
-            <p className='text-foreground max-md:hidden pb-8 md:text-sm md:pb-20 lg:text-lg lg:pb-24 xl:text-2xl xl:pb-32'>Supporting endangered species that are threatened with extinction.</p>
-        </div>
-        <div className='md:w-1/2 max-md:absolute max-md:w-[800px] max-md:right-0 max-md:z-0'>
-            {/* <Image
-                className='intro-bg float-right'
-                src='/images/intro_bg.png'
-                width='1000'
-                height='1000'
-                alt=''
-            /> */}
-            <video  autoPlay loop muted playsInline className="w-full">
-              <source src="/videos/Giraffe_teen.webm" type="video/webm"/>
-              <source src="/videos/Giraffe_teen.mp4" type="video/mp4"/>
-            </video>
-        </div>
-      </div>
+  const chips = ['45+ Models', '7 Papers', '102 ZIPs', '15 Formal Proofs', '501(c)(3)', 'Open Source'];
 
-    </div>
+  return (
+    <section className="relative overflow-hidden">
+      {/* Pure black to dark gradient - NO color tint */}
+      <div className="absolute inset-0 bg-[#09090b]" />
+      {/* Subtle white radial for depth - monochrome only */}
+      <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.04]" style={{background: 'radial-gradient(circle, #ffffff 0%, transparent 70%)'}} />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40">
+        {/* RGB gradient on breadcrumb - the brand signature */}
+        <p className="text-sm md:text-base font-medium tracking-widest uppercase mb-8 bg-gradient-to-r from-[#ED1C24] via-[#00A652] to-[#2E3192] bg-clip-text text-transparent">
+          {breadcrumbs}
+        </p>
+        <h1 className="text-white text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.05] mb-8">
+          {title}
+        </h1>
+        <p className="text-neutral-400 text-lg md:text-xl lg:text-2xl max-w-3xl mb-6 leading-relaxed">
+          {comment}
+        </p>
+        <p className="text-neutral-500 text-base md:text-lg mb-12">
+          The non-profit open-source lab behind the Zen family of AI models.
+        </p>
+
+        <div className="flex flex-wrap gap-3 mb-14">
+          <Link
+            href="/ai"
+            className="bg-white text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-neutral-200 transition-colors"
+          >
+            Explore Models
+          </Link>
+          <Link
+            href="/research"
+            className="border border-neutral-700 text-white px-6 py-3 rounded-full text-sm font-semibold hover:border-neutral-500 transition-colors"
+          >
+            Read Our Research
+          </Link>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {chips.map((chip) => (
+            <span key={chip} className="border border-neutral-800 text-neutral-500 text-xs px-3 py-1.5 rounded-full">
+              {chip}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

@@ -8,14 +8,14 @@ const defaultMeta = {
   description:
     "Zoo Labs Foundation's mission is to protect our planet's precious wildlife biodiversity through research, education, and collaboration with aligned charities.",
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
-  url: 'https://zoo.ngo/',
+  url: 'https://zoo.ngo',
   type: 'website',
   robots: 'follow, index',
   /**
    * No need to be filled, will be populated with openGraph function
    * If you wish to use a normal image, just specify the path below
    */
-  image: 'https://tsnext-tw.thcl.dev/images/large-og.png',
+  image: 'https://zoo.ngo/images/og-image.png',
 };
 
 type SeoProps = {
@@ -75,7 +75,7 @@ export default function Seo(props: SeoProps) {
           <meta
             name='author'
             property='article:author'
-            content='Woo Bin'
+            content='Zoo Labs Foundation'
           />
         </>
       )}

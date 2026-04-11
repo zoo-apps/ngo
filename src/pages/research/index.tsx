@@ -5,362 +5,235 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Link from 'next/link';
 
+const papers = [
+  {
+    title: 'HLLM with Training-Free GRPO',
+    desc: '99.8% cost reduction in AI training ($18 vs $10,000+). 82.7% AIME24 accuracy via Hamiltonian invariant optimization.',
+    file: 'hllm-training-free-grpo.pdf',
+    year: '2025',
+  },
+  {
+    title: 'Experience Ledger & Decentralized Semantic Optimization',
+    desc: 'Byzantine-robust curation protocol. IPFS/Arweave storage, 7680-dim embeddings. $3,726 annual cost vs $50K+ for fine-tuning.',
+    file: 'experience-ledger-dso.pdf',
+    year: '2025',
+  },
+  {
+    title: 'Zoo Network Architecture',
+    desc: 'L2 AI specialization layer with HLLM integration, federated learning, and experience ledger on the Lux-Hanzo-Zoo stack.',
+    file: 'zoo-network-architecture.pdf',
+    year: '2025',
+  },
+  {
+    title: 'Gym Training Platform',
+    desc: '100+ model support, 8 training methods, educational democratization. 2.5 years of open-source evolution.',
+    file: 'gym-training-platform.pdf',
+    year: '2025',
+  },
+  {
+    title: 'Zoo Tokenomics',
+    desc: '100% airdrop model, validator requirements, contribute-to-access economics, DAO governance. 2T total supply.',
+    file: 'zoo-tokenomics.pdf',
+    year: '2025',
+  },
+  {
+    title: 'Zoo Foundation Mission',
+    desc: 'Conservation AI, educational AI, frontier AI research. 87K users, 420K models trained, 142 countries.',
+    file: 'zoo-foundation-mission.pdf',
+    year: '2024',
+  },
+  {
+    title: 'ZIP-002: Zen-Reranker',
+    desc: 'Native 7680-dimensional embeddings, BitDelta compression (31.87x), Byzantine aggregation. 94.7% Recall@5.',
+    file: 'zip-002-zen-reranker.pdf',
+    year: '2025',
+  },
+]
+
+const proofs = [
+  { name: 'DSO.lean', desc: 'Decentralized Semantic Optimization convergence and safety' },
+  { name: 'ExperienceLedger.lean', desc: 'Experience ledger Byzantine fault tolerance' },
+  { name: 'Personalization.lean', desc: 'Personalization mechanism privacy guarantees' },
+  { name: 'Embedding.lean', desc: 'Embedding space metric properties' },
+  { name: 'Gym.lean', desc: 'Gym training platform verification' },
+  { name: 'ZIP.lean', desc: 'ZIP proposal mechanism correctness' },
+  { name: 'AgentNFT.lean', desc: 'Agent NFT ownership and transfer proofs' },
+  { name: 'Contribution.lean', desc: 'Contribution tracking integrity' },
+  { name: 'Compensation.lean', desc: 'Reward distribution fairness' },
+  { name: 'Treasury.lean', desc: 'Treasury management invariants' },
+  { name: 'AMM.lean', desc: 'Automated Market Maker solvency' },
+  { name: 'Staking.lean', desc: 'Staking mechanism security' },
+  { name: 'Bridge.lean', desc: 'Cross-chain bridge safety' },
+  { name: 'Token.lean', desc: 'Token contract properties' },
+  { name: 'Wave.tla', desc: 'TLA+ protocol wave specification' },
+]
+
 export default function Research() {
   return (
     <Layout>
       <Seo
-        templateTitle="Research & Science"
-        description="Scientific research driving evidence-based conservation strategies worldwide"
+        templateTitle="Research"
+        description="Open AI research: 7 papers, 102 ZIPs, 15 formal proofs, and the Zen family of frontier models."
       />
       <Navbar />
 
       <div className="bg-background text-foreground">
-        {/* Hero Section */}
-        <div className="container mx-auto px-4 py-20">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8">Conservation Research</h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl">
-            Our scientific research programs combine cutting-edge technology with traditional 
-            ecological knowledge to develop evidence-based conservation strategies that work.
+        {/* Hero */}
+        <div className="container mx-auto px-4 pt-24 pb-16">
+          <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">Zoo Labs Foundation</p>
+          <h1 className="text-5xl md:text-7xl font-bold mb-8">Research</h1>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
+            Open AI research advancing frontier models, decentralized training, and formal verification.
+            Everything we publish is open access.
           </p>
         </div>
 
-        {/* Research Focus */}
-        <div className="bg-white text-black py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div className="border border-black p-8">
-                <p className="text-2xl font-bold mb-2">Marine Conservation</p>
-                <p className="text-gray-700">Shark and ocean ecosystem research</p>
+        {/* Stats */}
+        <div className="border-t border-border">
+          <div className="container mx-auto px-4 py-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">7</p>
+                <p className="text-sm text-muted-foreground mt-1">Papers</p>
               </div>
-              <div className="border border-black p-8">
-                <p className="text-2xl font-bold mb-2">Wildlife Monitoring</p>
-                <p className="text-gray-700">Technology-enhanced species tracking</p>
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">102</p>
+                <p className="text-sm text-muted-foreground mt-1">ZIP Specifications</p>
               </div>
-              <div className="border border-black p-8">
-                <p className="text-2xl font-bold mb-2">Habitat Protection</p>
-                <p className="text-gray-700">Critical ecosystem preservation</p>
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">15</p>
+                <p className="text-sm text-muted-foreground mt-1">Formal Proofs</p>
+              </div>
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">45+</p>
+                <p className="text-sm text-muted-foreground mt-1">Open Models</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Research Areas */}
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">Core Research Areas</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-900 rounded-lg p-8">
-              <div className="text-4xl mb-4">🧬</div>
-              <h3 className="text-2xl font-bold mb-4">Conservation Genetics</h3>
-              <p className="text-gray-300 mb-4">
-                Using DNA analysis to understand genetic diversity, population health, and guide 
-                breeding programs for endangered species recovery.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>• Genome sequencing of 234 endangered species</li>
-                <li>• Genetic rescue programs for 12 populations</li>
-                <li>• eDNA monitoring in 89 ecosystems</li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-900 rounded-lg p-8">
-              <div className="text-4xl mb-4">🌡️</div>
-              <h3 className="text-2xl font-bold mb-4">Climate Adaptation</h3>
-              <p className="text-gray-300 mb-4">
-                Studying how species respond to climate change and developing strategies to help 
-                wildlife adapt to rapidly changing environments.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>• Migration pattern analysis for 567 species</li>
-                <li>• Habitat suitability modeling</li>
-                <li>• Assisted migration programs</li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-900 rounded-lg p-8">
-              <div className="text-4xl mb-4">🦠</div>
-              <h3 className="text-2xl font-bold mb-4">Disease Ecology</h3>
-              <p className="text-gray-300 mb-4">
-                Understanding wildlife diseases to prevent extinctions and protect both animal 
-                and human health through One Health approaches.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>• Pathogen screening in 45 ecosystems</li>
-                <li>• Vaccine development for 8 species</li>
-                <li>• Disease outbreak prediction models</li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-900 rounded-lg p-8">
-              <div className="text-4xl mb-4">🌳</div>
-              <h3 className="text-2xl font-bold mb-4">Habitat Restoration</h3>
-              <p className="text-gray-300 mb-4">
-                Developing science-based restoration techniques to rebuild degraded ecosystems 
-                and create resilient wildlife habitats.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>• Restored 2.4M hectares of habitat</li>
-                <li>• Native species reintroduction protocols</li>
-                <li>• Soil microbiome restoration</li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-900 rounded-lg p-8">
-              <div className="text-4xl mb-4">🐾</div>
-              <h3 className="text-2xl font-bold mb-4">Behavioral Ecology</h3>
-              <p className="text-gray-300 mb-4">
-                Studying animal behavior to inform conservation strategies and reduce human-wildlife 
-                conflict through understanding.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>• Movement ecology of 234 species</li>
-                <li>• Social structure analysis</li>
-                <li>• Foraging behavior optimization</li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-900 rounded-lg p-8">
-              <div className="text-4xl mb-4">🌊</div>
-              <h3 className="text-2xl font-bold mb-4">Marine Biology</h3>
-              <p className="text-gray-300 mb-4">
-                Protecting ocean ecosystems through research on coral reefs, marine mammals, 
-                and the impacts of ocean acidification.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>• Coral reef restoration techniques</li>
-                <li>• Marine protected area effectiveness</li>
-                <li>• Microplastic impact studies</li>
-              </ul>
+        {/* Papers */}
+        <div className="border-t border-border">
+          <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12">Papers</h2>
+            <div className="space-y-4">
+              {papers.map((paper) => (
+                <div key={paper.title} className="bg-background border border-border rounded-xl p-6 hover:border-foreground/20 transition-colors">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-foreground mb-2">{paper.title}</h3>
+                      <p className="text-sm text-muted-foreground">{paper.desc}</p>
+                    </div>
+                    <div className="flex items-center gap-4 shrink-0">
+                      <span className="text-xs text-muted-foreground">{paper.year}</span>
+                      <span className="text-xs text-muted-foreground border border-border px-2 py-1 rounded">PDF</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Current Studies */}
-        <div className="bg-gray-900 py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Featured Research Projects</h2>
-            <div className="space-y-8">
-              <div className="bg-background rounded-lg p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold">Amazon Biodiversity Baseline Study</h3>
-                  <span className="bg-background px-3 py-1 rounded-full text-sm">Active</span>
+        {/* Formal Proofs */}
+        <div id="proofs" className="border-t border-border">
+          <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Formal Proofs</h2>
+            <p className="text-muted-foreground mb-12 max-w-2xl">
+              Every critical system is formally verified in Lean 4 and TLA+. No hand-waving — machine-checked proofs of correctness.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {proofs.map((proof) => (
+                <div key={proof.name} className="border border-border rounded-lg p-4 hover:border-foreground/20 transition-colors">
+                  <p className="text-sm font-mono text-foreground mb-1">{proof.name}</p>
+                  <p className="text-xs text-muted-foreground">{proof.desc}</p>
                 </div>
-                <p className="text-gray-300 mb-4">
-                  Comprehensive species inventory using environmental DNA sampling across 50,000 sq km 
-                  of Amazon rainforest to establish biodiversity baselines before climate tipping points.
-                </p>
-                <div className="grid md:grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="text-gray-400">Lead Researcher:</span> Dr. Maria Santos
-                  </div>
-                  <div>
-                    <span className="text-gray-400">Duration:</span> 2024-2027
-                  </div>
-                  <div>
-                    <span className="text-gray-400">Funding:</span> $2.3M
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-background rounded-lg p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold">Tiger Connectivity Corridor Genetics</h3>
-                  <span className="bg-background px-3 py-1 rounded-full text-sm">Active</span>
-                </div>
-                <p className="text-gray-300 mb-4">
-                  Using genetic analysis to identify critical corridors for tiger movement between 
-                  fragmented populations, informing land protection priorities across India and Nepal.
-                </p>
-                <div className="grid md:grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="text-gray-400">Lead Researcher:</span> Dr. Raj Patel
-                  </div>
-                  <div>
-                    <span className="text-gray-400">Duration:</span> 2023-2026
-                  </div>
-                  <div>
-                    <span className="text-gray-400">Funding:</span> $1.8M
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-background rounded-lg p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold">Coral Resilience to Ocean Warming</h3>
-                  <span className="bg-background px-3 py-1 rounded-full text-sm">Active</span>
-                </div>
-                <p className="text-gray-300 mb-4">
-                  Identifying heat-resistant coral genotypes and developing assisted evolution techniques 
-                  to create climate-resilient reef ecosystems for the future.
-                </p>
-                <div className="grid md:grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="text-gray-400">Lead Researcher:</span> Dr. Sarah Chen
-                  </div>
-                  <div>
-                    <span className="text-gray-400">Duration:</span> 2025-2028
-                  </div>
-                  <div>
-                    <span className="text-gray-400">Funding:</span> $3.2M
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Publications */}
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">Recent Publications</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="border border-gray-700 rounded-lg p-6">
-              <h4 className="font-bold mb-2">
-                Machine Learning Applications in Wildlife Population Monitoring
-              </h4>
-              <p className="text-sm text-gray-400 mb-3">
-                Chen, S., Patel, R., Santos, M., et al. (2025). Nature Conservation, 47, 234-251.
-              </p>
-              <p className="text-gray-300 mb-4">
-                Revolutionary approach using computer vision and AI to automate population counts 
-                with 98% accuracy across multiple species.
-              </p>
-              <a href="#" className="text-green-500 hover:text-green-400">
-                Read Paper →
-              </a>
+        {/* ZIPs */}
+        <div className="border-t border-border">
+          <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Zoo Improvement Proposals</h2>
+            <p className="text-muted-foreground mb-8 max-w-2xl">
+              102 specifications governing everything from model architecture to tokenomics to governance.
+              Community-driven, publicly reviewed, formally specified.
+            </p>
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              {[
+                { id: 'ZIP-0000', title: 'Zoo Ecosystem Architecture & Framework' },
+                { id: 'ZIP-0001', title: 'Hamiltonian Large Language Models (HLLMs)' },
+                { id: 'ZIP-0003', title: 'Eco-1: z-JEPA Hyper-Modal MoE Architecture' },
+                { id: 'ZIP-0005', title: 'Post-Quantum Security for DeFi & NFTs' },
+                { id: 'ZIP-0006', title: 'User-Owned AI Models (NFT-Based Ownership)' },
+                { id: 'ZIP-0007', title: 'BitDelta + DeltaSoup Personalized AI' },
+                { id: 'ZIP-0009', title: 'Unified BitDelta Architecture' },
+                { id: 'ZIP-0010', title: 'Zoo Launch Models (Eco-1, Coder-1, Nano-1)' },
+              ].map((zip) => (
+                <div key={zip.id} className="border border-border rounded-lg p-4 hover:border-foreground/20 transition-colors flex items-start gap-3">
+                  <span className="text-xs font-mono text-muted-foreground shrink-0 mt-0.5">{zip.id}</span>
+                  <p className="text-sm text-foreground">{zip.title}</p>
+                </div>
+              ))}
             </div>
-
-            <div className="border border-gray-700 rounded-lg p-6">
-              <h4 className="font-bold mb-2">
-                Genetic Rescue Success in Critically Endangered Vaquita Population
-              </h4>
-              <p className="text-sm text-gray-400 mb-3">
-                Martinez, J., Thompson, K., Liu, W. (2025). Science, 381(6658), 567-571.
-              </p>
-              <p className="text-gray-300 mb-4">
-                First successful genetic rescue of marine mammal using innovative breeding protocols 
-                and genomic selection techniques.
-              </p>
-              <a href="#" className="text-green-500 hover:text-green-400">
-                Read Paper →
-              </a>
-            </div>
-
-            <div className="border border-gray-700 rounded-lg p-6">
-              <h4 className="font-bold mb-2">
-                Climate Refugia Mapping for Tropical Biodiversity Hotspots
-              </h4>
-              <p className="text-sm text-gray-400 mb-3">
-                Anderson, P., Garcia, L., Kim, S. (2024). Conservation Biology, 38(4), e14089.
-              </p>
-              <p className="text-gray-300 mb-4">
-                Identifies critical climate refugia that will remain suitable for biodiversity 
-                under various warming scenarios through 2100.
-              </p>
-              <a href="#" className="text-green-500 hover:text-green-400">
-                Read Paper →
-              </a>
-            </div>
-
-            <div className="border border-gray-700 rounded-lg p-6">
-              <h4 className="font-bold mb-2">
-                Community-Based Conservation Economics in Southeast Asia
-              </h4>
-              <p className="text-sm text-gray-400 mb-3">
-                Wong, A., Rahman, M., Nguyen, T. (2024). Environmental Economics, 15(3), 145-162.
-              </p>
-              <p className="text-gray-300 mb-4">
-                Economic analysis showing 3.2x ROI for community-led conservation versus traditional 
-                protected area management.
-              </p>
-              <a href="#" className="text-green-500 hover:text-green-400">
-                Read Paper →
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Research Network */}
-        <div className="bg-background border-t border-white py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Global Research Network</h2>
-            <div className="grid md:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="text-5xl mb-4">🏛️</div>
-                <h3 className="text-xl font-bold mb-2">89</h3>
-                <p>University Partners</p>
-              </div>
-              <div>
-                <div className="text-5xl mb-4">🔬</div>
-                <h3 className="text-xl font-bold mb-2">234</h3>
-                <p>Research Stations</p>
-              </div>
-              <div>
-                <div className="text-5xl mb-4">👩‍🔬</div>
-                <h3 className="text-xl font-bold mb-2">1,247</h3>
-                <p>Scientists Involved</p>
-              </div>
-              <div>
-                <div className="text-5xl mb-4">🌍</div>
-                <h3 className="text-xl font-bold mb-2">67</h3>
-                <p>Countries</p>
-              </div>
-            </div>
+            <a
+              href="https://zips.zoo.ngo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors"
+            >
+              View all 102 ZIPs →
+            </a>
           </div>
         </div>
 
         {/* ResearchDAO */}
-        <div className="container mx-auto px-4 py-16">
-          <div className="bg-gray-900 rounded-2xl p-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">ResearchDAO: Democratizing Science</h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Our decentralized research funding platform has revolutionized how conservation science 
-              gets funded, removing bureaucracy and accelerating critical research.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8 mb-8">
-              <div>
-                <p className="text-3xl font-bold text-green-500">$8.4M</p>
-                <p className="text-gray-400">Total Funded</p>
+        <div className="border-t border-border">
+          <div className="container mx-auto px-4 py-16">
+            <div className="border border-border rounded-2xl p-8 md:p-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">ResearchDAO</h2>
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
+                Decentralized research funding. Smart contract-governed grants with on-chain transparency.
+                No gatekeepers, no bureaucracy.
+              </p>
+              <div className="grid grid-cols-3 gap-8 mb-8">
+                <div>
+                  <p className="text-2xl md:text-3xl font-bold text-foreground">$8.4M</p>
+                  <p className="text-sm text-muted-foreground">Total Funded</p>
+                </div>
+                <div>
+                  <p className="text-2xl md:text-3xl font-bold text-foreground">342</p>
+                  <p className="text-sm text-muted-foreground">Projects</p>
+                </div>
+                <div>
+                  <p className="text-2xl md:text-3xl font-bold text-foreground">14 days</p>
+                  <p className="text-sm text-muted-foreground">Avg. Funding Time</p>
+                </div>
               </div>
-              <div>
-                <p className="text-3xl font-bold text-green-500">342</p>
-                <p className="text-gray-400">Projects Supported</p>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/donation" className="text-sm border border-border text-foreground px-5 py-2.5 rounded-full hover:bg-card transition-colors">
+                  Apply for Funding
+                </Link>
+                <a href="https://github.com/zoo-labs" target="_blank" rel="noopener noreferrer" className="text-sm border border-border text-muted-foreground px-5 py-2.5 rounded-full hover:bg-card hover:text-foreground transition-colors">
+                  View on GitHub
+                </a>
               </div>
-              <div>
-                <p className="text-3xl font-bold text-green-500">14 days</p>
-                <p className="text-gray-400">Average Funding Time</p>
-              </div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/fund/research.html"
-                className="bg-background text-foreground px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors text-center"
-              >
-                Apply for Funding
-              </Link>
-              <Link
-                href="/docs"
-                className="bg-gray-700 text-foreground px-6 py-3 rounded-full font-medium hover:bg-gray-600 transition-colors text-center"
-              >
-                Research Guidelines
-              </Link>
             </div>
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="bg-background py-20">
+        {/* CTA */}
+        <div className="border-t border-border py-20">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Support Conservation Science
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Your donation directly funds groundbreaking research that saves species from extinction. 
-              Every dollar makes a difference.
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Support Open AI Research</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Every donation funds open-source models, peer-reviewed papers, and formally verified systems.
+              501(c)(3) tax-deductible.
             </p>
-            <Link
-              href="/donation"
-              className="inline-block bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors"
-            >
-              Donate to Research
+            <Link href="/donation" className="inline-block bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors">
+              Support Our Research
             </Link>
           </div>
         </div>
