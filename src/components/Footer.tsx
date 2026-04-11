@@ -27,7 +27,7 @@ const COLUMNS = [
   {
     title: 'Community',
     links: [
-      { label: 'GitHub', href: 'https://github.com/zoo-labs' },
+      { label: 'GitHub', href: 'https://github.com/zooai' },
       { label: 'Discord', href: 'https://discord.gg/AqrYhChx5b' },
       { label: 'Twitter', href: 'https://twitter.com/zoo_labs' },
       { label: 'Telegram', href: 'https://t.me/zooofficial' },

@@ -5,170 +5,247 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Link from 'next/link';
 
+const models = [
+  {
+    family: 'Foundation',
+    desc: 'General purpose language models for text generation, reasoning, and instruction following.',
+    variants: [
+      { name: 'zen4-nano', params: '0.6B', context: '32K' },
+      { name: 'zen4-mini', params: '1.5B', context: '32K' },
+      { name: 'zen4-flash', params: '4B', context: '64K' },
+      { name: 'zen4-pro', params: '32B', context: '128K' },
+      { name: 'zen4-max', params: '72B', context: '128K' },
+      { name: 'zen4-ultra', params: '480B', context: '256K' },
+    ],
+    hf: 'https://huggingface.co/zenlm',
+  },
+  {
+    family: 'Code',
+    desc: 'Specialized for software engineering. 59.2% SWE-bench verified.',
+    variants: [
+      { name: 'zen4-coder-flash', params: '4B', context: '64K' },
+      { name: 'zen4-coder-pro', params: '32B', context: '128K' },
+    ],
+    hf: 'https://huggingface.co/zenlm/zen4-coder-flash',
+  },
+  {
+    family: 'Multimodal',
+    desc: 'Vision, audio, video, and 3D generation from a single architecture.',
+    variants: [
+      { name: 'zen-omni', params: '72B', context: '128K' },
+      { name: 'zen-vl', params: '32B', context: '128K' },
+      { name: 'zen-3d', params: '8B', context: '32K' },
+      { name: 'zen-director', params: '14B', context: '64K' },
+    ],
+    hf: 'https://huggingface.co/zenlm',
+  },
+  {
+    family: 'Safety',
+    desc: 'Content safety, alignment verification, and guardrails for production deployment.',
+    variants: [
+      { name: 'zen-guard', params: '1B', context: '8K' },
+      { name: 'zen-guard-pro', params: '8B', context: '32K' },
+      { name: 'zen-guard-vision', params: '4B', context: '16K' },
+    ],
+    hf: 'https://huggingface.co/zenlm',
+  },
+];
+
+const trainingMethods = [
+  { name: 'Training-Free GRPO', desc: '99.8% cost reduction. $18 vs $10,000+ for traditional fine-tuning.' },
+  { name: 'LoRA / QLoRA', desc: 'Parameter-efficient fine-tuning for single-GPU training.' },
+  { name: 'DPO', desc: 'Direct preference optimization without reward model overhead.' },
+  { name: 'Full Fine-Tuning', desc: 'Multi-GPU distributed training with DeepSpeed ZeRO-3.' },
+  { name: 'DSO Protocol', desc: 'Decentralized semantic optimization via experience ledger.' },
+  { name: 'RLHF', desc: 'Reinforcement learning from human feedback for alignment.' },
+];
+
 export default function AI() {
   return (
     <Layout>
       <Seo
-        templateTitle="AI for Conservation"
-        description="Zoo Foundation's AI initiatives for wildlife conservation through ZenLM and machine learning"
+        templateTitle="AI Research"
+        description="The Zen model family: 45+ open-source frontier models from 600M to 1T+ parameters. Zoo Gym training platform."
       />
       <Navbar />
 
       <div className="bg-background text-foreground">
-        {/* Hero Section */}
-        <div className="container mx-auto px-4 py-20">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8">AI for Conservation</h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl">
-            Leveraging artificial intelligence and machine learning to protect endangered species
-            through advanced monitoring, prediction, and conservation strategies.
+        {/* Hero */}
+        <div className="container mx-auto px-4 pt-24 pb-16">
+          <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">Zoo Labs Foundation</p>
+          <h1 className="text-5xl md:text-7xl font-bold mb-8">Zen Model Family</h1>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
+            45+ open-source frontier models from 600M to 1T+ parameters. Open weights,
+            community-trained, formally verified. Built on Qwen3+ architecture.
           </p>
         </div>
 
-        {/* ZenLM Section */}
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">ZenLM Framework</h2>
-              <p className="text-gray-300 mb-6">
-                Our proprietary ZenLM (Zen Language Model) is specifically trained on conservation data,
-                species behavior patterns, and environmental factors to provide unprecedented insights
-                for wildlife protection.
-              </p>
-              <ul className="space-y-4 text-gray-300">
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3">•</span>
-                  <span>Species identification from camera trap images with 98% accuracy</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3">•</span>
-                  <span>Predictive modeling for migration patterns and habitat changes</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3">•</span>
-                  <span>Real-time poaching threat detection and alert systems</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3">•</span>
-                  <span>Ecosystem health monitoring through satellite imagery analysis</span>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-gray-900 rounded-lg p-8">
-              <h3 className="text-2xl font-bold mb-4">AI Impact Metrics</h3>
-              <div className="space-y-6">
-                <div>
-                  <p className="text-3xl font-bold text-green-500">15M+</p>
-                  <p className="text-gray-400">Wildlife images analyzed</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold text-green-500">2,300+</p>
-                  <p className="text-gray-400">Species identified and tracked</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold text-green-500">87%</p>
-                  <p className="text-gray-400">Reduction in response time to threats</p>
-                </div>
+        {/* Stats */}
+        <div className="border-t border-border">
+          <div className="container mx-auto px-4 py-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">45+</p>
+                <p className="text-sm text-muted-foreground mt-1">Open Models</p>
+              </div>
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">1T+</p>
+                <p className="text-sm text-muted-foreground mt-1">Max Parameters</p>
+              </div>
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">59.2%</p>
+                <p className="text-sm text-muted-foreground mt-1">SWE-bench (Code)</p>
+              </div>
+              <div>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">82.7%</p>
+                <p className="text-sm text-muted-foreground mt-1">AIME24 Accuracy</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Research Areas */}
-        <div className="bg-gray-900 py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">AI Research Areas</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="border border-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">Computer Vision</h3>
-                <p className="text-gray-400">
-                  Advanced image recognition for species identification, behavior analysis,
-                  and population counting from drone and camera trap footage.
-                </p>
+        {/* Model Families */}
+        {models.map((family) => (
+          <div key={family.family} className="border-t border-border">
+            <div className="container mx-auto px-4 py-16">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+                <div className="flex-1">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-3">{family.family}</h2>
+                  <p className="text-muted-foreground max-w-2xl">{family.desc}</p>
+                </div>
+                <a
+                  href={family.hf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors shrink-0"
+                >
+                  HuggingFace
+                </a>
               </div>
-              <div className="border border-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">Predictive Analytics</h3>
-                <p className="text-gray-400">
-                  Machine learning models that predict habitat loss, climate impact,
-                  and migration pattern changes to enable proactive conservation.
-                </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {family.variants.map((v) => (
+                  <div key={v.name} className="border border-border rounded-lg p-4 hover:border-foreground/20 transition-colors">
+                    <p className="text-sm font-mono text-foreground mb-1">{v.name}</p>
+                    <div className="flex gap-4 text-xs text-muted-foreground">
+                      <span>{v.params} params</span>
+                      <span>{v.context} context</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="border border-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">Natural Language Processing</h3>
-                <p className="text-gray-400">
-                  Analysis of research papers, field reports, and social media to track
-                  conservation trends and identify emerging threats.
-                </p>
-              </div>
-              <div className="border border-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">Acoustic Monitoring</h3>
-                <p className="text-gray-400">
-                  AI-powered audio analysis to identify species by their calls,
-                  monitor ecosystem health, and detect illegal activities.
-                </p>
-              </div>
-              <div className="border border-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">Genomic Analysis</h3>
-                <p className="text-gray-400">
-                  Machine learning applied to DNA sequencing data to understand
-                  genetic diversity and guide breeding programs.
-                </p>
-              </div>
-              <div className="border border-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">Blockchain Integration</h3>
-                <p className="text-gray-400">
-                  AI-verified wildlife data stored on blockchain for transparent,
-                  tamper-proof conservation records and tracking.
-                </p>
-              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Zoo Gym */}
+        <div id="gym" className="border-t border-border">
+          <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Zoo Gym</h2>
+            <p className="text-muted-foreground mb-12 max-w-2xl">
+              Open-source AI training platform. 100+ model support, multi-GPU distributed training,
+              8 training methods. 2.5 years of community development.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {trainingMethods.map((method) => (
+                <div key={method.name} className="border border-border rounded-lg p-4 hover:border-foreground/20 transition-colors">
+                  <p className="text-sm font-bold text-foreground mb-1">{method.name}</p>
+                  <p className="text-xs text-muted-foreground">{method.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-10">
+              <a
+                href="https://github.com/zooai/gym"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors"
+              >
+                View on GitHub
+              </a>
             </div>
           </div>
         </div>
 
-        {/* API Access */}
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Conservation AI API</h2>
-          <p className="text-xl text-gray-300 mb-8">
-            Access our conservation AI models through our API at <code className="bg-gray-800 px-2 py-1 rounded">api.zoo.network</code>
-          </p>
-          <div className="bg-gray-900 rounded-lg p-8 mb-8">
-            <h3 className="text-xl font-bold mb-4">Available Endpoints</h3>
-            <ul className="space-y-3 font-mono text-sm">
-              <li><span className="text-green-500">POST</span> /api/v1/species/identify</li>
-              <li><span className="text-green-500">POST</span> /api/v1/habitat/analyze</li>
-              <li><span className="text-green-500">GET</span> /api/v1/threats/monitor</li>
-              <li><span className="text-green-500">POST</span> /api/v1/migration/predict</li>
-              <li><span className="text-green-500">POST</span> /api/v1/audio/classify</li>
-            </ul>
+        {/* Desktop App */}
+        <div className="border-t border-border">
+          <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Zoo AI Desktop</h2>
+            <p className="text-muted-foreground mb-8 max-w-2xl">
+              Run Zen models locally. Free, open-source, private by default. Supports all Zen model sizes
+              that fit your hardware. Automatic model download from HuggingFace.
+            </p>
+            <div className="grid md:grid-cols-3 gap-3 mb-10">
+              <div className="border border-border rounded-lg p-4">
+                <p className="text-sm font-bold text-foreground mb-1">Local Inference</p>
+                <p className="text-xs text-muted-foreground">Run models on your GPU. No data leaves your machine.</p>
+              </div>
+              <div className="border border-border rounded-lg p-4">
+                <p className="text-sm font-bold text-foreground mb-1">Multi-Platform</p>
+                <p className="text-xs text-muted-foreground">macOS, Windows, Linux. Built with Tauri.</p>
+              </div>
+              <div className="border border-border rounded-lg p-4">
+                <p className="text-sm font-bold text-foreground mb-1">Mine $AI</p>
+                <p className="text-xs text-muted-foreground">Contribute GPU compute to Zoo Network and earn $AI tokens.</p>
+              </div>
+            </div>
+            <a
+              href="https://github.com/zooai/zoo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors"
+            >
+              Download
+            </a>
           </div>
-          <Link
-            href="/docs"
-            className="inline-block bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors"
-          >
-            View API Documentation
-          </Link>
         </div>
 
-        {/* CTA Section */}
-        <div className="bg-gradient-to-r from-green-600 to-blue-600 py-16">
+        {/* API */}
+        <div className="border-t border-border">
+          <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">API Access</h2>
+            <p className="text-muted-foreground mb-8 max-w-2xl">
+              Access Zen models via the Zoo API at <code className="bg-card px-2 py-0.5 rounded text-foreground">api.zoo.network</code>
+            </p>
+            <div className="bg-card border border-border rounded-lg p-6 mb-8 font-mono text-sm">
+              <p className="text-muted-foreground mb-3"># Chat completions</p>
+              <p className="text-foreground">POST /v1/chat/completions</p>
+              <p className="text-muted-foreground mt-4 mb-3"># Embeddings</p>
+              <p className="text-foreground">POST /v1/embeddings</p>
+              <p className="text-muted-foreground mt-4 mb-3"># Models list</p>
+              <p className="text-foreground">GET /v1/models</p>
+            </div>
+            <Link
+              href="/docs"
+              className="inline-block text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors"
+            >
+              View Documentation
+            </Link>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="border-t border-border py-20">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Our AI Conservation Initiative</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Partner with us to develop and deploy AI solutions that make a real difference
-              in wildlife conservation.
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Support Open AI Research</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Every donation funds open-source models, peer-reviewed papers, and formally verified systems.
+              501(c)(3) tax-deductible.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/getinvolved"
-                className="bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors"
+                href="/donation"
+                className="inline-block bg-foreground text-background px-8 py-3 rounded-full font-medium hover:opacity-80 transition-colors"
               >
-                Get Involved
+                Support Our Research
               </Link>
-              <Link
-                href="https://github.com/zoo-labs"
-                className="bg-transparent border-2 border-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black transition-colors"
+              <a
+                href="https://huggingface.co/zenlm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block border border-border text-foreground px-8 py-3 rounded-full font-medium hover:bg-card transition-colors"
               >
-                View on GitHub
-              </Link>
+                Browse Models on HuggingFace
+              </a>
             </div>
           </div>
         </div>
