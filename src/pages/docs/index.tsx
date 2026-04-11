@@ -307,7 +307,7 @@ export default function Docs() {
                         <a href="#" className="bg-green-600 px-4 py-2 rounded-lg hover:bg-green-700">
                           Download ABIs
                         </a>
-                        <a href="https://github.com/zoo-labs/contracts" className="bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600">
+                        <a href="https://github.com/zooai/contracts" className="bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600">
                           View on GitHub
                         </a>
                       </div>
@@ -509,7 +509,7 @@ print(species.common_name)`}
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8">Quick Links</h2>
             <div className="grid md:grid-cols-4 gap-6">
-              <a href="https://github.com/zoo-labs" className="border border-gray-700 rounded-lg p-6 hover:bg-gray-800 transition-colors">
+              <a href="https://github.com/zooai" className="border border-gray-700 rounded-lg p-6 hover:bg-gray-800 transition-colors">
                 <h3 className="font-bold mb-2">GitHub</h3>
                 <p className="text-gray-400 text-sm">View our open source repositories</p>
               </a>

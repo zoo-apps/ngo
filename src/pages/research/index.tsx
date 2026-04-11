@@ -216,7 +216,7 @@ export default function Research() {
                 <Link href="/donation" className="text-sm border border-border text-foreground px-5 py-2.5 rounded-full hover:bg-card transition-colors">
                   Apply for Funding
                 </Link>
-                <a href="https://github.com/zoo-labs" target="_blank" rel="noopener noreferrer" className="text-sm border border-border text-muted-foreground px-5 py-2.5 rounded-full hover:bg-card hover:text-foreground transition-colors">
+                <a href="https://github.com/zooai" target="_blank" rel="noopener noreferrer" className="text-sm border border-border text-muted-foreground px-5 py-2.5 rounded-full hover:bg-card hover:text-foreground transition-colors">
                   View on GitHub
                 </a>
               </div>

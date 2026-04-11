@@ -187,7 +187,7 @@ function Navbar() {
                       <p className="text-xs text-muted-foreground">15 Lean 4 verified proofs</p>
                     </Link>
                   </div>
-                  <a href="https://github.com/zoo-labs" target="_blank" rel="noopener noreferrer" className="block w-full text-center text-sm text-muted-foreground hover:text-foreground py-2 border-t border-border transition-colors">
+                  <a href="https://github.com/zooai" target="_blank" rel="noopener noreferrer" className="block w-full text-center text-sm text-muted-foreground hover:text-foreground py-2 border-t border-border transition-colors">
                     View on GitHub →
                   </a>
                 </div>
@@ -249,7 +249,7 @@ function Navbar() {
               </button>
             )}
             <Link
-              href="https://github.com/zoo-labs"
+              href="https://github.com/zooai"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -297,7 +297,7 @@ function Navbar() {
                       <p className="text-sm text-foreground font-medium">Zoo AI Chat</p>
                       <p className="text-xs text-muted-foreground">Chat with Zen</p>
                     </a>
-                    <a href="https://github.com/zoo-labs/zoo" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
+                    <a href="https://github.com/zooai/zoo" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
                       <p className="text-sm text-foreground font-medium">Desktop App</p>
                       <p className="text-xs text-muted-foreground">Local inference</p>
                     </a>

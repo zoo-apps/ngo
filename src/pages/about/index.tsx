@@ -15,56 +15,56 @@ export default function About() {
   return (
     <Layout>
       <Seo
-        templateTitle="About Zoo Foundation"
-        description="Learn about our mission to protect Earth's wildlife through science, technology, and community action"
+        templateTitle="About Zoo Labs Foundation"
+        description="Open AI research foundation advancing frontier models, decentralized training, and formal verification"
       />
       <Navbar />
 
       <div className="bg-background text-foreground min-h-screen">
-        {/* Hero Section with Gradient */}
+        {/* Hero */}
         <div className="relative overflow-hidden bg-background">
           <div className="container mx-auto px-4 py-20 relative">
             <div className={`max-w-4xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <h1 className="text-5xl md:text-7xl font-bold mb-8 text-foreground">
-                Protecting Wildlife for Future Generations
+                Open AI Research for Everyone
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                Zoo Foundation is a 501(c)(3) nonprofit dedicated to wildlife conservation through
-                research, education, and partnerships with field organizations.
+                Zoo Labs Foundation is a 501(c)(3) nonprofit advancing open-source AI research,
+                frontier model development, and decentralized science.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Mission Statement */}
+        {/* Mission */}
         <div className="py-20 border-t border-gray-800">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold mb-8">Our Mission</h2>
               <p className="text-xl text-gray-300 leading-relaxed mb-8">
-                We protect Earth's biodiversity by supporting research, educating communities,
-                and partnering with conservation organizations.
+                Advance open AI research by building frontier models, publishing peer-reviewed papers,
+                and developing tools that make AI accessible to researchers worldwide.
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <div className="text-center">
-                  <div className="text-5xl mb-4">🌍</div>
-                  <h3 className="text-xl font-bold mb-2">Global Impact</h3>
+                  <p className="text-4xl font-bold mb-2">45+</p>
+                  <h3 className="text-xl font-bold mb-2">Open Models</h3>
                   <p className="text-gray-400">
-                    Operating in 67 countries across 6 continents
+                    Frontier models from 600M to 1T+ parameters, all open weights
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="text-5xl mb-4">🔬</div>
-                  <h3 className="text-xl font-bold mb-2">Science-Based</h3>
+                  <p className="text-4xl font-bold mb-2">7</p>
+                  <h3 className="text-xl font-bold mb-2">Peer-Reviewed Papers</h3>
                   <p className="text-gray-400">
-                    Evidence-driven conservation strategies
+                    Published research in HLLM, DSO, and formal verification
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="text-5xl mb-4">🤝</div>
-                  <h3 className="text-xl font-bold mb-2">Community-Led</h3>
+                  <p className="text-4xl font-bold mb-2">102</p>
+                  <h3 className="text-xl font-bold mb-2">ZIP Specifications</h3>
                   <p className="text-gray-400">
-                    Empowering local communities as stewards
+                    Community-governed improvement proposals
                   </p>
                 </div>
               </div>
@@ -79,21 +79,21 @@ export default function About() {
               <h2 className="text-3xl md:text-5xl font-bold mb-8">Our Story</h2>
               <div className="space-y-6 text-lg text-gray-300">
                 <p>
-                  Founded in 2020 during a time of unprecedented environmental crisis, Zoo Foundation emerged
-                  from a commitment to support scientific research and field conservation through transparent,
-                  community-driven charitable giving.
+                  Founded in 2021, Zoo Labs Foundation started with the belief that frontier AI
+                  should be open, verifiable, and community-governed. Not locked behind corporate walls.
                 </p>
                 <p>
-                  What started as a small team has grown into a network of conservation partners,
-                  research institutions, and community supporters worldwide.
+                  We built the Zen model family on Qwen3+ architecture: 45+ models spanning text,
+                  code, vision, audio, video, and 3D generation. Every model has open weights on HuggingFace.
                 </p>
                 <p>
-                  We focus on supporting field research, conservation education, and partnerships that
-                  protect endangered species and their habitats.
+                  Our research spans Hamiltonian Large Language Models (HLLMs), decentralized semantic
+                  optimization (DSO), and 15 formally verified proofs in Lean 4. We publish everything
+                  open access.
                 </p>
                 <p>
-                  We work to preserve ecosystems, support local communities, and create sustainable
-                  solutions for wildlife and people to coexist.
+                  Zoo Gym, our training platform, has enabled thousands of researchers to train and
+                  fine-tune models at 99.8% lower cost through Training-Free GRPO.
                 </p>
               </div>
             </div>
@@ -106,27 +106,27 @@ export default function About() {
             <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Core Values</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
               <div className="bg-gray-900 rounded-xl p-8 hover:bg-gray-800 transition-colors">
-                <h3 className="text-xl font-bold mb-4 text-foreground">Scientific Rigor</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Open by Default</h3>
                 <p className="text-gray-300">
-                  Every decision backed by peer-reviewed research and data-driven insights
+                  Open weights, open papers, open code. Closed AI is a dead end for science.
                 </p>
               </div>
               <div className="bg-gray-900 rounded-xl p-8 hover:bg-gray-800 transition-colors">
-                <h3 className="text-xl font-bold mb-4 text-foreground">Transparency</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Formally Verified</h3>
                 <p className="text-gray-300">
-                  Public financial reports, annual disclosures, and regular impact updates for all donors
+                  15 Lean 4 proofs. Every critical system machine-checked, not hand-waved.
                 </p>
               </div>
               <div className="bg-gray-900 rounded-xl p-8 hover:bg-gray-800 transition-colors">
-                <h3 className="text-xl font-bold mb-4 text-foreground">Education</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Community Governed</h3>
                 <p className="text-gray-300">
-                  Supporting research and educational programs that advance conservation science
+                  102 ZIPs. Research direction decided by contributors, not executives.
                 </p>
               </div>
               <div className="bg-gray-900 rounded-xl p-8 hover:bg-gray-800 transition-colors">
-                <h3 className="text-xl font-bold mb-4 text-foreground">Collaboration</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Safe by Design</h3>
                 <p className="text-gray-300">
-                  Centering indigenous knowledge and empowering local communities
+                  Zen-guard safety models. Alignment research integrated, not bolted on.
                 </p>
               </div>
             </div>
@@ -139,11 +139,15 @@ export default function About() {
             <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Leadership</h2>
             <div className="max-w-3xl mx-auto text-center">
               <div className="mb-12">
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-900 border border-gray-800" />
+                <img
+                  src="/leadership/antje-worring.png"
+                  alt="Antje Worring"
+                  className="w-32 h-32 mx-auto mb-4 rounded-full object-cover bg-gray-900 border border-gray-800"
+                />
                 <h3 className="text-xl font-bold mb-2">Antje Worring</h3>
-                <p className="text-gray-400 mb-2">Executive Director</p>
+                <p className="text-gray-400 mb-2">Executive Director & Co-Founder</p>
                 <p className="text-gray-400 text-sm max-w-md mx-auto">
-                  Leading Zoo Foundation's mission to protect endangered wildlife through innovative conservation programs
+                  Building safer AI for children since founding Zoo Labs Foundation in 2021.
                 </p>
               </div>
               <Link
@@ -156,120 +160,105 @@ export default function About() {
           </div>
         </div>
 
-        {/* Our Focus */}
+        {/* What We Do */}
         <div className="py-20 bg-background">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Our Focus</h2>
-            <div className="max-w-4xl mx-auto space-y-8 text-center">
-              <p className="text-xl text-gray-300">
-                Protecting endangered species and their habitats.
-              </p>
-              <p className="text-xl text-gray-300">
-                Supporting conservation research and education.
-              </p>
-              <p className="text-xl text-gray-300">
-                Partnering with field organizations worldwide.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Approach */}
-        <div className="py-20">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Our Approach</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">What We Do</h2>
             <div className="max-w-4xl mx-auto space-y-12">
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-4">Research Support</h3>
+                  <h3 className="text-2xl font-bold mb-4">Frontier Model Research</h3>
                   <p className="text-gray-300">
-                    Supporting scientific research on endangered species and habitat conservation.
+                    Developing the Zen family of open-source models. From 600M parameter edge models
+                    to 1T+ parameter frontier systems, all with open weights on HuggingFace.
                   </p>
                 </div>
-                <div className="w-full md:w-64 h-64 bg-gray-900 border border-gray-800 rounded-lg" />
+                <div className="w-full md:w-64 h-64 bg-gray-900 border border-gray-800 rounded-lg flex items-center justify-center">
+                  <p className="text-gray-600 font-mono text-sm">zen4-ultra 480B</p>
+                </div>
               </div>
 
               <div className="flex flex-col md:flex-row-reverse gap-8 items-center">
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-4">Community Partnerships</h3>
+                  <h3 className="text-2xl font-bold mb-4">Training Infrastructure</h3>
                   <p className="text-gray-300">
-                    Working with local communities who protect and steward wildlife habitats.
+                    Zoo Gym: open-source platform supporting 100+ models, 8 training methods,
+                    and multi-GPU distributed training. 99.8% cost reduction via Training-Free GRPO.
                   </p>
                 </div>
-                <div className="w-full md:w-64 h-64 bg-gray-900 border border-gray-800 rounded-lg" />
+                <div className="w-full md:w-64 h-64 bg-gray-900 border border-gray-800 rounded-lg flex items-center justify-center">
+                  <p className="text-gray-600 font-mono text-sm">Zoo Gym</p>
+                </div>
               </div>
 
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-4">Transparent Operations</h3>
+                  <h3 className="text-2xl font-bold mb-4">Decentralized AI Network</h3>
                   <p className="text-gray-300">
-                    Publishing regular reports on how donations support conservation work.
+                    Zoo Network: decentralized AI compute with recursive self-learning.
+                    Post-quantum secure consensus. FHE for private inference.
                   </p>
                 </div>
-                <div className="w-full md:w-64 h-64 bg-gray-900 border border-gray-800 rounded-lg" />
+                <div className="w-full md:w-64 h-64 bg-gray-900 border border-gray-800 rounded-lg flex items-center justify-center">
+                  <p className="text-gray-600 font-mono text-sm">Zoo Network</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Partners Section */}
+        {/* Partners */}
         <div className="py-20 bg-background border-t border-gray-800">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Our Partners</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Ecosystem</h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center mb-12">
-              We collaborate with field conservation organizations to support research and protect endangered species.
+              Built on the Lux-Hanzo-Zoo stack. Post-quantum consensus, AI compute chain, and open research network.
             </p>
-            <div className="max-w-2xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="bg-background border border-gray-800 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold mb-4">Shark Stewards</h3>
-                <p className="text-gray-400 mb-6">
-                  Our primary partner for marine conservation, specializing in shark protection and ocean ecosystem research.
-                  Together, we operate the Farallones Sanctuary expeditions and support critical marine research.
+                <h3 className="text-2xl font-bold mb-4">Lux Network</h3>
+                <p className="text-gray-400">
+                  Post-quantum L0 consensus with sub-second finality.
                 </p>
-                <Link
-                  href="/experiences"
-                  className="inline-block text-foreground hover:text-gray-400 font-medium"
-                >
-                  View Shark Stewards Expeditions →
-                </Link>
               </div>
-            </div>
-            <div className="text-center mt-12">
-              <p className="text-gray-400 mb-4">
-                Interested in partnering with us?
-              </p>
-              <Link
-                href="/partners"
-                className="inline-block bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors"
-              >
-                Become a Partner
-              </Link>
+              <div className="bg-background border border-gray-800 rounded-lg p-8 text-center">
+                <h3 className="text-2xl font-bold mb-4">Hanzo AI</h3>
+                <p className="text-gray-400">
+                  L1 AI compute chain. Mining, model serving, and infrastructure.
+                </p>
+              </div>
+              <div className="bg-background border border-gray-800 rounded-lg p-8 text-center">
+                <h3 className="text-2xl font-bold mb-4">Zoo Network</h3>
+                <p className="text-gray-400">
+                  Application layer for decentralized AI research and governance.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Call to Action */}
+        {/* CTA */}
         <div className="py-20 bg-background border-t border-gray-800">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Join the Conservation Movement
+              Advance Open AI Research
             </h2>
             <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-              Whether through donations, volunteering, or spreading awareness, everyone can make
-              a difference in protecting our planet's wildlife.
+              Fund open-source models, contribute to ZIPs, or train models on Zoo Gym.
+              Every contribution is tax-deductible.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/donation"
                 className="bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-gray-200 transition-colors text-lg"
               >
-                Donate Now
+                Support Our Research
               </Link>
               <Link
-                href="/getinvolved"
+                href="/research"
                 className="bg-transparent border-2 border-white text-foreground px-8 py-4 rounded-full font-medium hover:bg-white hover:text-black transition-colors text-lg"
               >
-                Get Involved
+                Read Our Papers
               </Link>
             </div>
           </div>

@@ -104,7 +104,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-10">
-            <Link href="https://github.com/zoo-labs" className="inline-block border border-neutral-800/60 text-white px-6 py-3 rounded-full font-semibold hover:border-neutral-500 transition-colors">
+            <Link href="https://github.com/zooai" className="inline-block border border-neutral-800/60 text-white px-6 py-3 rounded-full font-semibold hover:border-neutral-500 transition-colors">
               Start Training
             </Link>
           </div>
@@ -207,7 +207,7 @@ export default function Home() {
             <div className="border border-neutral-800/60 rounded-lg p-6 hover:border-neutral-700 transition-colors">
               <h3 className="text-xl font-bold text-white mb-3">Contribute</h3>
               <p className="text-neutral-400 mb-4">Train models, write ZIPs, submit formal proofs</p>
-              <Link href="https://github.com/zoo-labs" className="text-white font-medium hover:text-neutral-400 transition-colors">
+              <Link href="https://github.com/zooai" className="text-white font-medium hover:text-neutral-400 transition-colors">
                 GitHub &rarr;
               </Link>
             </div>
@@ -227,7 +227,7 @@ export default function Home() {
               Support Our Research
             </Link>
             <Link
-              href="https://github.com/zoo-labs"
+              href="https://github.com/zooai"
               className="inline-block border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-neutral-900 transition-colors text-center"
             >
               Explore on GitHub

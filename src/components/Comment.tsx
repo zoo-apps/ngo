@@ -17,7 +17,7 @@ function Comment() {
           title: "600+",
           comment: "Open source repositories across Hanzo, Lux, and Zoo powering the decentralized AI stack.",
           link: "Open Source",
-          href: "https://github.com/zoo-labs"
+          href: "https://github.com/zooai"
         },
         {
           title: "99.8%",
