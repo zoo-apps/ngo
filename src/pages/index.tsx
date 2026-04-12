@@ -17,7 +17,7 @@ export default function Home() {
       <Intro
         breadcrumbs="Zoo Labs Foundation"
         title="Open AI Research"
-        comment="Building the Zen family of frontier AI models. 45+ open-source models from 600M to 1T+ parameters. Formal verification. Community governed. Safe by design."
+        comment="Building the Zen family of frontier AI models. 45+ open-source models from 600M to 480B parameters. Formal verification. Community governed. Safe by design."
       />
 
       <div className="h-px bg-gradient-to-r from-transparent via-[#ED1C24] via-[33%] via-[#00A652] via-[66%] to-[#2E3192] opacity-30" />
@@ -63,7 +63,7 @@ export default function Home() {
           <p className="text-neutral-400 text-lg md:text-xl mb-12">Open-source frontier models from edge to cloud</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: 'Foundation', models: 'zen4-nano (0.6B) to zen4-ultra (1T+)', desc: 'General purpose language models' },
+              { name: 'Foundation', models: 'zen4-nano (0.6B) to zen4-ultra (480B MoE)', desc: 'General purpose language models' },
               { name: 'Code', models: 'zen4-coder-flash to zen4-coder-pro', desc: '59.2% SWE-bench verified' },
               { name: 'Multimodal', models: 'zen-omni, zen-vl, zen-3d, zen-director', desc: 'Text, vision, audio, video, 3D' },
               { name: 'Safety', models: 'zen-guard family', desc: 'Content safety and alignment' },
@@ -115,7 +115,7 @@ export default function Home() {
       <section className="bg-transparent py-20 border-t border-neutral-800/50">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">Research</h2>
-          <p className="text-neutral-400 text-lg md:text-xl mb-12">7 peer-reviewed papers. 102 ZIP specifications. 15 formal proofs.</p>
+          <p className="text-neutral-400 text-lg md:text-xl mb-12">7 research papers. 102 ZIP specifications. 15 formal proofs.</p>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { name: 'HLLM with Training-Free GRPO', desc: '99.8% cost reduction, 82.7% AIME24 accuracy' },

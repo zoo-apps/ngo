@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  poweredByHeader: false,
 
   // Required for GitHub Pages to serve dynamic routes correctly
   trailingSlash: true,

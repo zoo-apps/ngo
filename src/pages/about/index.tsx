@@ -42,7 +42,7 @@ export default function About() {
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-bold mb-8">Our Mission</h2>
               <p className="text-xl text-gray-300 leading-relaxed mb-8">
-                Advance open AI research by building frontier models, publishing peer-reviewed papers,
+                Advance open AI research by building frontier models, publishing research papers,
                 and developing tools that make AI accessible to researchers worldwide.
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -50,7 +50,7 @@ export default function About() {
                   <p className="text-4xl font-bold mb-2">45+</p>
                   <h3 className="text-xl font-bold mb-2">Open Models</h3>
                   <p className="text-gray-400">
-                    Frontier models from 600M to 1T+ parameters, all open weights
+                    Frontier models from 600M to 480B parameters, all open weights
                   </p>
                 </div>
                 <div className="text-center">
@@ -170,7 +170,7 @@ export default function About() {
                   <h3 className="text-2xl font-bold mb-4">Frontier Model Research</h3>
                   <p className="text-gray-300">
                     Developing the Zen family of open-source models. From 600M parameter edge models
-                    to 1T+ parameter frontier systems, all with open weights on HuggingFace.
+                    to 480B parameter frontier systems, all with open weights on HuggingFace.
                   </p>
                 </div>
                 <div className="w-full md:w-64 h-64 bg-gray-900 border border-gray-800 rounded-lg flex items-center justify-center">

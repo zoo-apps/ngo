@@ -65,7 +65,7 @@ export default function AI() {
     <Layout>
       <Seo
         templateTitle="AI Research"
-        description="The Zen model family: 45+ open-source frontier models from 600M to 1T+ parameters. Zoo Gym training platform."
+        description="The Zen model family: 45+ open-source frontier models from 600M to 480B parameters. Zoo Gym training platform."
       />
       <Navbar />
 
@@ -75,7 +75,7 @@ export default function AI() {
           <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">Zoo Labs Foundation</p>
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Zen Model Family</h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
-            45+ open-source frontier models from 600M to 1T+ parameters. Open weights,
+            45+ open-source frontier models from 600M to 480B parameters. Open weights,
             community-trained, formally verified. Built on Qwen3+ architecture.
           </p>
         </div>
@@ -228,7 +228,7 @@ export default function AI() {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Support Open AI Research</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Every donation funds open-source models, peer-reviewed papers, and formally verified systems.
+              Every donation funds open-source models, research papers, and formally verified systems.
               501(c)(3) tax-deductible.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

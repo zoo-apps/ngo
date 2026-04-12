@@ -229,7 +229,7 @@ export default function Research() {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Support Open AI Research</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Every donation funds open-source models, peer-reviewed papers, and formally verified systems.
+              Every donation funds open-source models, research papers, and formally verified systems.
               501(c)(3) tax-deductible.
             </p>
             <Link href="/donation" className="inline-block bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors">
