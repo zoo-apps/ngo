@@ -139,7 +139,7 @@ export default function Impact() {
                   <li className="flex items-start">
                     <span className="text-green-500 mr-3">✓</span>
                     <div>
-                      <strong>ResearchDAO Launch:</strong> Funded 45 peer-reviewed conservation studies 
+                      <strong>ResearchDAO Launch:</strong> Funded 45 research conservation studies 
                       with $500K in grants
                     </div>
                   </li>

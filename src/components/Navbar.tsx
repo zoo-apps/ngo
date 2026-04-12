@@ -128,7 +128,7 @@ function Navbar() {
                     <a href="https://huggingface.co/zenlm" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-2.5 rounded-lg hover:bg-accent transition-colors">
                       <div>
                         <p className="text-sm text-foreground font-medium">Foundation</p>
-                        <p className="text-xs text-muted-foreground">zen4-nano (0.6B) to zen4-ultra (1T+)</p>
+                        <p className="text-xs text-muted-foreground">zen4-nano (0.6B) to zen4-ultra (480B MoE)</p>
                       </div>
                       <span className="text-xs text-muted-foreground">18 models</span>
                     </a>
@@ -172,7 +172,7 @@ function Navbar() {
                   <div className="space-y-1.5 mb-4">
                     <Link href="/research" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
                       <p className="text-sm text-foreground font-medium">Papers</p>
-                      <p className="text-xs text-muted-foreground">7 peer-reviewed publications</p>
+                      <p className="text-xs text-muted-foreground">7 research publications</p>
                     </Link>
                     <a href="https://zips.zoo.ngo" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
                       <p className="text-sm text-foreground font-medium">ZIPs</p>
@@ -279,7 +279,7 @@ function Navbar() {
                     <a href="https://huggingface.co/zenlm" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-2.5 rounded-lg hover:bg-accent transition-colors">
                       <div>
                         <p className="text-sm text-foreground font-medium">Zen4 Family</p>
-                        <p className="text-xs text-muted-foreground">0.6B to 1T+ parameters</p>
+                        <p className="text-xs text-muted-foreground">0.6B to 480B parameters</p>
                       </div>
                       <span className="text-xs text-muted-foreground">Open weights</span>
                     </a>

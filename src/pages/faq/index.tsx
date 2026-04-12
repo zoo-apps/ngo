@@ -130,7 +130,7 @@ export default function FAQ() {
         },
         {
           q: 'How can I verify your impact claims?',
-          a: 'All our impact data is independently verified by third-party conservation scientists. We publish peer-reviewed research in scientific journals, provide GPS coordinates for protected areas, and use blockchain to create immutable records of conservation activities.'
+          a: 'All our impact data is independently verified by third-party conservation scientists. We publish research research in scientific journals, provide GPS coordinates for protected areas, and use blockchain to create immutable records of conservation activities.'
         },
         {
           q: 'What happens if a conservation project fails?',
