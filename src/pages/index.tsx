@@ -20,7 +20,10 @@ export default function Home() {
         comment="Building the Zen family of frontier AI models. 45+ open-source models from 600M to 480B parameters. Formal verification. Community governed. Safe by design."
       />
 
-      <div className="h-px bg-gradient-to-r from-transparent via-[#ED1C24] via-[33%] via-[#00A652] via-[66%] to-[#2E3192] opacity-30" />
+      {/* A hairline, not a rainbow. At 1px and 30% the RGB ramp resolved to a
+          dim red smear under the hero — the colour said nothing and was the
+          only warm pixel on a black page. */}
+      <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <Comment />
 
