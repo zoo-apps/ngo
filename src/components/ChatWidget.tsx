@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -83,13 +84,7 @@ function ChatWidget() {
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-border">
             <div className="flex items-center gap-2">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-foreground">
-                <circle cx="7" cy="5" r="2.5"/>
-                <circle cx="17" cy="5" r="2.5"/>
-                <circle cx="4" cy="12" r="2.5"/>
-                <circle cx="20" cy="12" r="2.5"/>
-                <ellipse cx="12" cy="16" rx="5" ry="4.5"/>
-              </svg>
+              <Image alt="" aria-hidden src="/favicon/logo.svg" width={20} height={20} className="w-5 h-5" />
               <div>
                 <span className="text-sm font-semibold text-foreground">Zoo AI</span>
                 <p className="text-xs text-muted-foreground">Powered by Zen models</p>
@@ -181,21 +176,19 @@ function ChatWidget() {
       {/* Floating button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-foreground text-background shadow-lg hover:shadow-xl hover:scale-105 transition-all z-50 flex items-center justify-center"
+        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-foreground text-background shadow-lg hover:shadow-xl hover:scale-105 transition-all z-50 flex items-center justify-center"
         aria-label="Open chat"
       >
         {isOpen ? (
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
-            <circle cx="7" cy="5" r="2.5"/>
-            <circle cx="17" cy="5" r="2.5"/>
-            <circle cx="4" cy="12" r="2.5"/>
-            <circle cx="20" cy="12" r="2.5"/>
-            <ellipse cx="12" cy="16" rx="5" ry="4.5"/>
-          </svg>
+          // The MARK, not a paw. The paw was drawn here in five primitives —
+          // a second Zoo logo, invented locally, that looked nothing like the
+          // one in the header two inches above it. This is the same file the
+          // Navbar loads, so there is one mark and it cannot drift.
+          <Image alt="" aria-hidden src="/favicon/logo.svg" width={36} height={36} className="w-9 h-9" />
         )}
       </button>
     </>
