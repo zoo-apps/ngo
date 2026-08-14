@@ -5,8 +5,6 @@ function Intro({breadcrumbs, title, comment}: {
     title: string;
     comment?: string;
   }) {
-  const chips = ['45+ Models', '7 Papers', '102 ZIPs', '15 Formal Proofs', '501(c)(3)', 'Open Source'];
-
   return (
     <section className="relative overflow-hidden">
       {/* Pure black to dark gradient - NO color tint */}
@@ -15,8 +13,11 @@ function Intro({breadcrumbs, title, comment}: {
       <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.04]" style={{background: 'radial-gradient(circle, #ffffff 0%, transparent 70%)'}} />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40">
-        {/* RGB gradient on breadcrumb - the brand signature */}
-        <p className="text-sm md:text-base font-medium tracking-widest uppercase mb-8 bg-gradient-to-r from-[#ED1C24] via-[#00A652] to-[#2E3192] bg-clip-text text-transparent">
+        {/* The eyebrow is INK, not a gradient. It ran red-green-blue and read
+            as red at this size — a single warm word above a black page, and the
+            only saturated pixel on it. The mark in the header carries the
+            colour; the type does not repeat it. */}
+        <p className="text-sm md:text-base font-medium tracking-widest uppercase mb-8 text-neutral-400">
           {breadcrumbs}
         </p>
         <h1 className="text-white text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.05] mb-8">
@@ -42,14 +43,6 @@ function Intro({breadcrumbs, title, comment}: {
           >
             Read Our Research
           </Link>
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {chips.map((chip) => (
-            <span key={chip} className="border border-neutral-800 text-neutral-500 text-xs px-3 py-1.5 rounded-full">
-              {chip}
-            </span>
-          ))}
         </div>
       </div>
     </section>
