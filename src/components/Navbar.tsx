@@ -65,7 +65,7 @@ function Navbar() {
 
             {/* Products */}
             <div className="relative" onMouseEnter={() => openDropdown('products')} onMouseLeave={closeDropdown}>
-              <Link href="/#products" className="text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
+              <Link href="/#products" className="text-[13px] font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
                 Products
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </Link>
@@ -117,7 +117,7 @@ function Navbar() {
 
             {/* Models */}
             <div className="relative" onMouseEnter={() => openDropdown('models')} onMouseLeave={closeDropdown}>
-              <Link href="/ai" className="text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
+              <Link href="/ai" className="text-[13px] font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
                 Models
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </Link>
@@ -163,7 +163,7 @@ function Navbar() {
 
             {/* Research */}
             <div className="relative" onMouseEnter={() => openDropdown('research')} onMouseLeave={closeDropdown}>
-              <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
+              <Link href="/research" className="text-[13px] font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
                 Research
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </Link>
@@ -196,7 +196,7 @@ function Navbar() {
 
             {/* Network */}
             <div className="relative" onMouseEnter={() => openDropdown('network')} onMouseLeave={closeDropdown}>
-              <Link href="/coin" className="text-sm text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
+              <Link href="/coin" className="text-[13px] font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
                 Network
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </Link>
@@ -252,7 +252,7 @@ function Navbar() {
               href="https://github.com/zooai"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="hidden sm:block text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               GitHub
             </Link>
@@ -267,7 +267,7 @@ function Navbar() {
                 href="https://hanzo.bot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-foreground text-background text-sm font-medium px-4 py-2 rounded-full hover:opacity-80 transition-all inline-flex items-center gap-1.5"
+                className="bg-foreground text-background text-[13px] font-medium px-4 py-2 rounded-full hover:opacity-80 transition-all inline-flex items-center gap-1.5"
               >
                 Try Zen
                 <svg className="w-3 h-3 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
