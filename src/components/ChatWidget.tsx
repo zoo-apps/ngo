@@ -173,10 +173,22 @@ function ChatWidget() {
         </div>
       )}
 
-      {/* Floating button */}
+      {/* The launcher: a near-white disc on a black page, so it needs an EDGE
+          and room.
+
+          Measured live: `shadow-lg` computed to `rgba(0,0,0,0) 0 0 0 0` —
+          Tailwind's shadow colour never resolved here, so the one thing meant
+          to seat this button against the page was doing nothing at all, and it
+          read as a sticker laid on the page rather than a control floating over
+          it. A ring is the honest fix on a dark ground anyway: you cannot cast
+          a shadow onto black, so depth there is drawn with light.
+
+          24px of margin, not 16 — this disc is the brightest object on the page
+          and it sat closer to the corner than the page's own gutter, which made
+          it look trapped rather than placed. */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 w-14 h-14 rounded-full bg-foreground text-background shadow-lg hover:shadow-xl hover:scale-105 transition-all z-50 flex items-center justify-center"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-foreground text-background ring-1 ring-black/10 hover:ring-black/20 hover:scale-105 transition-all z-50 flex items-center justify-center"
         aria-label="Open chat"
       >
         {isOpen ? (

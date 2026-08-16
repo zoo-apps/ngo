@@ -55,9 +55,20 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Left: Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <Image alt="Zoo" src="/favicon/logo.svg" width={36} height={36} />
-            <Image alt="Zoo" src="/zooLogo.svg" width={56} height={56} className="hidden sm:block" />
+          {/* The WORDMARK alone. The corner carried the coloured disc and the
+              wordmark side by side — the same brand said twice, and the disc is
+              the louder of the two, so the one saturated object on an otherwise
+              monochrome page sat in the corner competing with the headline.
+              The disc still appears, once, as the chat launcher: it is the mark
+              when it has to work at 56px with no room for letters, and the
+              wordmark when there is room. Two jobs, one each.
+
+              It no longer hides below `sm`. It was `hidden sm:block` because the
+              disc stood in for it on a phone; with the disc gone that left the
+              corner empty, which is the whole brand missing on the smallest
+              screen. */}
+          <Link href="/" className="flex items-center shrink-0">
+            <Image alt="Zoo" src="/zooLogo.svg" width={56} height={56} />
           </Link>
 
           {/* Center: Nav (desktop) */}
