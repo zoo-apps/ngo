@@ -80,7 +80,7 @@ function ChatWidget() {
     <>
       {/* Chat window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-[380px] h-[480px] max-h-[70vh] bg-background border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div className="fixed bottom-[88px] right-4 w-[380px] h-[480px] max-h-[70vh] bg-background border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-border">
             <div className="flex items-center gap-2">
@@ -176,7 +176,7 @@ function ChatWidget() {
       {/* Floating button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-foreground text-background shadow-lg hover:shadow-xl hover:scale-105 transition-all z-50 flex items-center justify-center"
+        className="fixed bottom-4 right-4 w-14 h-14 rounded-full bg-foreground text-background shadow-lg hover:shadow-xl hover:scale-105 transition-all z-50 flex items-center justify-center"
         aria-label="Open chat"
       >
         {isOpen ? (
