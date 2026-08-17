@@ -46,14 +46,33 @@ function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-200 ${
-        scrolled
-          ? 'backdrop-blur-md bg-background/80 border-b border-border shadow-sm'
-          : 'bg-transparent'
-      }`}
+      className="fixed top-0 left-0 right-0 z-[999]"
+      style={{
+        // The audited bar, at the values hanzo.ai measures: 60 tall, one glass
+        // recipe, and no hairline.
+        //
+        // It used to be TRANSPARENT until scrolled, which is the single thing
+        // that made this header read as a different product — the bar simply was
+        // not there on arrival, so the page had no top edge and the nav floated
+        // on the hero. Glass from the first pixel is what every other surface in
+        // the family does.
+        //
+        // The bottom border stays 1px and stays TRANSPARENT: the glass already
+        // ends itself, and a white line over a blurred boundary reads as a seam
+        // between two surfaces rather than the edge of one. The pixel is kept so
+        // the 60px box does not move.
+        height: 60,
+        background: 'rgba(9,9,11,0.72)',
+        backdropFilter: 'blur(20px) saturate(1.8)',
+        WebkitBackdropFilter: 'blur(20px) saturate(1.8)',
+        borderBottom: '1px solid transparent',
+      }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      {/* The page gutter, in the VIEWPORT's units — the same clamp the rest of
+          the family uses, so a link in this bar sits in the same column as the
+          content beneath it at every width, with nothing measured. */}
+      <div style={{ height: '100%', padding: '0 clamp(20px, 4vw, 72px)' }}>
+        <div className="flex items-center justify-between" style={{ height: '100%' }}>
           {/* Left: Logo */}
           {/* The WORDMARK alone. The corner carried the coloured disc and the
               wordmark side by side — the same brand said twice, and the disc is
@@ -343,8 +362,43 @@ function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-border">
-          <div className="px-4 py-4 space-y-1">
+        <div
+          className="md:hidden"
+          style={{
+            // FULL height, not "as tall as it happens to be". A sheet sized to
+            // its content stops wherever the last row lands and leaves the page
+            // showing underneath, which reads as a panel that failed to finish
+            // rather than as the menu taking over the screen — and the screen is
+            // what a phone menu is competing for.
+            //
+            // `dvh`, not `vh`: on a phone `vh` is the LARGEST viewport, measured
+            // as though the browser chrome were hidden, so a sheet cut to `vh`
+            // runs under the address bar until you scroll.
+            position: 'fixed',
+            top: 60,
+            left: 0,
+            right: 0,
+            height: 'calc(100dvh - 60px)',
+            overflowY: 'auto',
+            // A COLUMN, so the action can sit at the FOOT rather than wherever
+            // the last link happens to end.
+            display: 'flex',
+            flexDirection: 'column',
+            // OPAQUE, and no backdrop filter of its own.
+            //
+            // At 0.95 over a blur this still read through: the bar above it
+            // already carries a backdrop-filter, which makes it the containing
+            // block for fixed descendants AND leaves this sheet re-sampling a
+            // backdrop that has already been filtered. Measured at 390, the
+            // hero's headline and lead were both plainly legible behind the
+            // menu — a phone menu competing with the page it is covering.
+            //
+            // A sheet that takes over the screen should take it over. The bar
+            // is the glass; this is the page behind it.
+            background: 'var(--color-bg, #0a0a0a)',
+          }}
+        >
+          <div className="px-4 py-4 space-y-1" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
             <p className="text-xs text-muted-foreground uppercase tracking-wider px-3 pt-2 pb-1">Products</p>
             <Link href="/ai" onClick={() => setMobileOpen(false)} className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Zoo AI</Link>
             <Link href="/ai#gym" onClick={() => setMobileOpen(false)} className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Zoo Gym</Link>
@@ -365,7 +419,11 @@ function Navbar() {
             <a href="https://explore.lux.network" target="_blank" rel="noopener noreferrer" className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Explorer</a>
             <a href="https://lux.market" target="_blank" rel="noopener noreferrer" className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Market</a>
 
-            <div className="pt-4 px-3">
+            {/* The action rests on the bottom edge. `marginTop: auto` gives the
+                column's free space to this margin, so it sits at the foot when
+                the pane is short and is simply the last thing when it scrolls —
+                instead of moving every time the list above it changes length. */}
+            <div className="px-3" style={{ marginTop: 'auto', paddingTop: 16 }}>
               <a href="https://hanzo.bot" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-foreground text-background py-3 rounded-full font-medium text-sm">
                 Try Zen
               </a>
