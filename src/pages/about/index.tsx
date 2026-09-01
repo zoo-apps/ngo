@@ -133,32 +133,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Leadership */}
-        <div className="py-20 bg-background border-t border-gray-800">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Leadership</h2>
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="mb-12">
-                <img
-                  src="/leadership/antje-worring.png"
-                  alt="Antje Worring"
-                  className="w-32 h-32 mx-auto mb-4 rounded-full object-cover bg-gray-900 border border-gray-800"
-                />
-                <h3 className="text-xl font-bold mb-2">Antje Worring</h3>
-                <p className="text-gray-400 mb-2">Executive Director & Co-Founder</p>
-                <p className="text-gray-400 text-sm max-w-md mx-auto">
-                  Building safer AI for children since founding Zoo Labs Foundation in 2021.
-                </p>
-              </div>
-              <Link
-                href="/team"
-                className="inline-block bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors"
-              >
-                Meet Our Full Team
-              </Link>
-            </div>
-          </div>
-        </div>
 
         {/* What We Do */}
         <div className="py-20 bg-background">
