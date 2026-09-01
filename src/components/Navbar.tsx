@@ -64,27 +64,14 @@ function Navbar() {
     >
       <div style={{ height: '100%', padding: '0 clamp(12px, 3vw, 32px)' }}>
         <div className="flex items-center justify-between" style={{ height: '100%' }}>
-          {/* Left: Unified ZOO Wordmark + 501(c)(3) Foundation Tag */}
-          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="font-black text-xl tracking-tight text-white hover:opacity-80 transition-opacity">
+          {/* Left: Unified ZOO Wordmark */}
+          <div className="flex items-center gap-3 shrink-0">
+            <Link href="/" className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity">
+              <span className="text-base">🐬</span>
+              <span className="font-black text-lg tracking-tight text-white font-mono">
                 ZOO
               </span>
             </Link>
-
-            <span className="text-zinc-600">/</span>
-
-            <span
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold"
-              style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                color: 'rgba(255, 255, 255, 0.9)',
-              }}
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
-              <span className="truncate max-w-[140px] sm:max-w-none">501(c)(3) Foundation</span>
-            </span>
           </div>
 
           {/* Center: Desktop Nav Pills */}
@@ -95,59 +82,59 @@ function Navbar() {
               border: '1px solid rgba(255, 255, 255, 0.08)',
             }}
           >
-            {/* Products */}
-            <div className="relative" onMouseEnter={() => openDropdown('products')} onMouseLeave={closeDropdown}>
+            {/* Research */}
+            <div className="relative" onMouseEnter={() => openDropdown('research')} onMouseLeave={closeDropdown}>
               <Link
-                href="/#products"
-                className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all"
+                href="/research"
+                className="flex items-center gap-1 px-3.5 py-1 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all"
               >
-                Products
+                Research
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </Link>
-              <NavDropdown id="products">
-                <div className="w-[420px]">
-                  <p className="text-[11px] text-zinc-400 uppercase font-bold tracking-wider mb-2.5">
-                    AI Platforms & Tools
+              <NavDropdown id="research">
+                <div className="w-[340px]">
+                  <p className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider mb-2">
+                    Frontier Open Science
                   </p>
-                  <div className="grid grid-cols-2 gap-2 mb-3">
+                  <div className="space-y-1.5 mb-2.5">
                     <a
-                      href="https://zoolabs.io"
+                      href="https://papers.zoo.ngo"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 transition-all col-span-2 block"
+                      className="p-2 rounded-lg hover:bg-white/5 transition-colors block"
                     >
-                      <div className="flex items-center justify-between">
-                        <p className="text-sm text-blue-400 font-bold flex items-center gap-1.5">
-                          <span>🐬</span>
-                          <span>ZooLabs.io AI Studio</span>
-                        </p>
-                        <span className="text-[10px] bg-blue-500/30 text-blue-200 px-2 py-0.5 rounded-full font-mono font-bold">
-                          LIVE
-                        </span>
-                      </div>
-                      <p className="text-xs text-zinc-300 mt-1">
-                        Multi-agent vibe sandbox, 4K video diffusion, bioacoustics DAW & 3D generator
+                      <p className="text-xs text-white font-semibold flex items-center justify-between">
+                        <span>Research Papers (130+)</span>
+                        <span className="text-[10px] text-blue-400 font-mono">papers.zoo.ngo ↗</span>
                       </p>
+                      <p className="text-[11px] text-zinc-400">TF-GRPO, ASO, Quasar Consensus</p>
                     </a>
-
-                    <Link href="/ai" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors">
-                      <p className="text-xs text-white font-semibold">Zoo AI</p>
-                      <p className="text-[11px] text-zinc-400">Desktop app, local inference</p>
-                    </Link>
-                    <Link href="/ai#gym" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors">
-                      <p className="text-xs text-white font-semibold">Zoo Gym</p>
-                      <p className="text-[11px] text-zinc-400">Open-source training platform</p>
-                    </Link>
-                    <Link href="/animals" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors">
-                      <p className="text-xs text-white font-semibold">Animal Familiars</p>
-                      <p className="text-[11px] text-zinc-400">Autonomous AI conservation bots</p>
-                    </Link>
-                    <Link href="/impact" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors">
-                      <p className="text-xs text-white font-semibold">Bioacoustic Sensors</p>
-                      <p className="text-[11px] text-zinc-400">120kHz sanctuary telemetry</p>
-                    </Link>
+                    <a
+                      href="https://zips.zoo.ngo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg hover:bg-white/5 transition-colors block"
+                    >
+                      <p className="text-xs text-white font-semibold flex items-center justify-between">
+                        <span>Zoo Improvement Proposals</span>
+                        <span className="text-[10px] text-emerald-400 font-mono">zips.zoo.ngo ↗</span>
+                      </p>
+                      <p className="text-[11px] text-zinc-400">Protocol RFCs & Agent standards</p>
+                    </a>
+                    <a
+                      href="https://github.com/zoo-labs/chains"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg hover:bg-white/5 transition-colors block"
+                    >
+                      <p className="text-xs text-white font-semibold flex items-center justify-between">
+                        <span>Thinking Chains Datasets</span>
+                        <span className="text-[10px] text-zinc-400 font-mono">chains ↗</span>
+                      </p>
+                      <p className="text-[11px] text-zinc-400">Verifiable multi-step reasoning traces</p>
+                    </a>
                   </div>
                 </div>
               </NavDropdown>
@@ -157,7 +144,7 @@ function Navbar() {
             <div className="relative" onMouseEnter={() => openDropdown('models')} onMouseLeave={closeDropdown}>
               <Link
                 href="/ai"
-                className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all"
+                className="flex items-center gap-1 px-3.5 py-1 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all"
               >
                 Models
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -165,93 +152,96 @@ function Navbar() {
                 </svg>
               </Link>
               <NavDropdown id="models">
-                <div className="w-[360px]">
-                  <p className="text-[11px] text-zinc-400 uppercase font-bold tracking-wider mb-2.5">
-                    Zen Model Family
+                <div className="w-[340px]">
+                  <p className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider mb-2">
+                    Open-Weights Zen Family
                   </p>
-                  <div className="space-y-1.5 mb-3">
+                  <div className="space-y-1.5 mb-2.5">
                     <a
                       href="https://huggingface.co/zenlm"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between p-2.5 rounded-lg hover:bg-white/5 transition-colors"
+                      className="p-2 rounded-lg hover:bg-white/5 transition-colors block"
                     >
-                      <div>
-                        <p className="text-xs text-white font-semibold">Foundation</p>
-                        <p className="text-[11px] text-zinc-400">zen4-nano (0.6B) to zen4-ultra (480B MoE)</p>
-                      </div>
-                      <span className="text-[11px] text-zinc-400">18 models</span>
-                    </a>
-                    <a
-                      href="https://huggingface.co/zenlm/zen4-coder-flash"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between p-2.5 rounded-lg hover:bg-white/5 transition-colors"
-                    >
-                      <div>
-                        <p className="text-xs text-white font-semibold">Code</p>
-                        <p className="text-[11px] text-zinc-400">zen4-coder-flash to zen4-coder-pro</p>
-                      </div>
-                      <span className="text-[11px] text-emerald-400 font-mono">59.2% SWE</span>
+                      <p className="text-xs text-white font-semibold flex items-center justify-between">
+                        <span>Zen 5 Foundation Models</span>
+                        <span className="text-[10px] text-blue-400 font-mono">600M – 2T+</span>
+                      </p>
+                      <p className="text-[11px] text-zinc-400">MoE sparse architecture with open weights</p>
                     </a>
                     <a
                       href="https://huggingface.co/zenlm"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between p-2.5 rounded-lg hover:bg-white/5 transition-colors"
+                      className="p-2 rounded-lg hover:bg-white/5 transition-colors block"
                     >
-                      <div>
-                        <p className="text-xs text-white font-semibold">Multimodal</p>
-                        <p className="text-[11px] text-zinc-400">Vision, audio, video, 3D generation</p>
-                      </div>
-                      <span className="text-[11px] text-zinc-400">12 models</span>
+                      <p className="text-xs text-white font-semibold flex items-center justify-between">
+                        <span>Zen Code & Reasoning</span>
+                        <span className="text-[10px] text-emerald-400 font-mono">SWE-bench</span>
+                      </p>
+                      <p className="text-[11px] text-zinc-400">Code synthesis and tool calling models</p>
                     </a>
                   </div>
                   <Link
                     href="/ai"
-                    className="block w-full text-center text-xs text-zinc-300 hover:text-white py-2 border-t border-white/10 transition-colors"
+                    className="block w-full text-center text-xs text-zinc-300 hover:text-white py-1.5 border-t border-white/10 transition-colors"
                   >
-                    View all 45+ open models →
+                    View model benchmarks &rarr;
                   </Link>
                 </div>
               </NavDropdown>
             </div>
 
-            {/* Research */}
-            <div className="relative" onMouseEnter={() => openDropdown('research')} onMouseLeave={closeDropdown}>
+            {/* Products / Platforms */}
+            <div className="relative" onMouseEnter={() => openDropdown('products')} onMouseLeave={closeDropdown}>
               <Link
-                href="/research"
-                className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all"
+                href="/#products"
+                className="flex items-center gap-1 px-3.5 py-1 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all"
               >
-                Research
+                Products
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </Link>
-              <NavDropdown id="research">
-                <div className="w-[320px]">
-                  <div className="space-y-1.5 mb-3">
-                    <Link href="/research" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors block">
-                      <p className="text-xs text-white font-semibold">Papers</p>
-                      <p className="text-[11px] text-zinc-400">7 peer-reviewed AI publications</p>
-                    </Link>
-                    <Link href="/ai#gym" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors block">
-                      <p className="text-xs text-white font-semibold">Zoo Gym</p>
-                      <p className="text-[11px] text-zinc-400">Training-free GRPO & LoRA</p>
-                    </Link>
-                    <Link href="/research" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors block">
-                      <p className="text-xs text-white font-semibold">Formal Proofs</p>
-                      <p className="text-[11px] text-zinc-400">15 Lean 4 verified proofs</p>
-                    </Link>
+              <NavDropdown id="products">
+                <div className="w-[380px]">
+                  <p className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider mb-2">
+                    Ecosystem Platforms
+                  </p>
+                  <div className="space-y-1.5 mb-2.5">
+                    <a
+                      href="https://zoolabs.io"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 transition-all block"
+                    >
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs text-blue-400 font-bold flex items-center gap-1.5">
+                          <span>🐬</span>
+                          <span>ZooLabs.io Studio</span>
+                        </p>
+                        <span className="text-[9px] bg-blue-500/30 text-blue-200 px-1.5 py-0.5 rounded font-mono font-bold">
+                          LIVE
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-zinc-300 mt-1">
+                        Multi-agent Vibe sandbox, 4K video diffusion, DAW & 3D generator
+                      </p>
+                    </a>
+
+                    <a
+                      href="https://github.com/zooai/gym"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg hover:bg-white/5 transition-colors block"
+                    >
+                      <p className="text-xs text-white font-semibold flex items-center justify-between">
+                        <span>Zoo Gym (TF-GRPO)</span>
+                        <span className="text-[10px] text-zinc-400 font-mono">gym ↗</span>
+                      </p>
+                      <p className="text-[11px] text-zinc-400">Training-free reinforcement learning framework</p>
+                    </a>
                   </div>
-                  <a
-                    href="https://github.com/zooai"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center text-xs text-zinc-300 hover:text-white py-2 border-t border-white/10 transition-colors"
-                  >
-                    View on GitHub →
-                  </a>
                 </div>
               </NavDropdown>
             </div>
@@ -260,7 +250,7 @@ function Navbar() {
             <div className="relative" onMouseEnter={() => openDropdown('foundation')} onMouseLeave={closeDropdown}>
               <Link
                 href="/about"
-                className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all"
+                className="flex items-center gap-1 px-3.5 py-1 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all"
               >
                 Foundation
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -269,25 +259,25 @@ function Navbar() {
               </Link>
               <NavDropdown id="foundation">
                 <div className="w-[300px]">
-                  <div className="space-y-1.5 mb-3">
-                    <Link href="/about" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors block">
-                      <p className="text-xs text-white font-semibold">About 501(c)(3)</p>
-                      <p className="text-[11px] text-zinc-400">Mission, EIN 88-3538992</p>
+                  <div className="space-y-1 mb-2">
+                    <Link href="/about" className="p-2 rounded-lg hover:bg-white/5 transition-colors block">
+                      <p className="text-xs text-white font-semibold">About Foundation</p>
+                      <p className="text-[11px] text-zinc-400">501(c)(3) Non-Profit, EIN: 88-3538992</p>
                     </Link>
-                    <Link href="/impact" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors block">
-                      <p className="text-xs text-white font-semibold">Conservation Impact</p>
-                      <p className="text-[11px] text-zinc-400">Protected wildlife habitats</p>
+                    <Link href="/transparency" className="p-2 rounded-lg hover:bg-white/5 transition-colors block">
+                      <p className="text-xs text-white font-semibold">Transparency & Form 990</p>
+                      <p className="text-[11px] text-zinc-400">Financial audits and disclosures</p>
                     </Link>
-                    <Link href="/transparency" className="p-2.5 rounded-lg hover:bg-white/5 transition-colors block">
-                      <p className="text-xs text-white font-semibold">Transparency & 990</p>
-                      <p className="text-[11px] text-zinc-400">Public financial disclosures</p>
+                    <Link href="/impact" className="p-2 rounded-lg hover:bg-white/5 transition-colors block">
+                      <p className="text-xs text-white font-semibold">Sanctuary Endowments</p>
+                      <p className="text-[11px] text-zinc-400">Frontline wildlife conservation</p>
                     </Link>
                   </div>
                   <Link
                     href="/donation"
-                    className="block w-full text-center text-xs font-semibold text-blue-400 hover:text-blue-300 py-2 border-t border-white/10 transition-colors"
+                    className="block w-full text-center text-xs font-semibold text-emerald-400 hover:text-emerald-300 py-1.5 border-t border-white/10 transition-colors"
                   >
-                    Tax-Deductible Donation →
+                    Tax-Deductible Donation &rarr;
                   </Link>
                 </div>
               </NavDropdown>
@@ -308,11 +298,11 @@ function Navbar() {
               href="https://zoolabs.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="action px-3 py-1 text-xs"
+              className="action px-3.5 py-1 text-xs"
               data-fill
               style={{ minHeight: '32px' }}
             >
-              <span>🐬 Launch Studio</span>
+              <span>🐬 Launch Studio ↗</span>
             </a>
 
             {/* Mobile hamburger */}

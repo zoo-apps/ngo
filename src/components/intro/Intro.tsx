@@ -36,7 +36,7 @@ function Intro({
         )}
 
         <p className="text-secondary" style={{ fontSize: '0.95rem', lineHeight: 1.6, maxWidth: '800px', opacity: 0.8 }}>
-          Zoo Labs Foundation Inc. is a 501(c)(3) non-profit scientific research organization advancing open frontier AI, bioacoustic telemetry, and computational conservation biology for 1,500+ endangered species.
+          Zoo Labs Foundation is a 501(c)(3) research organization dedicated to advancing sovereign frontier AI, open reasoning models, decentralized compute & mining protocols, and the Zoo Gym alignment framework.
         </p>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', paddingTop: '0.5rem' }}>
@@ -48,23 +48,35 @@ function Intro({
             data-fill
             style={{ minHeight: '46px', padding: '0 1.75rem', fontSize: '0.875rem' }}
           >
-            <span>🐬 Launch ZooLabs.io ↗</span>
+            <span>🐬 Launch Studio ↗</span>
+          </a>
+
+          <a
+            href="https://papers.zoo.ngo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="action"
+            style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.875rem' }}
+          >
+            <span>📄 130+ Papers ↗</span>
+          </a>
+
+          <a
+            href="https://zips.zoo.ngo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="action"
+            style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.875rem' }}
+          >
+            <span>⚡ ZIPs Standards ↗</span>
           </a>
 
           <Link
-            href="/ai"
+            href="/donation"
             className="action"
             style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.875rem' }}
           >
-            Explore Zen Models &rarr;
-          </Link>
-
-          <Link
-            href="/research"
-            className="action"
-            style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.875rem' }}
-          >
-            Read Research
+            <span>💚 Support Sanctuaries &rarr;</span>
           </Link>
         </div>
       </div>

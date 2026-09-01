@@ -20,7 +20,7 @@ const papers = [
   },
   {
     title: 'Zoo Network Architecture',
-    desc: 'L2 AI specialization layer with HLLM integration, federated learning, and experience ledger on the Lux-Hanzo-Zoo stack.',
+    desc: 'L2 AI specialization layer with HLLM integration, federated learning, and experience ledger on the Hanzo-Zoo stack.',
     file: 'zoo-network-architecture.pdf',
     year: '2025',
   },

@@ -3,19 +3,19 @@ import React, { useState } from 'react';
 const ALLOCATION_AREAS = [
   {
     title: 'Sanctuary & Rescue Operations',
-    desc: 'Direct veterinary care, anti-poaching operations, physical sanctuary habitat construction, and emergency rescue missions for endangered wildlife.',
+    desc: 'Direct veterinary care, anti-poaching patrol equipment, sanctuary habitat construction, and rescue missions for wildlife worldwide.',
     icon: '🐅',
     tag: 'Field Operations',
   },
   {
-    title: 'Open Bioacoustic Sensor Mesh',
-    desc: '120 kHz marine hydrophone nodes, edge micro-VM telemetry units, and open data infrastructure monitoring vocalizations across the Arctic, Pacific, and rainforests.',
-    icon: '📡',
-    tag: 'Neural Edge Hardware',
+    title: 'Decentralized Compute & Gym',
+    desc: 'Distributed GPU training framework, Zoo Gym (TF-GRPO), and open mining protocols democratizing AI alignment for public science.',
+    icon: '⚡',
+    tag: 'Open Infrastructure',
   },
   {
     title: 'Open Science & Academic Research',
-    desc: 'Publishing open datasets, spectrogram models, and bioacoustic transformer architectures for global conservation biologists and universities.',
+    desc: 'Publishing 130+ peer-reviewed papers, open model weights, and ZIPs standards freely accessible to the global research community.',
     icon: '🧬',
     tag: 'Frontier AI Science',
   },
@@ -28,12 +28,12 @@ export default function Donation_Spent() {
     <section className="bg-card py-16 md:py-24 border-b border-white/10">
       <div className="container mx-auto">
         <div className="max-w-3xl mb-12">
-          <span className="badge badge-online mb-3">100% Direct Allocation</span>
+          <span className="badge badge-online mb-3">Direct Charitable Giving</span>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
             Where Your Support Goes
           </h2>
           <p className="text-base md:text-lg text-secondary leading-relaxed">
-            Every contribution goes directly toward tangible wildlife protection, bioacoustic sensory deployments, and open-access conservation research.
+            Every contribution goes directly toward tangible wildlife care, habitat protection, and open-access foundation research.
           </p>
         </div>
 
