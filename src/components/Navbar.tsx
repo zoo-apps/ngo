@@ -35,13 +35,16 @@ function Navbar() {
   const NavDropdown = ({ id, children }: { id: DropdownId; children: React.ReactNode }) => (
     activeDropdown === id ? (
       <div
-        className="absolute left-1/2 -translate-x-1/2 mt-2 rounded-2xl p-4 z-50 animate-in fade-in zoom-in-95 duration-150 text-xs"
+        className="absolute left-1/2 z-50"
         style={{
+          transform: 'translateX(-50%)',
+          marginTop: '0.6rem',
+          padding: '1.1rem',
           backgroundColor: '#ffffff',
-          backdropFilter: 'blur(30px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(30px) saturate(180%)',
           border: '2px solid var(--ink)',
           boxShadow: '6px 6px 0 0 var(--ink)',
+          fontSize: '0.8125rem',
+          lineHeight: 1.5,
         }}
         onMouseEnter={() => openDropdown(id)}
         onMouseLeave={closeDropdown}
@@ -65,9 +68,9 @@ function Navbar() {
     >
       <div style={{ height: '100%', padding: '0 clamp(12px, 3vw, 32px)' }}>
         <div className="flex items-center justify-between" style={{ height: '100%' }}>
-          {/* The wordmark carries the brand; the mark carries the AI and lives
-              bottom right, in ChatWidget. Same lockup as zoo.industries and
-              zoolabs.io — the org at full weight, what it does at light. */}
+          {/* The organisation, at full weight. The mark carries the AI and lives
+              bottom right, in ChatWidget; the lab is a destination, in the
+              button on the right. */}
           <div className="flex items-center shrink-0">
             <Link href="/" className="hover:opacity-80 transition-opacity">
               <span
@@ -80,7 +83,7 @@ function Navbar() {
                   lineHeight: 1,
                 }}
               >
-                Zoo&nbsp;<span style={{ fontWeight: 200 }}>Labs</span>
+                Zoo
               </span>
             </Link>
           </div>
@@ -105,7 +108,7 @@ function Navbar() {
                 </svg>
               </Link>
               <NavDropdown id="research">
-                <div className="w-[340px]">
+                <div style={{ width: 360, maxWidth: "min(92vw, 360px)" }}>
                   <p className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider mb-2">
                     Frontier Open Science
                   </p>
@@ -163,7 +166,7 @@ function Navbar() {
                 </svg>
               </Link>
               <NavDropdown id="models">
-                <div className="w-[340px]">
+                <div style={{ width: 360, maxWidth: "min(92vw, 360px)" }}>
                   <p className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider mb-2">
                     Open-Weights Zen Family
                   </p>
@@ -215,7 +218,7 @@ function Navbar() {
                 </svg>
               </Link>
               <NavDropdown id="products">
-                <div className="w-[380px]">
+                <div style={{ width: 400, maxWidth: "min(92vw, 400px)" }}>
                   <p className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider mb-2">
                     Ecosystem Platforms
                   </p>
@@ -269,7 +272,7 @@ function Navbar() {
                 </svg>
               </Link>
               <NavDropdown id="foundation">
-                <div className="w-[300px]">
+                <div style={{ width: 320, maxWidth: "min(92vw, 320px)" }}>
                   <div className="space-y-1 mb-2">
                     <Link href="/about" className="p-2 rounded-lg hover:bg-white/5 transition-colors block">
                       <p className="text-xs text-white font-semibold">About Foundation</p>
@@ -313,7 +316,7 @@ function Navbar() {
               data-fill
               style={{ minHeight: '32px' }}
             >
-              <span>🐬 Launch Studio ↗</span>
+              <span>Labs ↗</span>
             </a>
 
             {/* Mobile hamburger */}

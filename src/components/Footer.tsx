@@ -20,12 +20,12 @@ const COLUMNS: FooterColumn[] = [
   {
     title: 'Frontier Research',
     links: [
+      { label: 'Documentation', href: 'https://docs.zoo.ngo', external: true },
       { label: `Research Papers (${CORPUS.papers})`, href: 'https://papers.zoo.ngo', external: true },
-      { label: 'Zoo Proposals (ZIPs)', href: 'https://zips.zoo.ngo', external: true },
+      { label: `Zoo Proposals (${CORPUS.proposals})`, href: 'https://zips.zoo.ngo', external: true },
       { label: 'Thinking Chains Datasets', href: 'https://github.com/zoo-labs/chains', external: true },
       { label: 'Zen Models (open weights)', href: 'https://huggingface.co/zenlm', external: true },
       { label: 'Zoo Gym (Training-Free GRPO)', href: 'https://github.com/zooai/gym', external: true },
-      { label: 'Decentralized AI Mining', href: 'https://papers.zoo.ngo', external: true },
     ],
   },
   {
