@@ -14,8 +14,9 @@ const config = {
     },
     extend: {
       fontFamily: {
-        primary: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        sans: ["Inter", 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        primary: ['Zen', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Zen', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"Zen Mono"', 'ui-monospace', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
