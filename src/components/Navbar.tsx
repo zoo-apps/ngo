@@ -35,7 +35,14 @@ function Navbar() {
   const NavDropdown = ({ id, children }: { id: DropdownId; children: React.ReactNode }) => (
     activeDropdown === id ? (
       <div
-        className="absolute left-1/2 -translate-x-1/2 mt-3 bg-background border border-border rounded-2xl shadow-2xl p-5 z-50 animate-in fade-in zoom-in-95 duration-150"
+        className="absolute left-1/2 -translate-x-1/2 mt-2 rounded-2xl p-5 z-50 animate-in fade-in zoom-in-95 duration-150"
+        style={{
+          backgroundColor: 'rgba(12, 12, 16, 0.98)',
+          backdropFilter: 'blur(30px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(30px) saturate(180%)',
+          border: '1px solid rgba(255, 255, 255, 0.12)',
+          boxShadow: '0 24px 60px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+        }}
         onMouseEnter={() => openDropdown(id)}
         onMouseLeave={closeDropdown}
       >
