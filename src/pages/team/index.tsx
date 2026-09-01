@@ -14,13 +14,6 @@ const leadership = [
     expertise: ['AI Safety', 'Nonprofit Leadership', 'Research Strategy'],
   },
   {
-    name: 'Zach Kelling',
-    role: 'Co-Founder & CTO',
-    bio: 'Technical founder. Leads architecture across Zen models, Gym, and Zoo Network.',
-    img: '/leadership/zach-kelling.png',
-    expertise: ['AI Architecture', 'Distributed Systems', 'Blockchain'],
-  },
-  {
     name: 'Woo Bin',
     role: 'VP Engineering',
     bio: 'Full-stack and AI engineer leading Zoo AI, Gym, and desktop app development.',
@@ -72,11 +65,6 @@ const leadership = [
 ];
 
 const board = [
-  {
-    name: 'Zach Kelling',
-    role: 'Board Member & Co-Founder',
-    affiliation: 'Technology & AI Research',
-  },
   {
     name: 'Kamron Pahlavi',
     role: 'Board Member',
