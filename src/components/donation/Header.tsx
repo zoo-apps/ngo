@@ -12,11 +12,11 @@ function Header() {
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white">
-              Support Wildlife Sanctuaries & Bioacoustic Research
+              Support Wildlife Sanctuaries & Open Frontier Science
             </h1>
 
             <p className="text-base md:text-lg text-secondary leading-relaxed">
-              We fund frontline animal conservation, build open-source bioacoustic sensor networks, and protect endangered species across marine and terrestrial habitats worldwide.
+              We fund frontline animal care, wildlife reserve maintenance, anti-poaching field equipment, and open-source foundation research.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">

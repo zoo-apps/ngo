@@ -207,30 +207,30 @@ export default function About() {
           </div>
         </div>
 
-        {/* Partners */}
+        {/* Ecosystem */}
         <div className="py-20 bg-background border-t border-gray-800">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Ecosystem</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">Open Ecosystem</h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center mb-12">
-              Built on the Lux-Hanzo-Zoo stack. Post-quantum consensus, AI compute chain, and open research network.
+              Built on open frontier AI research, verifiable post-quantum consensus, decentralized compute networks, and open science.
             </p>
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="bg-background border border-gray-800 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold mb-4">Lux Network</h3>
+                <h3 className="text-2xl font-bold mb-4">Zoo Labs Foundation</h3>
                 <p className="text-gray-400">
-                  Post-quantum L0 consensus with sub-second finality.
+                  501(c)(3) research foundation advancing open science, Zen models, and wildlife conservation.
                 </p>
               </div>
               <div className="bg-background border border-gray-800 rounded-lg p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4">Hanzo AI</h3>
                 <p className="text-gray-400">
-                  L1 AI compute chain. Mining, model serving, and infrastructure.
+                  Frontier AI infrastructure, sovereign inference, and distributed GPU cloud.
                 </p>
               </div>
               <div className="bg-background border border-gray-800 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold mb-4">Zoo Network</h3>
+                <h3 className="text-2xl font-bold mb-4">Zoo Gym</h3>
                 <p className="text-gray-400">
-                  Application layer for decentralized AI research and governance.
+                  Open distributed reinforcement learning framework with Training-Free GRPO.
                 </p>
               </div>
             </div>

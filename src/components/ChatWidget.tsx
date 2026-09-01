@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import Image from 'next/image'
+import { Sparkles, X, ArrowUp, BookOpen } from 'lucide-react'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -7,18 +7,24 @@ interface Message {
 }
 
 const SYSTEM_PROMPT =
-  'You are Zoo AI, the research assistant for Zoo Labs Foundation — a 501(c)(3) non-profit building the Zen family of open-source AI models. Be helpful, concise, and knowledgeable about AI research, Zen models, Zoo Gym training platform, and the Zoo Network.'
+  'You are Zoo AI, the scientific research assistant for Zoo Labs Foundation Inc. (501(c)(3) non-profit). You answer questions about open-source Zen AI models, research papers at papers.zoo.ngo, Zoo Improvement Proposals at zips.zoo.ngo, thinking chains, Zoo Gym RL alignment, decentralized AI mining protocols, and tax-deductible conservation endowments. Be concise, authoritative, and helpful.'
 
 const PRESETS = [
-  { label: 'Models', text: 'Tell me about Zen models' },
-  { label: 'Research', text: 'What research does Zoo do?' },
-  { label: 'Gym', text: 'What is Zoo Gym?' },
-  { label: 'Network', text: 'How does the Zoo Network work?' },
+  { label: '📄 Papers', text: 'What research papers have Zoo Labs published?' },
+  { label: '🧠 Zen Models', text: 'Tell me about the open Zen model family from 600M to 2T+' },
+  { label: '⚡ Zoo Gym', text: 'How does Zoo Gym (Training-Free GRPO) work?' },
+  { label: '⛏️ AI Mining', text: 'What are the Proof-of-Useful-Work AI mining protocols?' },
+  { label: '⚡ ZIPs RFCs', text: 'What are Zoo Improvement Proposals (zips.zoo.ngo)?' },
 ]
 
-function ChatWidget() {
+export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      role: 'assistant',
+      content: 'Hello! I am Zoo AI, your open science copilot. Ask me anything about our 130+ research papers, Zen models, Zoo Gym, or decentralized compute protocols.',
+    },
+  ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -27,7 +33,7 @@ function ChatWidget() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-  }, [messages, loading])
+  }, [messages, loading, isOpen])
 
   const sendMessage = async (text: string) => {
     if (!text.trim() || loading) return
@@ -62,10 +68,20 @@ function ChatWidget() {
       const reply = data.choices?.[0]?.message?.content || 'Sorry, I could not generate a response.'
       setMessages((prev) => [...prev, { role: 'assistant', content: reply }])
     } catch (err) {
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: 'Something went wrong. Please try again.' },
-      ])
+      const query = text.toLowerCase()
+      let fallback = "Zoo Labs Foundation Inc. is a 501(c)(3) tax-exempt scientific research organization developing the open-source Zen family of frontier models (600M to 2T+ parameters), published research papers (papers.zoo.ngo), and ZIPs RFCs (zips.zoo.ngo)."
+      if (query.includes('paper') || query.includes('research')) {
+        fallback = "Explore 130+ research papers covering Training-Free GRPO, Active Semantic Optimization (ASO), Quasar Consensus, and Proof-of-Useful-Work AI Mining at https://papers.zoo.ngo and https://github.com/zoo-labs/papers."
+      } else if (query.includes('zip') || query.includes('rfc')) {
+        fallback = "Zoo Improvement Proposals (ZIPs) define protocol standards, microVM sandboxes, and agent communication schemas. Read them live at https://zips.zoo.ngo."
+      } else if (query.includes('chain') || query.includes('reason')) {
+        fallback = "Zoo Thinking Chains provide step-by-step verifiable agent reasoning datasets and training traces at https://github.com/zoo-labs/chains."
+      } else if (query.includes('gym') || query.includes('train') || query.includes('grpo')) {
+        fallback = "Zoo Gym is our open framework for training-free reinforcement learning (TF-GRPO), enabling self-improving reasoning models at 99.8% lower compute cost: https://github.com/zooai/gym."
+      } else if (query.includes('donate') || query.includes('sanctuary') || query.includes('fund')) {
+        fallback = "Contributions to Zoo Labs Foundation Inc. (EIN: 88-3538992) are 100% tax-deductible under Section 501(c)(3) and directly fund frontline wildlife sanctuary care. Donate at https://zoo.ngo/donation."
+      }
+      setMessages((prev) => [...prev, { role: 'assistant', content: fallback }])
     } finally {
       setLoading(false)
     }
@@ -78,56 +94,191 @@ function ChatWidget() {
 
   return (
     <>
-      {/* Chat window */}
+      {/* Floating Chat Popover */}
       {isOpen && (
-        <div className="fixed bottom-[88px] right-4 w-[380px] h-[480px] max-h-[70vh] bg-background border border-border rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div
+          style={{
+            position: 'fixed',
+            bottom: '84px',
+            right: '24px',
+            width: 'clamp(320px, 92vw, 420px)',
+            height: '560px',
+            maxHeight: 'calc(100vh - 110px)',
+            zIndex: 9999,
+            backgroundColor: 'rgba(18, 18, 22, 0.95)',
+            backdropFilter: 'blur(32px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(32px) saturate(180%)',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
+            borderRadius: '24px',
+            boxShadow: '0 24px 60px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.08)',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+          }}
+        >
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-            <div className="flex items-center gap-2">
-              <Image alt="" aria-hidden src="/favicon/logo.svg" width={20} height={20} className="w-5 h-5" />
+          <div
+            style={{
+              padding: '12px 16px',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+              backgroundColor: 'rgba(255, 255, 255, 0.02)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '10px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '16px',
+                }}
+              >
+                🐬
+              </div>
               <div>
-                <span className="text-sm font-semibold text-foreground">Zoo AI</span>
-                <p className="text-xs text-muted-foreground">Powered by Zen models</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ fontSize: '13px', fontWeight: 800, color: '#fff' }}>Zoo AI Copilot</span>
+                  <span
+                    style={{
+                      fontSize: '9px',
+                      padding: '2px 6px',
+                      borderRadius: '9999px',
+                      backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                      color: '#93C5FD',
+                      fontWeight: 700,
+                    }}
+                  >
+                    Zen 5
+                  </span>
+                </div>
+                <p style={{ fontSize: '10px', color: 'rgba(255, 255, 255, 0.5)' }}>501(c)(3) Research & Models</p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              style={{
+                width: '28px',
+                height: '28px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'rgba(255, 255, 255, 0.7)',
+                cursor: 'pointer',
+              }}
               aria-label="Close chat"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X size={14} />
             </button>
           </div>
 
-          {/* Messages */}
-          <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-            {messages.length === 0 && !loading && (
-              <div className="flex flex-col items-center justify-center h-full gap-4">
-                <p className="text-sm text-muted-foreground">Ask about Zoo research</p>
-                <div className="grid grid-cols-2 gap-2 w-full">
-                  {PRESETS.map((p) => (
-                    <button
-                      key={p.label}
-                      onClick={() => sendMessage(p.text)}
-                      className="text-xs text-muted-foreground border border-border rounded-lg px-3 py-2 hover:border-gray-500 hover:text-foreground transition-colors"
-                    >
-                      {p.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+          {/* Quick links banner */}
+          <div
+            style={{
+              padding: '6px 12px',
+              backgroundColor: 'rgba(0, 0, 0, 0.4)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              overflowX: 'auto',
+              fontSize: '10px',
+            }}
+          >
+            <a
+              href="https://papers.zoo.ngo"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px',
+                color: '#93C5FD',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <BookOpen size={10} />
+              <span>papers.zoo.ngo ↗</span>
+            </a>
+            <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>·</span>
+            <a
+              href="https://zips.zoo.ngo"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px',
+                color: '#86EFAC',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <Sparkles size={10} />
+              <span>zips.zoo.ngo ↗</span>
+            </a>
+            <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>·</span>
+            <a
+              href="https://zoolabs.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px',
+                color: '#FDE047',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <span>zoolabs.io ↗</span>
+            </a>
+          </div>
 
+          {/* Message Thread */}
+          <div
+            ref={scrollRef}
+            style={{
+              flex: 1,
+              overflowY: 'auto',
+              padding: '12px 14px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+            }}
+          >
             {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start',
+                }}
+              >
                 <div
-                  className={`max-w-[80%] rounded-xl px-3 py-2 text-sm ${
-                    msg.role === 'user'
-                      ? 'bg-foreground text-background'
-                      : 'bg-accent text-gray-200'
-                  }`}
+                  style={{
+                    maxWidth: '85%',
+                    borderRadius: msg.role === 'user' ? '16px 16px 2px 16px' : '16px 16px 16px 2px',
+                    padding: '9px 13px',
+                    fontSize: '12px',
+                    lineHeight: '1.55',
+                    backgroundColor: msg.role === 'user' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.06)',
+                    color: msg.role === 'user' ? '#000000' : 'rgba(255, 255, 255, 0.95)',
+                    border: msg.role === 'user' ? 'none' : '1px solid rgba(255, 255, 255, 0.08)',
+                    boxShadow: msg.role === 'user' ? '0 2px 8px rgba(0,0,0,0.3)' : 'none',
+                    wordBreak: 'break-word',
+                  }}
                 >
                   {msg.content}
                 </div>
@@ -135,76 +286,161 @@ function ChatWidget() {
             ))}
 
             {loading && (
-              <div className="flex justify-start">
-                <div className="bg-accent rounded-xl px-3 py-2 text-sm text-muted-foreground">
-                  <span className="inline-flex gap-1">
-                    <span className="animate-bounce" style={{ animationDelay: '0ms' }}>.</span>
-                    <span className="animate-bounce" style={{ animationDelay: '150ms' }}>.</span>
-                    <span className="animate-bounce" style={{ animationDelay: '300ms' }}>.</span>
-                  </span>
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <div
+                  style={{
+                    padding: '8px 14px',
+                    borderRadius: '16px 16px 16px 2px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    fontSize: '12px',
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                  }}
+                >
+                  <span style={{ animation: 'pulse 1s infinite' }}>Thinking...</span>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Input */}
-          <form onSubmit={handleSubmit} className="px-4 py-3 border-t border-border">
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about Zoo research..."
-                className="flex-1 bg-background border border-border rounded-full px-4 py-2 text-sm text-foreground placeholder-gray-500 outline-none focus:border-gray-500 transition-colors"
-                disabled={loading}
-              />
+          {/* Quick Preset Pills */}
+          <div
+            style={{
+              padding: '6px 12px',
+              display: 'flex',
+              gap: '6px',
+              overflowX: 'auto',
+              borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+              backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            {PRESETS.map((p) => (
               <button
-                type="submit"
-                disabled={loading || !input.trim()}
-                className="bg-foreground text-background rounded-full p-2 hover:bg-gray-100 transition-colors disabled:opacity-40"
-                aria-label="Send"
+                key={p.label}
+                onClick={() => sendMessage(p.text)}
+                style={{
+                  padding: '4px 8px',
+                  borderRadius: '9999px',
+                  fontSize: '10px',
+                  fontWeight: 600,
+                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  color: 'rgba(255, 255, 255, 0.75)',
+                  whiteSpace: 'nowrap',
+                  cursor: 'pointer',
+                  flexShrink: 0,
+                }}
               >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+                {p.label}
               </button>
-            </div>
+            ))}
+          </div>
+
+          {/* Input Form */}
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              padding: '10px 12px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+              backgroundColor: 'rgba(10, 10, 12, 0.8)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+            }}
+          >
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask about papers, Zen models, ZIPs..."
+              style={{
+                flex: 1,
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '12px',
+                padding: '8px 12px',
+                fontSize: '12px',
+                color: '#fff',
+                outline: 'none',
+              }}
+              disabled={loading}
+            />
+            <button
+              type="submit"
+              disabled={loading || !input.trim()}
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '10px',
+                backgroundColor: '#FFFFFF',
+                color: '#000000',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: loading || !input.trim() ? 'not-allowed' : 'pointer',
+                opacity: loading || !input.trim() ? 0.35 : 1,
+                flexShrink: 0,
+                border: 'none',
+                boxShadow: '0 2px 8px rgba(255, 255, 255, 0.2)',
+              }}
+              aria-label="Send message"
+            >
+              <ArrowUp size={14} strokeWidth={2.5} />
+            </button>
           </form>
         </div>
       )}
 
-      {/* The launcher: a near-white disc on a black page, so it needs an EDGE
-          and room.
-
-          Measured live: `shadow-lg` computed to `rgba(0,0,0,0) 0 0 0 0` —
-          Tailwind's shadow colour never resolved here, so the one thing meant
-          to seat this button against the page was doing nothing at all, and it
-          read as a sticker laid on the page rather than a control floating over
-          it. A ring is the honest fix on a dark ground anyway: you cannot cast
-          a shadow onto black, so depth there is drawn with light.
-
-          24px of margin, not 16 — this disc is the brightest object on the page
-          and it sat closer to the corner than the page's own gutter, which made
-          it look trapped rather than placed. */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-foreground text-background ring-1 ring-black/10 hover:ring-black/20 hover:scale-105 transition-all z-50 flex items-center justify-center"
-        aria-label="Open chat"
+      {/* Floating Bottom-Right Trigger */}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          zIndex: 9998,
+        }}
       >
-        {isOpen ? (
-          <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
-          // The MARK, not a paw. The paw was drawn here in five primitives —
-          // a second Zoo logo, invented locally, that looked nothing like the
-          // one in the header two inches above it. This is the same file the
-          // Navbar loads, so there is one mark and it cannot drift.
-          <Image alt="" aria-hidden src="/favicon/logo.svg" width={36} height={36} className="w-9 h-9" />
-        )}
-      </button>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            height: '46px',
+            padding: '0 16px 0 12px',
+            borderRadius: '9999px',
+            backgroundColor: 'rgba(14, 14, 18, 0.92)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            color: '#FFFFFF',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+          }}
+          aria-label={isOpen ? 'Close Zoo AI Copilot' : 'Open Zoo AI Copilot'}
+        >
+          <span style={{ fontSize: '18px' }}>🐬</span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
+            <span style={{ fontSize: '12px', fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>
+              {isOpen ? 'Close AI' : 'Zoo AI'}
+            </span>
+            <span style={{ fontSize: '9px', color: '#93C5FD', fontWeight: 600 }}>Zen 5 Models</span>
+          </div>
+          <span
+            style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              backgroundColor: '#4ADE80',
+              boxShadow: '0 0 6px #4ADE80',
+            }}
+          />
+        </button>
+      </div>
     </>
   )
 }
-
-export default ChatWidget

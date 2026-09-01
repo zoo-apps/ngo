@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 export default function Principles() {
   const principles = [
-    { title: 'Open Science & Models', desc: 'We build frontier AI models and release weights openly for global conservation and research.' },
-    { title: 'No Paywalls', desc: 'All research papers, benchmark datasets, and bioacoustic telemetry are freely accessible.' },
-    { title: 'Formal Verification', desc: 'Critical models and mathematical constraints are verified with Lean 4 formal proofs.' },
-    { title: 'Safe by Design', desc: 'Alignment and content safety tailored for wildlife sanctuaries, research institutions, and educational use.' },
-    { title: '501(c)(3) Stewardship', desc: 'Tax-exempt public charity governed by scientists, bioacousticians, and conservation leaders.' },
+    { title: 'Open Science & Weights', desc: 'We train frontier reasoning models and release weights openly for global public research.' },
+    { title: 'No Paywalls', desc: 'All 130+ research papers, benchmark datasets, and ZIPs RFCs are freely and publicly accessible.' },
+    { title: 'Formal Verification', desc: 'Critical models, consensus algorithms, and mathematical constraints are verified with Lean 4 formal proofs.' },
+    { title: 'Safe by Design', desc: 'Alignment via Training-Free GRPO and RLVR tailored for open, verifiable autonomous agent systems.' },
+    { title: '501(c)(3) Stewardship', desc: 'Tax-exempt public charity governed by scientists, researchers, and conservation leaders.' },
   ];
 
   return (
