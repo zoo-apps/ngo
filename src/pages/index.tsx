@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import { CORPUS } from '@/config/corpus';
+import Menagerie from '@/components/Menagerie';
 
 /**
  * Every number and every name on this page is one we can point at: the corpus
@@ -72,28 +73,41 @@ export default function Home() {
       <Navbar />
 
       <section className="container py-16">
-        <span className="pill">501(c)(3) non-profit · EIN 88-3538992</span>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '3rem',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <span className="pill">501(c)(3) non-profit · EIN 88-3538992</span>
 
-        <h1 className="mt-6 text-5xl md:text-7xl font-black tracking-tight" style={{ maxWidth: '18ch' }}>
-          Open AI, and the animals it is for.
-        </h1>
+            <h1 className="mt-6 text-5xl md:text-7xl font-black tracking-tight" style={{ maxWidth: '14ch' }}>
+              Open AI, and the animals it is for.
+            </h1>
 
-        <p className="mt-6 text-lg text-secondary" style={{ maxWidth: '58ch' }}>
-          Zoo Labs Foundation is a non-profit research organisation. We publish open AI
-          models and conservation research, and we build the things that teach with them.
-          All of it is public — the weights, the papers, the code and the arguments.
-        </p>
+            <p className="mt-6 text-lg text-secondary" style={{ maxWidth: '52ch' }}>
+              Zoo Labs Foundation is a non-profit research organisation. We publish open AI
+              models and conservation research, and we build the things that teach with them.
+              All of it is public — the weights, the papers, the code and the arguments.
+            </p>
 
-        <div className="mt-8 flex flex-wrap gap-4">
-          <a href="https://zoolabs.io" className="action" data-fill>
-            Ask Blue
-          </a>
-          <Link href="/donation" className="action">
-            Donate
-          </Link>
-          <a href="https://github.com/zooai" className="action">
-            Read the code
-          </a>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a href="https://zoolabs.io" className="action" data-fill>
+                Ask Blue
+              </a>
+              <Link href="/donation" className="action">
+                Donate
+              </Link>
+              <a href="https://github.com/zooai" className="action">
+                Read the code
+              </a>
+            </div>
+          </div>
+
+          <Menagerie />
         </div>
 
         <dl className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">

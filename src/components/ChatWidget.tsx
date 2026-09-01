@@ -2,6 +2,11 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Sparkles, X, ArrowUp, BookOpen } from 'lucide-react'
 import { CORPUS } from '@/config/corpus'
 
+// api.zoo.cloud, not api.hanzo.ai: the gateway sends no CORS headers and
+// refuses anonymous callers, so a browser cannot reach it from a static site.
+// The proxy holds the tenant credential and allows this origin.
+const API = process.env.NEXT_PUBLIC_ZOO_API ?? 'https://api.zoo.cloud'
+
 interface Message {
   role: 'user' | 'assistant'
   content: string
@@ -46,7 +51,7 @@ export default function ChatWidget() {
     setLoading(true)
 
     try {
-      const res = await fetch('https://api.hanzo.ai/v1/chat/completions', {
+      const res = await fetch(`${API}/v1/chat/completions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
