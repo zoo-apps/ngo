@@ -98,12 +98,12 @@ export default function ChatWidget() {
             height: '560px',
             maxHeight: 'calc(100vh - 110px)',
             zIndex: 9999,
-            backgroundColor: 'rgba(18, 18, 22, 0.95)',
-            backdropFilter: 'blur(32px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(32px) saturate(180%)',
-            border: '1px solid rgba(255, 255, 255, 0.12)',
-            borderRadius: '24px',
-            boxShadow: '0 24px 60px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.08)',
+            backgroundColor: '#ffffff',
+            
+            
+            border: '2px solid var(--ink)',
+            borderRadius: 0,
+            boxShadow: '6px 6px 0 0 var(--ink)',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
@@ -113,8 +113,8 @@ export default function ChatWidget() {
           <div
             style={{
               padding: '12px 16px',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-              backgroundColor: 'rgba(255, 255, 255, 0.02)',
+              borderBottom: '2px solid var(--ink)',
+              backgroundColor: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -125,9 +125,9 @@ export default function ChatWidget() {
                 style={{
                   width: '32px',
                   height: '32px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  borderRadius: 0,
+                  backgroundColor: '#ffffff',
+                  border: '2px solid var(--ink)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -145,14 +145,14 @@ export default function ChatWidget() {
                       padding: '2px 6px',
                       borderRadius: '9999px',
                       backgroundColor: 'rgba(59, 130, 246, 0.15)',
-                      color: '#93C5FD',
+                      color: 'var(--blue)',
                       fontWeight: 700,
                     }}
                   >
-                    Zen 5
+                    Zen
                   </span>
                 </div>
-                <p style={{ fontSize: '10px', color: 'rgba(255, 255, 255, 0.5)' }}>501(c)(3) Research & Models</p>
+                <p style={{ fontSize: '10px', color: 'rgba(0,0,0,0.6)' }}>501(c)(3) Research & Models</p>
               </div>
             </div>
             <button
@@ -160,13 +160,13 @@ export default function ChatWidget() {
               style={{
                 width: '28px',
                 height: '28px',
-                borderRadius: '8px',
-                backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                borderRadius: 0,
+                backgroundColor: '#ffffff',
+                border: '2px solid var(--ink)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'rgba(255, 255, 255, 0.7)',
+                color: 'var(--ink)',
                 cursor: 'pointer',
               }}
               aria-label="Close chat"
@@ -179,8 +179,8 @@ export default function ChatWidget() {
           <div
             style={{
               padding: '6px 12px',
-              backgroundColor: 'rgba(0, 0, 0, 0.4)',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+              backgroundColor: 'rgba(255,255,255,0.7)',
+              borderBottom: '2px solid var(--ink)',
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
@@ -196,7 +196,7 @@ export default function ChatWidget() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '4px',
-                color: '#93C5FD',
+                color: 'var(--blue)',
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
               }}
@@ -204,7 +204,7 @@ export default function ChatWidget() {
               <BookOpen size={10} />
               <span>papers.zoo.ngo ↗</span>
             </a>
-            <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>·</span>
+            <span style={{ color: 'rgba(0,0,0,0.3)' }}>·</span>
             <a
               href="https://zips.zoo.ngo"
               target="_blank"
@@ -221,7 +221,7 @@ export default function ChatWidget() {
               <Sparkles size={10} />
               <span>zips.zoo.ngo ↗</span>
             </a>
-            <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>·</span>
+            <span style={{ color: 'rgba(0,0,0,0.3)' }}>·</span>
             <a
               href="https://zoolabs.io"
               target="_blank"
@@ -262,13 +262,13 @@ export default function ChatWidget() {
                 <div
                   style={{
                     maxWidth: '85%',
-                    borderRadius: msg.role === 'user' ? '16px 16px 2px 16px' : '16px 16px 16px 2px',
+                    borderRadius: 0,
                     padding: '9px 13px',
                     fontSize: '12px',
                     lineHeight: '1.55',
-                    backgroundColor: msg.role === 'user' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.06)',
-                    color: msg.role === 'user' ? '#000000' : 'rgba(255, 255, 255, 0.95)',
-                    border: msg.role === 'user' ? 'none' : '1px solid rgba(255, 255, 255, 0.08)',
+                    backgroundColor: msg.role === 'user' ? 'var(--blue)' : '#ffffff',
+                    color: msg.role === 'user' ? '#ffffff' : 'var(--ink)',
+                    border: '2px solid var(--ink)',
                     boxShadow: msg.role === 'user' ? '0 2px 8px rgba(0,0,0,0.3)' : 'none',
                     wordBreak: 'break-word',
                   }}
@@ -283,11 +283,11 @@ export default function ChatWidget() {
                 <div
                   style={{
                     padding: '8px 14px',
-                    borderRadius: '16px 16px 16px 2px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    borderRadius: 0,
+                    backgroundColor: '#ffffff',
+                    border: '2px solid var(--ink)',
                     fontSize: '12px',
-                    color: 'rgba(255, 255, 255, 0.6)',
+                    color: 'rgba(0,0,0,0.66)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '4px',
@@ -306,7 +306,7 @@ export default function ChatWidget() {
               display: 'flex',
               gap: '6px',
               overflowX: 'auto',
-              borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+              borderTop: '2px solid var(--ink)',
               backgroundColor: 'rgba(0, 0, 0, 0.2)',
             }}
           >
@@ -319,9 +319,9 @@ export default function ChatWidget() {
                   borderRadius: '9999px',
                   fontSize: '10px',
                   fontWeight: 600,
-                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  color: 'rgba(255, 255, 255, 0.75)',
+                  backgroundColor: '#ffffff',
+                  border: '2px solid var(--ink)',
+                  color: 'var(--ink)',
                   whiteSpace: 'nowrap',
                   cursor: 'pointer',
                   flexShrink: 0,
@@ -337,7 +337,7 @@ export default function ChatWidget() {
             onSubmit={handleSubmit}
             style={{
               padding: '10px 12px',
-              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+              borderTop: '2px solid var(--ink)',
               backgroundColor: 'rgba(10, 10, 12, 0.8)',
               display: 'flex',
               alignItems: 'center',
@@ -351,9 +351,9 @@ export default function ChatWidget() {
               placeholder="Ask about papers, Zen models, ZIPs..."
               style={{
                 flex: 1,
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '12px',
+                backgroundColor: '#ffffff',
+                border: '2px solid var(--ink)',
+                borderRadius: 0,
                 padding: '8px 12px',
                 fontSize: '12px',
                 color: '#fff',
@@ -367,7 +367,7 @@ export default function ChatWidget() {
               style={{
                 width: '32px',
                 height: '32px',
-                borderRadius: '10px',
+                borderRadius: 0,
                 backgroundColor: '#FFFFFF',
                 color: '#000000',
                 display: 'flex',
@@ -377,7 +377,7 @@ export default function ChatWidget() {
                 opacity: loading || !input.trim() ? 0.35 : 1,
                 flexShrink: 0,
                 border: 'none',
-                boxShadow: '0 2px 8px rgba(255, 255, 255, 0.2)',
+                boxShadow: '3px 3px 0 0 var(--ink)',
               }}
               aria-label="Send message"
             >
@@ -399,39 +399,32 @@ export default function ChatWidget() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           style={{
-            height: '46px',
-            padding: '0 16px 0 12px',
-            borderRadius: '9999px',
-            backgroundColor: 'rgba(14, 14, 18, 0.92)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+            height: '52px',
+            padding: '0 16px 0 10px',
+            border: '2px solid var(--ink)',
+            background: '#ffffff',
+            boxShadow: '6px 6px 0 0 var(--ink)',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            color: '#FFFFFF',
+            gap: '10px',
+            color: 'var(--ink)',
             cursor: 'pointer',
-            transition: 'all 0.2s ease',
           }}
-          aria-label={isOpen ? 'Close Zoo AI Copilot' : 'Open Zoo AI Copilot'}
+          aria-label={isOpen ? 'Close Zoo AI' : 'Ask Zoo AI'}
         >
-          <span style={{ fontSize: '18px' }}>🐬</span>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
-            <span style={{ fontSize: '12px', fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>
-              {isOpen ? 'Close AI' : 'Zoo AI'}
-            </span>
-            <span style={{ fontSize: '9px', color: '#93C5FD', fontWeight: 600 }}>Zen 5 Models</span>
-          </div>
+          {/* The mark is the launcher. It is the one place the CMYK Venn
+              appears on the page, so it reads as the thing to press. */}
+          <img src="/zoo-color-logo.svg" alt="" width={34} height={34} />
           <span
             style={{
-              width: '6px',
-              height: '6px',
-              borderRadius: '50%',
-              backgroundColor: '#4ADE80',
-              boxShadow: '0 0 6px #4ADE80',
+              fontSize: '12px',
+              fontWeight: 800,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
             }}
-          />
+          >
+            {isOpen ? 'Close' : 'Ask Zoo'}
+          </span>
         </button>
       </div>
     </>
