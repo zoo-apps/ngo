@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CORPUS } from '@/config/corpus';
 
 const ALLOCATION_AREAS = [
   {
@@ -15,7 +16,7 @@ const ALLOCATION_AREAS = [
   },
   {
     title: 'Open Science & Academic Research',
-    desc: 'Publishing 130+ peer-reviewed papers, open model weights, and ZIPs standards freely accessible to the global research community.',
+    desc: `Publishing ${CORPUS.papers} papers, open model weights, and ${CORPUS.proposals} improvement proposals, all freely readable.`,
     icon: '🧬',
     tag: 'Frontier AI Science',
   },

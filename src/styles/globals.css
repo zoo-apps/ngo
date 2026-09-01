@@ -1,123 +1,115 @@
-/* ─── Hanzo.ai Modern Liquid Glass Design System — Zoo Labs ─── */
+/* Zoo Labs Foundation — the same light, hard-edged look as zoo.industries and
+   zoolabs.io. The colour on the page is the Zoo mark's own five hues; the
+   animals bring the rest.
+
+   Everything below the "Typography Classes" rule is the layout utility layer
+   the inner pages were written against. It stays until those pages move to
+   @hanzo/gui, which is where new work goes. */
 
 @font-face {
   font-family: "Zen";
   src: url("/fonts/Zen-Variable.woff2") format("woff2");
   font-weight: 100 900;
-  font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Zen Mono";
   src: url("/fonts/ZenMono-Variable.woff2") format("woff2");
   font-weight: 100 900;
-  font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* ─── Typography Stack ─── */
   --font-sans: "Zen", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "Zen Mono", ui-monospace, SFMono-Regular, monospace;
   --font-display: var(--font-sans);
 
-  /* ─── Base Palette ─── */
-  --background: #0A0A0C;
-  --foreground: #FAFAFA;
-  --card: #121215;
-  --card-foreground: #FAFAFA;
-  --popover: #18181B;
-  --popover-foreground: #FAFAFA;
-  --primary: #FFFFFF;
-  --primary-foreground: #000000;
-  --secondary: #18181B;
-  --secondary-foreground: #FAFAFA;
-  --muted: #18181C;
-  --muted-foreground: #A1A1AA;
-  --accent: #27272A;
-  --accent-foreground: #FAFAFA;
+  /* The Zoo mark, which is a CMYK Venn diagram. */
+  --ink: #000000;
+  --paper: #f5e8c8;
+  --magenta: #ea018e;
+  --green: #00a652;
+  --blue: #2e3192;
+  --cyan: #01acf1;
+  --yellow: #fcf006;
+  --red: #ed1c24;
 
-  /* ─── Hanzo Opacity Ladder (The Real Palette) ─── */
-  --white-03: rgba(255, 255, 255, 0.03);
-  --white-05: rgba(255, 255, 255, 0.05);
-  --white-08: rgba(255, 255, 255, 0.08);
-  --white-10: rgba(255, 255, 255, 0.10);
-  --white-12: rgba(255, 255, 255, 0.12);
-  --white-15: rgba(255, 255, 255, 0.15);
-  --white-20: rgba(255, 255, 255, 0.20);
-  --white-30: rgba(255, 255, 255, 0.30);
-  --white-40: rgba(255, 255, 255, 0.40);
-  --white-60: rgba(255, 255, 255, 0.60);
-  --white-80: rgba(255, 255, 255, 0.80);
-  --white-90: rgba(255, 255, 255, 0.90);
+  --background: transparent;
+  --foreground: var(--ink);
+  --card: rgba(255, 255, 255, 0.82);
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--magenta);
+  --primary-foreground: #ffffff;
+  --secondary: #ffffff;
+  --secondary-foreground: var(--ink);
+  --muted: rgba(255, 255, 255, 0.6);
+  --muted-foreground: #3f3f46;
+  --accent: var(--cyan);
+  --accent-foreground: var(--ink);
 
-  /* ─── Hairlines & Boundaries ─── */
-  --border: var(--white-08);
-  --border-strong: var(--white-15);
-  --border-highlight: var(--white-20);
+  /* The old opacity ladder was white-on-black. Inverted, the inner pages that
+     reach for it stay legible on a light ground instead of vanishing. */
+  --white-03: rgba(0, 0, 0, 0.03);
+  --white-05: rgba(0, 0, 0, 0.05);
+  --white-08: rgba(0, 0, 0, 0.08);
+  --white-10: rgba(0, 0, 0, 0.10);
+  --white-12: rgba(0, 0, 0, 0.12);
+  --white-15: rgba(0, 0, 0, 0.15);
+  --white-20: rgba(0, 0, 0, 0.20);
+  --white-30: rgba(0, 0, 0, 0.30);
+  --white-40: rgba(0, 0, 0, 0.45);
+  --white-60: rgba(0, 0, 0, 0.62);
+  --white-80: rgba(0, 0, 0, 0.80);
+  --white-90: rgba(0, 0, 0, 0.90);
 
-  /* ─── Hanzo Liquid Glass Materials ─── */
-  --glass-surface: rgba(18, 18, 22, 0.65);
-  --glass-surface-hover: rgba(26, 26, 32, 0.82);
-  --glass-surface-emphasis: rgba(32, 32, 40, 0.92);
-  --glass-pill: rgba(255, 255, 255, 0.04);
-  --glass-pill-hover: rgba(255, 255, 255, 0.08);
+  --border: var(--ink);
+  --border-strong: var(--ink);
+  --border-highlight: var(--ink);
 
-  /* ─── Text Tokens ─── */
-  --text-primary: #FAFAFA;
-  --text-secondary: var(--white-80);
-  --text-tertiary: var(--white-60);
-  --text-muted: var(--white-40);
+  --glass-surface: rgba(255, 255, 255, 0.82);
+  --glass-surface-hover: #ffffff;
+  --glass-surface-emphasis: #ffffff;
+  --glass-pill: rgba(255, 255, 255, 0.9);
+  --glass-pill-hover: #ffffff;
 
-  /* ─── Status Accents (Only When Semantic) ─── */
-  --state-online: #4ADE80;
-  --state-accent: #3B82F6;
-  --state-warm: #EA580C;
-  --state-error: #EF4444;
+  --text-primary: var(--ink);
+  --text-secondary: rgba(0, 0, 0, 0.82);
+  --text-tertiary: rgba(0, 0, 0, 0.62);
+  --text-muted: rgba(0, 0, 0, 0.45);
 
-  /* ─── Spacing Ramp ─── */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
+  --state-online: var(--green);
+  --state-accent: var(--cyan);
+  --state-warm: #c2410c;
+  --state-error: var(--red);
 
-  /* ─── Radii ─── */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 2rem;
-  --radius-full: 9999px;
+  --space-1: 0.25rem;  --space-2: 0.5rem;   --space-3: 0.75rem;
+  --space-4: 1rem;     --space-5: 1.25rem;  --space-6: 1.5rem;
+  --space-8: 2rem;     --space-10: 2.5rem;  --space-12: 3rem;
+  --space-16: 4rem;    --space-20: 5rem;    --space-24: 6rem;
 
-  /* ─── Shadows & Glows ─── */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.40);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.50), 0 2px 4px -2px rgba(0, 0, 0, 0.50);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.55), 0 4px 6px -4px rgba(0, 0, 0, 0.55);
-  --shadow-floating: 0 24px 60px -16px rgba(0, 0, 0, 0.85);
-  --edge-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-  --bloom: 0 0 24px -2px rgba(255, 255, 255, 0.28);
+  /* Square, because the edge is the whole idea. */
+  --radius-sm: 0; --radius-md: 0; --radius-lg: 0; --radius-xl: 0;
+  --radius-2xl: 0; --radius-3xl: 0; --radius-full: 9999px;
 
-  /* ─── Grid Tokens ─── */
-  --container-max: 80rem;
+  --shadow-sm: 3px 3px 0 0 var(--ink);
+  --shadow-md: 6px 6px 0 0 var(--ink);
+  --shadow-lg: 6px 6px 0 0 var(--ink);
+  --shadow-floating: 6px 6px 0 0 var(--ink);
+  --edge-highlight: none;
+  --bloom: none;
+
+  --container-max: 70rem;
   --container-prose: 48rem;
   --gutter: max(1rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
   --grid-gap: var(--space-6);
   --grid-card-min: 18rem;
 }
 
-/* ─── Reset ─── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -127,7 +119,6 @@
 }
 
 html, body {
-  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   font-size: 16px;
@@ -136,130 +127,96 @@ html, body {
   touch-action: manipulation;
 }
 
-ul, ol, li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+body {
+  background-color: var(--paper);
+  /* Iridescent wash: the mark's hues dialled down to a pastel tint, so the page
+     shares the logo's family without competing with the buttons. */
+  background-image:
+    radial-gradient(at 14% 16%, #fff3b8 0%, transparent 38%),
+    radial-gradient(at 86% 12%, #ffc6e6 0%, transparent 40%),
+    radial-gradient(at 92% 62%, #b8dff8 0%, transparent 42%),
+    radial-gradient(at 28% 82%, #b8e8c8 0%, transparent 44%),
+    radial-gradient(at 62% 50%, #c4c8ec 0%, transparent 44%),
+    radial-gradient(at 8% 92%, #ffc6e6 0%, transparent 40%),
+    linear-gradient(135deg, #fff3d8 0%, #ffd9ec 28%, #d8dcef 55%, #cfeede 80%, #d6ecf8 100%);
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+ul, ol, li { list-style: none; margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; font-size: inherit; background: none; border: none; cursor: pointer; color: inherit; }
+input, textarea, select { font-family: inherit; font-size: inherit; background: none; border: none; outline: none; color: inherit; }
+
+/* One surface, one button. Hard black edge, offset shadow, no blur. */
+.glass-surface, .card, .sheet, .panel {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-md);
 }
 
-button {
-  font-family: inherit;
-  font-size: inherit;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
-}
-
-input, textarea, select {
-  font-family: inherit;
-  font-size: inherit;
-  background: none;
-  border: none;
-  outline: none;
-  color: inherit;
-}
-
-/* ─── Hanzo Liquid Glass Components ─── */
-.glass-surface, .card, .sheet {
-  background: var(--glass-surface);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--edge-highlight), var(--shadow-floating);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-surface:hover, .card:hover, .sheet:hover {
-  background: var(--glass-surface-hover);
-  border-color: var(--border-strong);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.16), 0 28px 64px -12px rgba(0, 0, 0, 0.9);
-}
-
-.action {
+.action, .btn, .press {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-height: 42px;
+  min-height: 44px;
   padding: 0 var(--space-5);
-  border: 1px solid var(--white-12);
-  border-radius: var(--radius-full);
+  border: 2px solid var(--ink);
+  background: #ffffff;
+  color: var(--ink);
   font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  background: var(--glass-surface);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: var(--edge-highlight), var(--shadow-sm);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-md);
   cursor: pointer;
-  text-decoration: none;
   white-space: nowrap;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.action:hover {
-  background: var(--glass-surface-hover);
-  border-color: var(--border-highlight);
-  color: #FFFFFF;
+.action:hover, .btn:hover, .press:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 0 var(--ink);
+}
+
+.action:active, .btn:active, .press:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0 0 var(--ink);
 }
 
 .action[data-fill], .btn-primary {
-  border: 0;
-  background: #FFFFFF;
-  color: #000000;
-  font-weight: 600;
-  box-shadow: 0 4px 20px -2px rgba(255, 255, 255, 0.25), var(--shadow-md);
+  background: var(--magenta);
+  color: #ffffff;
 }
 
-.action[data-fill]:hover, .btn-primary:hover {
-  background: #EDEDED;
-  color: #000000;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 24px -2px rgba(255, 255, 255, 0.35), var(--shadow-lg);
-}
-
-.pill {
+.pill, .badge, .label {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: 0.25rem var(--space-3);
-  border: 1px solid var(--white-08);
-  border-radius: var(--radius-full);
+  padding: 0.3rem var(--space-3);
+  border: 2px solid var(--ink);
+  background: #ffffff;
+  color: var(--ink);
   font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: var(--white-03);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-/* ─── Chrome Gradient Headline ─── */
-.chrome-text, .display-chrome {
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.85) 48%, rgba(255, 255, 255, 0.55) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
+.badge-online { background: var(--green); color: #fff; }
+.badge-warm { background: var(--yellow); color: var(--ink); }
+.badge-accent { background: var(--cyan); color: #fff; }
 
-.glow-backdrop {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1280px;
-  height: 600px;
-  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 80%);
-  pointer-events: none;
-  z-index: 0;
+/* The headline is ink on paper; there is no chrome to gradient. */
+.chrome-text, .display-chrome { color: var(--ink); }
+.glow-backdrop { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ─── Typography Classes ─── */
@@ -288,14 +245,18 @@ input, textarea, select {
 .text-primary { color: var(--text-primary); }
 .text-secondary { color: var(--text-secondary); }
 .text-muted { color: var(--text-muted); }
-.text-white { color: #FFFFFF; }
-.text-black { color: #000000; }
-.text-zinc-200 { color: #E4E4E7; }
-.text-zinc-300 { color: #D4D4D8; }
-.text-zinc-400 { color: #A1A1AA; }
-.text-zinc-500 { color: #71717A; }
-.text-zinc-600 { color: #52525B; }
-.text-zinc-700 { color: #3F3F46; }
+/* These names date from the dark palette. The ground is light now, so they
+   resolve to the ink ladder — the pages that use them stay legible without
+   being touched. Names and values only agree again once those pages move to
+   @hanzo/gui; until then this mapping is the bridge. */
+.text-white { color: var(--ink); }
+.text-black { color: var(--ink); }
+.text-zinc-200 { color: rgba(0, 0, 0, 0.88); }
+.text-zinc-300 { color: rgba(0, 0, 0, 0.82); }
+.text-zinc-400 { color: rgba(0, 0, 0, 0.66); }
+.text-zinc-500 { color: rgba(0, 0, 0, 0.58); }
+.text-zinc-600 { color: rgba(0, 0, 0, 0.72); }
+.text-zinc-700 { color: rgba(0, 0, 0, 0.80); }
 .text-blue-300 { color: #93C5FD; }
 .text-blue-400 { color: #60A5FA; }
 .text-blue-500 { color: #3B82F6; }
@@ -502,11 +463,11 @@ input, textarea, select {
 .bg-surface { background-color: var(--glass-surface-emphasis); }
 .bg-transparent { background-color: transparent; }
 .bg-white { background-color: #FFFFFF; }
-.bg-black { background-color: #000000; }
-.bg-black\/40 { background-color: rgba(0, 0, 0, 0.4); }
-.bg-black\/60 { background-color: rgba(0, 0, 0, 0.6); }
-.bg-black\/80 { background-color: rgba(0, 0, 0, 0.8); }
-.bg-black\/90 { background-color: rgba(0, 0, 0, 0.9); }
+.bg-black { background-color: transparent; }
+.bg-black\/40 { background-color: rgba(255, 255, 255, 0.6); }
+.bg-black\/60 { background-color: rgba(255, 255, 255, 0.7); }
+.bg-black\/80 { background-color: rgba(255, 255, 255, 0.85); }
+.bg-black\/90 { background-color: rgba(255, 255, 255, 0.92); }
 .bg-white\/5 { background-color: var(--white-05); }
 .bg-white\/10 { background-color: var(--white-10); }
 .bg-white\/15 { background-color: var(--white-15); }

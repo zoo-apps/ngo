@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FaTelegram, FaTwitter, FaInstagram, FaDiscord, FaYoutube, FaGithub } from 'react-icons/fa'
 import { BsMedium } from 'react-icons/bs'
 import { ThemeSwitcher } from './ThemeSwitcher'
+import { CORPUS } from '@/config/corpus';
 
 interface LinkItem {
   label: string
@@ -19,10 +20,10 @@ const COLUMNS: FooterColumn[] = [
   {
     title: 'Frontier Research',
     links: [
-      { label: 'Research Papers (130+)', href: 'https://papers.zoo.ngo', external: true },
+      { label: `Research Papers (${CORPUS.papers})`, href: 'https://papers.zoo.ngo', external: true },
       { label: 'Zoo Proposals (ZIPs)', href: 'https://zips.zoo.ngo', external: true },
       { label: 'Thinking Chains Datasets', href: 'https://github.com/zoo-labs/chains', external: true },
-      { label: 'Zen Models (600M–2T+)', href: 'https://huggingface.co/zenlm', external: true },
+      { label: 'Zen Models (open weights)', href: 'https://huggingface.co/zenlm', external: true },
       { label: 'Zoo Gym (Training-Free GRPO)', href: 'https://github.com/zooai/gym', external: true },
       { label: 'Decentralized AI Mining', href: 'https://papers.zoo.ngo', external: true },
     ],
@@ -76,9 +77,9 @@ export default function Footer() {
   return (
     <footer
       style={{
-        backgroundColor: '#0A0A0C',
-        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-        color: '#FAFAFA',
+        backgroundColor: '#ffffff',
+        borderTop: '2px solid var(--ink)',
+        color: 'var(--ink)',
         paddingTop: '4rem',
         paddingBottom: '2.5rem',
       }}
@@ -107,7 +108,7 @@ export default function Footer() {
                   fontWeight: 800,
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  color: 'rgba(255, 255, 255, 0.95)',
+                  color: 'var(--ink)',
                 }}
               >
                 {col.title}
@@ -131,7 +132,7 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         style={{
                           fontSize: '0.8125rem',
-                          color: 'rgba(255, 255, 255, 0.6)',
+                          color: 'rgba(0, 0, 0, 0.66)',
                           textDecoration: 'none',
                           transition: 'color 0.15s ease',
                           display: 'inline-flex',
@@ -139,7 +140,7 @@ export default function Footer() {
                           gap: '4px',
                         }}
                         onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(0, 0, 0, 0.66)')}
                       >
                         <span>{link.label}</span>
                         {link.href.startsWith('http') && <span style={{ fontSize: '0.7rem', opacity: 0.6 }}>↗</span>}
@@ -149,7 +150,7 @@ export default function Footer() {
                         href={link.href}
                         style={{
                           fontSize: '0.8125rem',
-                          color: 'rgba(255, 255, 255, 0.6)',
+                          color: 'rgba(0, 0, 0, 0.66)',
                           textDecoration: 'none',
                           transition: 'color 0.15s ease',
                           display: 'inline-flex',
@@ -157,7 +158,7 @@ export default function Footer() {
                           gap: '4px',
                         }}
                         onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(0, 0, 0, 0.66)')}
                       >
                         <span>{link.label}</span>
                       </Link>
@@ -172,7 +173,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div
           style={{
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            borderTop: '2px solid var(--ink)',
             paddingTop: '2rem',
             display: 'flex',
             flexWrap: 'wrap',
@@ -182,10 +183,10 @@ export default function Footer() {
           }}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-            <p style={{ fontSize: '0.8125rem', color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500 }}>
+            <p style={{ fontSize: '0.8125rem', color: 'rgba(0, 0, 0, 0.72)', fontWeight: 500 }}>
               &copy; 2026 Zoo Labs Foundation Inc. &middot; 501(c)(3) Tax-Exempt Scientific Research Organization
             </p>
-            <p style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.45)', fontFamily: 'var(--font-mono)' }}>
+            <p style={{ fontSize: '0.75rem', color: 'rgba(0, 0, 0, 0.55)', fontFamily: 'var(--font-mono)' }}>
               EIN: 88-3538992 &middot; Contributions are tax-deductible under Section 501(c)(3) of the Internal Revenue Code.
             </p>
           </div>
@@ -199,7 +200,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
+                    color: 'rgba(0, 0, 0, 0.66)',
                     fontSize: '1rem',
                     transition: 'color 0.15s ease',
                     display: 'flex',
@@ -207,7 +208,7 @@ export default function Footer() {
                     justifyContent: 'center',
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(0, 0, 0, 0.66)')}
                   aria-label={s.label}
                 >
                   <s.icon />

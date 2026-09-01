@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import { CORPUS } from '@/config/corpus';
 
 export default function Comment() {
   const stats = [
     {
-      metric: '130+',
+      metric: `${CORPUS.papers}`,
       label: 'Published Research Papers',
       desc: 'Peer-reviewed preprints and formal proofs covering TF-GRPO, ASO, and post-quantum consensus.',
       link: 'Explore Papers',

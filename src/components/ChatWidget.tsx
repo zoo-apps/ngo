@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Sparkles, X, ArrowUp, BookOpen } from 'lucide-react'
+import { CORPUS } from '@/config/corpus'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -11,9 +12,9 @@ const SYSTEM_PROMPT =
 
 const PRESETS = [
   { label: '📄 Papers', text: 'What research papers have Zoo Labs published?' },
-  { label: '🧠 Zen Models', text: 'Tell me about the open Zen model family from 600M to 2T+' },
+  { label: '🧠 Zen Models', text: 'Tell me about the open Zen model family.' },
   { label: '⚡ Zoo Gym', text: 'How does Zoo Gym (Training-Free GRPO) work?' },
-  { label: '⛏️ AI Mining', text: 'What are the Proof-of-Useful-Work AI mining protocols?' },
+  { label: '🐋 Blue', text: 'What is Blue, and who is it for?' },
   { label: '⚡ ZIPs RFCs', text: 'What are Zoo Improvement Proposals (zips.zoo.ngo)?' },
 ]
 
@@ -22,7 +23,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Hello! I am Zoo AI, your open science copilot. Ask me anything about our 130+ research papers, Zen models, Zoo Gym, or decentralized compute protocols.',
+      content: `Hi — ask me about Zoo Labs: the ${CORPUS.papers} papers, the ${CORPUS.proposals} improvement proposals, the open Zen models, or how to help.`,
     },
   ])
   const [input, setInput] = useState('')
@@ -47,12 +48,9 @@ export default function ChatWidget() {
     try {
       const res = await fetch('https://api.hanzo.ai/v1/chat/completions', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer hz_widget_public',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'zen4-mini',
+          model: 'zen',
           messages: [
             { role: 'system', content: SYSTEM_PROMPT },
             ...next.map((m) => ({ role: m.role, content: m.content })),
@@ -61,27 +59,22 @@ export default function ChatWidget() {
       })
 
       if (!res.ok) {
-        throw new Error(`API error: ${res.status}`)
+        const body = await res.json().catch(() => null)
+        throw new Error(body?.error?.message ?? `${res.status} ${res.statusText}`)
       }
 
       const data = await res.json()
-      const reply = data.choices?.[0]?.message?.content || 'Sorry, I could not generate a response.'
+      const reply = data.choices?.[0]?.message?.content
+      if (!reply) throw new Error('the model returned an empty reply')
       setMessages((prev) => [...prev, { role: 'assistant', content: reply }])
     } catch (err) {
-      const query = text.toLowerCase()
-      let fallback = "Zoo Labs Foundation Inc. is a 501(c)(3) tax-exempt scientific research organization developing the open-source Zen family of frontier models (600M to 2T+ parameters), published research papers (papers.zoo.ngo), and ZIPs RFCs (zips.zoo.ngo)."
-      if (query.includes('paper') || query.includes('research')) {
-        fallback = "Explore 130+ research papers covering Training-Free GRPO, Active Semantic Optimization (ASO), Quasar Consensus, and Proof-of-Useful-Work AI Mining at https://papers.zoo.ngo and https://github.com/zoo-labs/papers."
-      } else if (query.includes('zip') || query.includes('rfc')) {
-        fallback = "Zoo Improvement Proposals (ZIPs) define protocol standards, microVM sandboxes, and agent communication schemas. Read them live at https://zips.zoo.ngo."
-      } else if (query.includes('chain') || query.includes('reason')) {
-        fallback = "Zoo Thinking Chains provide step-by-step verifiable agent reasoning datasets and training traces at https://github.com/zoo-labs/chains."
-      } else if (query.includes('gym') || query.includes('train') || query.includes('grpo')) {
-        fallback = "Zoo Gym is our open framework for training-free reinforcement learning (TF-GRPO), enabling self-improving reasoning models at 99.8% lower compute cost: https://github.com/zooai/gym."
-      } else if (query.includes('donate') || query.includes('sanctuary') || query.includes('fund')) {
-        fallback = "Contributions to Zoo Labs Foundation Inc. (EIN: 88-3538992) are 100% tax-deductible under Section 501(c)(3) and directly fund frontline wildlife sanctuary care. Donate at https://zoo.ngo/donation."
-      }
-      setMessages((prev) => [...prev, { role: 'assistant', content: fallback }])
+      // Say what went wrong. Answering on the model's behalf is how a charity
+      // ends up publishing claims nobody wrote.
+      const why = err instanceof Error ? err.message : String(err)
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', content: `I could not reach the model just now — ${why}. Nothing was made up in its place. The papers are at papers.zoo.ngo and the proposals at zips.zoo.ngo.` },
+      ])
     } finally {
       setLoading(false)
     }
