@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CORPUS } from '@/config/corpus';
 
 function Intro({
   breadcrumbs,
@@ -58,7 +59,7 @@ function Intro({
             className="action"
             style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.875rem' }}
           >
-            <span>📄 130+ Papers ↗</span>
+            <span>📄 {CORPUS.papers} Papers ↗</span>
           </a>
 
           <a

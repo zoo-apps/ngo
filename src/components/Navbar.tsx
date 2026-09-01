@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
+import { CORPUS } from '@/config/corpus';
 
 type DropdownId = 'products' | 'models' | 'research' | 'foundation' | null
 
@@ -36,11 +37,11 @@ function Navbar() {
       <div
         className="absolute left-1/2 -translate-x-1/2 mt-2 rounded-2xl p-4 z-50 animate-in fade-in zoom-in-95 duration-150 text-xs"
         style={{
-          backgroundColor: 'rgba(12, 12, 16, 0.98)',
+          backgroundColor: '#ffffff',
           backdropFilter: 'blur(30px) saturate(180%)',
           WebkitBackdropFilter: 'blur(30px) saturate(180%)',
-          border: '1px solid rgba(255, 255, 255, 0.12)',
-          boxShadow: '0 24px 60px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+          border: '2px solid var(--ink)',
+          boxShadow: '6px 6px 0 0 var(--ink)',
         }}
         onMouseEnter={() => openDropdown(id)}
         onMouseLeave={closeDropdown}
@@ -56,10 +57,10 @@ function Navbar() {
       style={{
         height: 48,
         zIndex: 999,
-        backgroundColor: 'rgba(10, 10, 12, 0.88)',
+        backgroundColor: 'rgba(255, 255, 255, 0.92)',
         backdropFilter: 'blur(24px) saturate(180%)',
         WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-        borderBottom: '1px solid var(--border, rgba(255, 255, 255, 0.08))',
+        borderBottom: '2px solid var(--ink)',
       }}
     >
       <div style={{ height: '100%', padding: '0 clamp(12px, 3vw, 32px)' }}>
@@ -78,8 +79,8 @@ function Navbar() {
           <div
             className="hidden lg:flex items-center gap-1 p-0.5 rounded-full"
             style={{
-              background: 'rgba(255, 255, 255, 0.04)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#ffffff',
+              border: '2px solid var(--ink)',
             }}
           >
             {/* Research */}
@@ -106,7 +107,7 @@ function Navbar() {
                       className="p-2 rounded-lg hover:bg-white/5 transition-colors block"
                     >
                       <p className="text-xs text-white font-semibold flex items-center justify-between">
-                        <span>Research Papers (130+)</span>
+                        <span>Research Papers ({CORPUS.papers})</span>
                         <span className="text-[10px] text-blue-400 font-mono">papers.zoo.ngo ↗</span>
                       </p>
                       <p className="text-[11px] text-zinc-400">TF-GRPO, ASO, Quasar Consensus</p>
@@ -165,7 +166,7 @@ function Navbar() {
                     >
                       <p className="text-xs text-white font-semibold flex items-center justify-between">
                         <span>Zen 5 Foundation Models</span>
-                        <span className="text-[10px] text-blue-400 font-mono">600M – 2T+</span>
+                        <span className="text-[10px] font-mono" style={{ color: 'var(--blue)' }}>open weights</span>
                       </p>
                       <p className="text-[11px] text-zinc-400">MoE sparse architecture with open weights</p>
                     </a>
@@ -338,8 +339,8 @@ function Navbar() {
             style={{
               top: 48,
               zIndex: 999,
-              backgroundColor: '#0a0a0c',
-              borderColor: 'rgba(255, 255, 255, 0.12)',
+              backgroundColor: '#ffffff',
+              borderColor: 'var(--ink)',
               boxShadow: '0 20px 40px rgba(0,0,0,0.95)',
             }}
           >
@@ -400,8 +401,8 @@ function Navbar() {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full text-xs font-bold"
             style={{
-              background: '#FFFFFF',
-              color: '#000000',
+              background: 'var(--magenta)',
+              color: '#ffffff',
             }}
           >
             <span>🐬 Launch ZooLabs.io Studio ↗</span>
