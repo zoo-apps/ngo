@@ -65,12 +65,22 @@ function Navbar() {
     >
       <div style={{ height: '100%', padding: '0 clamp(12px, 3vw, 32px)' }}>
         <div className="flex items-center justify-between" style={{ height: '100%' }}>
-          {/* Left: Unified ZOO Wordmark with RGB Logo */}
-          <div className="flex items-center gap-3 shrink-0">
-            <Link href="/" className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity">
-              <img src="/zoo-color-logo.svg" alt="ZOO" className="w-5 h-5" />
-              <span className="font-black text-lg tracking-tight text-white font-mono">
-                ZOO
+          {/* The wordmark carries the brand; the mark carries the AI and lives
+              bottom right, in ChatWidget. Same lockup as zoo.industries and
+              zoolabs.io — the org at full weight, what it does at light. */}
+          <div className="flex items-center shrink-0">
+            <Link href="/" className="hover:opacity-80 transition-opacity">
+              <span
+                style={{
+                  fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
+                  fontWeight: 900,
+                  letterSpacing: '-0.03em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink)',
+                  lineHeight: 1,
+                }}
+              >
+                Zoo&nbsp;<span style={{ fontWeight: 200 }}>Labs</span>
               </span>
             </Link>
           </div>
