@@ -4,225 +4,119 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Link from 'next/link';
+import { Radio, Cpu, Globe, Activity, ShieldCheck, Heart, ArrowRight } from 'lucide-react';
 
-export default function Coin() {
+export default function SensorMeshPage() {
   return (
     <Layout>
       <Seo
-        templateTitle="ZOO Coin"
-        description="ZOO governance token for decentralized conservation funding and DAO voting"
+        templateTitle="Bioacoustic Sensor Mesh & Telemetry Network"
+        description="Global edge sensor network powering real-time bioacoustic classification, anti-poaching telemetry, and wildlife preservation."
       />
       <Navbar />
 
-      <div className="bg-background text-foreground">
+      <div className="bg-background text-foreground min-h-screen">
         {/* Hero Section */}
-        <div className="container mx-auto px-4 py-20">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8">ZOO Coin</h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl">
-            The governance token powering decentralized conservation funding. Vote on proposals,
-            allocate resources, and shape the future of wildlife preservation.
-          </p>
-        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-400 text-xs font-semibold mb-6">
+            <Radio className="w-3.5 h-3.5" />
+            <span>Real-Time Edge Sensor Mesh &middot; 120 kHz Hydrophones</span>
+          </div>
 
-        {/* Token Info */}
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Token Utility</h2>
-              <ul className="space-y-4 text-gray-300">
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3">🗳️</span>
-                  <div>
-                    <strong className="text-foreground">Governance Voting</strong>
-                    <p className="text-sm mt-1">Vote on conservation proposals and fund allocation</p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3">💰</span>
-                  <div>
-                    <strong className="text-foreground">Treasury Management</strong>
-                    <p className="text-sm mt-1">Participate in decisions about the $5M+ conservation treasury</p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3">🎁</span>
-                  <div>
-                    <strong className="text-foreground">Staking Rewards</strong>
-                    <p className="text-sm mt-1">Earn rewards for long-term commitment to conservation</p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-3">🌍</span>
-                  <div>
-                    <strong className="text-foreground">Experience Access</strong>
-                    <p className="text-sm mt-1">Exclusive access to conservation expeditions and events</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-gray-900 rounded-lg p-8">
-              <h3 className="text-2xl font-bold mb-6">Token Metrics</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Total Supply</span>
-                  <span className="font-bold">1,000,000,000 ZOO</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Circulating Supply</span>
-                  <span className="font-bold">450,000,000 ZOO</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Contract</span>
-                  <span className="font-mono text-sm">luxdefi.eth</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Network</span>
-                  <span className="font-bold">Ethereum, Polygon</span>
-                </div>
-                <hr className="border-gray-700" />
-                <div className="pt-4">
-                  <p className="text-gray-400 mb-2">Current Price</p>
-                  <p className="text-3xl font-bold">$0.0234</p>
-                  <p className="text-green-500 text-sm">+12.4% (24h)</p>
-                </div>
-              </div>
-            </div>
+          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6">
+            Bioacoustic Sensor Mesh & Distributed Telemetry
+          </h1>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+            A worldwide sovereign telemetry network connecting marine hydrophones, terrestrial acoustic sensors, and
+            edge neural processors. Running Zen4-Bioacoustic models locally to detect and classify species in real-time.
+          </p>
+
+          <div className="flex flex-wrap gap-4 mt-8">
+            <Link
+              href="/donation"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-500 text-black font-bold text-sm hover:bg-primary-400 transition-colors"
+            >
+              <Heart className="w-4 h-4" />
+              <span>Sponsor a Sanctuary Sensor Node</span>
+            </Link>
+            <Link
+              href="/impact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-card border border-border text-foreground font-semibold text-sm hover:bg-muted transition-colors"
+            >
+              <span>View Live Node Telemetry</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
 
-        {/* Token Distribution */}
-        <div className="bg-gray-900 py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Token Distribution</h2>
-            <div className="grid md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <p className="text-4xl font-bold text-green-500">35%</p>
-                <p className="text-xl mt-2">Conservation Treasury</p>
-                <p className="text-sm text-gray-400 mt-2">Locked for conservation initiatives</p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl font-bold text-blue-500">25%</p>
-                <p className="text-xl mt-2">Community Rewards</p>
-                <p className="text-sm text-gray-400 mt-2">Staking and participation rewards</p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl font-bold text-purple-500">20%</p>
-                <p className="text-xl mt-2">Team & Advisors</p>
-                <p className="text-sm text-gray-400 mt-2">4-year vesting schedule</p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl font-bold text-yellow-500">20%</p>
-                <p className="text-xl mt-2">Public Distribution</p>
-                <p className="text-sm text-gray-400 mt-2">Initial and ongoing distribution</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* DAOs Section */}
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">DAO Governance Tokens</h2>
-          <p className="text-xl text-gray-300 mb-12">
-            Each conservation DAO has its own governance token for specialized decision-making
-          </p>
+        {/* Mesh Capabilities Grid */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { name: 'OCEAN', dao: 'OceanDAO', focus: 'Marine Conservation', tvl: '$325,000' },
-              { name: 'SHARK', dao: 'SharkDAO', focus: 'Shark Protection', tvl: '$150,000' },
-              { name: 'BELUGA', dao: 'BelugaDAO', focus: 'Arctic Wildlife', tvl: '$75,000' },
-              { name: 'TIGER', dao: 'TigerDAO', focus: 'Big Cat Sanctuaries', tvl: '$200,000' },
-              { name: 'RESEARCH', dao: 'ResearchDAO', focus: 'Scientific Research', tvl: '$500,000' },
-              { name: 'ZEN', dao: 'ZenDAO', focus: 'AI Development', tvl: '$300,000' },
-            ].map((token) => (
-              <div key={token.name} className="border border-gray-700 rounded-lg p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold">{token.name}</h3>
-                    <p className="text-gray-400">{token.dao}</p>
-                  </div>
-                  <span className="bg-green-900 text-green-300 px-3 py-1 rounded-full text-sm">
-                    Active
-                  </span>
-                </div>
-                <p className="text-gray-300 mb-4">{token.focus}</p>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Treasury</span>
-                  <span className="font-bold">{token.tvl}</span>
-                </div>
+            <div className="p-6 rounded-2xl bg-card border border-border flex flex-col gap-4">
+              <div className="w-10 h-10 rounded-xl bg-primary-500/10 flex items-center justify-center text-primary-400">
+                <Radio className="w-5 h-5" />
               </div>
-            ))}
-          </div>
-        </div>
+              <h3 className="text-lg font-bold">120 kHz Acoustic Arrays</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Ultra-broadband hydrophone nodes capturing full-spectrum cetacean clicks, whistles, and pulse trains in
+                the Arctic and Pacific.
+              </p>
+            </div>
 
-        {/* How to Get ZOO */}
-        <div className="bg-gray-900 py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">How to Get ZOO</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="border border-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">1. Donate to Conservation</h3>
-                <p className="text-gray-400 mb-4">
-                  Receive ZOO tokens when you donate to conservation initiatives
-                </p>
-                <Link
-                  href="/donation"
-                  className="text-green-500 hover:text-green-400 font-medium"
-                >
-                  Donate Now →
-                </Link>
+            <div className="p-6 rounded-2xl bg-card border border-border flex flex-col gap-4">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400">
+                <Cpu className="w-5 h-5" />
               </div>
-              <div className="border border-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">2. Participate in DAOs</h3>
-                <p className="text-gray-400 mb-4">
-                  Earn tokens by contributing to DAO proposals and governance
-                </p>
-                <Link
-                  href="/fund"
-                  className="text-green-500 hover:text-green-400 font-medium"
-                >
-                  Join a DAO →
-                </Link>
+              <h3 className="text-lg font-bold">On-Device Neural Inference</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Solar-powered micro-nodes execute quantised Zen4-Bioacoustic edge models with sub-20ms inference latency
+                directly in the field.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-card border border-border flex flex-col gap-4">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <Globe className="w-5 h-5" />
               </div>
-              <div className="border border-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">3. Trade on DEX</h3>
-                <p className="text-gray-400 mb-4">
-                  Trade ZOO on Uniswap, SushiSwap, and other decentralized exchanges
-                </p>
-                <a
-                  href="https://app.uniswap.org"
-                  className="text-green-500 hover:text-green-400 font-medium"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Trade on Uniswap →
-                </a>
-              </div>
+              <h3 className="text-lg font-bold">100% Open Scientific Data</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                All raw telemetry, spectrograms, and species classifications are published openly for global conservation
+                and academic researchers.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="container mx-auto px-4 py-20">
-          <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Join the Conservation Economy
-            </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Hold ZOO to participate in governance and help direct millions in conservation funding
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/fund"
-                className="bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors"
-              >
-                Explore DAOs
-              </Link>
-              <Link
-                href="/markets"
-                className="bg-transparent border-2 border-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black transition-colors"
-              >
-                View Markets
-              </Link>
+        {/* Live Network Telemetry Status */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="p-8 rounded-2xl bg-card border border-border flex flex-col gap-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Activity className="w-5 h-5 text-emerald-400" />
+                <h2 className="text-xl font-bold">Active Sensor Mesh Status</h2>
+              </div>
+              <span className="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">
+                100% OPERATIONAL
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-border">
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-foreground">342</div>
+                <div className="text-xs text-muted-foreground mt-1">Active Hardware Nodes</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-primary-400">847+</div>
+                <div className="text-xs text-muted-foreground mt-1">Monitored Species</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400">2.4M Ha</div>
+                <div className="text-xs text-muted-foreground mt-1">Protected Sanctuary Range</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-amber-400">&lt; 15 ms</div>
+                <div className="text-xs text-muted-foreground mt-1">Edge Neural Latency</div>
+              </div>
             </div>
           </div>
         </div>
