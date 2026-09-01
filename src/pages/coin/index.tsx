@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Link from 'next/link';
 import { Radio, Cpu, Globe, Activity, ShieldCheck, Heart, ArrowRight } from 'lucide-react';
+import { CORPUS } from '@/config/corpus';
 
 export default function SensorMeshPage() {
   return (
@@ -103,7 +104,7 @@ export default function SensorMeshPage() {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-border">
               <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-foreground">130+</div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-foreground">{CORPUS.papers}</div>
                 <div className="text-xs text-muted-foreground mt-1">Published Research Papers</div>
               </div>
               <div>
