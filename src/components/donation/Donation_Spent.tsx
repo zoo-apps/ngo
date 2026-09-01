@@ -1,42 +1,84 @@
-function Donation_Spent() {
-    return (
-      <div className="bg-[#3C9465] max-md:bg-background max-md:text-foreground text-black max-md:py-32 md:py-12 lg:py-12 max-md:px-0 px-16">
-        <div className='flex max-md:flex-col justify-between max-md:space-y-24 '>
-          <div className="flex flex-col flex-1 2xl:pr-56 xl:pr-24 lg:pr-12 md:pr-4 space-y-24 max-md:space-y-12 max-md:px-4">
-            <h1 className="2xl:text-7xl xl:text-6xl lg:text-5xl md:text-3xl max-md:text-4xl ">How is your donation spent?</h1>
-            <div className="flex items-center text-black w-full border border-black rounded-full bg-white">
-                <div className="flex flex-col items-center px-4 md:px-1 bg-[#3C9465] rounded-l-full py-2 xl:w-[10%] lg:w-[15%] md:w-[20%]">
-                    <p className="lg:text-sm md:text-xs max-md:text-xs">Admin</p>
-                    <p className="lg:text-sm md:text-xs max-md:text-xs">10%</p>
+import React, { useState } from 'react';
+
+const ALLOCATION_AREAS = [
+  {
+    title: 'Sanctuary & Rescue Operations',
+    desc: 'Direct veterinary care, anti-poaching operations, physical sanctuary habitat construction, and emergency rescue missions for endangered wildlife.',
+    icon: '🐅',
+    tag: 'Field Operations',
+  },
+  {
+    title: 'Open Bioacoustic Sensor Mesh',
+    desc: '120 kHz marine hydrophone nodes, edge micro-VM telemetry units, and open data infrastructure monitoring vocalizations across the Arctic, Pacific, and rainforests.',
+    icon: '📡',
+    tag: 'Neural Edge Hardware',
+  },
+  {
+    title: 'Open Science & Academic Research',
+    desc: 'Publishing open datasets, spectrogram models, and bioacoustic transformer architectures for global conservation biologists and universities.',
+    icon: '🧬',
+    tag: 'Frontier AI Science',
+  },
+];
+
+export default function Donation_Spent() {
+  const [selectedArea, setSelectedArea] = useState(0);
+
+  return (
+    <section className="bg-card py-16 md:py-24 border-b border-white/10">
+      <div className="container mx-auto">
+        <div className="max-w-3xl mb-12">
+          <span className="badge badge-online mb-3">100% Direct Allocation</span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
+            Where Your Support Goes
+          </h2>
+          <p className="text-base md:text-lg text-secondary leading-relaxed">
+            Every contribution goes directly toward tangible wildlife protection, bioacoustic sensory deployments, and open-access conservation research.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {ALLOCATION_AREAS.map((area, idx) => {
+            const isSel = selectedArea === idx;
+            return (
+              <div
+                key={area.title}
+                onClick={() => setSelectedArea(idx)}
+                className={`card cursor-pointer transition-all ${
+                  isSel ? 'border-strong' : ''
+                }`}
+                style={{
+                  background: isSel ? 'var(--surface-card-emphasis)' : 'var(--surface-card)',
+                }}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-3xl">{area.icon}</span>
+                  <span className="badge badge-accent">{area.tag}</span>
                 </div>
-                <div className="flex flex-col items-center px-4 md:px-1 py-2 xl:w-[20%] lg:w-[25%] bg-[#5AE299] border-x border-black md:w-[30%]">
-                    <p className="lg:text-sm md:text-xs max-md:text-xs">Marketing</p>
-                    <p className="lg:text-sm md:text-xs max-md:text-xs">20%</p>
-                </div>
-                <div className="flex flex-col items-center px-4 md:px-1 lg:px-4 py-2">
-                    <p className="lg:text-sm md:text-xs max-md:text-xs">Programs + Services</p>
-                    <p className="lg:text-sm md:text-xs max-md:text-xs">70%</p>
-                </div>
-            </div>
+                <h3 className="text-xl font-bold text-white mb-2">{area.title}</h3>
+                <p className="text-sm text-secondary leading-relaxed">{area.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 p-6 rounded-2xl bg-surface border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h4 className="text-lg font-bold text-white mb-1">Tax-Deductible 501(c)(3) Giving</h4>
+            <p className="text-sm text-secondary">
+              Zoo Labs Foundation is a recognized 501(c)(3) non-profit public charity. All donations are tax-deductible to the fullest extent permitted by law.
+            </p>
           </div>
-          <div className="max-md:bg-[#3C9465] grid text-black grid-cols-2 max-md:grid-cols-1 max-md:py-12 flex-1 gap-x-16 px-12 md:px-4 lg:px-8 lg:gap-x-12 md:gap-x-4">
-            <div className="flex flex-col border-y border-black pt-4 pb-12 md:pb-8 space-y-8">
-                <h3 className="2xl:text-3xl xl:text-2xl lg:text-2xl md:text-base ">Programs +<br className="max-md:hidden block"/>Services</h3>
-                <p className="lg:text-base md:text-xs">70% of your donation supports our practical conservation initiatives, such as habitat preservation, species protection, and community engagement, making a real-world difference.</p>
-            </div>
-            <div className="flex flex-col border-y border-black pt-4 pb-12 md:pb-8 space-y-8">
-                <h3 className="2xl:text-3xl xl:text-2xl lg:text-2xl md:text-base  md:min-h-[48px] lg:min-h-[64px] 2xl:min-h-[72px] ">Marketing</h3>
-                <p className="lg:text-base md:text-xs">20% of your donations help raise further awareness and financial support for our cause, aiding us to broaden our reach and escalate our impact in the conservation landscape.</p>
-            </div>
-            <div className="flex flex-col border-b border-black pt-4 pb-12 md:pb-8 space-y-8">
-                <h3 className="2xl:text-3xl xl:text-2xl lg:text-2xl md:text-base ">Administrative Costs</h3>
-                <p className="md:text-xs lg:text-base">10% of your donation backs the operational backbone of our organization, enabling us to navigate legal avenues effectively and maintain essential collaborations for wildlife protection.</p>
-            </div>
-          </div>
+          <a
+            href="https://www.paypal.biz/zoongo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary px-8 py-3 rounded-full font-bold text-sm shrink-0"
+          >
+            Donate Today &rarr;
+          </a>
         </div>
       </div>
-    );
-  }
-
-export default Donation_Spent;
-
+    </section>
+  );
+}
