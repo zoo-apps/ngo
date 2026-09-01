@@ -1,62 +1,70 @@
 import Link from 'next/link';
 
-function Intro({breadcrumbs, title, comment}: {
-    breadcrumbs: string;
-    title: string;
-    comment?: string;
-  }) {
+function Intro({
+  breadcrumbs,
+  title,
+  comment,
+}: {
+  breadcrumbs: string;
+  title: string;
+  comment?: string;
+}) {
   return (
-    <section className="relative overflow-hidden">
-      {/* Pure black to dark gradient - NO color tint */}
-      <div className="absolute inset-0 bg-[#09090b]" />
-      {/* Subtle white radial for depth - monochrome only */}
-      <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.04]" style={{background: 'radial-gradient(circle, #ffffff 0%, transparent 70%)'}} />
+    <section style={{ position: 'relative', overflow: 'hidden', padding: '2rem 1.5rem 4rem 1.5rem' }}>
+      <div className="glow-backdrop" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40">
-        <div className="flex flex-wrap items-center gap-2 mb-8">
-          <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
-            {breadcrumbs}
-          </span>
-          <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-400 bg-neutral-900 px-3 py-1 rounded-full border border-neutral-800">
-            501(c)(3) Non-Profit · EIN 88-3538992
-          </span>
+      <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.5rem', position: 'relative', zIndex: 10 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem' }}>
+          <div className="pill" style={{ fontSize: '0.75rem' }}>
+            <span>🐬</span>
+            <span>{breadcrumbs}</span>
+          </div>
+          <div className="pill" style={{ fontSize: '0.75rem' }}>
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#34d399', display: 'inline-block' }} />
+            <span>501(c)(3) Non-Profit · EIN 88-3538992</span>
+          </div>
         </div>
 
-        <h1 className="text-white text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.05] mb-8">
+        <h1 className="display-chrome" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 800, lineHeight: 1.08, letterSpacing: '-0.03em' }}>
           {title}
         </h1>
 
-        <p className="text-neutral-300 text-lg md:text-xl lg:text-2xl max-w-3xl mb-6 leading-relaxed">
-          {comment}
-        </p>
+        {comment && (
+          <p className="text-secondary" style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', lineHeight: 1.6, maxWidth: '800px' }}>
+            {comment}
+          </p>
+        )}
 
-        <p className="text-neutral-400 text-base md:text-lg mb-10 max-w-3xl">
+        <p className="text-secondary" style={{ fontSize: '0.95rem', lineHeight: 1.6, maxWidth: '800px', opacity: 0.8 }}>
           Zoo Labs Foundation Inc. is a 501(c)(3) non-profit scientific research organization advancing open frontier AI, bioacoustic telemetry, and computational conservation biology for 1,500+ endangered species.
         </p>
 
-        <div className="flex flex-wrap gap-4 mb-14">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', paddingTop: '0.5rem' }}>
           <a
             href="https://zoolabs.io"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-blue-600 text-white px-7 py-3.5 rounded-full text-sm font-bold shadow-lg shadow-blue-600/30 hover:bg-blue-500 transition-all hover:scale-105 active:scale-95"
+            className="action"
+            data-fill
+            style={{ minHeight: '46px', padding: '0 1.75rem', fontSize: '0.875rem' }}
           >
-            <span>🐬 Open ZooLabs.io Playground</span>
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            <span>🐬 Launch ZooLabs.io ↗</span>
           </a>
 
           <Link
             href="/ai"
-            className="bg-white text-black px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-neutral-200 transition-colors"
+            className="action"
+            style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.875rem' }}
           >
-            Explore Zen Models
+            Explore Zen Models &rarr;
           </Link>
 
           <Link
             href="/research"
-            className="border border-neutral-700 text-white px-6 py-3.5 rounded-full text-sm font-semibold hover:border-neutral-500 transition-colors"
+            className="action"
+            style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.875rem' }}
           >
-            Read Our Research
+            Read Research
           </Link>
         </div>
       </div>
