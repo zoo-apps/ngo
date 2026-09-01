@@ -64,10 +64,10 @@ function Navbar() {
     >
       <div style={{ height: '100%', padding: '0 clamp(12px, 3vw, 32px)' }}>
         <div className="flex items-center justify-between" style={{ height: '100%' }}>
-          {/* Left: Unified ZOO Wordmark */}
+          {/* Left: Unified ZOO Wordmark with RGB Logo */}
           <div className="flex items-center gap-3 shrink-0">
             <Link href="/" className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity">
-              <span className="text-base">🐬</span>
+              <img src="/zoo-color-logo.svg" alt="ZOO" className="w-5 h-5" />
               <span className="font-black text-lg tracking-tight text-white font-mono">
                 ZOO
               </span>
