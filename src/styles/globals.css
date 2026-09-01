@@ -1,3 +1,8 @@
+/* Zen comes from `@hanzo/font`, which is where the family is authored. It is
+   the FIRST rule in the file on purpose: CSS drops an @import that does not
+   precede every other rule, so a face declared later never loads. */
+@import '@hanzo/font/css';
+
 /* Zoo Labs Foundation — the same light, hard-edged look as zoo.industries and
    zoolabs.io. The colour on the page is the Zoo mark's own five hues; the
    animals bring the rest.
@@ -5,20 +10,6 @@
    Everything below the "Typography Classes" rule is the layout utility layer
    the inner pages were written against. It stays until those pages move to
    @hanzo/gui, which is where new work goes. */
-
-@font-face {
-  font-family: "Zen";
-  src: url("/fonts/Zen-Variable.woff2") format("woff2");
-  font-weight: 100 900;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Zen Mono";
-  src: url("/fonts/ZenMono-Variable.woff2") format("woff2");
-  font-weight: 100 900;
-  font-display: swap;
-}
 
 :root {
   color-scheme: light;
