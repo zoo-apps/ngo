@@ -5,23 +5,23 @@ import { ThemeSwitcher } from './ThemeSwitcher'
 
 const COLUMNS = [
   {
-    title: 'Products',
+    title: 'AI Platforms',
     links: [
-      { label: 'Zoo Agents', href: '/animals' },
-      { label: 'Zoo AI', href: '/ai' },
-      { label: 'Zoo Exchange', href: 'https://zoo.exchange' },
-      { label: 'Zoo Fund', href: '/donation' },
-      { label: 'Collections', href: '/animals' },
+      { label: 'ZooLabs.io AI Playground', href: 'https://zoolabs.io' },
+      { label: 'Blue the Beluga', href: 'https://zoolabs.io' },
+      { label: 'Zoo Flow 4K Video', href: 'https://zoolabs.io/video' },
+      { label: 'Bioacoustics DAW', href: 'https://zoolabs.io/music' },
+      { label: 'Multi-Agent Sandbox', href: 'https://zoolabs.io/vibe' },
     ],
   },
   {
-    title: 'Research',
+    title: 'Open Models & Research',
     links: [
-      { label: 'Zen Models', href: '/ai' },
-      { label: 'Zoo Gym', href: '/ai#gym' },
-      { label: 'Papers', href: '/research' },
-      { label: 'ZIPs', href: 'https://zips.zoo.ngo' },
-      { label: 'Formal Proofs', href: '/research#proofs' },
+      { label: 'Zen Models (45+)', href: '/ai' },
+      { label: 'Zoo Gym (GRPO)', href: '/ai#gym' },
+      { label: 'Research Papers', href: '/research' },
+      { label: 'Formal Proofs', href: '/research' },
+      { label: 'Bioacoustic Datasets', href: '/impact' },
     ],
   },
   {
@@ -35,14 +35,14 @@ const COLUMNS = [
     ],
   },
   {
-    title: 'Foundation',
+    title: '501(c)(3) Foundation',
     links: [
-      { label: 'About', href: '/about' },
-      { label: 'Team', href: '/team' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Terms', href: '/terms' },
-      { label: 'Privacy', href: '/terms' },
-      { label: 'Donate', href: '/donation' },
+      { label: 'About Zoo Labs Inc', href: '/about' },
+      { label: 'Donate (Tax Deductible)', href: '/donation' },
+      { label: 'Impact & Sanctuaries', href: '/impact' },
+      { label: 'Transparency & 990', href: '/transparency' },
+      { label: 'Terms of Service', href: '/terms' },
+      { label: 'Privacy Policy', href: '/terms' },
     ],
   },
 ]
@@ -64,15 +64,15 @@ function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {COLUMNS.map((col) => (
             <div key={col.title}>
-              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+              <h3 className="text-xs font-bold text-foreground uppercase tracking-wider mb-4">
                 {col.title}
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                       {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     >
                       {link.label}
@@ -86,9 +86,15 @@ function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground text-center sm:text-left">
-            &copy; 2026 Zoo Labs Foundation Inc. 501(c)(3) &middot; EIN: 88-3538992
-          </p>
+          <div className="space-y-1 text-center sm:text-left">
+            <p className="text-xs text-muted-foreground font-medium">
+              &copy; 2026 Zoo Labs Foundation Inc. &middot; 501(c)(3) Tax-Exempt Scientific Research Organization
+            </p>
+            <p className="text-[11px] text-muted-foreground/70 font-mono">
+              EIN: 88-3538992 &middot; Contributions are tax-deductible under Section 501(c)(3) of the Internal Revenue Code.
+            </p>
+          </div>
+
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3">
               {SOCIALS.map((s) => (
