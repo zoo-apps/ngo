@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 
-type DropdownId = 'products' | 'models' | 'research' | 'network' | 'tryzen' | null
+type DropdownId = 'products' | 'models' | 'research' | 'foundation' | null
 
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -35,7 +35,7 @@ function Navbar() {
   const NavDropdown = ({ id, children }: { id: DropdownId; children: React.ReactNode }) => (
     activeDropdown === id ? (
       <div
-        className="absolute left-1/2 -translate-x-1/2 mt-3 bg-background border border-border rounded-2xl shadow-2xl p-5 z-50"
+        className="absolute left-1/2 -translate-x-1/2 mt-3 bg-background border border-border rounded-2xl shadow-2xl p-5 z-50 animate-in fade-in zoom-in-95 duration-150"
         onMouseEnter={() => openDropdown(id)}
         onMouseLeave={closeDropdown}
       >
@@ -48,51 +48,26 @@ function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-[999]"
       style={{
-        // The audited bar, at the values hanzo.ai measures: 60 tall, one glass
-        // recipe, and no hairline.
-        //
-        // It used to be TRANSPARENT until scrolled, which is the single thing
-        // that made this header read as a different product — the bar simply was
-        // not there on arrival, so the page had no top edge and the nav floated
-        // on the hero. Glass from the first pixel is what every other surface in
-        // the family does.
-        //
-        // The bottom border stays 1px and stays TRANSPARENT: the glass already
-        // ends itself, and a white line over a blurred boundary reads as a seam
-        // between two surfaces rather than the edge of one. The pixel is kept so
-        // the 60px box does not move.
         height: 60,
-        background: 'rgba(9,9,11,0.72)',
+        background: 'rgba(9,9,11,0.85)',
         backdropFilter: 'blur(20px) saturate(1.8)',
         WebkitBackdropFilter: 'blur(20px) saturate(1.8)',
-        borderBottom: '1px solid transparent',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
       }}
     >
-      {/* The page gutter, in the VIEWPORT's units — the same clamp the rest of
-          the family uses, so a link in this bar sits in the same column as the
-          content beneath it at every width, with nothing measured. */}
-      <div style={{ height: '100%', padding: '0 clamp(20px, 4vw, 72px)' }}>
+      <div style={{ height: '100%', padding: '0 clamp(16px, 4vw, 64px)' }}>
         <div className="flex items-center justify-between" style={{ height: '100%' }}>
-          {/* Left: Logo */}
-          {/* The WORDMARK alone. The corner carried the coloured disc and the
-              wordmark side by side — the same brand said twice, and the disc is
-              the louder of the two, so the one saturated object on an otherwise
-              monochrome page sat in the corner competing with the headline.
-              The disc still appears, once, as the chat launcher: it is the mark
-              when it has to work at 56px with no room for letters, and the
-              wordmark when there is room. Two jobs, one each.
-
-              It no longer hides below `sm`. It was `hidden sm:block` because the
-              disc stood in for it on a phone; with the disc gone that left the
-              corner empty, which is the whole brand missing on the smallest
-              screen. */}
-          <Link href="/" className="flex items-center shrink-0">
-            <Image alt="Zoo" src="/zooLogo.svg" width={56} height={56} />
+          {/* Left: Logo + 501(c)(3) Tag */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0">
+            <Image alt="Zoo" src="/favicon/logo.svg" width={32} height={32} />
+            <div className="flex flex-col">
+              <span className="font-extrabold text-sm tracking-tight text-foreground leading-none">ZOO LABS</span>
+              <span className="text-[9px] text-emerald-400 font-semibold tracking-wider">FOUNDATION 501(C)(3)</span>
+            </div>
           </Link>
 
           {/* Center: Nav (desktop) */}
           <div className="hidden md:flex items-center gap-1">
-
             {/* Products */}
             <div className="relative" onMouseEnter={() => openDropdown('products')} onMouseLeave={closeDropdown}>
               <Link href="/#products" className="text-[13px] font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
@@ -100,9 +75,20 @@ function Navbar() {
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </Link>
               <NavDropdown id="products">
-                <div className="w-[420px]">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">Platform</p>
+                <div className="w-[440px]">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">AI Platforms & Tools</p>
                   <div className="grid grid-cols-2 gap-2 mb-4">
+                    <a href="https://zoolabs.io" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 transition-all col-span-2">
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm text-blue-400 font-bold flex items-center gap-1.5">
+                          <span>🐬</span>
+                          <span>ZooLabs.io AI Playground</span>
+                        </p>
+                        <span className="text-[10px] bg-blue-500/30 text-blue-200 px-2 py-0.5 rounded-full font-mono font-bold">LIVE</span>
+                      </div>
+                      <p className="text-xs text-zinc-300 mt-1">Multi-agent vibe sandbox, 4K video diffusion, bioacoustics DAW & 3D generator</p>
+                    </a>
+
                     <Link href="/ai" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
                       <p className="text-sm text-foreground font-medium">Zoo AI</p>
                       <p className="text-xs text-muted-foreground">Desktop app, local inference</p>
@@ -111,35 +97,14 @@ function Navbar() {
                       <p className="text-sm text-foreground font-medium">Zoo Gym</p>
                       <p className="text-xs text-muted-foreground">Open-source training platform</p>
                     </Link>
-                    <a href="https://hanzo.bot" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
-                      <p className="text-sm text-foreground font-medium">Zoo Chat</p>
-                      <p className="text-xs text-muted-foreground">Chat with Zen models</p>
-                    </a>
-                    <Link href="/coin" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
-                      <p className="text-sm text-foreground font-medium">Zoo Network</p>
-                      <p className="text-xs text-muted-foreground">Decentralized AI compute</p>
+                    <Link href="/animals" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
+                      <p className="text-sm text-foreground font-medium">Animal Familiars</p>
+                      <p className="text-xs text-muted-foreground">Autonomous AI conservation bots</p>
                     </Link>
-                  </div>
-                  <div className="border-t border-border pt-3">
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">Ecosystem</p>
-                    <div className="grid grid-cols-2 gap-2">
-                      <Link href="/animals" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
-                        <p className="text-sm text-foreground font-medium">Zoo Agents</p>
-                        <p className="text-xs text-muted-foreground">Autonomous AI animals</p>
-                      </Link>
-                      <a href="https://zoo.exchange" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
-                        <p className="text-sm text-foreground font-medium">Zoo Exchange</p>
-                        <p className="text-xs text-muted-foreground">Trade $ZOO and $AI</p>
-                      </a>
-                      <Link href="/donation" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
-                        <p className="text-sm text-foreground font-medium">Zoo Fund</p>
-                        <p className="text-xs text-muted-foreground">On-chain research grants</p>
-                      </Link>
-                      <Link href="/animals" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
-                        <p className="text-sm text-foreground font-medium">Collections</p>
-                        <p className="text-xs text-muted-foreground">AI-generated NFT art</p>
-                      </Link>
-                    </div>
+                    <Link href="/impact" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
+                      <p className="text-sm text-foreground font-medium">Bioacoustic Sensors</p>
+                      <p className="text-xs text-muted-foreground">120kHz sanctuary telemetry</p>
+                    </Link>
                   </div>
                 </div>
               </NavDropdown>
@@ -176,16 +141,9 @@ function Navbar() {
                       </div>
                       <span className="text-xs text-muted-foreground">12 models</span>
                     </a>
-                    <a href="https://huggingface.co/zenlm" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-2.5 rounded-lg hover:bg-accent transition-colors">
-                      <div>
-                        <p className="text-sm text-foreground font-medium">Safety</p>
-                        <p className="text-xs text-muted-foreground">zen-guard content safety & alignment</p>
-                      </div>
-                      <span className="text-xs text-muted-foreground">3 models</span>
-                    </a>
                   </div>
                   <Link href="/ai" className="block w-full text-center text-sm text-muted-foreground hover:text-foreground py-2 border-t border-border transition-colors">
-                    View all models →
+                    View all 45+ open models →
                   </Link>
                 </div>
               </NavDropdown>
@@ -202,15 +160,11 @@ function Navbar() {
                   <div className="space-y-1.5 mb-4">
                     <Link href="/research" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
                       <p className="text-sm text-foreground font-medium">Papers</p>
-                      <p className="text-xs text-muted-foreground">7 research publications</p>
+                      <p className="text-xs text-muted-foreground">7 peer-reviewed AI publications</p>
                     </Link>
-                    <a href="https://zips.zoo.ngo" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
-                      <p className="text-sm text-foreground font-medium">ZIPs</p>
-                      <p className="text-xs text-muted-foreground">102 improvement proposals</p>
-                    </a>
                     <Link href="/ai#gym" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
                       <p className="text-sm text-foreground font-medium">Zoo Gym</p>
-                      <p className="text-xs text-muted-foreground">Open-source training platform</p>
+                      <p className="text-xs text-muted-foreground">Training-free GRPO & LoRA</p>
                     </Link>
                     <Link href="/research" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
                       <p className="text-sm text-foreground font-medium">Formal Proofs</p>
@@ -224,46 +178,37 @@ function Navbar() {
               </NavDropdown>
             </div>
 
-            {/* Network */}
-            <div className="relative" onMouseEnter={() => openDropdown('network')} onMouseLeave={closeDropdown}>
-              <Link href="/coin" className="text-[13px] font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
-                Network
+            {/* Foundation */}
+            <div className="relative" onMouseEnter={() => openDropdown('foundation')} onMouseLeave={closeDropdown}>
+              <Link href="/about" className="text-[13px] font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-md transition-colors flex items-center gap-1">
+                Foundation
                 <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </Link>
-              <NavDropdown id="network">
-                <div className="w-[340px]">
+              <NavDropdown id="foundation">
+                <div className="w-[320px]">
                   <div className="space-y-1.5 mb-4">
-                    <Link href="/coin" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
-                      <p className="text-sm text-foreground font-medium">Zoo Network</p>
-                      <p className="text-xs text-muted-foreground">L2 AI specialization chain</p>
+                    <Link href="/about" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
+                      <p className="text-sm text-foreground font-medium">About 501(c)(3)</p>
+                      <p className="text-xs text-muted-foreground">Mission, EIN 88-3538992</p>
                     </Link>
-                    <a href="https://zoo.exchange" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
-                      <p className="text-sm text-foreground font-medium">Zoo Exchange</p>
-                      <p className="text-xs text-muted-foreground">Trade $ZOO and $AI tokens</p>
-                    </a>
-                    <a href="https://explore.lux.network" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
-                      <p className="text-sm text-foreground font-medium">Explorer</p>
-                      <p className="text-xs text-muted-foreground">Browse transactions and blocks</p>
-                    </a>
-                    <a href="https://lux.market" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
-                      <p className="text-sm text-foreground font-medium">Market</p>
-                      <p className="text-xs text-muted-foreground">NFTs, digital assets, collectibles</p>
-                    </a>
-                    <a href="https://wallet.lux.network" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
-                      <p className="text-sm text-foreground font-medium">Wallet</p>
-                      <p className="text-xs text-muted-foreground">Non-custodial, post-quantum secure</p>
-                    </a>
+                    <Link href="/impact" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
+                      <p className="text-sm text-foreground font-medium">Conservation Impact</p>
+                      <p className="text-xs text-muted-foreground">Protected wildlife habitats</p>
+                    </Link>
+                    <Link href="/transparency" className="p-2.5 rounded-lg hover:bg-accent transition-colors block">
+                      <p className="text-sm text-foreground font-medium">Transparency & 990</p>
+                      <p className="text-xs text-muted-foreground">Public financial disclosures</p>
+                    </Link>
                   </div>
-                  <a href="https://docs.lux.network" target="_blank" rel="noopener noreferrer" className="block w-full text-center text-sm text-muted-foreground hover:text-foreground py-2 border-t border-border transition-colors">
-                    Network docs →
-                  </a>
+                  <Link href="/donation" className="block w-full text-center text-sm font-semibold text-blue-400 hover:text-blue-300 py-2 border-t border-border transition-colors">
+                    Tax-Deductible Donation →
+                  </Link>
                 </div>
               </NavDropdown>
             </div>
-
           </div>
 
-          {/* Right: CTAs */}
+          {/* Right: Actions */}
           <div className="flex items-center gap-3">
             {mounted && (
               <button
@@ -278,155 +223,79 @@ function Navbar() {
                 )}
               </button>
             )}
+
             <Link
-              href="https://github.com/zooai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:block text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors"
+              href="/donation"
+              className="text-xs font-semibold text-muted-foreground hover:text-foreground px-3 py-1.5 rounded-full border border-border transition-colors hidden sm:inline-block"
             >
-              GitHub
+              Donate (501c3)
             </Link>
 
-            {/* Try Zen with dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => openDropdown('tryzen')}
-              onMouseLeave={closeDropdown}
+            <a
+              href="https://zoolabs.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 py-2 rounded-full shadow-lg shadow-blue-600/20 active:scale-95 transition-all"
             >
-              <a
-                href="https://hanzo.bot"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-foreground text-background text-[13px] font-medium px-4 py-2 rounded-full hover:opacity-80 transition-all inline-flex items-center gap-1.5"
-              >
-                Try Zen
-                <svg className="w-3 h-3 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-              </a>
-              <NavDropdown id="tryzen">
-                <div className="w-[340px]">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">Zen Models</p>
-                  <div className="space-y-1.5 mb-4">
-                    <a href="https://huggingface.co/zenlm" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-2.5 rounded-lg hover:bg-accent transition-colors">
-                      <div>
-                        <p className="text-sm text-foreground font-medium">Zen4 Family</p>
-                        <p className="text-xs text-muted-foreground">0.6B to 480B parameters</p>
-                      </div>
-                      <span className="text-xs text-muted-foreground">Open weights</span>
-                    </a>
-                    <a href="https://huggingface.co/zenlm/zen4-coder-flash" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-2.5 rounded-lg hover:bg-accent transition-colors">
-                      <div>
-                        <p className="text-sm text-foreground font-medium">Zen4 Coder</p>
-                        <p className="text-xs text-muted-foreground">59.2% SWE-bench</p>
-                      </div>
-                      <span className="text-xs text-foreground">New</span>
-                    </a>
-                  </div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">Apps</p>
-                  <div className="grid grid-cols-2 gap-2 mb-4">
-                    <a href="https://hanzo.bot" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
-                      <p className="text-sm text-foreground font-medium">Zoo AI Chat</p>
-                      <p className="text-xs text-muted-foreground">Chat with Zen</p>
-                    </a>
-                    <a href="https://github.com/zooai/zoo" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-lg hover:bg-accent transition-colors">
-                      <p className="text-sm text-foreground font-medium">Desktop App</p>
-                      <p className="text-xs text-muted-foreground">Local inference</p>
-                    </a>
-                  </div>
-                  <a href="https://hanzo.bot" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-foreground text-background py-2 rounded-lg font-medium text-sm hover:opacity-80 transition-all">
-                    Open Zoo AI
-                  </a>
-                </div>
-              </NavDropdown>
-            </div>
+              <span>🐬 Launch ZooLabs.io</span>
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
 
-            {/* Hamburger (mobile) */}
+            {/* Mobile hamburger */}
             <button
-              type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden text-foreground p-2"
+              className="md:hidden flex items-center justify-center w-8 h-8 rounded-md text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Toggle menu"
             >
               {mobileOpen ? (
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/></svg>
               ) : (
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/></svg>
               )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Drawer */}
       {mobileOpen && (
         <div
           className="md:hidden"
           style={{
-            // FULL height, not "as tall as it happens to be". A sheet sized to
-            // its content stops wherever the last row lands and leaves the page
-            // showing underneath, which reads as a panel that failed to finish
-            // rather than as the menu taking over the screen — and the screen is
-            // what a phone menu is competing for.
-            //
-            // `dvh`, not `vh`: on a phone `vh` is the LARGEST viewport, measured
-            // as though the browser chrome were hidden, so a sheet cut to `vh`
-            // runs under the address bar until you scroll.
             position: 'fixed',
             top: 60,
             left: 0,
             right: 0,
             height: 'calc(100dvh - 60px)',
             overflowY: 'auto',
-            // A COLUMN, so the action can sit at the FOOT rather than wherever
-            // the last link happens to end.
             display: 'flex',
             flexDirection: 'column',
-            // OPAQUE, and no backdrop filter of its own.
-            //
-            // At 0.95 over a blur this still read through: the bar above it
-            // already carries a backdrop-filter, which makes it the containing
-            // block for fixed descendants AND leaves this sheet re-sampling a
-            // backdrop that has already been filtered. Measured at 390, the
-            // hero's headline and lead were both plainly legible behind the
-            // menu — a phone menu competing with the page it is covering.
-            //
-            // A sheet that takes over the screen should take it over. The bar
-            // is the glass; this is the page behind it.
             background: 'var(--color-bg, #0a0a0a)',
           }}
         >
-          <div className="px-4 py-4 space-y-1" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-            <p className="text-xs text-muted-foreground uppercase tracking-wider px-3 pt-2 pb-1">Products</p>
-            <Link href="/ai" onClick={() => setMobileOpen(false)} className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Zoo AI</Link>
-            <Link href="/ai#gym" onClick={() => setMobileOpen(false)} className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Zoo Gym</Link>
-            <Link href="/animals" onClick={() => setMobileOpen(false)} className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Zoo Agents</Link>
-            <a href="https://zoo.exchange" target="_blank" rel="noopener noreferrer" className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Zoo Exchange</a>
+          <div className="px-4 py-4 space-y-4" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+            <a
+              href="https://zoolabs.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600 text-white font-bold text-sm shadow-md"
+            >
+              <span>🐬 Launch ZooLabs.io AI Playground</span>
+            </a>
 
-            <p className="text-xs text-muted-foreground uppercase tracking-wider px-3 pt-4 pb-1">Models</p>
-            <Link href="/ai" onClick={() => setMobileOpen(false)} className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Zen4 Family</Link>
-            <a href="https://huggingface.co/zenlm" target="_blank" rel="noopener noreferrer" className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">HuggingFace</a>
-
-            <p className="text-xs text-muted-foreground uppercase tracking-wider px-3 pt-4 pb-1">Research</p>
-            <Link href="/research" onClick={() => setMobileOpen(false)} className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Papers</Link>
-            <a href="https://zips.zoo.ngo" target="_blank" rel="noopener noreferrer" className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">ZIPs</a>
-
-            <p className="text-xs text-muted-foreground uppercase tracking-wider px-3 pt-4 pb-1">Network</p>
-            <Link href="/coin" onClick={() => setMobileOpen(false)} className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Zoo Network</Link>
-            <a href="https://zoo.exchange" target="_blank" rel="noopener noreferrer" className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Exchange</a>
-            <a href="https://explore.lux.network" target="_blank" rel="noopener noreferrer" className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Explorer</a>
-            <a href="https://lux.market" target="_blank" rel="noopener noreferrer" className="block text-foreground hover:text-foreground px-3 py-2 rounded-md text-sm">Market</a>
-
-            {/* The action rests on the bottom edge. `marginTop: auto` gives the
-                column's free space to this margin, so it sits at the foot when
-                the pane is short and is simply the last thing when it scrolls —
-                instead of moving every time the list above it changes length. */}
-            <div className="px-3" style={{ marginTop: 'auto', paddingTop: 16 }}>
-              <a href="https://hanzo.bot" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-foreground text-background py-3 rounded-full font-medium text-sm">
-                Try Zen
-              </a>
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <Link href="/ai" onClick={() => setMobileOpen(false)} className="p-2.5 rounded-lg bg-accent/50 text-foreground font-medium">
+                Zen Models
+              </Link>
+              <Link href="/ai#gym" onClick={() => setMobileOpen(false)} className="p-2.5 rounded-lg bg-accent/50 text-foreground font-medium">
+                Zoo Gym
+              </Link>
+              <Link href="/research" onClick={() => setMobileOpen(false)} className="p-2.5 rounded-lg bg-accent/50 text-foreground font-medium">
+                Research Papers
+              </Link>
+              <Link href="/donation" onClick={() => setMobileOpen(false)} className="p-2.5 rounded-lg bg-accent/50 text-foreground font-medium">
+                501(c)(3) Donate
+              </Link>
             </div>
           </div>
         </div>
