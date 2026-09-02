@@ -195,7 +195,7 @@ export default function Docs() {
                         <li className="flex items-start">
                           <span className="text-green-500 mr-3">•</span>
                           <div>
-                            <strong>Species Classification:</strong> 98% accuracy across 2,300+ species
+                            <strong>Species Classification:</strong> 91.2–95% on the paper&rsquo;s own benchmarks
                           </div>
                         </li>
                         <li className="flex items-start">
