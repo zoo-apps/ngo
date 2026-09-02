@@ -16,47 +16,48 @@ interface FooterColumn {
   links: LinkItem[]
 }
 
+// Every destination below was requested and answered before it was listed.
+// Nine did not: zoolabs.io/vibe, /video, /music and /mint advertised
+// generation products that were removed for being simulated; zoo-labs/chains,
+// zoo-labs/papers and zoo-labs/zips are 404 because the repositories live
+// under `zooai`; and gym.zoo.ngo answers 525. A dead link in a footer is a
+// small claim that something exists.
 const COLUMNS: FooterColumn[] = [
   {
-    title: 'Frontier Research',
+    title: 'Research',
     links: [
       { label: 'Documentation', href: 'https://docs.zoo.ngo', external: true },
-      { label: `Research Papers (${CORPUS.papers})`, href: 'https://papers.zoo.ngo', external: true },
-      { label: `Zoo Proposals (${CORPUS.proposals})`, href: 'https://zips.zoo.ngo', external: true },
-      { label: 'Thinking Chains Datasets', href: 'https://github.com/zoo-labs/chains', external: true },
-      { label: 'Zen Models (open weights)', href: 'https://huggingface.co/zenlm', external: true },
-      { label: 'Zoo Gym (Training-Free GRPO)', href: 'https://github.com/zooai/gym', external: true },
+      { label: `Papers (${CORPUS.papers})`, href: 'https://papers.zoo.ngo', external: true },
+      { label: `Proposals (${CORPUS.proposals})`, href: 'https://zips.zoo.ngo', external: true },
+      { label: 'Zen models (open weights)', href: 'https://huggingface.co/zenlm', external: true },
+      { label: 'Zoo Gym', href: 'https://github.com/zooai/gym', external: true },
     ],
   },
   {
-    title: 'AI Platforms',
+    title: 'Use it',
     links: [
-      { label: 'ZooLabs.io Studio', href: 'https://zoolabs.io', external: true },
-      { label: 'Blue the Beluga Companion', href: 'https://zoolabs.io', external: true },
-      { label: 'Multi-Agent Vibe Pods', href: 'https://zoolabs.io/vibe', external: true },
-      { label: 'Zoo Flow 4K Video Cinema', href: 'https://zoolabs.io/video', external: true },
-      { label: 'AI Music DAW & Synthesizer', href: 'https://zoolabs.io/music', external: true },
-      { label: 'MicroVM Sandbox Cloud', href: 'https://zoolabs.io/mint', external: true },
+      { label: 'Ask Blue', href: 'https://zoolabs.io', external: true },
+      { label: 'Zoo Network', href: 'https://zoo.network', external: true },
+      { label: 'Research notes', href: '/blog' },
+      { label: 'What we have published', href: '/impact' },
     ],
   },
   {
-    title: 'Open Source',
+    title: 'Source',
     links: [
-      { label: 'zoo-labs/papers (LaTeX/PDF)', href: 'https://github.com/zoo-labs/papers', external: true },
-      { label: 'zoo-labs/zips (Standards)', href: 'https://github.com/zoo-labs/zips', external: true },
-      { label: 'zoo-labs/chains (Reasoning)', href: 'https://github.com/zoo-labs/chains', external: true },
+      { label: 'zooai/papers', href: 'https://github.com/zooai/papers', external: true },
+      { label: 'zooai/ZIPs', href: 'https://github.com/zooai/ZIPs', external: true },
       { label: 'zoo-apps/zoolabs.io', href: 'https://github.com/zoo-apps/zoolabs.io', external: true },
       { label: 'zoo-apps/zoo.ngo', href: 'https://github.com/zoo-apps/zoo.ngo', external: true },
-      { label: 'ZenLM Model Weights', href: 'https://github.com/zooai', external: true },
+      { label: 'Every repository', href: 'https://github.com/zooai', external: true },
     ],
   },
   {
     title: '501(c)(3) Foundation',
     links: [
-      { label: 'About Zoo Labs Inc.', href: '/about' },
-      { label: 'Donate (Tax Deductible)', href: '/donation' },
-      { label: 'Sanctuary Endowments', href: '/donation' },
-      { label: 'Transparency & Form 990', href: '/transparency' },
+      { label: 'About', href: '/about' },
+      { label: 'Donate (tax deductible)', href: '/donation' },
+      { label: 'Transparency', href: '/transparency' },
       { label: 'Terms of Service', href: '/terms' },
       { label: 'Privacy Policy', href: '/terms' },
     ],
