@@ -137,17 +137,20 @@ function Navbar() {
                       </p>
                       <p className="text-[11px] text-zinc-400">Protocol RFCs & Agent standards</p>
                     </a>
+                    {/* Was github.com/zoo-labs/chains, which is a 404 — the
+                        repositories live under `zooai`. Points at the papers
+                        themselves, which resolve. */}
                     <a
-                      href="https://github.com/zoo-labs/chains"
+                      href="https://github.com/zooai/papers"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 rounded-lg hover:bg-white/5 transition-colors block"
                     >
                       <p className="text-xs text-white font-semibold flex items-center justify-between">
-                        <span>Thinking Chains Datasets</span>
-                        <span className="text-[10px] text-zinc-400 font-mono">chains ↗</span>
+                        <span>Papers, in full</span>
+                        <span className="text-[10px] text-zinc-400 font-mono">LaTeX ↗</span>
                       </p>
-                      <p className="text-[11px] text-zinc-400">Verifiable multi-step reasoning traces</p>
+                      <p className="text-[11px] text-zinc-400">Every paper as its own source</p>
                     </a>
                   </div>
                 </div>
