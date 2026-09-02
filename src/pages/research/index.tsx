@@ -194,28 +194,35 @@ export default function Research() {
           <div className="container mx-auto px-4 py-16">
             <div className="border border-border rounded-2xl p-8 md:p-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">ResearchDAO</h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
-                Decentralized research funding. Smart contract-governed grants with on-chain transparency.
-                No gatekeepers, no bureaucracy.
+              {/* This block used to read "$8.4M Total Funded · 342 Projects ·
+                  14 days Avg. Funding Time", as though a grants programme were
+                  running. The $8.4M comes from zoo-fund-impact-thesis, which
+                  says funding "would reach $8.4M" AT TEN TIMES current network
+                  usage — a projection, printed as money already given. The
+                  other two were lifted from unrelated papers: 342 from a
+                  conservation-AI deployment section, 14 days from a
+                  satellite-ecology evaluation. And "Apply for Funding" pointed
+                  at the donation page, which is the wrong direction entirely. */}
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
+                A design for funding research without gatekeepers: grants governed by
+                contract, decisions and disbursements readable on-chain by anyone. It is
+                specified and not yet operating — no grant has been made, so there is no
+                total to report.
               </p>
-              <div className="grid grid-cols-3 gap-8 mb-8">
-                <div>
-                  <p className="text-2xl md:text-3xl font-bold text-foreground">$8.4M</p>
-                  <p className="text-sm text-muted-foreground">Total Funded</p>
-                </div>
-                <div>
-                  <p className="text-2xl md:text-3xl font-bold text-foreground">342</p>
-                  <p className="text-sm text-muted-foreground">Projects</p>
-                </div>
-                <div>
-                  <p className="text-2xl md:text-3xl font-bold text-foreground">14 days</p>
-                  <p className="text-sm text-muted-foreground">Avg. Funding Time</p>
-                </div>
-              </div>
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
+                The mechanism, and the projection that a mature network could route several
+                million a year to conservation from transaction fees alone, are set out in
+                the fund impact thesis.
+              </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/donation" className="text-sm border border-border text-foreground px-5 py-2.5 rounded-full hover:bg-card transition-colors">
-                  Apply for Funding
-                </Link>
+                <a
+                  href="https://github.com/zooai/papers/tree/main/zoo-fund-impact-thesis"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm border border-border text-foreground px-5 py-2.5 rounded-full hover:bg-card transition-colors"
+                >
+                  Read the thesis
+                </a>
                 <a href="https://github.com/zooai" target="_blank" rel="noopener noreferrer" className="text-sm border border-border text-muted-foreground px-5 py-2.5 rounded-full hover:bg-card hover:text-foreground transition-colors">
                   View on GitHub
                 </a>
