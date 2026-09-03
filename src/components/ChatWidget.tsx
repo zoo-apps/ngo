@@ -64,7 +64,10 @@ export default function ChatWidget() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'zen',
+          // zen-free, not zen: both are served, but `zen` bills through to an
+          // upstream that answers "Insufficient credits", which is a 402 the
+          // visitor can do nothing about.
+          model: 'zen-free',
           messages: [
             { role: 'system', content: SYSTEM_PROMPT },
             ...next.map((m) => ({ role: m.role, content: m.content })),
