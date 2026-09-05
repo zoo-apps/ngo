@@ -487,7 +487,7 @@ function CoreHeader({index}: {
                       animal?.status[0] == "E"
                         ? "bg-[#333333] intials-backdrop-e"
                         : "bg-[#FF592C] intials-backdrop "
-                    } rounded-full uppercase justify-center`}
+                    } rounded-full justify-center`}
                   >
                     <p className="text-3xl font-bold">{animal.status[0]}</p>
                   </div>
@@ -538,7 +538,7 @@ function CoreHeader({index}: {
               className="text-lg"
               dangerouslySetInnerHTML={{ __html: animal?.description }}
             /> */}
-            <p className="pb-4 text-[24px] text-foreground uppercase border-white cursor-pointer mt-4">
+            <p className="pb-4 text-[24px] text-foreground border-white cursor-pointer mt-4">
               Properties
             </p>
             <div className="grid grid-cols-2 md:grid-cols-2 gap-2.5 md:gap-4 mb-2.5 md:mb-4">

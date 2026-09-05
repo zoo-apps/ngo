@@ -18,6 +18,26 @@ import { loadStripe } from '@stripe/stripe-js';
 
 import NotFoundPage from "../404";
 
+/**
+ * The site is a static export, so a dynamic route has to name its paths at build
+ * time. Without this Next emitted one `/animals/[animal]` shell and nothing
+ * else, and every species link on /animals — six of them, in the header of every
+ * species page too — 404'd on the host.
+ *
+ * `animals.json` is already the list this page reads its content from, so it is
+ * the list of routes as well; there is no second place to keep in step.
+ */
+export function getStaticPaths() {
+  return {
+    paths: animals.map((a) => ({ params: { animal: a.route } })),
+    fallback: false,
+  };
+}
+
+export function getStaticProps() {
+  return { props: {} };
+}
+
 export default function AnimalPage() {
   const router = useRouter();
   const [animalRoute, setAnimalRoute] = useState(router.query.animal);

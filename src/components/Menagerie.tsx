@@ -94,14 +94,14 @@ export default function Menagerie() {
             color: blue ? '#fff' : 'var(--ink)',
           }}
         >
-          <span style={{ fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: 'var(--text-sm)', fontWeight: 600 }}>
             {blue ? 'Blue, at the lab' : beast.name}
           </span>
           <span style={{ flex: 1 }} />
           {blue ? (
             <a
               href="https://zoolabs.io"
-              style={{ fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', textDecoration: 'underline', textUnderlineOffset: 4 }}
+              style={{ fontSize: 'var(--text-sm)', fontWeight: 600 }}
             >
               Ask Blue ↗
             </a>

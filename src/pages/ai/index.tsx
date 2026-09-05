@@ -72,7 +72,7 @@ export default function AI() {
       <div className="bg-background text-foreground">
         {/* Hero */}
         <div className="container mx-auto px-4 pt-24 pb-16">
-          <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">Zoo Labs Foundation</p>
+          <p className="text-sm text-muted-foreground tracking-wider mb-4">Zoo Labs Foundation</p>
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Zen Model Family</h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
             45+ open-source frontier models from 600M to 480B parameters. Open weights,

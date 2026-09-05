@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import StartCollecting from '@/components/Collecting';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
-import Header from '@/pages/getinvolved/Header';
+import Header from '@/components/getinvolved/Header';
 import InvolvedContent from '@/components/InvolvedContent';
 import Comments from '@/components/Comment';
 import Donation from '@/components/Donation';

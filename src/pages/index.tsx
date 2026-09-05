@@ -1,65 +1,59 @@
 import React from 'react';
 import Link from 'next/link';
+import { Calendar, FileText, Globe, Heart, Layers, Leaf, MessageCircle, TrendingUp } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
+import Away from '@/components/Away';
+import Blue from '@/components/Blue';
 import { CORPUS } from '@/config/corpus';
-import Menagerie from '@/components/Menagerie';
 
 /**
- * Every number and every name on this page is one we can point at: the corpus
- * counts come from src/config/corpus.ts, the papers are real directories in
+ * Every number and every name on this page is one we can point at: the counts
+ * come from src/config/corpus.ts, the papers are real directories in
  * github.com/zooai/papers, and no organisation is named as a partner unless it
  * is one. A charity asking for money does not get to round any of that up.
+ *
+ * The page is two grounds. The night carries the header and the hero; the paper
+ * carries everything after it; and the numbers sit across the seam, which is
+ * the only element on the site that belongs to both.
  */
+
+/** A custom property, typed. --hue is what a card is coloured with. */
+const hue = (value: string) => ({ ['--hue']: value }) as React.CSSProperties;
+
+const COUNT = [
+  { icon: FileText, value: String(CORPUS.papers), label: 'Papers published' },
+  { icon: TrendingUp, value: String(CORPUS.proposals), label: 'Improvement proposals' },
+  { icon: Globe, value: 'Everything', label: 'Open source' },
+  { icon: Calendar, value: '2021', label: 'Founded' },
+];
 
 const WORK = [
   {
-    hue: 'var(--cyan)',
+    icon: Layers,
+    hue: 'var(--blue)',
     title: 'Open models',
     body: 'The Zen family is developed in the open and published with its weights, so anyone can run, inspect and build on it without asking us.',
     href: 'https://huggingface.co/zenlm',
     cta: 'Weights on Hugging Face',
   },
   {
+    icon: Leaf,
     hue: 'var(--green)',
     title: 'Conservation research',
-    body: 'Peer-style papers on wildlife population monitoring, species classification, habitat modelling and citizen science — written to be used, not cited.',
+    body: 'Peer-style papers on wildlife population monitoring, species classification, habitat modeling and citizen science — written to be used, not cited.',
     href: 'https://papers.zoo.ngo',
     cta: 'Read the papers',
   },
   {
-    hue: 'var(--magenta)',
+    icon: MessageCircle,
+    hue: 'var(--pink)',
     title: 'Teaching with Blue',
     body: 'Blue is a beluga whale who answers questions about the ocean for children, students and researchers, and says plainly when something is not known.',
     href: 'https://zoolabs.io',
     cta: 'Ask Blue',
-  },
-  {
-    hue: 'var(--yellow)',
-    title: 'Governed in public',
-    body: 'Changes to what we build are proposed, argued and recorded as Zoo Improvement Proposals. Anyone can read the reasoning; anyone can write one.',
-    href: 'https://zips.zoo.ngo',
-    cta: 'Browse proposals',
-  },
-];
-
-const PAPERS = [
-  {
-    topic: 'Conservation',
-    title: 'Conservation AI: Deep Learning for Wildlife Population Monitoring and Habitat Assessment',
-    href: 'https://github.com/zooai/papers/tree/main/zoo-conservation-ai',
-  },
-  {
-    topic: 'Conservation',
-    title: 'Decentralized Wildlife Tracking: Privacy-Preserving Animal Movement Analytics',
-    href: 'https://github.com/zooai/papers/tree/main/zoo-wildlife-tracking',
-  },
-  {
-    topic: 'Learning',
-    title: 'Specialized Avatar Tutors: Personalized Learning with Prerequisite Scaffolding',
-    href: 'https://github.com/zooai/papers/tree/main/zoo-avatar-tutors',
   },
 ];
 
@@ -67,116 +61,193 @@ export default function Home() {
   return (
     <Layout>
       <Seo
-        title="Zoo Labs Foundation — Open AI and Wildlife Research"
-        description="A 501(c)(3) non-profit publishing open AI models and conservation research, and teaching with them. Everything we make is public."
+        title='Zoo Labs Foundation — Open AI and Wildlife Research'
+        description='A 501(c)(3) non-profit publishing open AI models and conservation research, and teaching with them. Everything we make is public.'
       />
       <Navbar />
 
-      <section className="container py-16">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '3rem',
-            alignItems: 'center',
-          }}
-        >
-          <div>
-            <span className="pill">501(c)(3) non-profit · EIN 88-3538992</span>
+      <section
+        className='night'
+        style={{
+          paddingTop: 'var(--section-y-lg)',
+          paddingBottom: 'calc(var(--section-y-lg) + var(--straddle))',
+        }}
+      >
+        <div className='container'>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: 'var(--space-12)',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <span className='pill eyebrow'>501(c)(3) non-profit • EIN 88-3538992</span>
 
-            <h1 className="mt-6 text-5xl md:text-7xl font-black tracking-tight" style={{ maxWidth: '14ch' }}>
-              Open AI, and the animals it is for.
-            </h1>
+              <h1 className='mt-6'>
+                <span style={{ display: 'block' }}>Open AI,</span>
+                <span style={{ display: 'block' }}>and the animals</span>
+                <span style={{ display: 'block' }}>it is for.</span>
+              </h1>
 
-            <p className="mt-6 text-lg text-secondary" style={{ maxWidth: '52ch' }}>
-              Zoo Labs Foundation is a non-profit research organisation. We publish open AI
-              models and conservation research, and we build the things that teach with them.
-              All of it is public — the weights, the papers, the code and the arguments.
-            </p>
+              <p className='mt-6 text-lg text-secondary' style={{ maxWidth: '46ch' }}>
+                Zoo Labs Foundation is a non-profit research organization. We publish open AI models
+                and conservation research, and build the things that teach with them. All of it is
+                open source — the weights, the papers, the code and the arguments.
+              </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href="https://zoolabs.io" className="action" data-fill>
-                Ask Blue
-              </a>
-              <Link href="/donation" className="action">
-                Donate
-              </Link>
-              <a href="https://github.com/zooai" className="action">
-                Read the code
-              </a>
+              <div className='mt-8 flex flex-wrap gap-3'>
+                <a
+                  href='https://zoolabs.io'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='action'
+                  data-fill
+                >
+                  Ask Blue
+                  <Away />
+                </a>
+                <Link href='/donation' className='action'>
+                  Donate
+                </Link>
+                <a
+                  href='https://github.com/zooai'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='action'
+                >
+                  Read the code
+                </a>
+              </div>
             </div>
+
+            <Blue />
           </div>
-
-          <Menagerie />
         </div>
+      </section>
 
-        <dl className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            ['Papers published', String(CORPUS.papers)],
-            ['Improvement proposals', String(CORPUS.proposals)],
-            ['Open source', 'Everything'],
-            ['Founded', '2021'],
-          ].map(([label, value]) => (
-            <div key={label} className="card p-4">
-              <dd className="text-3xl font-black">{value}</dd>
-              <dt className="mt-1 text-xs uppercase tracking-wide text-muted">{label}</dt>
+      <div className='container straddle'>
+        <dl className='stats'>
+          {COUNT.map(({ icon: Icon, value, label }) => (
+            <div key={label}>
+              <Icon size={22} strokeWidth={1.5} style={{ color: 'var(--text-tertiary)' }} aria-hidden />
+              <div>
+                <dd className='text-2xl md:text-4xl font-bold'>{value}</dd>
+                <dt className='eyebrow mt-1'>{label}</dt>
+              </div>
             </div>
           ))}
         </dl>
-      </section>
+      </div>
 
-      <section className="container py-12">
-        <h2 className="text-3xl md:text-4xl font-black">What we do</h2>
-        <div className="mt-8 grid-cards">
-          {WORK.map((item) => (
-            <article key={item.title} className="card p-6" style={{ borderLeft: `10px solid ${item.hue}` }}>
-              <h3 className="text-xl font-bold">{item.title}</h3>
-              <p className="mt-3 text-secondary">{item.body}</p>
-              <a href={item.href} className="mt-4 inline-flex font-bold" style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}>
-                {item.cta} →
+      <section id='products' className='container' style={{ paddingTop: 'var(--section-y-lg)' }}>
+        <div className='text-center mx-auto' style={{ maxWidth: '58ch' }}>
+          <h2 className='text-3xl md:text-4xl font-bold'>What we do</h2>
+          <p className='mt-4 text-secondary'>
+            We advance open AI for conservation, education and discovery. Everything we build is
+            open, transparent and made to be used.
+          </p>
+        </div>
+
+        <div className='mt-12 grid-cards'>
+          {WORK.map(({ icon: Icon, ...w }) => (
+            <article
+              key={w.title}
+              className='card p-8 flex flex-col'
+              style={{ ...hue(w.hue), background: '#ffffff' }}
+            >
+              <span className='disc'>
+                <Icon size={20} strokeWidth={1.75} aria-hidden />
+              </span>
+              <h3 className='mt-5 text-xl font-semibold'>{w.title}</h3>
+              <p className='mt-3 text-secondary flex-1'>{w.body}</p>
+              <a
+                href={w.href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='tint mt-6'
+                style={{ alignSelf: 'flex-start' }}
+              >
+                {w.cta}
+                <Away />
               </a>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="container py-12">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="text-3xl md:text-4xl font-black">Recent research</h2>
-          <a href="https://papers.zoo.ngo" className="action">
-            All {CORPUS.papers} papers
-          </a>
-        </div>
+      <section className='container' style={{ paddingTop: 'var(--section-y-lg)' }}>
+        <div
+          className='card p-8'
+          style={{
+            ...hue('var(--blue)'),
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: 'var(--space-8)',
+            alignItems: 'center',
+            background: 'color-mix(in oklab, var(--blue) 7%, #ffffff)',
+            borderColor: 'color-mix(in oklab, var(--blue) 18%, transparent)',
+          }}
+        >
+          <div>
+            <span className='disc' data-outline>
+              <Heart size={20} strokeWidth={1.75} aria-hidden />
+            </span>
+            <h2 className='mt-5 text-2xl md:text-3xl font-bold'>This is a public good</h2>
+            <p className='mt-3 text-secondary' style={{ maxWidth: '44ch' }}>
+              We&apos;re a 501(c)(3) non-profit funded by grants and donations. Your support keeps
+              research open and accessible.
+            </p>
+            <Link
+              href='/donation'
+              className='action mt-6'
+              data-fill
+              style={{ ['--fill']: 'var(--blue)' } as React.CSSProperties}
+            >
+              Donate to the Foundation
+              <Away />
+            </Link>
+          </div>
 
-        <ul className="mt-8 grid-cards">
-          {PAPERS.map((paper) => (
-            <li key={paper.title} className="card p-6">
-              <span className="text-xs uppercase tracking-wide font-bold" style={{ color: 'var(--magenta)' }}>
-                {paper.topic}
-              </span>
-              <h3 className="mt-2 text-lg font-bold">
-                <a href={paper.href} style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}>
-                  {paper.title}
-                </a>
-              </h3>
-            </li>
-          ))}
-        </ul>
+          <div style={{ width: '100%', maxWidth: 360, marginLeft: 'auto' }}>
+            <Blue ratio='4 / 3' />
+          </div>
+        </div>
       </section>
 
-      <section className="container py-12">
-        <div className="card p-8 flex flex-wrap items-center justify-between gap-6">
-          <div style={{ maxWidth: '52ch' }}>
-            <h2 className="text-2xl md:text-3xl font-black">Support the work</h2>
-            <p className="mt-3 text-secondary">
-              Zoo Labs Foundation Inc. is a 501(c)(3) public charity, so gifts are
-              tax-deductible to the extent the law allows. Donations fund the research and
-              the people doing it. We publish what we spend.
+      <section className='container' style={{ paddingBlock: 'var(--section-y-lg)' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: 'var(--space-8)',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <h2 className='text-2xl md:text-3xl font-bold'>Stay in the loop</h2>
+            <p className='mt-3 text-secondary' style={{ maxWidth: '42ch' }}>
+              Get updates on new models, papers and projects from the Foundation.
             </p>
           </div>
-          <Link href="/donation" className="action" data-fill>
-            Donate
-          </Link>
+
+          {/* Inert on purpose. There is no list to post to — the only newsletter
+              code on the site posts to a Mailchimp URL with the placeholder id
+              still in it and then thanks you regardless of what happened. A form
+              that cannot subscribe you should not say that it did. Give this an
+              endpoint and the handler is the one line below. */}
+          <form className='field' onSubmit={(e) => e.preventDefault()}>
+            <input type='email' name='email' placeholder='Email address' aria-label='Email address' />
+            <button
+              type='submit'
+              className='action'
+              data-fill
+              style={{ ['--fill']: 'var(--night)', paddingInline: 'var(--space-5)' } as React.CSSProperties}
+            >
+              Subscribe
+            </button>
+          </form>
         </div>
       </section>
 
