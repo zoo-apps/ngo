@@ -68,7 +68,8 @@ export default function Home() {
         title='Zoo Labs Foundation — Open AI and Wildlife Research'
         description='A 501(c)(3) non-profit publishing open AI models and conservation research, and teaching with them. Everything we make is public.'
       />
-      <Navbar />
+      {/* The landing opens on the night band and the bar is the top of it. */}
+      <Navbar ground="night" />
 
       <section
         className='night'
