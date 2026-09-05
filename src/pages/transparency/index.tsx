@@ -4,7 +4,7 @@ import Layout from '@/components/layout/Layout';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
-import { CORPUS } from '@/config/corpus';
+import { useCorpus } from '@/config/corpus';
 
 /**
  * What can be checked, and where to check it.
@@ -33,6 +33,7 @@ const FACTS = [
 ];
 
 export default function Transparency() {
+  const corpus = useCorpus();
   return (
     <Layout>
       <Seo
@@ -93,7 +94,7 @@ export default function Transparency() {
 
         <div className="mt-8 grid-cards">
           <article className="card p-6" style={{ borderLeft: '10px solid var(--magenta)' }}>
-            <p className="text-4xl font-black">{CORPUS.papers}</p>
+            <p className="text-4xl font-black">{corpus.papers}</p>
             <h3 className="mt-2 text-lg font-bold">Papers</h3>
             <a
               href="https://papers.zoo.ngo"
@@ -104,7 +105,7 @@ export default function Transparency() {
           </article>
 
           <article className="card p-6" style={{ borderLeft: '10px solid var(--cyan)' }}>
-            <p className="text-4xl font-black">{CORPUS.proposals}</p>
+            <p className="text-4xl font-black">{corpus.proposals}</p>
             <h3 className="mt-2 text-lg font-bold">Improvement proposals</h3>
             <a
               href="https://zips.zoo.ngo"

@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Link from 'next/link';
+import { useCorpus } from '@/config/corpus';
 
 const models = [
   {
@@ -61,11 +62,12 @@ const trainingMethods = [
 ];
 
 export default function AI() {
+  const corpus = useCorpus();
   return (
     <Layout>
       <Seo
         templateTitle="AI Research"
-        description="The Zen model family: 45+ open-source frontier models from 600M to 480B parameters. Zoo Gym training platform."
+        description={`The Zen model family: ${corpus.models} open-source frontier models from 600M to 480B parameters. Zoo Gym training platform.`}
       />
       <Navbar />
 
@@ -75,7 +77,7 @@ export default function AI() {
           <p className="text-sm text-muted-foreground tracking-wider mb-4">Zoo Labs Foundation</p>
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Zen Model Family</h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
-            45+ open-source frontier models from 600M to 480B parameters. Open weights,
+            {corpus.models} open-source frontier models from 600M to 480B parameters. Open weights,
             community-trained, formally verified. Built on Qwen3+ architecture.
           </p>
         </div>
@@ -85,7 +87,7 @@ export default function AI() {
           <div className="container mx-auto px-4 py-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-foreground">45+</p>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">{corpus.models}</p>
                 <p className="text-sm text-muted-foreground mt-1">Open Models</p>
               </div>
               <div>

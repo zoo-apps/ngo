@@ -16,7 +16,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Away from '@/components/Away';
-import { CORPUS } from '@/config/corpus';
+import { useCorpus, type Counts } from '@/config/corpus';
 
 /**
  * The foundation.
@@ -37,38 +37,38 @@ import { CORPUS } from '@/config/corpus';
  * container. And "Read Our Papers" was `border-2 border-white` on the near-white
  * ground — an outline you could only find by its text.
  *
- * Every count comes from src/config/corpus.ts. This page used to publish 7
+ * Every count comes from src/config/corpus.tsx. This page used to publish 7
  * papers and 102 proposals while the home page published 86 and 149.
  */
 
 /** A custom property, typed. --hue is what a card is coloured with. */
 const hue = (value: string) => ({ ['--hue']: value }) as React.CSSProperties;
 
-const COUNT = [
+const counts = (corpus: Counts) => [
   {
     icon: Boxes,
     hue: 'var(--blue)',
-    value: `${CORPUS.models}+`,
+    value: String(corpus.models),
     label: 'Open models',
     body: 'From 600M to 480B parameters, every one of them published with its weights.',
   },
   {
     icon: FileText,
     hue: 'var(--green)',
-    value: String(CORPUS.papers),
+    value: String(corpus.papers),
     label: 'Papers',
     body: 'Conservation, learning and model architecture, written to be used rather than cited.',
   },
   {
     icon: TrendingUp,
     hue: 'var(--pink)',
-    value: String(CORPUS.proposals),
+    value: String(corpus.proposals),
     label: 'Proposals',
     body: 'How a change to the ecosystem is argued in the open, and recorded.',
   },
 ];
 
-const VALUES = [
+const values = (corpus: Counts) => [
   {
     icon: BookOpen,
     title: 'Open by default',
@@ -77,12 +77,12 @@ const VALUES = [
   {
     icon: BadgeCheck,
     title: 'Formally verified',
-    body: `${CORPUS.proofs} machine-checked proofs. Critical systems are proved, not asserted.`,
+    body: `${corpus.proofs} machine-checked proofs. Critical systems are proved, not asserted.`,
   },
   {
     icon: Users,
     title: 'Community governed',
-    body: `${CORPUS.proposals} proposals. Research direction is decided by contributors, not executives.`,
+    body: `${corpus.proposals} proposals. Research direction is decided by contributors, not executives.`,
   },
   {
     icon: ShieldCheck,
@@ -91,12 +91,12 @@ const VALUES = [
   },
 ];
 
-const WORK = [
+const work = (corpus: Counts) => [
   {
     icon: Layers,
     hue: 'var(--blue)',
     title: 'Frontier model research',
-    body: `The Zen family of open models — ${CORPUS.models}+ of them, from 600M-parameter edge models to 480B-parameter frontier systems, all with open weights.`,
+    body: `The Zen family of open models — ${corpus.models} of them, from 600M-parameter edge models to 480B-parameter frontier systems, all with open weights.`,
     href: 'https://huggingface.co/zenlm',
     cta: 'Weights on Hugging Face',
   },
@@ -134,6 +134,10 @@ const ECOSYSTEM = [
 ];
 
 export default function About() {
+  const corpus = useCorpus();
+  const COUNT = counts(corpus);
+  const VALUES = values(corpus);
+  const WORK = work(corpus);
   return (
     <Layout>
       <Seo
@@ -189,13 +193,13 @@ export default function About() {
               community-governed rather than locked behind a corporate wall.
             </p>
             <p>
-              We built the Zen model family on the Qwen3+ architecture: {CORPUS.models}+ models
+              We built the Zen model family on the Qwen3+ architecture: {corpus.models} models
               spanning text, code, vision, audio, video and 3D generation, every one with open
               weights on Hugging Face.
             </p>
             <p>
               The research spans Hamiltonian large language models, decentralized semantic
-              optimization, and {CORPUS.proofs} formally verified proofs in Lean 4 and TLA+. We
+              optimization, and {corpus.proofs} formally verified proofs in Lean 4 and TLA+. We
               publish all of it open access.
             </p>
             <p>

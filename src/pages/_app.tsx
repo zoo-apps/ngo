@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import { GuiProvider } from '@hanzo/gui';
 import ChatWidget from '@/components/ChatWidget';
+import { Corpus } from '@/config/corpus';
 import config from '@/lib/gui';
 
 import '@/styles/globals.css';
@@ -18,12 +19,18 @@ import 'slick-carousel/slick/slick-theme.css';
  * to resolve at run time. It used to mount next-themes with `defaultTheme="dark"`
  * against a stylesheet that declares `color-scheme: light` and carries no `.dark`
  * rules, so the class landed on <html> and no rule anywhere answered it.
+ *
+ * `Corpus` sits above everything so that the page and Blue quote the same
+ * counts, and so a page loaded from cache refreshes them once rather than once
+ * per component that shows a number.
  */
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <GuiProvider config={config} defaultTheme="light" disableInjectCSS>
-      <Component {...pageProps} />
-      <ChatWidget />
+      <Corpus>
+        <Component {...pageProps} />
+        <ChatWidget />
+      </Corpus>
     </GuiProvider>
   );
 }

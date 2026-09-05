@@ -5,12 +5,12 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Away from '@/components/Away';
 import Link from 'next/link';
-import { CORPUS } from '@/config/corpus';
+import { useCorpus } from '@/config/corpus';
 
 /**
  * What we have published.
  *
- * The numbers come from src/config/corpus.ts. This page used to state 7 papers
+ * The numbers come from src/config/corpus.tsx. This page used to state 7 papers
  * and 102 proposals while the home page stated 86 and 149 — the same two facts,
  * four different numbers, because the 7 was really the length of the list below
  * it and the 102 was a literal that stopped being true.
@@ -83,11 +83,12 @@ const proofs = [
 ]
 
 export default function Research() {
+  const corpus = useCorpus();
   return (
     <Layout>
       <Seo
         templateTitle="Research"
-        description={`Open AI research: ${CORPUS.papers} papers, ${CORPUS.proposals} proposals, ${CORPUS.proofs} formal proofs, and the Zen family of frontier models.`}
+        description={`Open AI research: ${corpus.papers} papers, ${corpus.proposals} proposals, ${corpus.proofs} formal proofs, and the Zen family of frontier models.`}
       />
       <Navbar />
 
@@ -107,10 +108,10 @@ export default function Research() {
           <div className="container mx-auto px-4 py-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { value: String(CORPUS.papers), label: 'Papers' },
-                { value: String(CORPUS.proposals), label: 'Proposals' },
-                { value: String(CORPUS.proofs), label: 'Formal proofs' },
-                { value: `${CORPUS.models}+`, label: 'Open models' },
+                { value: String(corpus.papers), label: 'Papers' },
+                { value: String(corpus.proposals), label: 'Proposals' },
+                { value: String(corpus.proofs), label: 'Formal proofs' },
+                { value: String(corpus.models), label: 'Open models' },
               ].map((s) => (
                 <div key={s.label}>
                   <p className="text-3xl md:text-4xl font-bold text-foreground">{s.value}</p>
@@ -126,7 +127,7 @@ export default function Research() {
           <div className="container mx-auto px-4 py-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Selected papers</h2>
             <p className="text-muted-foreground mb-12 max-w-2xl">
-              Seven of {CORPUS.papers}. Every one of them, as LaTeX source, is at{' '}
+              Seven of {corpus.papers}. Every one of them, as LaTeX source, is at{' '}
               <a
                 href="https://github.com/zooai/papers"
                 target="_blank"
@@ -179,7 +180,7 @@ export default function Research() {
           <div className="container mx-auto px-4 py-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Zoo Improvement Proposals</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              {CORPUS.proposals} specifications governing everything from model architecture to
+              {corpus.proposals} specifications governing everything from model architecture to
               tokenomics to governance. Community-driven, publicly reviewed, formally specified.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-8">
@@ -205,7 +206,7 @@ export default function Research() {
               rel="noopener noreferrer"
               className="action"
             >
-              View all {CORPUS.proposals} proposals
+              View all {corpus.proposals} proposals
               <Away />
             </a>
           </div>

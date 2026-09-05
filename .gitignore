@@ -16,6 +16,10 @@
 # build, so the checked-in copy could only ever be a stale one
 /src/styles/gui.css
 
+# the counts — written by scripts/counts.mjs from the papers, the proposals and
+# the models themselves on every build, for the same reason
+/src/config/counts.json
+
 # production
 /build
 
