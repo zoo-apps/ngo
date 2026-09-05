@@ -19,7 +19,7 @@ import Link from 'next/link';
 const PARTNERS = [
   {
     name: 'Shark Stewards International',
-    hue: 'var(--cyan)',
+    hue: 'var(--blue)',
     body: 'Shark conservation through research, education and policy advocacy. We work together on marine habitat protection.',
     href: 'https://sharkstewards.org',
   },
@@ -47,7 +47,7 @@ export default function Partners() {
           the research is open and the door is too.
         </p>
 
-        <div className="mt-10 grid-cards">
+        <div className="grid-cards" style={{ marginTop: 'var(--space-10)' }}>
           {PARTNERS.map((partner) => (
             <article
               key={partner.name}

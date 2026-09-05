@@ -71,9 +71,9 @@ export default function AI() {
       />
       <Navbar />
 
-      <div className="bg-background text-foreground">
+      <main className="text-foreground">
         {/* Hero */}
-        <div className="container mx-auto px-4 pt-24 pb-16">
+        <div className="container mx-auto px-4 pb-12" style={{ paddingTop: 'var(--section-y-lg)' }}>
           <p className="text-sm text-muted-foreground tracking-wider mb-4">Zoo Labs Foundation</p>
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Zen Model Family</h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
@@ -110,7 +110,7 @@ export default function AI() {
         {models.map((family) => (
           <div key={family.family} className="border-t border-border">
             <div className="container mx-auto px-4 py-16">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+              <div className="flex flex-col md:flex-row items-start justify-between gap-4 mb-8">
                 <div className="flex-1">
                   <h2 className="text-3xl md:text-4xl font-bold mb-3">{family.family}</h2>
                   <p className="text-muted-foreground max-w-2xl">{family.desc}</p>
@@ -119,14 +119,14 @@ export default function AI() {
                   href={family.hf}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors shrink-0"
+                  className="btn transition-colors shrink-0"
                 >
                   HuggingFace
                 </a>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {family.variants.map((v) => (
-                  <div key={v.name} className="border border-border rounded-lg p-4 hover:border-foreground/20 transition-colors">
+                  <div key={v.name} className="card p-4 transition-colors">
                     <p className="text-sm font-mono text-foreground mb-1">{v.name}</p>
                     <div className="flex gap-4 text-xs text-muted-foreground">
                       <span>{v.params} params</span>
@@ -149,18 +149,18 @@ export default function AI() {
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               {trainingMethods.map((method) => (
-                <div key={method.name} className="border border-border rounded-lg p-4 hover:border-foreground/20 transition-colors">
+                <div key={method.name} className="card p-4 transition-colors">
                   <p className="text-sm font-bold text-foreground mb-1">{method.name}</p>
                   <p className="text-xs text-muted-foreground">{method.desc}</p>
                 </div>
               ))}
             </div>
-            <div className="mt-10">
+            <div className="mt-8">
               <a
                 href="https://github.com/zooai/gym"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors"
+                className="btn transition-colors"
               >
                 View on GitHub
               </a>
@@ -176,16 +176,16 @@ export default function AI() {
               Run Zen models locally. Free, open-source, private by default. Supports all Zen model sizes
               that fit your hardware. Automatic model download from HuggingFace.
             </p>
-            <div className="grid md:grid-cols-3 gap-3 mb-10">
-              <div className="border border-border rounded-lg p-4">
+            <div className="grid md:grid-cols-3 gap-3 mb-8">
+              <div className="card p-4">
                 <p className="text-sm font-bold text-foreground mb-1">Local Inference</p>
                 <p className="text-xs text-muted-foreground">Run models on your GPU. No data leaves your machine.</p>
               </div>
-              <div className="border border-border rounded-lg p-4">
+              <div className="card p-4">
                 <p className="text-sm font-bold text-foreground mb-1">Multi-Platform</p>
                 <p className="text-xs text-muted-foreground">macOS, Windows, Linux. Built with Tauri.</p>
               </div>
-              <div className="border border-border rounded-lg p-4">
+              <div className="card p-4">
                 <p className="text-sm font-bold text-foreground mb-1">Mine $AI</p>
                 <p className="text-xs text-muted-foreground">Contribute GPU compute to Zoo Network and earn $AI tokens.</p>
               </div>
@@ -194,7 +194,7 @@ export default function AI() {
               href="https://github.com/zooai/zoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors"
+              className="btn transition-colors"
             >
               Download
             </a>
@@ -206,9 +206,9 @@ export default function AI() {
           <div className="container mx-auto px-4 py-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">API Access</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              Access Zen models via the Zoo API at <code className="bg-card px-2 py-0.5 rounded text-foreground">api.zoo.network</code>
+              Access Zen models via the Zoo API at <code className="bg-card px-2 py-1 rounded-md text-foreground font-mono">api.zoo.network</code>
             </p>
-            <div className="bg-card border border-border rounded-lg p-6 mb-8 font-mono text-sm">
+            <div className="card p-6 mb-8 font-mono text-sm">
               <p className="text-muted-foreground mb-3"># Chat completions</p>
               <p className="text-foreground">POST /v1/chat/completions</p>
               <p className="text-muted-foreground mt-4 mb-3"># Embeddings</p>
@@ -216,10 +216,7 @@ export default function AI() {
               <p className="text-muted-foreground mt-4 mb-3"># Models list</p>
               <p className="text-foreground">GET /v1/models</p>
             </div>
-            <Link
-              href="/docs"
-              className="inline-block text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors"
-            >
+            <Link href="/docs" className="btn transition-colors">
               View Documentation
             </Link>
           </div>
@@ -233,25 +230,22 @@ export default function AI() {
               Every donation funds open-source models, research papers, and formally verified systems.
               501(c)(3) tax-deductible.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/donation"
-                className="inline-block bg-foreground text-background px-8 py-3 rounded-full font-medium hover:opacity-80 transition-colors"
-              >
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+              <Link href="/donation" className="btn btn-primary transition-colors">
                 Support Our Research
               </Link>
               <a
                 href="https://huggingface.co/zenlm"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block border border-border text-foreground px-8 py-3 rounded-full font-medium hover:bg-card transition-colors"
+                className="btn transition-colors"
               >
                 Browse Models on HuggingFace
               </a>
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </Layout>

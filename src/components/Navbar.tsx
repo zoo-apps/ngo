@@ -86,7 +86,10 @@ export default function Navbar({ ground = 'paper' }: { ground?: 'night' | 'paper
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 999,
+        // The published ladder, not a number picked to win. 999 outranked every
+        // rung there is, so the chat panel — a popover, and above the header by
+        // construction — had nowhere left to sit.
+        zIndex: 'var(--z-header)' as unknown as number,
         ...(night ? {} : { background: 'var(--paper)', borderBottom: '1px solid var(--border)' }),
       }}
     >
@@ -129,8 +132,8 @@ export default function Navbar({ ground = 'paper' }: { ground?: 'night' | 'paper
 
                 {s.items && (
                   <div
-                    className='menu absolute left-1/2'
-                    style={{ transform: 'translateX(-50%)', marginTop: 10, padding: 6, width: 320 }}
+                    className='menu absolute'
+                    style={{ left: '50%', transform: 'translateX(-50%)', marginTop: 10, padding: 6, width: 320 }}
                   >
                     {s.items.map((to) => (
                       <Item key={to.label} to={to} />

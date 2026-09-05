@@ -94,7 +94,7 @@ export default function Research() {
 
       <div className="bg-background text-foreground">
         {/* Hero */}
-        <div className="container mx-auto px-4 pt-24 pb-16">
+        <div className="container mx-auto px-4 py-24">
           <span className="pill eyebrow">Zoo Labs Foundation</span>
           <h1 className="mt-6 mb-8">Research</h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
@@ -140,15 +140,15 @@ export default function Research() {
             </p>
             <div className="space-y-4">
               {papers.map((paper) => (
-                <div key={paper.title} className="bg-background border border-border rounded-xl p-6 hover:border-foreground/20 transition-colors">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <div key={paper.title} className="card p-6 transition-colors">
+                  <div className="flex flex-wrap items-start justify-between gap-4">
                     <div className="flex-1">
                       <h3 className="text-lg font-bold text-foreground mb-2">{paper.title}</h3>
                       <p className="text-sm text-muted-foreground">{paper.desc}</p>
                     </div>
                     <div className="flex items-center gap-4 shrink-0">
                       <span className="text-xs text-muted-foreground">{paper.year}</span>
-                      <span className="text-xs text-muted-foreground border border-border px-2 py-1 rounded">PDF</span>
+                      <span className="badge">PDF</span>
                     </div>
                   </div>
                 </div>
@@ -166,7 +166,7 @@ export default function Research() {
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               {proofs.map((proof) => (
-                <div key={proof.name} className="border border-border rounded-lg p-4 hover:border-foreground/20 transition-colors">
+                <div key={proof.name} className="card p-4 transition-colors">
                   <p className="text-sm font-mono text-foreground mb-1">{proof.name}</p>
                   <p className="text-xs text-muted-foreground">{proof.desc}</p>
                 </div>
@@ -194,8 +194,8 @@ export default function Research() {
                 { id: 'ZIP-0009', title: 'Unified BitDelta Architecture' },
                 { id: 'ZIP-0010', title: 'Zoo Launch Models (Eco-1, Coder-1, Nano-1)' },
               ].map((zip) => (
-                <div key={zip.id} className="border border-border rounded-lg p-4 hover:border-foreground/20 transition-colors flex items-start gap-3">
-                  <span className="text-xs font-mono text-muted-foreground shrink-0 mt-0.5">{zip.id}</span>
+                <div key={zip.id} className="card p-4 transition-colors flex items-start gap-3">
+                  <span className="text-xs font-mono text-muted-foreground shrink-0 mt-1">{zip.id}</span>
                   <p className="text-sm text-foreground">{zip.title}</p>
                 </div>
               ))}
@@ -215,7 +215,7 @@ export default function Research() {
         {/* ResearchDAO */}
         <div className="border-t border-border">
           <div className="container mx-auto px-4 py-16">
-            <div className="border border-border rounded-2xl p-8 md:p-12">
+            <div className="card p-8">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">ResearchDAO</h2>
               {/* This block used to read "$8.4M Total Funded · 342 Projects ·
                   14 days Avg. Funding Time", as though a grants programme were
