@@ -37,7 +37,7 @@ const entry: React.CSSProperties = {
   gap: 6,
   padding: '8px 10px',
   borderRadius: 'var(--radius-md)',
-  color: 'var(--ink)',
+  color: 'var(--carbon)',
 };
 
 /** One destination in a menu. Where it goes decides which element carries it. */
@@ -133,11 +133,11 @@ export default function Navbar() {
           </a>
 
           <button
-            className='lg:hidden'
+            className='inline-flex lg:hidden'
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
-            style={{ display: 'inline-flex', padding: 6 }}
+            style={{ padding: 6 }}
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
