@@ -17,27 +17,31 @@
 @import '@hanzo/design/tokens/motion.css';
 @import '@hanzo/design/tokens/z.css';
 
-/* base.css is the only group with ELEMENT selectors (`a`, `h1`, `body`, …). An
-   unlayered rule beats every layered one regardless of specificity, so importing
-   it bare would put `a{color:…}` above everything. Into the base layer it goes,
-   where element defaults belong.
+/* base.css is the only group with ELEMENT selectors (`a`, `h1`, `body`, …), and
+   it opens with `@layer base {` — it puts ITSELF in the layer, which is where
+   that decision belongs. Saying `layer(base)` again on the import was not a
+   second opinion, it was a silent kill: the CSS pipeline reads the `layer()`
+   modifier as a MEDIA QUERY and emits `@media layer(base){ @layer base{ … } }`,
+   a condition that matches nothing. The whole file has been inert.
 
-   It is also what answers four of this site's requirements for free: anchors
-   carry no underline, media is capped at 100% so nothing scrolls sideways, every
-   tap target clears 44px on a coarse pointer, and one focus ring serves the
-   whole page. */
-@import '@hanzo/design/tokens/base.css' layer(base);
+   It is what answers four of this site's requirements: anchors carry no
+   underline, `box-sizing` is border-box so a padded container fits its viewport,
+   every tap target clears 44px on a coarse pointer, and one focus ring serves
+   the page. Every one of those was measurably absent while this line had a
+   modifier on it. */
+@import '@hanzo/design/tokens/base.css';
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   The palette. Three values.
+   The palette. Two grounds and three hues.
 
    Hanzo is one hue through an opacity ladder because Hanzo is a tool. A wildlife
-   foundation is not, and the page has to read warm without turning into a paint
-   chart — an earlier generation of this file carried eight brand hues and a
-   seven-stop wash, which is a decoration budget rather than a palette.
+   foundation is not, and the page has to carry colour without turning into a
+   paint chart — an earlier generation of this file carried eight brand hues and
+   a seven-stop wash, which is a decoration budget rather than a palette.
 
-   The photographs are the colour on this site. The chrome is a warm ground, an
-   ink, and ONE hue loud enough to be a donate button. Everything else — states,
+   The photographs are most of the colour on this site. The rest is a night to
+   open on, a near-white to read on, an ink, and three hues that appear only as a
+   disc, its pill, and the button asking for money. Everything else — states,
    hairlines, surfaces — comes from @hanzo/design, which already publishes them.
    ───────────────────────────────────────────────────────────────────────────── */
 :root {
@@ -53,10 +57,18 @@
      the header cannot be a different black from the hero it sits on. */
   --night: #0b1119;
 
-  /* The ink. @hanzo/design's light-mode foreground rather than pure black — the
-     same depth every other surface in the fleet sets its text at. 19.0:1 on the
+  /* The ink, and it is NOT called --ink. @hanzo/gui's theme sheet publishes a
+     token of that name at `:root.t_light`, which outranks a bare `:root` — and
+     its value is `var(--foreground)`, while the role below reads `var(--ink)`.
+     Two files pointing at each other is a resolution CYCLE: both sides go
+     invalid, every colour that reads either one falls through to whatever it
+     inherits, and the page renders in the UA's black while both files read as
+     correct. Named for the pigment instead, which nothing else claims.
+
+     @hanzo/design's light-mode foreground rather than pure black — the same
+     depth every other surface in the fleet sets its text at. 19.0:1 on the
      paper above. */
-  --ink: #0a0a0a;
+  --carbon: #0a0a0a;
 
   /* ─── the three hues ───
      Colour returns to the page in three places and only three: the disc on each
@@ -108,7 +120,7 @@
      light values are stated here directly against the palette above rather than
      by mounting a theme switcher that has one position. */
   --background: var(--paper);
-  --foreground: var(--ink);
+  --foreground: var(--carbon);
 
   --primary: var(--berry);
   --primary-hover: #a30163;
@@ -116,18 +128,18 @@
 
   --secondary: #ffffff;
   --secondary-hover: #ffffff;
-  --secondary-foreground: var(--ink);
+  --secondary-foreground: var(--carbon);
   --accent: var(--berry);
   --accent-foreground: #ffffff;
 
   --card: rgb(255 255 255 / 0.72);
-  --card-foreground: var(--ink);
+  --card-foreground: var(--carbon);
   --popover: #ffffff;
-  --popover-foreground: var(--ink);
+  --popover-foreground: var(--carbon);
   --muted: rgb(255 255 255 / 0.55);
   --muted-foreground: rgb(10 10 10 / 0.62);
 
-  --text-primary: var(--ink);
+  --text-primary: var(--carbon);
   --text-secondary: rgb(10 10 10 / 0.78);
   --text-tertiary: rgb(10 10 10 / 0.62);
   --text-disabled: rgb(10 10 10 / 0.38);
@@ -148,12 +160,12 @@
      the filled one, on any ground, without a variant per ground. `.night`
      restates the four; a caller wanting a different filled hue sets --fill. */
   --face: rgb(255 255 255 / 0.72);
-  --face-ink: var(--ink);
+  --face-ink: var(--carbon);
   --fill: var(--berry);
   --fill-ink: #ffffff;
 
   --white: #ffffff;
-  --black: var(--ink);
+  --black: var(--carbon);
 
   /* The pages were written against an opacity ladder that ran white-on-black.
      Inverted, so the inner pages that still reach for it stay legible on a light
@@ -315,7 +327,7 @@ select {
   padding: 0.3rem var(--space-3);
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
-  background: rgb(255 255 255 / 0.72);
+  background: var(--face);
   color: var(--text-secondary);
   font-size: var(--text-xs);
   font-weight: var(--weight-medium);
@@ -354,7 +366,7 @@ select {
   background: var(--night);
   color: #ffffff;
 
-  --ink: #ffffff;
+  --carbon: #ffffff;
   --foreground: #ffffff;
   --text-primary: #ffffff;
   --text-secondary: rgb(255 255 255 / 0.74);
@@ -458,21 +470,36 @@ select {
 
 .stats {
   display: grid;
+  margin: 0;
   grid-template-columns: 1fr;
   background: #ffffff;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
 }
 
+/* Top-aligned, not centred: a label that wraps to two lines in one cell would
+   otherwise lift that cell's number off the line the other three sit on. The
+   icon is nudged to the number's optical centre rather than the block's. */
 .stats > * {
   display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  padding: var(--space-5) var(--space-6);
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.stats svg {
+  margin-top: 7px;
 }
 
 .stats > * + * {
   border-top: 1px solid var(--border);
+}
+
+/* A description list indents its <dd> by 40px in every UA, which put the number
+   somewhere near the middle of its own cell. */
+.stats dd,
+.stats dt {
+  margin: 0;
 }
 
 /* One line joined to one control, drawn as a single object. */
@@ -492,14 +519,14 @@ select {
   border: 0;
   outline: 0;
   background: transparent;
-  color: var(--ink);
+  color: var(--carbon);
   font-size: var(--text-sm);
 }
 
 /* Room for four across, and the bar gets its full height back. */
 @media (min-width: 48rem) {
   :root {
-    --straddle: 3.5rem;
+    --straddle: 4rem;
     --nav-h: 64px;
   }
 
@@ -518,7 +545,7 @@ select {
    three and nothing has to be told which of them it is. */
 [data-state='active'] {
   background: #ffffff;
-  color: var(--ink);
+  color: var(--carbon);
   box-shadow: var(--shadow-sm);
 }
 
@@ -533,7 +560,7 @@ select {
 
 .chrome-text,
 .display-chrome {
-  color: var(--ink);
+  color: var(--carbon);
 }
 
 .glow-backdrop {
@@ -585,8 +612,8 @@ select {
 /* These names date from the dark palette. The ground is light now, so they
    resolve to the ink ladder — the pages that use them stay legible without being
    touched. Names and values agree again once those pages move to @hanzo/gui. */
-.text-white { color: var(--ink); }
-.text-black { color: var(--ink); }
+.text-white { color: var(--carbon); }
+.text-black { color: var(--carbon); }
 .text-zinc-200 { color: var(--text-secondary); }
 .text-zinc-300 { color: var(--text-secondary); }
 .text-zinc-400 { color: var(--text-tertiary); }
