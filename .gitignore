@@ -12,6 +12,10 @@
 /.next/
 /out/
 
+# the gui sheet — written by scripts/gui-css.mjs from src/lib/gui.ts on every
+# build, so the checked-in copy could only ever be a stale one
+/src/styles/gui.css
+
 # production
 /build
 

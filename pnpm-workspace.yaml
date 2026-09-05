@@ -1,0 +1,17 @@
+# This repo is its own pnpm root. Two things depend on that being stated.
+#
+# `scripts/gui-css.mjs` bundles src/lib/gui.ts with esbuild before every build,
+# and esbuild unpacks its binary in a postinstall — which pnpm blocks unless a
+# root allows it. Unallowed, the install still succeeds and the build then fails
+# at the first line of `pnpm run build`.
+#
+# And pnpm looks UPWARD for the nearest pnpm-workspace.yaml. Without one here it
+# can settle on an ancestor that knows nothing about this project, where
+# `pnpm install` reports "Already up to date" and installs none of the app's
+# dependencies.
+#
+# sharp is next/image's optimiser. This site exports statically with
+# `images.unoptimized`, so it is never called and its binary is not wanted.
+allowBuilds:
+  esbuild: true
+  sharp: false

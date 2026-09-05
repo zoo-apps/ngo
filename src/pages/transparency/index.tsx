@@ -41,8 +41,8 @@ export default function Transparency() {
       />
       <Navbar />
 
-      <section className="container py-16">
-        <h1 className="text-5xl md:text-7xl font-black tracking-tight">Transparency</h1>
+      <section className="container py-24">
+        <h1 className="text-5xl md:text-7xl font-black">Transparency</h1>
         <p className="mt-6 text-lg text-secondary" style={{ maxWidth: '58ch' }}>
           Everything on this page can be checked somewhere that is not this page. Where a
           document does not exist yet, it says so.
@@ -51,7 +51,7 @@ export default function Transparency() {
         <dl className="mt-10 grid-cards">
           {FACTS.map((fact) => (
             <div key={fact.label} className="card p-5">
-              <dt className="text-xs uppercase tracking-wide text-muted">{fact.label}</dt>
+              <dt className="text-xs tracking-wide text-muted">{fact.label}</dt>
               <dd className="mt-2 text-xl font-bold">{fact.value}</dd>
             </div>
           ))}
@@ -61,14 +61,13 @@ export default function Transparency() {
           <a
             href={IRS_RECORD}
             className="font-bold"
-            style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}
           >
             Look us up in the IRS public record →
           </a>
         </p>
       </section>
 
-      <section className="container py-12">
+      <section className="container py-24">
         <h2 className="text-3xl md:text-4xl font-black">Filings</h2>
         <div className="mt-6 card p-6" style={{ borderLeft: '10px solid var(--yellow)' }}>
           <h3 className="text-xl font-bold">No Form 990 has been filed yet.</h3>
@@ -85,7 +84,7 @@ export default function Transparency() {
         </div>
       </section>
 
-      <section className="container py-12">
+      <section className="container py-24">
         <h2 className="text-3xl md:text-4xl font-black">What we have produced</h2>
         <p className="mt-3 text-secondary" style={{ maxWidth: '58ch' }}>
           Research is the output we can show you today. All of it is public, and the counts
@@ -99,7 +98,6 @@ export default function Transparency() {
             <a
               href="https://papers.zoo.ngo"
               className="mt-3 inline-flex font-bold"
-              style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}
             >
               Read them →
             </a>
@@ -111,7 +109,6 @@ export default function Transparency() {
             <a
               href="https://zips.zoo.ngo"
               className="mt-3 inline-flex font-bold"
-              style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}
             >
               Read them →
             </a>
@@ -123,7 +120,6 @@ export default function Transparency() {
             <a
               href="https://github.com/zooai"
               className="mt-3 inline-flex font-bold"
-              style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}
             >
               Read it →
             </a>
@@ -131,7 +127,7 @@ export default function Transparency() {
         </div>
       </section>
 
-      <section className="container py-12">
+      <section className="container py-24">
         <div className="card p-8 flex flex-wrap items-center justify-between gap-6">
           <div style={{ maxWidth: '52ch' }}>
             <h2 className="text-2xl md:text-3xl font-black">Donations</h2>
