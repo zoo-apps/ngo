@@ -7,13 +7,14 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Away from '@/components/Away';
 import Blue from '@/components/Blue';
-import { CORPUS } from '@/config/corpus';
+import { useCorpus, type Counts } from '@/config/corpus';
 
 /**
  * Every number and every name on this page is one we can point at: the counts
- * come from src/config/corpus.ts, the papers are real directories in
- * github.com/zooai/papers, and no organisation is named as a partner unless it
- * is one. A charity asking for money does not get to round any of that up.
+ * come from src/config/corpus.tsx, which counts them in
+ * github.com/zoo-apps/papers rather than trusting a literal, and no organisation
+ * is named as a partner unless it is one. A charity asking for money does not
+ * get to round any of that up.
  *
  * The page is two grounds. The night carries the header and the hero; the paper
  * carries everything after it; and the numbers sit across the seam, which is
@@ -27,9 +28,9 @@ const hue = (value: string) => ({ ['--hue']: value }) as React.CSSProperties;
    two-line label in a four-across row hangs its whole cell below the other
    three. The registry already calls them Proposals — same word, one place
    shorter, and the four labels now read as a set. */
-const COUNT = [
-  { icon: FileText, value: String(CORPUS.papers), label: 'Papers' },
-  { icon: TrendingUp, value: String(CORPUS.proposals), label: 'Proposals' },
+const counts = (corpus: Counts) => [
+  { icon: FileText, value: String(corpus.papers), label: 'Papers' },
+  { icon: TrendingUp, value: String(corpus.proposals), label: 'Proposals' },
   { icon: Globe, value: 'Everything', label: 'Open source' },
   { icon: Calendar, value: '2021', label: 'Founded' },
 ];
@@ -62,6 +63,8 @@ const WORK = [
 ];
 
 export default function Home() {
+  const corpus = useCorpus();
+  const COUNT = counts(corpus);
   return (
     <Layout>
       <Seo

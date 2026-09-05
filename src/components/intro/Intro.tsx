@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CORPUS } from '@/config/corpus';
+import { useCorpus } from '@/config/corpus';
 
 function Intro({
   breadcrumbs,
@@ -10,6 +10,7 @@ function Intro({
   title: string;
   comment?: string;
 }) {
+  const corpus = useCorpus();
   return (
     <section style={{ position: 'relative', overflow: 'hidden', padding: '2rem 1.5rem 4rem 1.5rem' }}>
       <div className="glow-backdrop" />
@@ -59,7 +60,7 @@ function Intro({
             className="action"
             style={{ minHeight: '46px', padding: '0 1.5rem', fontSize: '0.875rem' }}
           >
-            <span>📄 {CORPUS.papers} Papers ↗</span>
+            <span>📄 {corpus.papers} Papers ↗</span>
           </a>
 
           <a

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Boxes, Cpu, FileText, ShieldCheck } from 'lucide-react';
 import Away from '@/components/Away';
-import { CORPUS } from '@/config/corpus';
+import { useCorpus, type Counts } from '@/config/corpus';
 
 /**
  * What the foundation has, in four numbers.
@@ -16,17 +16,17 @@ import { CORPUS } from '@/config/corpus';
  *
  * It is `.card` with the palette's own roles now, so the ground can change
  * again without anything in this file being touched. The model count comes from
- * corpus.ts rather than from a `45+` typed here for the second time.
+ * corpus.tsx rather than from a `45+` typed here for the second time.
  */
 
 /** A custom property, typed. --hue is what a card is coloured with. */
 const hue = (value: string) => ({ ['--hue']: value }) as React.CSSProperties;
 
-const STATS = [
+const stats = (corpus: Counts) => [
   {
     icon: FileText,
     hue: 'var(--blue)',
-    metric: String(CORPUS.papers),
+    metric: String(corpus.papers),
     label: 'Papers published',
     desc: 'Preprints and formal proofs covering TF-GRPO, ASO and post-quantum consensus.',
     link: 'Explore the papers',
@@ -36,7 +36,7 @@ const STATS = [
   {
     icon: Boxes,
     hue: 'var(--green)',
-    metric: `${CORPUS.models}+`,
+    metric: String(corpus.models),
     label: 'Open-weight Zen models',
     desc: 'Frontier foundation models from 600M parameters up, every one with verifiable open weights.',
     link: 'The Zen suite',
@@ -66,6 +66,8 @@ const STATS = [
 ];
 
 export default function Comment() {
+  const corpus = useCorpus();
+  const STATS = stats(corpus);
   return (
     <section className='container' style={{ paddingBlock: 'var(--section-y-lg)' }}>
       <div

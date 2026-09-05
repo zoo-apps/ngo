@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import { MessageCircle, X, Paperclip, Send } from "lucide-react"
-import { CORPUS } from "@/config/corpus"
+import { useCorpus, type Counts } from "@/config/corpus"
 
 interface Message {
   id: string
@@ -12,9 +12,9 @@ interface Message {
 const API_PRIMARY = "https://api.hanzo.ai/v1/chat/public"
 const API_FALLBACK = "https://api.zoo.cloud/v1/chat/completions"
 
-const SYSTEM_PROMPT = [
+const prompt = (corpus: Counts) => [
   "You are Blue, the friendly beluga whale and AI research assistant for Zoo Labs Foundation Inc., a 501(c)(3) non-profit research organization (EIN 88-3538992).",
-  `What the foundation has published, exactly: ${CORPUS.papers} papers at papers.zoo.ngo, and ${CORPUS.proposals} improvement proposals at zips.zoo.ngo. The open Zen models are at huggingface.co/zenlm. The code is at github.com/zooai.`,
+  `What the foundation has published, exactly: ${corpus.papers} papers at papers.zoo.ngo, and ${corpus.proposals} improvement proposals at zips.zoo.ngo. The open Zen models are at huggingface.co/zenlm. The code is at github.com/zooai.`,
   "Never invent papers, numbers, or dates. If you do not know, say so and point to papers.zoo.ngo or zips.zoo.ngo.",
   "Be concise, warm, helpful, and plain. 2 to 3 sentences unless asked for more details.",
 ].join("\n\n")
@@ -32,6 +32,8 @@ function formatCurrentTime() {
 }
 
 export default function ChatWidget() {
+  const corpus = useCorpus()
+  const SYSTEM_PROMPT = prompt(corpus)
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
