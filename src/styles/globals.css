@@ -97,23 +97,11 @@
      to clear it. Two readers, one number. */
   --nav-h: 56px;
 
-  /* ─── the ramp knobs ───
-     @hanzo/design's published scale is the compact app register: 14px base,
-     32px h2, for chat and console surfaces. This is a foundation's public site,
-     where the body copy is the product and a page head has to carry a room.
-
-     Retuned through the two knobs the scale publishes for it rather than by
-     restating the ramp — `--type-scale` is how big every rung is, `--type-ratio`
-     is how far apart they sit. Solved, not guessed: scale 8/7 puts the anchor
-     rung at exactly 16px, and ratio 0.84 puts --text-7xl at exactly 64px, which
-     is the head size hanzo.ai's flagship pages set. The whole ramp follows —
-     13 / 15 / 16 / 17 / 19 / 23 / 27 / 33 / 41 / 52 / 64 — and no rung can drift
-     out of relation with the others because none of them is written down here.
-
-     --density stays 1: the spacing ramp is already the fleet's, and 1 is what
-     puts --section-y-lg at the 96px hanzo.ai bands are set to. */
-  --type-scale: 1.142857;
-  --type-ratio: 0.84;
+  /* The ramp knobs are NOT here. `--type-scale` and `--type-ratio` are the
+     reader's dial, and this site's own register is the install layer that dial
+     turns from — `src/config/look.ts`, applied before first paint. A stylesheet
+     that sets them has spent the reader's setting on the brand's size, and then
+     "Default" in the panel means smaller than the site has ever looked. */
 
   /* Display tracking. --tracking-tight (-0.025em) is right down the middle of
      the ramp and too loose at the top of it: at 64px it leaves 1.6px of air

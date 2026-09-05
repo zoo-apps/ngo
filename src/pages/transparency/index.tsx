@@ -49,7 +49,7 @@ export default function Transparency() {
           document does not exist yet, it says so.
         </p>
 
-        <dl className="mt-10 grid-cards">
+        <dl className="grid-cards" style={{ marginTop: 'var(--space-10)' }}>
           {FACTS.map((fact) => (
             <div key={fact.label} className="card p-5">
               <dt className="text-xs tracking-wide text-muted">{fact.label}</dt>
@@ -70,7 +70,7 @@ export default function Transparency() {
 
       <section className="container py-24">
         <h2 className="text-3xl md:text-4xl font-black">Filings</h2>
-        <div className="mt-6 card p-6" style={{ borderLeft: '10px solid var(--yellow)' }}>
+        <div className="mt-6 card p-6" style={{ borderLeft: '10px solid var(--berry)' }}>
           <h3 className="text-xl font-bold">No Form 990 has been filed yet.</h3>
           <p className="mt-3 text-secondary" style={{ maxWidth: '62ch' }}>
             The foundation&rsquo;s determination is recent, so no annual return has come due
@@ -93,7 +93,7 @@ export default function Transparency() {
         </p>
 
         <div className="mt-8 grid-cards">
-          <article className="card p-6" style={{ borderLeft: '10px solid var(--magenta)' }}>
+          <article className="card p-6" style={{ borderLeft: '10px solid var(--berry)' }}>
             <p className="text-4xl font-black">{corpus.papers}</p>
             <h3 className="mt-2 text-lg font-bold">Papers</h3>
             <a
@@ -104,7 +104,7 @@ export default function Transparency() {
             </a>
           </article>
 
-          <article className="card p-6" style={{ borderLeft: '10px solid var(--cyan)' }}>
+          <article className="card p-6" style={{ borderLeft: '10px solid var(--blue)' }}>
             <p className="text-4xl font-black">{corpus.proposals}</p>
             <h3 className="mt-2 text-lg font-bold">Improvement proposals</h3>
             <a

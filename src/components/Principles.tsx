@@ -1,6 +1,19 @@
+import * as React from 'react';
 import Link from 'next/link';
 import { useCorpus } from '@/config/corpus';
 
+/**
+ * The charter, drawn on the paper it is actually printed on.
+ *
+ * The five cards were built from inline literals for a dark page — a card at
+ * `rgba(255,255,255,0.02)` on `--paper`, a title at `#FFFFFF`, body at
+ * `#A1A1AA` — so the titles were white on near-white and the copy read 2.3:1.
+ * They are the site's `.card` now, and every colour is a role, so the whole
+ * block follows the ground it is put on rather than a ground it assumed.
+ *
+ * The blue is `--blue` (#1d4ed8), which is the accessible one: the `#3B82F6` /
+ * `#60A5FA` pair that used to be here measures under 3:1 on white.
+ */
 export default function Principles() {
   const corpus = useCorpus();
   const principles = [
@@ -12,81 +25,59 @@ export default function Principles() {
   ];
 
   return (
-    <section className="py-24 bg-background border-t border-border/40">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <span className="text-xs font-bold text-blue-400 tracking-wider">
-            Foundation Charter
-          </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+    <section className='py-24 bg-background border-t'>
+      <div className='container mx-auto px-4 space-y-8'>
+        <div className='text-center space-y-3 max-w-2xl mx-auto'>
+          <span className='eyebrow'>Foundation Charter</span>
+          <h2 className='text-3xl md:text-5xl font-bold text-foreground tracking-tight'>
             The Principles That Drive Us
           </h2>
-          <p className="text-sm text-neutral-400 leading-relaxed">
+          <p className='text-sm text-muted-foreground'>
             Advancing artificial intelligence in service of the living planet through open research, formal verification, and public stewardship.
           </p>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '16px',
-          }}
-        >
+        <div className='grid-cards' style={{ ['--grid-card-min']: '17.5rem' } as React.CSSProperties}>
           {principles.map((p, idx) => (
-            <div
-              key={idx}
-              style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.02)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                backdropFilter: 'blur(24px)',
-                borderRadius: '20px',
-                padding: '24px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div key={p.title} className='card p-6 flex flex-col gap-2'>
+              <div className='flex items-center gap-3'>
+                {/* `.disc` reads --hue for its fill, so the numeral is one rule
+                    at whatever size and colour it is asked for. */}
                 <span
+                  className='disc'
                   style={{
-                    height: '20px',
-                    width: '20px',
-                    borderRadius: '50%',
-                    backgroundColor: 'rgba(59, 130, 246, 0.15)',
-                    color: '#60A5FA',
-                    fontSize: '11px',
-                    fontWeight: 800,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
+                    ['--hue']: 'var(--blue)',
+                    width: 24,
+                    height: 24,
+                    fontSize: 'var(--text-xs)',
+                    fontWeight: 'var(--weight-semibold)',
+                  } as React.CSSProperties}
                 >
                   {idx + 1}
                 </span>
-                <h3 style={{ fontSize: '15px', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>
+                <h3 className='text-base font-semibold text-foreground' style={{ margin: 0 }}>
                   {p.title}
                 </h3>
               </div>
-              <p style={{ fontSize: '12px', color: '#A1A1AA', lineHeight: 1.5, margin: 0 }}>
-                {p.desc}
-              </p>
+              <p className='text-sm text-muted-foreground' style={{ margin: 0 }}>{p.desc}</p>
             </div>
           ))}
         </div>
 
-        <div className="flex items-center justify-center gap-4 pt-4">
+        <div className='flex flex-wrap items-center justify-center gap-4 pt-4'>
           <Link
-            href="/donation"
-            className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-lg shadow-blue-600/30 transition-all active:scale-95"
+            href='/donation'
+            className='action'
+            data-fill
+            style={{ ['--fill']: 'var(--blue)' } as React.CSSProperties}
           >
             Support 501(c)(3) Research
           </Link>
           <a
-            href="https://zoolabs.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white font-bold text-xs border border-white/10 transition-all"
+            href='https://zoolabs.io'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='action'
           >
             🐬 Open ZooLabs.io Playground &rarr;
           </a>
