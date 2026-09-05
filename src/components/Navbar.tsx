@@ -65,14 +65,30 @@ function Item({ to, onGo }: { to: Dest; onGo?: () => void }) {
   );
 }
 
-export default function Navbar() {
+/**
+ * The bar takes the ground of the page it sits on.
+ *
+ * The landing opens on a night band and the bar is the top of it, so there the
+ * two are one field. Every other page opens on paper, and a night bar there is
+ * a dark slab laid across a light page — the seam this file exists to avoid.
+ * Paper is the default because most pages are paper; only the landing asks.
+ */
+export default function Navbar({ ground = 'paper' }: { ground?: 'night' | 'paper' }) {
   const [open, setOpen] = useState(false);
   const current = currentOf(useRouter().pathname);
+  const night = ground === 'night';
 
   return (
     <nav
-      className='night select-none'
-      style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 999, borderBottom: '1px solid var(--border)' }}
+      className={`${night ? 'night' : ''} select-none`}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 999,
+        ...(night ? {} : { background: 'var(--paper)', borderBottom: '1px solid var(--border)' }),
+      }}
     >
       <div
         className='flex items-center justify-between'
@@ -97,8 +113,14 @@ export default function Navbar() {
                     padding: '4px 10px',
                     fontSize: 'var(--text-sm)',
                     fontWeight: 500,
-                    color: here ? '#ffffff' : 'var(--text-secondary)',
-                    borderBottom: `1px solid ${here ? 'currentColor' : 'transparent'}`,
+                    // The current page is said in ink and in aria-current, never with
+                    // a rule under the word: a line under a link reads as an underline
+                    // whatever draws it, and this shell draws none.
+                    //
+                    // The ink is the ground's own foreground, not a colour: `.night`
+                    // redefines --carbon to white, so one declaration is full-strength
+                    // on either ground and a hardcoded white would vanish on paper.
+                    color: here ? 'var(--carbon)' : 'var(--text-secondary)',
                   }}
                 >
                   {s.label}
