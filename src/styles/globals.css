@@ -3,271 +3,612 @@
    precede every other rule, so a face declared later never loads. */
 @import '@hanzo/font/css';
 
-/* Zoo Labs Foundation — the same light, hard-edged look as zoo.industries and
-   zoolabs.io. The colour on the page is the Zoo mark's own five hues; the
-   animals bring the rest.
+/* The design tokens are NOT authored here. `@hanzo/design` is the one place the
+   colour ladder, type scale, spacing ramp, radii, elevation and motion are
+   defined, and every surface in the fleet reads that same file. This file used
+   to restate all six ramps as literals, which is how two sites drift a shade
+   apart with nobody editing anything. */
+@import '@hanzo/design/tokens/fonts.css';
+@import '@hanzo/design/tokens/colors.css';
+@import '@hanzo/design/tokens/typography.css';
+@import '@hanzo/design/tokens/spacing.css';
+@import '@hanzo/design/tokens/radius.css';
+@import '@hanzo/design/tokens/elevation.css';
+@import '@hanzo/design/tokens/motion.css';
+@import '@hanzo/design/tokens/z.css';
 
-   Everything below the "Typography Classes" rule is the layout utility layer
-   the inner pages were written against. It stays until those pages move to
-   @hanzo/gui, which is where new work goes. */
+/* base.css is the only group with ELEMENT selectors (`a`, `h1`, `body`, …). An
+   unlayered rule beats every layered one regardless of specificity, so importing
+   it bare would put `a{color:…}` above everything. Into the base layer it goes,
+   where element defaults belong.
 
+   It is also what answers four of this site's requirements for free: anchors
+   carry no underline, media is capped at 100% so nothing scrolls sideways, every
+   tap target clears 44px on a coarse pointer, and one focus ring serves the
+   whole page. */
+@import '@hanzo/design/tokens/base.css' layer(base);
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   The palette. Three values.
+
+   Hanzo is one hue through an opacity ladder because Hanzo is a tool. A wildlife
+   foundation is not, and the page has to read warm without turning into a paint
+   chart — an earlier generation of this file carried eight brand hues and a
+   seven-stop wash, which is a decoration budget rather than a palette.
+
+   The photographs are the colour on this site. The chrome is a warm ground, an
+   ink, and ONE hue loud enough to be a donate button. Everything else — states,
+   hairlines, surfaces — comes from @hanzo/design, which already publishes them.
+   ───────────────────────────────────────────────────────────────────────────── */
 :root {
   color-scheme: light;
 
-  --font-sans: "Zen", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "Zen Mono", ui-monospace, SFMono-Regular, monospace;
-  --font-display: var(--font-sans);
+  /* The ground. Near-white with a trace of cool in it, so a white card reads as
+     a card, a hairline reads as a hairline, and the three hues below stay the
+     hues they are. It used to be a warm cream, which made every tint on the
+     page turn a shade towards ochre. */
+  --paper: #f6f7f9;
 
-  /* The Zoo mark, which is a CMYK Venn diagram. */
-  --ink: #000000;
-  --paper: #f5e8c8;
-  --magenta: #ea018e;
-  --green: #00a652;
-  --blue: #2e3192;
-  --cyan: #01acf1;
-  --yellow: #fcf006;
-  --red: #ed1c24;
+  /* The night. The band the page opens on and the bar above it — one value, so
+     the header cannot be a different black from the hero it sits on. */
+  --night: #0b1119;
 
-  --background: transparent;
+  /* The ink. @hanzo/design's light-mode foreground rather than pure black — the
+     same depth every other surface in the fleet sets its text at. 19.0:1 on the
+     paper above. */
+  --ink: #0a0a0a;
+
+  /* ─── the three hues ───
+     Colour returns to the page in three places and only three: the disc on each
+     card, the pill under it, and the one button asking for money. Each hue is
+     picked to carry white text as a fill AND to read as text on its own tint,
+     so neither use needs a caveat. They were literals in six places below
+     before they had names. */
+  --blue: #1d4ed8; /* 6.31:1 with white */
+  --green: #15803d; /* 4.90:1 with white */
+
+  /* The action. The Zoo mark's magenta (#ea018e) taken two steps deeper, because
+     the mark's own value measures 4.29:1 against white and this hue's whole job
+     is the most legible thing on the page. At #c00174 it clears 4.5:1 BOTH ways
+     — 6.00:1 carrying white text as a fill, 5.28:1 as text on the paper — so it
+     is one hue with no "only as a fill" caveat attached to it. */
+  --berry: #c00174;
+  --pink: var(--berry);
+
+  /* The bar. Read by the header, which draws it, and by the layout, which has
+     to clear it. Two readers, one number. */
+  --nav-h: 56px;
+
+  /* ─── the ramp knobs ───
+     @hanzo/design's published scale is the compact app register: 14px base,
+     32px h2, for chat and console surfaces. This is a foundation's public site,
+     where the body copy is the product and a page head has to carry a room.
+
+     Retuned through the two knobs the scale publishes for it rather than by
+     restating the ramp — `--type-scale` is how big every rung is, `--type-ratio`
+     is how far apart they sit. Solved, not guessed: scale 8/7 puts the anchor
+     rung at exactly 16px, and ratio 0.84 puts --text-7xl at exactly 64px, which
+     is the head size hanzo.ai's flagship pages set. The whole ramp follows —
+     13 / 15 / 16 / 17 / 19 / 23 / 27 / 33 / 41 / 52 / 64 — and no rung can drift
+     out of relation with the others because none of them is written down here.
+
+     --density stays 1: the spacing ramp is already the fleet's, and 1 is what
+     puts --section-y-lg at the 96px hanzo.ai bands are set to. */
+  --type-scale: 1.142857;
+  --type-ratio: 0.84;
+
+  /* Display tracking. --tracking-tight (-0.025em) is right down the middle of
+     the ramp and too loose at the top of it: at 64px it leaves 1.6px of air
+     between letterforms that should be touching. -0.035em is -2.24px there. */
+  --tracking-display: -0.035em;
+
+  /* ─── the roles ───
+     @hanzo/design names every job a colour can hold, and :root there is the DARK
+     theme with `.light` as the override. This site has one appearance, so the
+     light values are stated here directly against the palette above rather than
+     by mounting a theme switcher that has one position. */
+  --background: var(--paper);
   --foreground: var(--ink);
-  --card: rgba(255, 255, 255, 0.82);
+
+  --primary: var(--berry);
+  --primary-hover: #a30163;
+  --primary-foreground: #ffffff;
+
+  --secondary: #ffffff;
+  --secondary-hover: #ffffff;
+  --secondary-foreground: var(--ink);
+  --accent: var(--berry);
+  --accent-foreground: #ffffff;
+
+  --card: rgb(255 255 255 / 0.72);
   --card-foreground: var(--ink);
   --popover: #ffffff;
   --popover-foreground: var(--ink);
-  --primary: var(--magenta);
-  --primary-foreground: #ffffff;
-  --secondary: #ffffff;
-  --secondary-foreground: var(--ink);
-  --muted: rgba(255, 255, 255, 0.6);
-  --muted-foreground: #3f3f46;
-  --accent: var(--cyan);
-  --accent-foreground: var(--ink);
-
-  /* The old opacity ladder was white-on-black. Inverted, the inner pages that
-     reach for it stay legible on a light ground instead of vanishing. */
-  --white-03: rgba(0, 0, 0, 0.03);
-  --white-05: rgba(0, 0, 0, 0.05);
-  --white-08: rgba(0, 0, 0, 0.08);
-  --white-10: rgba(0, 0, 0, 0.10);
-  --white-12: rgba(0, 0, 0, 0.12);
-  --white-15: rgba(0, 0, 0, 0.15);
-  --white-20: rgba(0, 0, 0, 0.20);
-  --white-30: rgba(0, 0, 0, 0.30);
-  --white-40: rgba(0, 0, 0, 0.45);
-  --white-60: rgba(0, 0, 0, 0.62);
-  --white-80: rgba(0, 0, 0, 0.80);
-  --white-90: rgba(0, 0, 0, 0.90);
-
-  --border: var(--ink);
-  --border-strong: var(--ink);
-  --border-highlight: var(--ink);
-
-  --glass-surface: rgba(255, 255, 255, 0.82);
-  --glass-surface-hover: #ffffff;
-  --glass-surface-emphasis: #ffffff;
-  --glass-pill: rgba(255, 255, 255, 0.9);
-  --glass-pill-hover: #ffffff;
+  --muted: rgb(255 255 255 / 0.55);
+  --muted-foreground: rgb(10 10 10 / 0.62);
 
   --text-primary: var(--ink);
-  --text-secondary: rgba(0, 0, 0, 0.82);
-  --text-tertiary: rgba(0, 0, 0, 0.62);
-  --text-muted: rgba(0, 0, 0, 0.45);
+  --text-secondary: rgb(10 10 10 / 0.78);
+  --text-tertiary: rgb(10 10 10 / 0.62);
+  --text-disabled: rgb(10 10 10 / 0.38);
 
-  --state-online: var(--green);
-  --state-accent: var(--cyan);
-  --state-warm: #c2410c;
-  --state-error: var(--red);
+  --border: rgb(10 10 10 / 0.12);
+  --border-strong: rgb(10 10 10 / 0.2);
+  --border-control: rgb(10 10 10 / 0.18);
+  --ring: rgb(192 1 116 / 0.6);
+  --selection: rgb(192 1 116 / 0.18);
 
-  --space-1: 0.25rem;  --space-2: 0.5rem;   --space-3: 0.75rem;
-  --space-4: 1rem;     --space-5: 1.25rem;  --space-6: 1.5rem;
-  --space-8: 2rem;     --space-10: 2.5rem;  --space-12: 3rem;
-  --space-16: 4rem;    --space-20: 5rem;    --space-24: 6rem;
+  --surface-1: var(--card);
+  --surface-2: rgb(255 255 255 / 0.62);
+  --surface-3: #ffffff;
 
-  /* Square, because the edge is the whole idea. */
-  --radius-sm: 0; --radius-md: 0; --radius-lg: 0; --radius-xl: 0;
-  --radius-2xl: 0; --radius-3xl: 0; --radius-full: 9999px;
+  /* ─── what a control is made of ───
+     A button varies in exactly two ways: the plate it sits on and the ink on
+     it. Naming those two lets one rule draw the outlined control and one draw
+     the filled one, on any ground, without a variant per ground. `.night`
+     restates the four; a caller wanting a different filled hue sets --fill. */
+  --face: rgb(255 255 255 / 0.72);
+  --face-ink: var(--ink);
+  --fill: var(--berry);
+  --fill-ink: #ffffff;
 
-  --shadow-sm: 3px 3px 0 0 var(--ink);
-  --shadow-md: 6px 6px 0 0 var(--ink);
-  --shadow-lg: 6px 6px 0 0 var(--ink);
-  --shadow-floating: 6px 6px 0 0 var(--ink);
-  --edge-highlight: none;
-  --bloom: none;
+  --white: #ffffff;
+  --black: var(--ink);
 
+  /* The pages were written against an opacity ladder that ran white-on-black.
+     Inverted, so the inner pages that still reach for it stay legible on a light
+     ground. The names and the values agree again as each page moves to gui. */
+  --white-03: rgb(10 10 10 / 0.03);
+  --white-05: rgb(10 10 10 / 0.05);
+  --white-08: rgb(10 10 10 / 0.08);
+  --white-10: rgb(10 10 10 / 0.1);
+  --white-12: rgb(10 10 10 / 0.12);
+  --white-15: rgb(10 10 10 / 0.15);
+  --white-20: rgb(10 10 10 / 0.2);
+  --white-30: rgb(10 10 10 / 0.3);
+  --white-40: rgb(10 10 10 / 0.45);
+  --white-60: rgb(10 10 10 / 0.62);
+  --white-80: rgb(10 10 10 / 0.8);
+  --white-90: rgb(10 10 10 / 0.9);
+
+  /* Grid measures. --container-max in @hanzo/design is 80rem, which is the width
+     a dashboard wants; 70rem is the measure this site's prose was set to. */
   --container-max: 70rem;
-  --container-prose: 48rem;
-  --gutter: max(1rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
   --grid-gap: var(--space-6);
   --grid-card-min: 18rem;
+
+  /* How far the stats card climbs into the night above it. Zero on a phone,
+     where a four-row card straddling a fold is just a card in the wrong place. */
+  --straddle: 0px;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-html, body {
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.5;
+/* The hero wash — the pastel, and it is made OF the palette rather than beside
+   it. Two radials of the action hue and a lift of the paper itself, anchored to
+   the top of the page and faded out by the fold, so a page opens with colour and
+   reads on flat cream. The seven-stop full-bleed version this replaces put a
+   different tint behind every card on the page. */
+body {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(60rem 34rem at 12% -6%, color-mix(in oklab, var(--berry) 13%, transparent) 0%, transparent 68%),
+    radial-gradient(52rem 30rem at 88% -10%, color-mix(in oklab, var(--paper) 55%, #ffffff) 0%, transparent 72%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   overflow-x: hidden;
   touch-action: manipulation;
 }
 
-body {
-  background-color: var(--paper);
-  /* Iridescent wash: the mark's hues dialled down to a pastel tint, so the page
-     shares the logo's family without competing with the buttons. */
-  background-image:
-    radial-gradient(at 14% 16%, #fff3b8 0%, transparent 38%),
-    radial-gradient(at 86% 12%, #ffc6e6 0%, transparent 40%),
-    radial-gradient(at 92% 62%, #b8dff8 0%, transparent 42%),
-    radial-gradient(at 28% 82%, #b8e8c8 0%, transparent 44%),
-    radial-gradient(at 62% 50%, #c4c8ec 0%, transparent 44%),
-    radial-gradient(at 8% 92%, #ffc6e6 0%, transparent 40%),
-    linear-gradient(135deg, #fff3d8 0%, #ffd9ec 28%, #d8dcef 55%, #cfeede 80%, #d6ecf8 100%);
-  background-attachment: fixed;
-  background-size: cover;
+/* ─── type roles ───
+   A page head is 41px on a phone and 64px from `md`, which is the ramp
+   hanzo.ai's flagship heads run. Stated on the element so a page states what a
+   thing IS and this file states what it looks like. */
+h1 {
+  font-size: var(--text-5xl);
+  line-height: var(--leading-5xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
 }
 
-ul, ol, li { list-style: none; margin: 0; padding: 0; }
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; font-size: inherit; background: none; border: none; cursor: pointer; color: inherit; }
-input, textarea, select { font-family: inherit; font-size: inherit; background: none; border: none; outline: none; color: inherit; }
+@media (min-width: 48rem) {
+  h1 {
+    font-size: var(--text-7xl);
+    line-height: var(--leading-7xl);
+  }
+}
 
-/* One surface, one button. Hard black edge, offset shadow, no blur. */
-.glass-surface, .card, .sheet, .panel {
+h2 {
+  font-weight: var(--weight-bold);
+  text-wrap: balance;
+}
+
+h3,
+h4 {
+  font-weight: var(--weight-semibold);
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+/* ─── surfaces and controls ───
+   One surface and one button, and the button is a pill. Square corners and a
+   hard offset shadow were this site's own invention; the fleet draws a 9999px
+   CTA at 44px with a hairline edge, and matching it is most of what "uniform
+   with hanzo.ai" means. Sentence case: the uppercase-with-0.12em-tracking that
+   used to be stated here shouted from every button, pill and badge on the site
+   without the word appearing anywhere in the markup. */
+.card {
   background: var(--card);
-  border: 2px solid var(--ink);
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
-.action, .btn, .press {
+.action,
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
   min-height: 44px;
-  padding: 0 var(--space-5);
-  border: 2px solid var(--ink);
-  background: #ffffff;
-  color: var(--ink);
-  font-size: 0.875rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  box-shadow: var(--shadow-md);
+  padding-inline: var(--space-6);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  background: var(--face);
+  color: var(--face-ink);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: 1;
   cursor: pointer;
   white-space: nowrap;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.action:hover, .btn:hover, .press:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 4px 4px 0 0 var(--ink);
+.action:hover,
+.btn:hover {
+  border-color: var(--face-ink);
 }
 
-.action:active, .btn:active, .press:active {
-  transform: translate(4px, 4px);
-  box-shadow: 2px 2px 0 0 var(--ink);
+/* The filled control. Same rule on any ground: the ground says what a fill is. */
+.action[data-fill],
+.btn-primary {
+  border-color: transparent;
+  background: var(--fill);
+  color: var(--fill-ink);
 }
 
-.action[data-fill], .btn-primary {
-  background: var(--magenta);
-  color: #ffffff;
+.action[data-fill]:hover,
+.btn-primary:hover {
+  border-color: transparent;
+  filter: brightness(0.92);
 }
 
-.pill, .badge, .label {
+.btn-secondary,
+.btn-glass {
+  background: var(--face);
+  color: var(--face-ink);
+}
+
+.pill,
+.badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   padding: 0.3rem var(--space-3);
-  border: 2px solid var(--ink);
-  background: #ffffff;
-  color: var(--ink);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: rgb(255 255 255 / 0.72);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
 }
 
-.badge-online { background: var(--green); color: #fff; }
-.badge-warm { background: var(--yellow); color: var(--ink); }
-.badge-accent { background: var(--cyan); color: #fff; }
+/* State reads through @hanzo/design's state hues, which are the only ones the
+   fleet permits beside the palette — and the only ones whose meaning is fixed. */
+.badge-online {
+  color: var(--green);
+  border-color: color-mix(in oklab, var(--green) 30%, transparent);
+}
 
-/* The headline is ink on paper; there is no chrome to gradient. */
-.chrome-text, .display-chrome { color: var(--ink); }
-.glow-backdrop { display: none; }
+.badge-warm {
+  color: #b45309;
+  border-color: rgb(180 83 9 / 0.3);
+}
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+.badge-accent {
+  color: var(--berry);
+  border-color: rgb(192 1 116 / 0.3);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   The night.
+
+   A band that states its own ground — and every control inside it is then drawn
+   correctly by the rules already written above, because those rules read tokens
+   and this restates the tokens. No `.action-on-dark`, no white-text override
+   per element: one class on the section and the buttons, hairlines and quiet
+   copy inside it all follow. The header reads --night too, so the bar and the
+   band it sits on cannot be two different blacks.
+   ───────────────────────────────────────────────────────────────────────────── */
+.night {
+  /* Flat, not a gradient: the bar and the band are two elements meeting at a
+     seam, and any ramp inside either one draws the seam. */
+  background: var(--night);
+  color: #ffffff;
+
+  --ink: #ffffff;
+  --foreground: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: rgb(255 255 255 / 0.74);
+  --text-tertiary: rgb(255 255 255 / 0.58);
+  --border: rgb(255 255 255 / 0.14);
+  --border-strong: rgb(255 255 255 / 0.3);
+
+  /* An outlined control on the night is a stroke with nothing behind it; a
+     filled one is the paper itself, which is why the primary reads first. */
+  --face: transparent;
+  --face-ink: #ffffff;
+  --fill: #ffffff;
+  --fill-ink: var(--night);
+}
+
+/* A section's menu, opened by pointer or by keyboard. No timer and no state:
+   the two ways a person reaches a menu are both selectors, so there is nothing
+   to leave open. It is a dark panel because it hangs off a dark bar and
+   inherits everything it needs from the .night above it. */
+.section > .menu {
+  display: none;
+}
+
+.section:hover > .menu,
+.section:focus-within > .menu {
+  display: block;
+}
+
+.menu {
+  background: color-mix(in oklab, var(--night) 86%, #ffffff);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+}
+
+/* The one place on the site that shouts, and it is never a link: uppercase on
+   something you can click is the thing this site took out. Stated once, so
+   `text-transform` appears in exactly one rule and can be checked. */
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* A hue, held: the disc is the loud use and the tint is the quiet one, and both
+   read --hue from whatever set it, so a card states its colour once. */
+.disc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--hue);
+  color: #ffffff;
+}
+
+.disc[data-outline] {
+  background: transparent;
+  border: 1px solid var(--hue);
+  color: var(--hue);
+}
+
+.tint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.55rem var(--space-4);
+  border-radius: var(--radius-full);
+  background: color-mix(in oklab, var(--hue) 12%, #ffffff);
+  color: var(--hue);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+/* Somewhere for a photograph to be, whether or not the photograph arrives. */
+.plate {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: color-mix(in oklab, var(--night) 62%, var(--blue));
+}
+
+.plate img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The numbers straddle the fold: half on the night, half on the paper. The
+   overlap is ONE distance — the band above reads it to leave room, the card
+   reads it to climb — so the two cannot drift apart. */
+.straddle {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--straddle) * -1);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.stats > * {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+}
+
+.stats > * + * {
+  border-top: 1px solid var(--border);
+}
+
+/* One line joined to one control, drawn as a single object. */
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 6px 6px var(--space-5);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  background: #ffffff;
+}
+
+.field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: var(--text-sm);
+}
+
+/* Room for four across, and the bar gets its full height back. */
+@media (min-width: 48rem) {
+  :root {
+    --straddle: 3.5rem;
+    --nav-h: 64px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .stats > * + * {
+    border-top: 0;
+    border-left: 1px solid var(--border);
   }
 }
 
-/* ─── Typography Classes ─── */
+/* The state a headless component publishes, drawn once. gui sets `data-state` on
+   its tabs, its accordion and its collapsible, so one pair of rules dresses all
+   three and nothing has to be told which of them it is. */
+[data-state='active'] {
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-state='open'] > [data-chevron],
+[data-state='open'] [data-chevron] {
+  transform: rotate(180deg);
+}
+
+[data-chevron] {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.chrome-text,
+.display-chrome {
+  color: var(--ink);
+}
+
+.glow-backdrop {
+  display: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   The utility layer.
+
+   These names are Tailwind's, and Tailwind has never been in this build — there
+   is no config and postcss only ever ran autoprefixer, so every one of the 1700
+   `className` sites in `src/` is answered by the rules below and by nothing
+   else. They stay until the pages that use them move to @hanzo/gui, which is
+   where new work goes.
+
+   What changed is where the VALUES come from: every rung below now resolves to
+   a @hanzo/design token instead of a literal, so the pages inherit the fleet's
+   ramp without being touched.
+   ───────────────────────────────────────────────────────────────────────────── */
 .font-sans { font-family: var(--font-sans); }
 .font-mono { font-family: var(--font-mono); }
 .font-display { font-family: var(--font-display); }
 
-.text-xs { font-size: 0.75rem; line-height: 1.35; }
-.text-sm { font-size: 0.8125rem; line-height: 1.35; }
-.text-base { font-size: 0.875rem; line-height: 1.5; }
-.text-lg { font-size: 1rem; line-height: 1.5; }
-.text-xl { font-size: 1.125rem; line-height: 1.35; }
-.text-2xl { font-size: 1.375rem; line-height: 1.25; }
-.text-3xl { font-size: 1.75rem; line-height: 1.2; }
-.text-4xl { font-size: 2.25rem; line-height: 1.15; }
-.text-5xl { font-size: 3rem; line-height: 1.05; }
-.text-6xl { font-size: 3.75rem; line-height: 1; }
-.text-7xl { font-size: 4.5rem; line-height: 1; }
+.text-xs { font-size: var(--text-xs); line-height: var(--leading-xs); }
+.text-sm { font-size: var(--text-sm); line-height: var(--leading-sm); }
+.text-base { font-size: var(--text-base); line-height: var(--leading-base); }
+.text-lg { font-size: var(--text-lg); line-height: var(--leading-lg); }
+.text-xl { font-size: var(--text-xl); line-height: var(--leading-xl); }
+.text-2xl { font-size: var(--text-2xl); line-height: var(--leading-2xl); }
+.text-3xl { font-size: var(--text-3xl); line-height: var(--leading-3xl); }
+.text-4xl { font-size: var(--text-4xl); line-height: var(--leading-4xl); }
+.text-5xl { font-size: var(--text-5xl); line-height: var(--leading-5xl); }
+.text-6xl { font-size: var(--text-6xl); line-height: var(--leading-6xl); }
+.text-7xl { font-size: var(--text-7xl); line-height: var(--leading-7xl); }
 
-.font-normal { font-weight: 400; }
-.font-medium { font-weight: 500; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-.font-black { font-weight: 900; }
+.font-normal { font-weight: var(--weight-normal); }
+.font-medium { font-weight: var(--weight-medium); }
+.font-semibold { font-weight: var(--weight-semibold); }
+.font-bold { font-weight: var(--weight-bold); }
+/* 900 was the display weight here and it shouted. The fleet's heads are 600-700
+   and this rung is what the page titles reach for, so it resolves there. */
+.font-black { font-weight: var(--weight-bold); }
 
 .text-primary { color: var(--text-primary); }
 .text-secondary { color: var(--text-secondary); }
-.text-muted { color: var(--text-muted); }
+.text-muted,
+.text-muted-foreground { color: var(--text-tertiary); }
+.text-foreground { color: var(--foreground); }
 /* These names date from the dark palette. The ground is light now, so they
-   resolve to the ink ladder — the pages that use them stay legible without
-   being touched. Names and values only agree again once those pages move to
-   @hanzo/gui; until then this mapping is the bridge. */
+   resolve to the ink ladder — the pages that use them stay legible without being
+   touched. Names and values agree again once those pages move to @hanzo/gui. */
 .text-white { color: var(--ink); }
 .text-black { color: var(--ink); }
-.text-zinc-200 { color: rgba(0, 0, 0, 0.88); }
-.text-zinc-300 { color: rgba(0, 0, 0, 0.82); }
-.text-zinc-400 { color: rgba(0, 0, 0, 0.66); }
-.text-zinc-500 { color: rgba(0, 0, 0, 0.58); }
-.text-zinc-600 { color: rgba(0, 0, 0, 0.72); }
-.text-zinc-700 { color: rgba(0, 0, 0, 0.80); }
-.text-blue-300 { color: #93C5FD; }
-.text-blue-400 { color: #60A5FA; }
-.text-blue-500 { color: #3B82F6; }
-.text-emerald-300 { color: #6EE7B7; }
-.text-emerald-400 { color: #34D399; }
-.text-emerald-500 { color: #10B981; }
-.text-orange-400 { color: #FB923C; }
-.text-red-400 { color: #F87171; }
+.text-zinc-200 { color: var(--text-secondary); }
+.text-zinc-300 { color: var(--text-secondary); }
+.text-zinc-400 { color: var(--text-tertiary); }
+.text-zinc-500 { color: var(--text-tertiary); }
+.text-zinc-600 { color: var(--text-secondary); }
+.text-zinc-700 { color: var(--text-secondary); }
+.text-blue-300,
+.text-blue-400,
+.text-blue-500 { color: var(--blue); }
+.text-emerald-300,
+.text-emerald-400,
+.text-emerald-500 { color: var(--green); }
+.text-orange-400 { color: #b45309; }
+.text-red-400 { color: #b91c1c; }
 
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .text-right { text-align: right; }
-.uppercase { text-transform: uppercase; }
-.tracking-wide { letter-spacing: 0.025em; }
-.tracking-tight { letter-spacing: -0.025em; }
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+.tracking-wide { letter-spacing: var(--tracking-wide); }
+.tracking-wider { letter-spacing: var(--tracking-wide); }
+.tracking-tight { letter-spacing: var(--tracking-tight); }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* ─── Grid & Layout ─── */
 .container {
@@ -281,6 +622,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 
 .grid { display: grid; }
 .flex { display: flex; }
+.inline-flex { display: inline-flex; }
 .flex-col { flex-direction: column; }
 .flex-row { flex-direction: row; }
 .flex-wrap { flex-wrap: wrap; }
@@ -299,7 +641,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .justify-start { justify-content: flex-start; }
 .justify-end { justify-content: flex-end; }
 
-.gap-0 { gap: 0; }
+.gap-0 { gap: var(--space-0); }
 .gap-1 { gap: var(--space-1); }
 .gap-1\.5 { gap: calc(var(--space-1) * 1.5); }
 .gap-2 { gap: var(--space-2); }
@@ -322,31 +664,9 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
   width: 100%;
 }
 
-.zoo-vibe-grid {
-  display: grid;
-  grid-template-columns: minmax(320px, 380px) 1fr minmax(300px, 340px);
-  height: calc(100vh - 48px - 44px);
-  width: 100%;
-  overflow: hidden;
-}
-
-@media (max-width: 1200px) {
-  .zoo-vibe-grid {
-    grid-template-columns: minmax(300px, 360px) 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .zoo-vibe-grid {
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 48px - 44px);
-  }
-}
-
-/* ─── Spacing Utilities ─── */
-.p-0 { padding: 0; }
-.p-0\.5 { padding: 0.125rem; }
+/* ─── Spacing ─── */
+.p-0 { padding: var(--space-0); }
+.p-0\.5 { padding: calc(var(--space-1) * 0.5); }
 .p-1 { padding: var(--space-1); }
 .p-1\.5 { padding: calc(var(--space-1) * 1.5); }
 .p-2 { padding: var(--space-2); }
@@ -382,6 +702,11 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .py-16 { padding-top: var(--space-16); padding-bottom: var(--space-16); }
 .py-20 { padding-top: var(--space-20); padding-bottom: var(--space-20); }
 
+/* The section rhythm: --section-y-lg is 56px on a phone and 96px from `md`,
+   which is the band spacing hanzo.ai sets. One class, so a page states "this is
+   a section" rather than picking a number. */
+.py-24 { padding-top: var(--section-y-lg); padding-bottom: var(--section-y-lg); }
+
 .pt-0\.5 { padding-top: calc(var(--space-1) * 0.5); }
 .pt-1 { padding-top: var(--space-1); }
 .pt-2 { padding-top: var(--space-2); }
@@ -391,6 +716,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .pb-3 { padding-bottom: var(--space-3); }
 .pb-4 { padding-bottom: var(--space-4); }
 .pb-6 { padding-bottom: var(--space-6); }
+.pb-12 { padding-bottom: var(--space-12); }
 .pl-2 { padding-left: var(--space-2); }
 .pl-4 { padding-left: var(--space-4); }
 .pr-4 { padding-right: var(--space-4); }
@@ -408,8 +734,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .mt-2 { margin-top: var(--space-2); }
 .mt-3 { margin-top: var(--space-3); }
 .mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5); }
 .mt-6 { margin-top: var(--space-6); }
 .mt-8 { margin-top: var(--space-8); }
+.mt-12 { margin-top: var(--space-12); }
 
 .m-auto { margin: auto; }
 .mx-auto { margin-left: auto; margin-right: auto; }
@@ -429,11 +757,12 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .rounded-lg { border-radius: var(--radius-lg); }
 .rounded-xl { border-radius: var(--radius-xl); }
 .rounded-2xl { border-radius: var(--radius-2xl); }
-.rounded-3xl { border-radius: 1.75rem; }
+.rounded-3xl { border-radius: var(--radius-2xl); }
 .rounded-full { border-radius: var(--radius-full); }
 
 .border { border: 1px solid var(--border); }
-.border-strong { border: 1px solid var(--border-strong); }
+.border-strong,
+.border-border { border: 1px solid var(--border-strong); }
 .border-b { border-bottom: 1px solid var(--border); }
 .border-t { border-top: 1px solid var(--border); }
 .border-l { border-left: 1px solid var(--border); }
@@ -445,33 +774,37 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .border-white\/10 { border-color: var(--white-10); }
 .border-white\/15 { border-color: var(--white-15); }
 .border-white\/20 { border-color: var(--white-20); }
-.border-white\/\[0\.06\] { border-color: rgba(255, 255, 255, 0.06); }
+.border-white\/\[0\.06\] { border-color: var(--white-05); }
 .border-white\/\[0\.08\] { border-color: var(--white-08); }
+.border-gray-800 { border-color: var(--border); }
 
 /* ─── Backgrounds ─── */
-.bg-background { background-color: var(--background); }
-.bg-card { background-color: var(--glass-surface); }
-.bg-surface { background-color: var(--glass-surface-emphasis); }
+.bg-background { background-color: transparent; }
+.bg-card { background-color: var(--card); }
+.bg-surface { background-color: var(--surface-3); }
+.bg-muted { background-color: var(--muted); }
+.bg-accent { background-color: var(--berry); color: var(--primary-foreground); }
 .bg-transparent { background-color: transparent; }
-.bg-white { background-color: #FFFFFF; }
+.bg-white { background-color: #ffffff; }
 .bg-black { background-color: transparent; }
-.bg-black\/40 { background-color: rgba(255, 255, 255, 0.6); }
-.bg-black\/60 { background-color: rgba(255, 255, 255, 0.7); }
-.bg-black\/80 { background-color: rgba(255, 255, 255, 0.85); }
-.bg-black\/90 { background-color: rgba(255, 255, 255, 0.92); }
+.bg-black\/40 { background-color: rgb(255 255 255 / 0.6); }
+.bg-black\/60 { background-color: rgb(255 255 255 / 0.7); }
+.bg-black\/80 { background-color: rgb(255 255 255 / 0.85); }
+.bg-black\/90 { background-color: rgb(255 255 255 / 0.92); }
 .bg-white\/5 { background-color: var(--white-05); }
 .bg-white\/10 { background-color: var(--white-10); }
 .bg-white\/15 { background-color: var(--white-15); }
 .bg-white\/\[0\.02\] { background-color: var(--white-03); }
-.bg-white\/\[0\.04\] { background-color: rgba(255, 255, 255, 0.04); }
-.bg-white\/\[0\.06\] { background-color: rgba(255, 255, 255, 0.06); }
+.bg-white\/\[0\.04\] { background-color: var(--white-03); }
+.bg-white\/\[0\.06\] { background-color: var(--white-05); }
 .bg-white\/\[0\.08\] { background-color: var(--white-08); }
-.bg-blue-600 { background-color: #2563EB; }
-.bg-blue-600\/20 { background-color: rgba(37, 99, 235, 0.2); }
-.bg-blue-500\/10 { background-color: rgba(59, 130, 246, 0.1); }
-.bg-blue-500\/20 { background-color: rgba(59, 130, 246, 0.2); }
-.bg-emerald-500\/20 { background-color: rgba(16, 185, 129, 0.2); }
-.bg-emerald-950\/30 { background-color: rgba(6, 78, 59, 0.3); }
+.bg-gray-900 { background-color: var(--white-05); }
+.bg-blue-600 { background-color: var(--blue); }
+.bg-blue-600\/20,
+.bg-blue-500\/10,
+.bg-blue-500\/20 { background-color: color-mix(in oklab, var(--blue) 12%, transparent); }
+.bg-emerald-500\/20,
+.bg-emerald-950\/30 { background-color: color-mix(in oklab, var(--green) 12%, transparent); }
 
 /* ─── Sizing & Positioning ─── */
 .w-full { width: 100%; }
@@ -481,8 +814,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .min-h-screen { min-height: 100vh; }
 .h-12 { height: 3rem; }
 .h-11 { height: 2.75rem; }
+.h-10 { height: 2.5rem; }
 .h-9 { height: 2.25rem; }
 .h-8 { height: 2rem; }
+.w-9 { width: 2.25rem; }
 .w-8 { width: 2rem; }
 .h-6 { height: 1.5rem; }
 .w-6 { width: 1.5rem; }
@@ -503,7 +838,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .max-w-md { max-width: 28rem; }
 .max-w-xl { max-width: 36rem; }
 .max-w-2xl { max-width: 42rem; }
-.max-w-3xl { max-width: 48rem; }
+.max-w-3xl { max-width: var(--container-prose); }
 .max-w-7xl { max-width: 80rem; }
 
 .relative { position: relative; }
@@ -527,12 +862,12 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .right-6 { right: 1.5rem; }
 .right-8 { right: 2rem; }
 
-.z-0 { z-index: 0; }
-.z-10 { z-index: 10; }
-.z-20 { z-index: 20; }
-.z-30 { z-index: 30; }
-.z-40 { z-index: 40; }
-.z-50 { z-index: 50; }
+.z-0 { z-index: var(--z-base); }
+.z-10 { z-index: var(--z-raised); }
+.z-20 { z-index: var(--z-sticky); }
+.z-30 { z-index: var(--z-header); }
+.z-40 { z-index: var(--z-overlay); }
+.z-50 { z-index: var(--z-modal); }
 
 .overflow-hidden { overflow: hidden; }
 .overflow-y-auto { overflow-y: auto; }
@@ -542,10 +877,11 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .select-none { user-select: none; }
 .pointer-events-none { pointer-events: none; }
 .pointer-events-auto { pointer-events: auto; }
+.whitespace-nowrap { white-space: nowrap; }
 
-.transition-all { transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-.transition-colors { transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease; }
-.transition-opacity { transition: opacity 0.2s ease; }
+.transition-all { transition: all var(--duration-base) var(--ease-out); }
+.transition-colors { transition: color var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out); }
+.transition-opacity { transition: opacity var(--duration-base) var(--ease-out); }
 
 .backdrop-blur-md { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .backdrop-blur-xl { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
@@ -555,84 +891,16 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 .shadow-sm { box-shadow: var(--shadow-sm); }
 .shadow-md { box-shadow: var(--shadow-md); }
 .shadow-lg { box-shadow: var(--shadow-lg); }
-.shadow-2xl { box-shadow: var(--shadow-floating); }
+.shadow-2xl { box-shadow: var(--shadow-2xl); }
 
-/* ─── Buttons & Badges ─── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-full);
-  font-weight: 600;
-  font-size: 0.8125rem;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-}
-
-.btn-secondary {
-  background: var(--glass-surface);
-  color: #FAFAFA;
-  border: 1px solid var(--border);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-}
-
-.btn-secondary:hover {
-  background: var(--glass-surface-hover);
-  border-color: var(--border-strong);
-}
-
-.btn-glass {
-  background: var(--white-05);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-}
-
-.btn-glass:hover {
-  background: var(--white-10);
-  border-color: var(--border-strong);
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  padding: 0.15rem 0.625rem;
-  border-radius: var(--radius-full);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  border: 1px solid var(--border);
-  background: var(--white-05);
-}
-
-.badge-online {
-  color: var(--state-online);
-  border-color: rgba(74, 222, 128, 0.25);
-  background: rgba(74, 222, 128, 0.08);
-}
-
-.badge-warm {
-  color: var(--state-warm);
-  border-color: rgba(234, 88, 12, 0.25);
-  background: rgba(234, 88, 12, 0.08);
-}
-
-.badge-accent {
-  color: var(--state-accent);
-  border-color: rgba(59, 130, 246, 0.25);
-  background: rgba(59, 130, 246, 0.08);
-}
-
-/* ─── Scrollbars & Animations ─── */
-.no-scrollbar, .scrollbar-none {
+.no-scrollbar,
+.scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.no-scrollbar::-webkit-scrollbar, .scrollbar-none::-webkit-scrollbar {
+
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
   display: none;
 }
 
@@ -646,14 +914,16 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
 /* ─── Media Queries ─── */
 @media (min-width: 40rem) {
   .sm\:flex { display: flex; }
+  .sm\:inline-flex { display: inline-flex; }
   .sm\:hidden { display: none; }
   .sm\:inline { display: inline; }
   .sm\:gap-4 { gap: var(--space-4); }
   .sm\:px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
   .sm\:px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
   .sm\:px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
-  .sm\:text-sm { font-size: 0.8125rem; }
-  .sm\:text-xl { font-size: 1.125rem; }
+  .sm\:text-sm { font-size: var(--text-sm); }
+  .sm\:text-xl { font-size: var(--text-xl); }
+  .sm\:text-6xl { font-size: var(--text-6xl); line-height: var(--leading-6xl); }
   .sm\:max-w-md { max-width: 28rem; }
   .sm\:max-w-\[100px\] { max-width: 100px; }
   .sm\:max-w-\[140px\] { max-width: 140px; }
@@ -668,12 +938,17 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
   .md\:flex { display: flex; }
   .md\:block { display: block; }
   .md\:hidden { display: none; }
-  .md\:text-3xl { font-size: 1.75rem; }
-  .md\:text-4xl { font-size: 2.25rem; }
-  .md\:text-5xl { font-size: 3rem; }
-  .md\:text-6xl { font-size: 3.75rem; }
-  .md\:text-7xl { font-size: 4.5rem; }
-  .md\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+  .md\:text-center { text-align: center; }
+  .md\:text-xl { font-size: var(--text-xl); line-height: var(--leading-xl); }
+  .md\:text-2xl { font-size: var(--text-2xl); line-height: var(--leading-2xl); }
+  .md\:text-3xl { font-size: var(--text-3xl); line-height: var(--leading-3xl); }
+  .md\:text-4xl { font-size: var(--text-4xl); line-height: var(--leading-4xl); }
+  .md\:text-5xl { font-size: var(--text-5xl); line-height: var(--leading-5xl); }
+  .md\:text-6xl { font-size: var(--text-6xl); line-height: var(--leading-6xl); }
+  .md\:text-7xl { font-size: var(--text-7xl); line-height: var(--leading-7xl); }
+  .md\:py-24 { padding-top: var(--section-y-lg); padding-bottom: var(--section-y-lg); }
+  .md\:pb-4 { padding-bottom: var(--space-4); }
+  .md\:px-16 { padding-left: var(--space-16); padding-right: var(--space-16); }
   .md\:max-w-lg { max-width: 32rem; }
 }
 
@@ -682,9 +957,31 @@ input, textarea, select { font-family: inherit; font-size: inherit; background: 
   .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .lg\:flex { display: flex; }
   .lg\:hidden { display: none; }
+  .lg\:text-5xl { font-size: var(--text-5xl); line-height: var(--leading-5xl); }
+  .lg\:text-6xl { font-size: var(--text-6xl); line-height: var(--leading-6xl); }
+  .lg\:pb-8 { padding-bottom: var(--space-8); }
+  .lg\:px-32 { padding-left: var(--space-32); padding-right: var(--space-32); }
 }
 
 @media (min-width: 80rem) {
   .xl\:flex { display: flex; }
   .xl\:hidden { display: none; }
+  .xl\:text-3xl { font-size: var(--text-3xl); line-height: var(--leading-3xl); }
+  .xl\:text-5xl { font-size: var(--text-5xl); line-height: var(--leading-5xl); }
+  .xl\:text-6xl { font-size: var(--text-6xl); line-height: var(--leading-6xl); }
+  .xl\:text-9xl { font-size: var(--text-8xl); line-height: var(--leading-8xl); }
+  .xl\:pb-10 { padding-bottom: var(--space-10); }
+  .xl\:px-32 { padding-left: var(--space-32); padding-right: var(--space-32); }
+}
+
+/* The `max-md:` variants the inner pages were written against. Below `md` they
+   set the phone size; the unprefixed rung above takes over at 48rem. */
+@media (max-width: 47.999rem) {
+  .max-md\:text-xl { font-size: var(--text-xl); line-height: var(--leading-xl); }
+  .max-md\:text-2xl { font-size: var(--text-2xl); line-height: var(--leading-2xl); }
+  .max-md\:text-3xl { font-size: var(--text-3xl); line-height: var(--leading-3xl); }
+  .max-md\:text-4xl { font-size: var(--text-4xl); line-height: var(--leading-4xl); }
+  .max-md\:text-5xl { font-size: var(--text-5xl); line-height: var(--leading-5xl); }
+  .max-md\:my-5 { margin-top: var(--space-5); margin-bottom: var(--space-5); }
+  .max-md\:pb-2 { padding-bottom: var(--space-2); }
 }

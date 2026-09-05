@@ -79,8 +79,8 @@ export default function Blog() {
       />
       <Navbar />
 
-      <section className="container py-16">
-        <h1 className="text-5xl md:text-7xl font-black tracking-tight">Research notes</h1>
+      <section className="container py-24">
+        <h1 className="text-5xl md:text-7xl font-black">Research notes</h1>
         <p className="mt-6 text-lg text-secondary" style={{ maxWidth: '58ch' }}>
           Plain-language summaries of work the foundation has published. Each one links to
           the paper it describes, so you can check the summary against the source.
@@ -95,12 +95,12 @@ export default function Blog() {
         </div>
       </section>
 
-      <section className="container py-12">
+      <section className="container py-24">
         <ul className="grid-cards">
           {POSTS.map((post) => (
             <li key={post.paper} className="card p-6">
               <span
-                className="text-xs uppercase tracking-wide font-bold"
+                className="text-xs tracking-wide font-bold"
                 style={{ color: 'var(--magenta)' }}
               >
                 {post.topic}
@@ -110,7 +110,6 @@ export default function Blog() {
               <a
                 href={paperUrl(post.paper)}
                 className="mt-4 inline-flex font-bold"
-                style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}
               >
                 Read the paper →
               </a>
@@ -119,7 +118,7 @@ export default function Blog() {
         </ul>
       </section>
 
-      <section className="container py-12">
+      <section className="container py-24">
         <div className="card p-8 flex flex-wrap items-center justify-between gap-6">
           <div style={{ maxWidth: '52ch' }}>
             <h2 className="text-2xl md:text-3xl font-black">Ask about any of it</h2>

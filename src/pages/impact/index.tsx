@@ -81,8 +81,8 @@ export default function Impact() {
       />
       <Navbar />
 
-      <section className="container py-16">
-        <h1 className="text-5xl md:text-7xl font-black tracking-tight">Impact</h1>
+      <section className="container py-24">
+        <h1 className="text-5xl md:text-7xl font-black">Impact</h1>
         <p className="mt-6 text-lg text-secondary" style={{ maxWidth: '58ch' }}>
           We are a research foundation, and research is what we have to show. Every claim
           below is a paper you can read; none of it is a number we cannot source.
@@ -98,7 +98,7 @@ export default function Impact() {
         </div>
       </section>
 
-      <section className="container py-12">
+      <section className="container py-24">
         <h2 className="text-3xl md:text-4xl font-black">Conservation research</h2>
         <div className="mt-8 grid-cards">
           {WORK.map((item) => (
@@ -112,7 +112,6 @@ export default function Impact() {
               <a
                 href={paperUrl(item.paper)}
                 className="mt-4 inline-flex font-bold"
-                style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}
               >
                 Read the paper →
               </a>
@@ -121,7 +120,7 @@ export default function Impact() {
         </div>
       </section>
 
-      <section className="container py-12">
+      <section className="container py-24">
         <div className="card p-8" style={{ borderLeft: '10px solid var(--yellow)' }}>
           <h2 className="text-2xl md:text-3xl font-black">What we have not done yet</h2>
           <p className="mt-3 text-secondary" style={{ maxWidth: '62ch' }}>
@@ -132,7 +131,7 @@ export default function Impact() {
         </div>
       </section>
 
-      <section className="container py-12">
+      <section className="container py-24">
         <div className="card p-8 flex flex-wrap items-center justify-between gap-6">
           <div style={{ maxWidth: '52ch' }}>
             <h2 className="text-2xl md:text-3xl font-black">Fund the next paper</h2>

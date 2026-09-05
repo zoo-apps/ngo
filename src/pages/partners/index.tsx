@@ -40,8 +40,8 @@ export default function Partners() {
       />
       <Navbar />
 
-      <section className="container py-16">
-        <h1 className="text-5xl md:text-7xl font-black tracking-tight">Partners</h1>
+      <section className="container py-24">
+        <h1 className="text-5xl md:text-7xl font-black">Partners</h1>
         <p className="mt-6 text-lg text-secondary" style={{ maxWidth: '58ch' }}>
           The organisations we actually work with. If you would like to be one of them,
           the research is open and the door is too.
@@ -59,7 +59,6 @@ export default function Partners() {
               <a
                 href={partner.href}
                 className="mt-4 inline-flex font-bold"
-                style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}
               >
                 Visit →
               </a>
@@ -68,7 +67,7 @@ export default function Partners() {
         </div>
       </section>
 
-      <section className="container py-12">
+      <section className="container py-24">
         <div className="card p-8 flex flex-wrap items-center justify-between gap-6">
           <div style={{ maxWidth: '52ch' }}>
             <h2 className="text-2xl md:text-3xl font-black">Work with us</h2>

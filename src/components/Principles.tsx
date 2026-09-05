@@ -14,7 +14,7 @@ export default function Principles() {
     <section className="py-24 bg-background border-t border-border/40">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <span className="text-xs uppercase font-bold text-blue-400 tracking-wider">
+          <span className="text-xs font-bold text-blue-400 tracking-wider">
             Foundation Charter
           </span>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
