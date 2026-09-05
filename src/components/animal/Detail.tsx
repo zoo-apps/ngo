@@ -1,91 +1,77 @@
+import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import dynamic from "next/dynamic";
-const ModelViewer = dynamic(() => import("@/components/ModelViewer"), {
-  ssr: false,
-});
-function Detail() {
+
+/**
+ * One species, held up.
+ *
+ * This was two copies of itself — a desktop block marked `max-md:hidden` and a
+ * phone block marked `hidden max-md:block`. Neither variant exists in the
+ * stylesheet, so the browser read `hidden` on the phone copy at every width and
+ * nothing at all on the desktop copy: one block was permanently invisible and
+ * the other was permanently on, phone included. One block, one grid, and it
+ * folds by itself.
+ *
+ * It is a photograph, not a model. The model had no width the stylesheet
+ * recognized, so it collapsed to a viewer's intrinsic default and sat as a
+ * small animal against the left edge of the page — and a WebGL canvas is a
+ * strange thing to make an editorial block wait on. The twins are on the
+ * species pages, where turning one around is the point.
+ */
+export default function Detail() {
+  const [there, setThere] = useState(true);
+
   return (
-    <div>
-    <div className="bg-background xl:px-56 lg:px-36 px-16 max-md:hidden">
-      <div className='flex items-center justify-between py-20  lg:space-x-16 2xl:space-x-32 space-x-8'>
-        <div className='md:w-1/2 max-md:absolute max-md:w-4/5 max-md:right-0 max-md:z-0'>
-            {/* <Image
-                className='w-4/5'
-                src='/images/red_wolf.png'
-                width='800'
-                height='800'
-                alt=''
-            /> */}
-            <ModelViewer className='w-4/5 aspect-square'
-              usdz="/models/Wolf/WOLF_BABY.usdz"
-              glb="/models/Wolf/WOLF_BABY.glb"
-              camera_target="0.05m 0.05m 0m"
-              camera_orbit="0deg 75deg 1.2m"
-            ></ModelViewer>
+    <section className='container' style={{ paddingBlock: 'var(--section-y-lg)' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: 'var(--space-12)',
+          alignItems: 'center',
+        }}
+      >
+        <div className='plate' style={{ aspectRatio: '1 / 1', width: '100%' }}>
+          {there && (
+            <img
+              src='/images/red_wolf.png'
+              alt='A red wolf, photographed at night'
+              width={800}
+              height={800}
+              decoding='async'
+              onError={() => setThere(false)}
+            />
+          )}
         </div>
-        <div className='w-1/2 max-md:w-full max-md:z-10 max-md:pt-[280px] flex flex-col  max-md:pl-15 max-md:pr-15   lg:pr-8'>
-            <p className='text-foreground md:text-sm lg:text-md xl:text-xl'>ENDANGERED SPECIES WE SUPPORT</p>
-            <h1 className='text-foreground md:text-3xl xl:text-6xl max-md:text-2xl mt-5 mb-12'>The Red Wolf</h1>
-            <p className='text-foreground md:text-sm lg:text-md xl:text-xl max-md:pb-10'>Be an indispensable part of our mission for animal preservation.</p>
-            <div className='flex items-center justify-between mt-10'>
-                <Link href='/getinvolved#volunteer' className='flex items-center cursor-pointer text-foreground md:text-sm lg:text-md xl:text-xl max-md:pb-10' >
-                  <>
-                    <span className='pr-[15px]'>Volunteer</span>
-                    <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M6 5.5L1.19924 10.5L0 9.24901L3.59962 5.5L6.08905e-06 1.751L1.19924 0.5L6 5.5Z" fill="white"/>
-                    </svg>
-                  </>
-                </Link>
-                <Link href='/donation' className='flex items-center cursor-pointer text-foreground md:text-sm lg:text-md xl:text-lg max-md:pb-10'>
-                  <>
-                    <span className='pr-[15px]'>Donate</span>
-                    <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M6 5.5L1.19924 10.5L0 9.24901L3.59962 5.5L6.08905e-06 1.751L1.19924 0.5L6 5.5Z" fill="white"/>
-                    </svg>
-                  </>
-                </Link>
-                <Link href='/animals/red_wolf' className='flex items-center cursor-pointer text-foreground md:text-sm lg:text-md xl:text-lg max-md:pb-10' >
-                  <>
-                    <span className='pr-[15px]'>Learn More</span>
-                    <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M6 5.5L1.19924 10.5L0 9.24901L3.59962 5.5L6.08905e-06 1.751L1.19924 0.5L6 5.5Z" fill="white"/>
-                    </svg>
-                  </>
-                </Link>
-            </div>
+
+        <div>
+          <span className='pill eyebrow'>Endangered species we support</span>
+          <h2 className='mt-5 text-3xl md:text-4xl font-bold'>The red wolf</h2>
+          {/* The only claim here is the range, which is the one the globe on
+              this page already marks. A population figure would be a number
+              this site cannot point at. */}
+          <p className='mt-4 text-secondary' style={{ maxWidth: '44ch' }}>
+            The last wild red wolves live on the Albemarle Peninsula in North Carolina. Be an
+            indispensable part of the work to keep them there.
+          </p>
+
+          <div className='mt-8 flex flex-wrap gap-3'>
+            <Link
+              href='/animals/red_wolf'
+              className='action'
+              data-fill
+              style={{ ['--fill']: 'var(--blue)' } as React.CSSProperties}
+            >
+              Read about the red wolf
+            </Link>
+            <Link href='/getinvolved#volunteer' className='action'>
+              Volunteer
+            </Link>
+            <Link href='/donation' className='action'>
+              Donate
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-    <div className='bg-background flex flex-col hidden max-md:block px-4'>
-        <p className='text-foreground text-center pb-8 max-md:text-lg'>ENDANGERED SPECIES WE SUPPORT</p>
-        <div className='max-md:w-full aspect-square relative flex flex-col items-center justify-between'>
-            {/* <video
-                className='w-full m-1 h-full'
-                autoPlay loop muted playsInline
-            >
-              <source src='/videos/teen_wolf.webm'  type="video/webm"/>
-                <source src='/videos/teen_wolf.mp4'  type="video/mp4"/>
-            </video> */}
-            <ModelViewer className='w-4/5 aspect-square'
-              usdz="/models/Wolf/WOLF_BABY.usdz"
-              glb="/models/Wolf/WOLF_BABY.glb"
-              camera_target="0.05m 0.05m 0m"
-              camera_orbit="0deg 75deg 1.2m"
-            ></ModelViewer>
-            
-        </div>
-        <Link href='/animals/red_wolf' className='flex items-center justify-center pt-4 cursor-pointer text-foreground md:text-sm lg:text-md xl:text-lg max-md:pb-10'>
-              <>
-                <span className='pr-[15px]'>Red Wolf</span>
-                <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M6 5.5L1.19924 10.5L0 9.24901L3.59962 5.5L6.08905e-06 1.751L1.19924 0.5L6 5.5Z" fill="white"/>
-                </svg>
-              </>
-            </Link>
-    </div>
-    </div>
+    </section>
   );
 }
-
-export default Detail;

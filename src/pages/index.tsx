@@ -23,9 +23,13 @@ import { CORPUS } from '@/config/corpus';
 /** A custom property, typed. --hue is what a card is coloured with. */
 const hue = (value: string) => ({ ['--hue']: value }) as React.CSSProperties;
 
+/* One line each. "Improvement proposals" was the only label that wrapped, and a
+   two-line label in a four-across row hangs its whole cell below the other
+   three. The registry already calls them Proposals — same word, one place
+   shorter, and the four labels now read as a set. */
 const COUNT = [
-  { icon: FileText, value: String(CORPUS.papers), label: 'Papers published' },
-  { icon: TrendingUp, value: String(CORPUS.proposals), label: 'Improvement proposals' },
+  { icon: FileText, value: String(CORPUS.papers), label: 'Papers' },
+  { icon: TrendingUp, value: String(CORPUS.proposals), label: 'Proposals' },
   { icon: Globe, value: 'Everything', label: 'Open source' },
   { icon: Calendar, value: '2021', label: 'Founded' },
 ];

@@ -1,23 +1,37 @@
-import Link from 'next/link';
-function Campaign() {
+import React from 'react';
+import { Download } from 'lucide-react';
+
+/**
+ * Run your own.
+ *
+ * The control here was `bg-white … border border-white … text-black`: a white
+ * pill, a white edge, on the near-white ground. It was legible only by its
+ * text. It is an `.action` now, which is the site's one control — 44px, a
+ * hairline that exists, and a pill radius stated once in the stylesheet.
+ *
+ * The line above the head read "Bring your community TO the Zoo foundation".
+ * That capital TO is the only word shouting on the page and it is a preposition.
+ */
+export default function Campaign() {
   return (
-    <div className="bg-background">
-        <div className='w-full text-center items-center flex flex-col justify-between pb-20'>
-            <p className='text-foreground md:text-sm lg:text-md xl:text-xl max-md:text-lg max-md:px-16 pb-5 pt-16'>Bring your community TO the Zoo foundation</p>
-            <h1 className='text-foreground md:text-4xl xl:text-7xl max-md:text-4xl max-md:my-5'>Create your own campaign.</h1>
-
-            <p className='text-foreground md:text-lg lg:text-xl xl:text-3xl max-md:text-lg pb-10 pt-8'>A self-tailored campaign to raise funds for<br /> these animals by leveraging your network. </p>
-            <a
-                href="/guidebook.pdf"
-                download="zoo-campaign-guidebook.pdf"
-                className="w-[180px] bg-white hover:bg-background hover:text-foreground border border-white px-6 py-1 rounded-full text-xl font-medium text-black transition-colors"
-            >
-              {'Download Guide'}
-            </a>
-
-        </div>
-    </div>
+    <section className='container' style={{ paddingBlock: 'var(--section-y-lg)' }}>
+      <div className='text-center mx-auto' style={{ maxWidth: '58ch' }}>
+        <span className='pill eyebrow'>Bring your community to the foundation</span>
+        <h2 className='mt-5 text-3xl md:text-4xl font-bold'>Create your own campaign</h2>
+        <p className='mt-4 text-secondary'>
+          A self-tailored campaign to raise funds for these animals by leaning on your own network.
+          The guidebook is the whole method, and it is a download, not a sign-up.
+        </p>
+        <a
+          href='/guidebook.pdf'
+          download='zoo-campaign-guidebook.pdf'
+          className='action mt-8'
+          style={{ marginInline: 'auto' }}
+        >
+          <Download size={18} strokeWidth={1.75} aria-hidden />
+          Download the guide
+        </a>
+      </div>
+    </section>
   );
 }
-
-export default Campaign;
