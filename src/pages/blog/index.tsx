@@ -4,7 +4,7 @@ import Layout from '@/components/layout/Layout';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
-import { CORPUS } from '@/config/corpus';
+import { useCorpus } from '@/config/corpus';
 
 /**
  * Research, not a newsroom.
@@ -71,6 +71,7 @@ const POSTS: Post[] = [
 const paperUrl = (id: string) => `https://github.com/zooai/papers/tree/main/${id}`;
 
 export default function Blog() {
+  const corpus = useCorpus();
   return (
     <Layout>
       <Seo
@@ -87,10 +88,10 @@ export default function Blog() {
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <a href="https://papers.zoo.ngo" className="action" data-fill>
-            All {CORPUS.papers} papers
+            All {corpus.papers} papers
           </a>
           <a href="https://zips.zoo.ngo" className="action">
-            {CORPUS.proposals} proposals
+            {corpus.proposals} proposals
           </a>
         </div>
       </section>

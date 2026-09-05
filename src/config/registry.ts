@@ -11,6 +11,11 @@ import { CORPUS } from '@/config/corpus';
  * The one structural rule: a section with `items` has a menu, and the header
  * draws a chevron because it has one. A section without items is a plain link.
  * There is no separate "show a chevron" flag to get out of step with reality.
+ *
+ * The two counts below are the only ones on the site that do not refresh after
+ * the page loads: this is a plain array of strings, read once when the module
+ * loads, so the menu states what the build counted while a page states what the
+ * sources say now. They differ only when a source has moved since the build.
  */
 
 export type Dest = {

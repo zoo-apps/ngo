@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Cpu, FlaskConical, PawPrint, ShieldCheck } from 'lucide-react';
 import Away from '@/components/Away';
-import { CORPUS } from '@/config/corpus';
+import { useCorpus, type Counts } from '@/config/corpus';
 
 /**
  * Where the money goes.
@@ -23,7 +23,7 @@ import { CORPUS } from '@/config/corpus';
 /** A custom property, typed. --hue is what a card is coloured with. */
 const hue = (value: string) => ({ ['--hue']: value }) as React.CSSProperties;
 
-const AREAS = [
+const areas = (corpus: Counts) => [
   {
     icon: PawPrint,
     hue: 'var(--green)',
@@ -43,11 +43,13 @@ const AREAS = [
     hue: 'var(--pink)',
     tag: 'Open science',
     title: 'Research and publication',
-    body: `${CORPUS.papers} papers, ${CORPUS.proposals} improvement proposals and every model weight, published open access and free to read.`,
+    body: `${corpus.papers} papers, ${corpus.proposals} improvement proposals and every model weight, published open access and free to read.`,
   },
 ];
 
 export default function Donation_Spent() {
+  const corpus = useCorpus();
+  const AREAS = areas(corpus);
   return (
     <section className='container' style={{ paddingTop: 'var(--section-y-lg)' }}>
       <div style={{ maxWidth: '58ch' }}>

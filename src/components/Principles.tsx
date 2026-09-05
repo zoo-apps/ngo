@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { CORPUS } from '@/config/corpus';
+import { useCorpus } from '@/config/corpus';
 
 export default function Principles() {
+  const corpus = useCorpus();
   const principles = [
     { title: 'Open Science & Weights', desc: 'We train frontier reasoning models and release weights openly for global public research.' },
-    { title: 'No Paywalls', desc: `All ${CORPUS.papers} papers, ${CORPUS.proposals} proposals and every benchmark dataset are free to read.` },
+    { title: 'No Paywalls', desc: `All ${corpus.papers} papers, ${corpus.proposals} proposals and every benchmark dataset are free to read.` },
     { title: 'Formal Verification', desc: 'Critical models, consensus algorithms, and mathematical constraints are verified with Lean 4 formal proofs.' },
     { title: 'Safe by Design', desc: 'Alignment via Training-Free GRPO and RLVR tailored for open, verifiable autonomous agent systems.' },
     { title: '501(c)(3) Stewardship', desc: 'Tax-exempt public charity governed by scientists, researchers, and conservation leaders.' },
