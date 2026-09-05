@@ -1,18 +1,26 @@
-function Content({title,content}: {
-    content: string;
-    title: string;
-  }) {
+/**
+ * The lede and the long copy, side by side.
+ *
+ * The two halves used to be `md:w-1/2` and `w-1/2` in a `flex` — neither of
+ * which the stylesheet answers, so both children were full width and the row
+ * was one column stacked twice. They are a grid now, and `minmax()` decides
+ * when there is room for two columns without a breakpoint being named.
+ */
+function Content({ title, content }: { content: string; title: string }) {
   return (
-    <div className="bg-background xl:px-64 lg:px-36 md:px-16">
-      <div className="flex max-md:flex-col max-md:px-4 justify-between py-20">
-        <div className='relative md:w-1/2 max-md:w-full lg:pr-32 md:pr-16 max-md:pb-8'>
-            <p className='text-foreground text-4xl '>{title}</p>
-        </div>
-        <div className='w-1/2 max-md:w-full flex justify-between space-x-16'>
-            <p className='flex-1 text-foreground lg:text-xl md:text-md md:columns-2 gap-12'><span dangerouslySetInnerHTML={{__html: content}}/></p>
-        </div>
+    <section className='container' style={{ paddingBlock: 'var(--section-y-lg)' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(20rem, 1fr))',
+          gap: 'var(--space-12)',
+          alignItems: 'start',
+        }}
+      >
+        <p className='text-3xl md:text-4xl text-foreground'>{title}</p>
+        <p className='text-lg text-foreground' dangerouslySetInnerHTML={{ __html: content }} />
       </div>
-    </div>
+    </section>
   );
 }
 

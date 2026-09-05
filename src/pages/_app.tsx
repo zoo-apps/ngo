@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import { GuiProvider } from '@hanzo/gui';
 import ChatWidget from '@/components/ChatWidget';
+import Look from '@/components/Look';
 import { Corpus } from '@/config/corpus';
 import config from '@/lib/gui';
 
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Corpus>
         <Component {...pageProps} />
         <ChatWidget />
+        <Look />
       </Corpus>
     </GuiProvider>
   );

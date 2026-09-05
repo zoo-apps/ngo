@@ -1,317 +1,377 @@
-import React, { useState, useRef, useEffect } from "react"
-import { MessageCircle, X, Paperclip, Send } from "lucide-react"
-import { useCorpus, type Counts } from "@/config/corpus"
+import React, { useState, useRef, useEffect } from 'react'
+import { MessageCircle, X, Send } from 'lucide-react'
+import { useCorpus, type Counts } from '@/config/corpus'
+
+/**
+ * Blue, in the corner of every page.
+ *
+ * Written the way the rest of this site is written — the classes globals.css
+ * publishes, and inline styles reading design tokens for everything else. It
+ * used to ask for a Tailwind that is not installed: `w-14 h-14 rounded-full
+ * bg-[#0066FF] z-[9999]` on the launcher, which the browser answered with a
+ * 36×26 transparent box at `z-index: auto`. The disc was never drawn. A class
+ * with no rule behind it is not a weaker style, it is no style, and there is
+ * nothing in a build that says so.
+ *
+ * Blue's colour is `--blue`, the palette's accessible one. The old literal was
+ * #0066FF at 3.68:1 on white — below AA for the text it was carrying.
+ */
 
 interface Message {
   id: string
-  role: "user" | "assistant"
+  role: 'user' | 'assistant'
   content: string
   timestamp: string
 }
 
-const API_PRIMARY = "https://api.hanzo.ai/v1/chat/public"
-const API_FALLBACK = "https://api.zoo.cloud/v1/chat/completions"
+const API_PRIMARY = 'https://api.hanzo.ai/v1/chat/public'
+const API_FALLBACK = 'https://api.zoo.cloud/v1/chat/completions'
 
 const prompt = (corpus: Counts) => [
-  "You are Blue, the friendly beluga whale and AI research assistant for Zoo Labs Foundation Inc., a 501(c)(3) non-profit research organization (EIN 88-3538992).",
+  'You are Blue, the friendly beluga whale and AI research assistant for Zoo Labs Foundation Inc., a 501(c)(3) non-profit research organization (EIN 88-3538992).',
   `What the foundation has published, exactly: ${corpus.papers} papers at papers.zoo.ngo, and ${corpus.proposals} improvement proposals at zips.zoo.ngo. The open Zen models are at huggingface.co/zenlm. The code is at github.com/zooai.`,
-  "Never invent papers, numbers, or dates. If you do not know, say so and point to papers.zoo.ngo or zips.zoo.ngo.",
-  "Be concise, warm, helpful, and plain. 2 to 3 sentences unless asked for more details.",
-].join("\n\n")
+  'Never invent papers, numbers, or dates. If you do not know, say so and point to papers.zoo.ngo or zips.zoo.ngo.',
+  'Be concise, warm, helpful, and plain. 2 to 3 sentences unless asked for more details.',
+].join('\n\n')
 
-const QUICK_ACTIONS = [
-  { label: "📄 Find research papers", query: "What research papers have Zoo Labs published?" },
-  { label: "🤖 Explore open models", query: "Tell me about the open Zen model family." },
-  { label: "🌊 Conservation research", query: "What conservation research does Zoo Labs focus on?" },
-  { label: "💙 Get involved / Donate", query: "How can I support or donate to the Foundation?" },
+const ASKS = [
+  { label: 'Find research papers', query: 'What research papers have Zoo Labs published?' },
+  { label: 'Explore open models', query: 'Tell me about the open Zen model family.' },
+  { label: 'Conservation research', query: 'What conservation research does Zoo Labs focus on?' },
+  { label: 'Get involved', query: 'How can I support or donate to the Foundation?' },
 ]
 
-function formatCurrentTime() {
-  const d = new Date()
-  return d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+const clock = () => new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+
+const AVATAR = '/images/blue_avatar.png'
+
+const face: React.CSSProperties = {
+  borderRadius: 'var(--radius-full)',
+  objectFit: 'cover',
+  flexShrink: 0,
+}
+
+/** One turn. Blue speaks from the left over a tint, the reader from the right in fill. */
+function Turn({ of }: { of: Message }) {
+  const mine = of.role === 'user'
+  const bubble: React.CSSProperties = {
+    padding: 'var(--space-3) var(--space-4)',
+    borderRadius: 'var(--radius-xl)',
+    fontSize: 'var(--text-sm)',
+    lineHeight: 'var(--leading-base)',
+    whiteSpace: 'pre-wrap',
+    background: mine ? 'var(--blue)' : 'var(--paper)',
+    color: mine ? '#fff' : 'var(--text-primary)',
+  }
+  const when: React.CSSProperties = {
+    fontSize: 'var(--text-xs)',
+    color: 'var(--text-tertiary)',
+    marginTop: 2,
+    textAlign: mine ? 'right' : 'left',
+  }
+
+  return (
+    <div style={{ display: 'flex', gap: 8, maxWidth: '90%', marginLeft: mine ? 'auto' : 0 }}>
+      {!mine && <img src={AVATAR} alt='' width={28} height={28} style={{ ...face, marginTop: 2 }} />}
+      <div style={{ minWidth: 0 }}>
+        <div style={bubble}>{of.content}</div>
+        <div style={when}>{of.timestamp}</div>
+      </div>
+    </div>
+  )
 }
 
 export default function ChatWidget() {
   const corpus = useCorpus()
-  const SYSTEM_PROMPT = prompt(corpus)
-  const [isOpen, setIsOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: "welcome-1",
-      role: "assistant",
+      id: 'welcome',
+      role: 'assistant',
       content:
         "Hi! I'm Blue, the Zoo Labs research assistant. I can help you find papers, learn about our open models, or get involved with the Foundation.",
-      timestamp: "3:04 PM",
+      // Set when the component mounts, not when the file was written — the old
+      // literal greeted every visitor at 3:04 PM for the life of the build.
+      timestamp: '',
     },
   ])
-  const [input, setInput] = useState("")
+  const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const scroll = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const handleOpen = () => setIsOpen(true)
-    window.addEventListener("open-chat-widget", handleOpen)
-    return () => window.removeEventListener("open-chat-widget", handleOpen)
+    setMessages((prev) => prev.map((m) => (m.timestamp ? m : { ...m, timestamp: clock() })))
+    const show = () => setOpen(true)
+    window.addEventListener('open-chat-widget', show)
+    return () => window.removeEventListener('open-chat-widget', show)
   }, [])
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
-    }
-  }, [messages, loading, isOpen])
+    if (scroll.current) scroll.current.scrollTop = scroll.current.scrollHeight
+  }, [messages, loading, open])
 
-  const sendMessage = async (text: string) => {
+  const send = async (text: string) => {
     if (!text.trim() || loading) return
 
-    const userMsg: Message = {
-      id: Date.now().toString(),
-      role: "user",
-      content: text.trim(),
-      timestamp: formatCurrentTime(),
-    }
-
-    const nextMessages = [...messages, userMsg]
-    setMessages(nextMessages)
-    setInput("")
+    const said: Message = { id: String(Date.now()), role: 'user', content: text.trim(), timestamp: clock() }
+    const said_so_far = [...messages, said]
+    setMessages(said_so_far)
+    setInput('')
     setLoading(true)
 
-    const assistantMsgId = (Date.now() + 1).toString()
+    const body = {
+      messages: [
+        { role: 'system', content: prompt(corpus) },
+        ...said_so_far.map((m) => ({ role: m.role, content: m.content })),
+      ],
+    }
+    const answer = (id: string, content: string): Message => ({ id, role: 'assistant', content, timestamp: clock() })
+    const id = String(Date.now() + 1)
 
     try {
-      let reply = ""
+      let reply = ''
       try {
         const res = await fetch(API_PRIMARY, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            messages: [
-              { role: "system", content: SYSTEM_PROMPT },
-              ...nextMessages.map((m) => ({ role: m.role, content: m.content })),
-            ],
-          }),
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
         })
-
-        if (res.ok) {
-          const data = await res.json()
-          reply = data.choices?.[0]?.message?.content || ""
-        }
+        if (res.ok) reply = (await res.json()).choices?.[0]?.message?.content || ''
       } catch (e) {
-        console.warn("Primary chat failed, trying fallback", e)
+        console.warn('Primary chat failed, trying fallback', e)
       }
 
       if (!reply) {
         const res = await fetch(API_FALLBACK, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            model: "zen-free",
-            messages: [
-              { role: "system", content: SYSTEM_PROMPT },
-              ...nextMessages.map((m) => ({ role: m.role, content: m.content })),
-            ],
-          }),
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model: 'zen-free', ...body }),
         })
-
         if (!res.ok) {
-          const body = await res.json().catch(() => null)
-          throw new Error(body?.error?.message ?? `${res.status} ${res.statusText}`)
+          const said = await res.json().catch(() => null)
+          throw new Error(said?.error?.message ?? `${res.status} ${res.statusText}`)
         }
-
-        const data = await res.json()
-        reply = data.choices?.[0]?.message?.content || ""
-      }
-
-      if (!reply) {
-        reply = "Zoo Labs Foundation publishes open models at huggingface.co/zenlm and papers at papers.zoo.ngo."
+        reply = (await res.json()).choices?.[0]?.message?.content || ''
       }
 
       setMessages((prev) => [
         ...prev,
-        {
-          id: assistantMsgId,
-          role: "assistant",
-          content: reply,
-          timestamp: formatCurrentTime(),
-        },
+        answer(
+          id,
+          reply || 'Zoo Labs Foundation publishes open models at huggingface.co/zenlm and papers at papers.zoo.ngo.',
+        ),
       ])
     } catch (err) {
       const why = err instanceof Error ? err.message : String(err)
       setMessages((prev) => [
         ...prev,
-        {
-          id: assistantMsgId,
-          role: "assistant",
-          content: `I could not reach the server right now (${why}). The papers are at papers.zoo.ngo and models at huggingface.co/zenlm.`,
-          timestamp: formatCurrentTime(),
-        },
+        answer(id, `I could not reach the server right now (${why}). The papers are at papers.zoo.ngo and models at huggingface.co/zenlm.`),
       ])
     } finally {
       setLoading(false)
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    sendMessage(input)
-  }
-
   return (
     <>
-      {/* Floating Chat Window */}
-      {isOpen && (
+      {open && (
         <div
-          className="fixed bottom-24 right-4 sm:right-6 w-[380px] max-w-[calc(100vw-32px)] h-[580px] max-h-[calc(100vh-120px)] bg-white rounded-3xl shadow-2xl border border-zinc-200/80 overflow-hidden flex flex-col z-[9999] transition-all"
+          style={{
+            position: 'fixed',
+            bottom: 88,
+            right: 'clamp(12px, 3vw, 24px)',
+            width: 380,
+            maxWidth: 'calc(100vw - 24px)',
+            height: 580,
+            maxHeight: 'calc(100vh - 120px)',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            background: '#fff',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-2xl)',
+            boxShadow: 'var(--shadow-2xl)',
+            zIndex: 'var(--z-popover)' as unknown as number,
+          }}
+          role='dialog'
+          aria-label='Chat with Blue'
         >
-          {/* Header */}
-          <div className="bg-[#0066FF] px-4 py-3.5 text-white flex items-center justify-between shadow-xs">
-            <div className="flex items-center gap-3">
-              <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-white/90 shadow-sm shrink-0 bg-blue-400">
-                <img
-                  src="/images/blue_avatar.png"
-                  alt="Blue"
-                  className="w-full h-full object-cover"
-                />
-                <span className="absolute bottom-0 right-0 w-3 h-3 bg-[#00E676] border-2 border-[#0066FF] rounded-full"></span>
-              </div>
-              <div>
-                <h3 className="font-bold text-base leading-tight text-white">Blue</h3>
-                <p className="text-blue-100 text-xs">Your AI research assistant</p>
-                <div className="flex items-center gap-1.5 text-blue-100 text-[11px] mt-0.5">
-                  <span className="w-2 h-2 rounded-full bg-[#00E676]"></span>
-                  <span>Online</span>
-                </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 'var(--space-3)',
+              padding: 'var(--space-3) var(--space-4)',
+              background: 'var(--blue)',
+              color: '#fff',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', minWidth: 0 }}>
+              <img src={AVATAR} alt='' width={44} height={44} style={face} />
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 'var(--text-base)', fontWeight: 'var(--weight-bold)', lineHeight: 1.2 }}>Blue</div>
+                <div style={{ fontSize: 'var(--text-xs)', opacity: 0.85 }}>Your AI research assistant</div>
               </div>
             </div>
-
             <button
-              onClick={() => setIsOpen(false)}
-              className="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center text-white transition-colors cursor-pointer"
-              aria-label="Close chat"
+              onClick={() => setOpen(false)}
+              aria-label='Close chat'
+              style={{
+                display: 'inline-flex',
+                width: 32,
+                height: 32,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 'var(--radius-full)',
+                color: 'inherit',
+                cursor: 'pointer',
+              }}
             >
-              <X className="w-5 h-5" />
+              <X size={18} />
             </button>
           </div>
 
-          {/* Messages Body */}
           <div
-            ref={scrollRef}
-            className="flex-1 overflow-y-auto p-4 space-y-4 bg-white"
+            ref={scroll}
+            style={{
+              flex: 1,
+              overflowY: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--space-4)',
+              padding: 'var(--space-4)',
+            }}
           >
-            {messages.map((msg) => (
-              <div key={msg.id}>
-                {msg.role === "assistant" ? (
-                  <div className="flex items-start gap-2.5 max-w-[90%]">
-                    <div className="w-7 h-7 rounded-full overflow-hidden shrink-0 mt-0.5 bg-blue-100 shadow-2xs">
-                      <img
-                        src="/images/blue_avatar.png"
-                        alt="Blue"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <div className="bg-zinc-100 text-zinc-900 rounded-2xl rounded-tl-xs px-4 py-3 text-[13px] leading-relaxed whitespace-pre-wrap">
-                        {msg.content}
-                      </div>
-                      <div className="text-[11px] text-zinc-400 mt-1 pl-1">
-                        {msg.timestamp}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="ml-auto max-w-[85%]">
-                    <div className="bg-[#0066FF] text-white rounded-2xl rounded-tr-xs px-4 py-3 text-[13px] leading-relaxed whitespace-pre-wrap">
-                      {msg.content}
-                    </div>
-                    <div className="text-[11px] text-zinc-400 text-right mt-1 pr-1">
-                      {msg.timestamp} ✓
-                    </div>
-                  </div>
-                )}
-              </div>
+            {messages.map((m) => (
+              <Turn key={m.id} of={m} />
             ))}
 
             {loading && (
-              <div className="flex items-start gap-2.5 max-w-[90%]">
-                <div className="w-7 h-7 rounded-full overflow-hidden shrink-0 mt-0.5 bg-blue-100">
-                  <img
-                    src="/images/blue_avatar.png"
-                    alt="Blue"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="bg-zinc-100 text-zinc-500 rounded-2xl rounded-tl-xs px-4 py-3 text-xs flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse delay-150"></span>
-                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse delay-300"></span>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                <img src={AVATAR} alt='' width={28} height={28} style={face} />
+                <div
+                  style={{
+                    padding: 'var(--space-3) var(--space-4)',
+                    borderRadius: 'var(--radius-xl)',
+                    background: 'var(--paper)',
+                    color: 'var(--text-tertiary)',
+                    fontSize: 'var(--text-sm)',
+                  }}
+                >
+                  Blue is thinking…
                 </div>
               </div>
             )}
 
-            {/* Quick Actions */}
-            <div className="pt-2">
-              <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-2 px-0.5">
-                QUICK ACTIONS
+            <div>
+              <p className='eyebrow' style={{ marginBottom: 'var(--space-2)' }}>
+                Ask about
               </p>
-              <div className="grid grid-cols-2 gap-2">
-                {QUICK_ACTIONS.map((action) => (
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-2)' }}>
+                {ASKS.map((a) => (
                   <button
-                    key={action.label}
-                    onClick={() => sendMessage(action.query)}
-                    className="w-full py-2 px-2.5 rounded-full border border-[#0066FF] text-[#0066FF] bg-white hover:bg-blue-50/80 text-[11px] font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer shadow-2xs text-center"
+                    key={a.label}
+                    onClick={() => send(a.query)}
+                    style={{
+                      padding: 'var(--space-2)',
+                      borderRadius: 'var(--radius-full)',
+                      border: '1px solid var(--blue)',
+                      color: 'var(--blue)',
+                      background: '#fff',
+                      fontSize: 'var(--text-xs)',
+                      fontWeight: 'var(--weight-medium)',
+                      cursor: 'pointer',
+                    }}
                   >
-                    <span>{action.label}</span>
+                    {a.label}
                   </button>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Input Footer */}
-          <div className="p-3 pt-1 bg-white border-t border-zinc-100">
+          <div style={{ padding: 'var(--space-3)', borderTop: '1px solid var(--border)' }}>
             <form
-              onSubmit={handleSubmit}
-              className="rounded-full border border-zinc-200 bg-white px-3.5 py-1.5 flex items-center gap-2 focus-within:border-[#0066FF] focus-within:ring-2 focus-within:ring-blue-100 transition-all"
+              onSubmit={(e) => {
+                e.preventDefault()
+                send(input)
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--space-2)',
+                padding: '6px 6px 6px var(--space-4)',
+                border: '1px solid var(--border-control)',
+                borderRadius: 'var(--radius-full)',
+              }}
             >
               <input
-                type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about papers, Zen models, Blue, etc."
-                className="text-xs sm:text-sm text-zinc-900 placeholder-zinc-400 outline-none bg-transparent flex-1"
+                placeholder='Ask about papers, Zen models, Blue…'
                 disabled={loading}
+                aria-label='Message Blue'
+                style={{
+                  flex: 1,
+                  minWidth: 0,
+                  border: 0,
+                  outline: 'none',
+                  background: 'transparent',
+                  fontSize: 'var(--text-sm)',
+                  color: 'var(--text-primary)',
+                }}
               />
               <button
-                type="button"
-                className="text-zinc-400 hover:text-zinc-600 transition-colors p-1 cursor-pointer"
-                title="Attach"
-              >
-                <Paperclip className="w-4 h-4" />
-              </button>
-              <button
-                type="submit"
+                type='submit'
                 disabled={!input.trim() || loading}
-                className="w-7 h-7 rounded-full bg-[#0066FF] hover:bg-blue-700 text-white flex items-center justify-center transition-all disabled:opacity-40 shrink-0 cursor-pointer shadow-xs"
-                title="Send"
+                aria-label='Send'
+                style={{
+                  display: 'inline-flex',
+                  width: 30,
+                  height: 30,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 'var(--radius-full)',
+                  background: 'var(--blue)',
+                  color: '#fff',
+                  opacity: !input.trim() || loading ? 0.4 : 1,
+                  cursor: 'pointer',
+                  flexShrink: 0,
+                }}
               >
-                <Send className="w-3.5 h-3.5" />
+                <Send size={14} />
               </button>
             </form>
-            <p className="text-[10px] text-zinc-400 text-center mt-1.5">
+            <p style={{ marginTop: 6, textAlign: 'center', fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)' }}>
               Blue can make mistakes. Check important info.
             </p>
           </div>
         </div>
       )}
 
-      {/* Floating Circular Launcher Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-[#0066FF] hover:bg-blue-600 shadow-xl flex items-center justify-center text-white transition-all transform hover:scale-105 z-[9999] cursor-pointer"
-        aria-label="Open Blue Chat"
+        onClick={() => setOpen(!open)}
+        aria-label={open ? 'Close Blue' : 'Ask Blue'}
+        aria-expanded={open}
+        style={{
+          position: 'fixed',
+          bottom: 'clamp(12px, 3vw, 24px)',
+          right: 'clamp(12px, 3vw, 24px)',
+          display: 'inline-flex',
+          width: 56,
+          height: 56,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: 'var(--radius-full)',
+          background: 'var(--blue)',
+          color: '#fff',
+          boxShadow: 'var(--shadow-xl)',
+          cursor: 'pointer',
+          zIndex: 'var(--z-popover)' as unknown as number,
+        }}
       >
-        <MessageCircle className="w-7 h-7" />
+        {open ? <X size={24} /> : <MessageCircle size={24} />}
       </button>
     </>
   )

@@ -1,24 +1,40 @@
 import Image from 'next/image';
+
+/**
+ * The Get Involved hero.
+ *
+ * It was built out of five bespoke names — `space-dog-bg`, `dog-bg`,
+ * `intro-bg`, `involved-header` and `md:absolute` — none of which the stylesheet
+ * publishes, so the empty spacer div held nothing, the photograph took its
+ * intrinsic 1000px, and the heading and the line under it fell into the flow
+ * below it instead of sitting over it. The contact line was `hidden max-md:block`,
+ * and only the first half of that pair exists, so it never appeared at any width.
+ *
+ * Two flex bases say the same layout without a breakpoint: copy and picture side
+ * by side while both fit, stacked when they do not.
+ */
 function Header() {
   return (
-    <div className="bg-background flex flex-col relative max-md:pt-20">
-      <div className='flex'>
-        <div className='space-dog-bg'></div>
-        <div className='dog-bg'>
-            <Image
-                className='intro-bg float-right'
-                src='/images/dog.png'
-                width='1000'
-                height='1000'
-                alt=''
-            />
+    <header className='bg-background'>
+      <div className='container mx-auto px-4 py-24 flex flex-wrap items-center gap-8'>
+        <div style={{ flex: '999 1 20rem' }}>
+          <h1 className='text-foreground'>Get Involved.</h1>
+          <p className='text-foreground text-xl mt-6' style={{ maxWidth: '30rem' }}>
+            Supporting endangered species that are threatened with extinction.
+          </p>
+          <p className='text-secondary mt-4'>hello@zoo.NGO</p>
+        </div>
+        <div style={{ flex: '1 1 18rem' }}>
+          <Image
+            src='/images/dog.png'
+            width={1000}
+            height={1000}
+            alt=''
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          />
         </div>
       </div>
-      <h1 className='md:absolute w-full text-center max-md:pt-4 involved-header md:text-7xl xl:text-9xl max-md:text-5xl text-foreground'>Get Involved.</h1>
-      <p className='text-foreground md:absolute xl:w-1/4 md:w-1/2 max-md:px-8 max-md:pt-8 text-xl bottom-0 left-[2rem]'>Supporting endangered species that are threatened with extinction.
-</p>
-      <p className='hidden max-md:block text-foreground text-right w-full pt-4 pr-8 text-lg'>hello@zoo.NGO</p>
-    </div>
+    </header>
   );
 }
 
