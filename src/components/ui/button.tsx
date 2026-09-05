@@ -41,19 +41,19 @@ const Button = styled(GuiButton, {
       },
       outline: {
         bg: 'rgba(255,255,255,0.72)',
-        color: 'var(--ink)',
+        color: 'var(--carbon)',
         borderColor: 'var(--border-strong)',
-        hoverStyle: { bg: '#ffffff', borderColor: 'var(--ink)' },
+        hoverStyle: { bg: '#ffffff', borderColor: 'var(--carbon)' },
       },
       secondary: {
         bg: '#ffffff',
-        color: 'var(--ink)',
+        color: 'var(--carbon)',
         borderColor: 'var(--border)',
         hoverStyle: { bg: '#ffffff', borderColor: 'var(--border-strong)' },
       },
       ghost: {
         bg: 'transparent',
-        color: 'var(--ink)',
+        color: 'var(--carbon)',
         hoverStyle: { bg: 'rgba(10,10,10,0.05)', borderColor: 'transparent' },
       },
       /* A link is a link: no fill, no edge, and no underline — this site carries
@@ -68,7 +68,7 @@ const Button = styled(GuiButton, {
       },
       linkFG: {
         bg: 'transparent',
-        color: 'var(--ink)',
+        color: 'var(--carbon)',
         borderColor: 'transparent',
         px: 0,
         hoverStyle: { bg: 'transparent', borderColor: 'transparent' },
@@ -78,7 +78,7 @@ const Button = styled(GuiButton, {
         color: 'var(--text-tertiary)',
         borderColor: 'transparent',
         px: 0,
-        hoverStyle: { bg: 'transparent', color: 'var(--ink)', borderColor: 'transparent' },
+        hoverStyle: { bg: 'transparent', color: 'var(--carbon)', borderColor: 'transparent' },
       },
     },
 

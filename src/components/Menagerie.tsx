@@ -57,8 +57,8 @@ export default function Menagerie() {
     <figure style={{ margin: 0, width: '100%' }}>
       <div
         style={{
-          border: '2px solid var(--ink)',
-          boxShadow: '6px 6px 0 0 var(--ink)',
+          border: '2px solid var(--carbon)',
+          boxShadow: '6px 6px 0 0 var(--carbon)',
           background: 'var(--blue)',
           overflow: 'hidden',
         }}
@@ -89,9 +89,9 @@ export default function Menagerie() {
             alignItems: 'center',
             gap: '0.75rem',
             padding: '0.6rem 0.9rem',
-            borderTop: '2px solid var(--ink)',
+            borderTop: '2px solid var(--carbon)',
             background: hue,
-            color: blue ? '#fff' : 'var(--ink)',
+            color: blue ? '#fff' : 'var(--carbon)',
           }}
         >
           <span style={{ fontSize: 'var(--text-sm)', fontWeight: 600 }}>
@@ -113,8 +113,8 @@ export default function Menagerie() {
                   style={{
                     width: 7,
                     height: 7,
-                    border: '1px solid var(--ink)',
-                    background: i === at ? 'var(--ink)' : 'transparent',
+                    border: '1px solid var(--carbon)',
+                    background: i === at ? 'var(--carbon)' : 'transparent',
                   }}
                 />
               ))}
