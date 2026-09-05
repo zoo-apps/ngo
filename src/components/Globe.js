@@ -279,12 +279,16 @@ function Globe() {
     return windowSize;
   }
 var marker_flag = false;
+/* The canvas clears to transparent so the sphere stands on the page's own
+   ground. Filling it with #000 drew a hard black rectangle straight under the
+   header — the globe is round, and the box around it was the only black on the
+   page. */
 return <div className={`w-full bg-transparent flex justify-center items-center`}>
 
     <Globe_
     ref={handleGlobeReady}
     globeImageUrl={"//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"}
-    backgroundColor={"#000"}
+    backgroundColor={"rgba(0,0,0,0)"}
     width={size.width * 0.35}
     height={`${size.width < 768? (size.width + 100) * 0.35 : size.width * 9 / 16 * 0.35}`}
     htmlElementsData={locationData}

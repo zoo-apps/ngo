@@ -1,58 +1,59 @@
+import React from 'react';
 import Link from 'next/link';
-function Donation() {
-    const comments = [
-        {
-          title: "$50",
-          comment: "Can go towards planting native species and restoring habitats and water sources.",
-          type: "normal"
-        },
-        {
-          title: "$100",
-          comment: "Fund staff and volunteers working hands-on to protect and care for endangered animals.",
-          type: "normal"
-        },
-        {
-          title: "Custom",
-          comment: "70% of your donation funds program activities, and 30% goes towards fundaraising and admin.",
-          type: "custom"
-        }
-      ];
+
+/**
+ * Three ways in.
+ *
+ * The cards were `aspect-square w-1/3 border rounded-xl border-white` — a white
+ * edge on a near-white ground, squared off by an aspect class the stylesheet
+ * does not define, with the arrow glyphs drawn `fill="white"` and therefore
+ * invisible. They are `.card`, which is the one surface this site has.
+ *
+ * "fundaraising" was in the third card's copy.
+ */
+
+const TIERS = [
+  {
+    amount: '$50',
+    body: 'Goes towards planting native species and restoring habitats and water sources.',
+  },
+  {
+    amount: '$100',
+    body: 'Funds staff and volunteers working hands-on to protect and care for endangered animals.',
+  },
+  {
+    amount: 'Any amount',
+    body: '70% of your donation funds program activities, and 30% goes towards fundraising and admin.',
+  },
+];
+
+export default function Donation() {
   return (
-    <div className="bg-background">
-        <p className='text-gray-300 text-sm xl:text-xl text-center'>Fuel Conservation Impact</p>
-        <h1 className='text-foreground text-center md:text-3xl xl:text-6xl max-md:text-4xl mt-5 mb-12'>Select your donation</h1>
-      <div className='flex max-md:flex-col donation-container max-md:px-5 md:space-x-16 max-md:space-y-8'>
-      {comments.map((data, index) => (
-        <div key={index} className='max-md:w-full aspect-square flex flex-col items-center justify-between w-1/3 donation-div max-md:py-8 max-md:px-8 border rounded-xl border-white'>
-            <h1 className='text-foreground md:text-xl xl:text-4xl max-md:text-2xl max-md:my-5'>{data.title}</h1>
-            <p className='text-foreground donation-text  max-md:text-xl text-center '>{data.comment}</p>
-            { data.type == 'normal' ? (
-                <Link href='/donation' className='flex items-center cursor-pointer text-foreground md:text-sm lg:text-md xl:text-xl max-md:text-xl max-md:pb-10'>
-                  <>
-                    <span className='pr-[15px]'>Donate</span>
-                    <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M6 5.5L1.19924 10.5L0 9.24901L3.59962 5.5L6.08905e-06 1.751L1.19924 0.5L6 5.5Z" fill="white"/>
-                    </svg>
-                  </>
-                </Link>
-            ) :  (
-                  <div className='flex flex-col w-full'>
-                      <div className='flex items-center text-foreground md:text-md lg:text-lg xl:text-xl pb-2'>
-                          <span>$</span>
-                          <input className='pl-3 border-no bg-transparent outline-none text-center w-full md:text-sm lg:text-lg' placeholder='Enter Donation'/>
-                          <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path fillRule="evenodd" clipRule="evenodd" d="M6 5.5L1.19924 10.5L0 9.24901L3.59962 5.5L6.08905e-06 1.751L1.19924 0.5L6 5.5Z" fill="white"/>
-                          </svg>
-                      </div>
-                      <hr />
-                  </div>
-              )
-              }
-          </div>
-        ))}
-        </div>
+    <section className='container' style={{ paddingBlock: 'var(--section-y-lg)' }}>
+      <div className='text-center mx-auto' style={{ maxWidth: '58ch' }}>
+        <span className='pill eyebrow'>Fuel conservation impact</span>
+        <h2 className='mt-5 text-3xl md:text-4xl font-bold'>Select your donation</h2>
       </div>
+
+      <div className='mt-12 grid-cards'>
+        {TIERS.map((t) => (
+          <article
+            key={t.amount}
+            className='card p-8 flex flex-col'
+            style={{ background: '#ffffff' }}
+          >
+            <p className='text-2xl md:text-3xl font-bold'>{t.amount}</p>
+            <p className='mt-3 text-secondary flex-1'>{t.body}</p>
+            <Link
+              href='/donation'
+              className='action mt-6'
+              style={{ alignSelf: 'flex-start' }}
+            >
+              Donate
+            </Link>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
-
-export default Donation;

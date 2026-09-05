@@ -4,6 +4,7 @@ import Image from 'next/image';
 import ReactCardFlip from "react-card-flip";
 import axios from "axios";
 import { useStripe } from '@stripe/react-stripe-js'
+import animals from '@/components/animals/animals.json'
 function Header({title,content,front,back,front_m,back_m,route}: {
   content: string;
   title: string;
@@ -16,9 +17,13 @@ function Header({title,content,front,back,front_m,back_m,route}: {
   const [flip, setFlip] = useState(false);
   // const cardId = "prod_O76Ynu7J5bDEYy";
   const stripe = useStripe();
+  /* Null whenever the build carries no publishable key, which a static export
+     normally does not. Asserting past it turned "checkout is not configured"
+     into a TypeError on click. */
   const buyCard = async () => {
+    if (!stripe) return;
     const { data } = await axios.get(`/api/buy_card/${route}`);
-    await stripe!.redirectToCheckout({ sessionId: data.id });
+    await stripe.redirectToCheckout({ sessionId: data.id });
   };
   return (
     <div className="bg-background md:px-16 lg:px-32 xl:px-40 2xl:px-64 max-md:pt-20">
@@ -84,14 +89,25 @@ function Header({title,content,front,back,front_m,back_m,route}: {
         </div>
 
       </div>
-      <div className='max-md:hidden flex items-center justify-center space-x-8 collect-link'>
-        <Link href="/animals/red_wolf" className={`text-foreground text-center px-3 border hover:rounded-full border-black hover:border-white py-2 ${ title == "Red Wolf" ? 'active' : ''} text-sm font-medium`} >{'Red Wolf'}</Link>
-        <Link href="/animals/nubian_giraffe" className={`text-foreground text-center border hover:rounded-full border-black hover:border-white px-3 py-2 ${ title == "Nubian Giraffe" ? 'active' : ''} text-sm font-medium`} >{'Nubian Giraffe'}</Link>
-        <Link href="/animals/amur_leopard" className={`text-foreground text-center px-3 border hover:rounded-full border-black hover:border-white py-2 ${ title == "Amur Leopard" ? 'active' : ''} text-sm font-medium`} >{'Amur Leopard'}</Link>
-        <Link href="/animals/pygmy_hippo" className={`text-foreground text-center px-3 border hover:rounded-full border-black hover:border-white py-2 ${ title == "Pygmy Hippo" ? 'active' : ''} text-sm font-medium`} >{'Pygmy Hippo'}</Link>
-        <Link href="/animals/siberian_tiger" className={`text-foreground text-center px-3 border hover:rounded-full border-black hover:border-white py-2 ${ title == "Siberian Tiger" ? 'active' : ''} text-sm font-medium`} >{'Siberian Tiger'}</Link>
-        <Link href="/animals/sumatran_elephant" className={`text-foreground text-center border hover:rounded-full border-black hover:border-white px-3 py-2 ${ title == "Sumatran Elephant" ? 'active' : ''} text-sm font-medium`} >{'Sumatran Elephant'}</Link>
-        <Link href="/animals/javan_rhino" className={`text-foreground text-center px-3 border hover:rounded-full border-black hover:border-white py-2 ${ title == "Javan Rhino" ? 'active' : ''} text-sm font-medium`} >{'Javan Rhino'}</Link>
+      {/* The switcher. It was seven links written out by hand — a third copy of
+          a list animals.json already holds — in a `flex` row with no wrap,
+          hidden below `md` by `max-md:hidden`, which the stylesheet does not
+          answer. So on a phone it drew all seven anyway and ran from x=-74 to
+          x=464 in a 390px viewport: the one thing on this site that scrolled
+          sideways. It wraps now, which needs no breakpoint at all. */}
+      <div className='container flex flex-wrap items-center justify-center gap-3'>
+        {animals.map((a) => (
+          <Link
+            key={a.route}
+            href={`/animals/${a.route}`}
+            className='action'
+            {...(a.name === title ? { 'data-fill': true } : {})}
+            style={{ ['--fill']: 'var(--blue)' } as React.CSSProperties}
+            aria-current={a.name === title ? 'page' : undefined}
+          >
+            {a.name}
+          </Link>
+        ))}
       </div>
     </div>
   );

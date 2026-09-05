@@ -3,7 +3,21 @@ import Layout from '@/components/layout/Layout';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
+import Away from '@/components/Away';
 import Link from 'next/link';
+import { CORPUS } from '@/config/corpus';
+
+/**
+ * What we have published.
+ *
+ * The numbers come from src/config/corpus.ts. This page used to state 7 papers
+ * and 102 proposals while the home page stated 86 and 149 — the same two facts,
+ * four different numbers, because the 7 was really the length of the list below
+ * it and the 102 was a literal that stopped being true.
+ *
+ * The lists here are selections: seven papers and eight proposals, chosen
+ * because that many fit. A list is never a count.
+ */
 
 const papers = [
   {
@@ -73,15 +87,15 @@ export default function Research() {
     <Layout>
       <Seo
         templateTitle="Research"
-        description="Open AI research: 7 papers, 102 ZIPs, 15 formal proofs, and the Zen family of frontier models."
+        description={`Open AI research: ${CORPUS.papers} papers, ${CORPUS.proposals} proposals, ${CORPUS.proofs} formal proofs, and the Zen family of frontier models.`}
       />
       <Navbar />
 
       <div className="bg-background text-foreground">
         {/* Hero */}
         <div className="container mx-auto px-4 pt-24 pb-16">
-          <p className="text-sm text-muted-foreground tracking-wider mb-4">Zoo Labs Foundation</p>
-          <h1 className="text-5xl md:text-7xl font-bold mb-8">Research</h1>
+          <span className="pill eyebrow">Zoo Labs Foundation</span>
+          <h1 className="mt-6 mb-8">Research</h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
             Open AI research advancing frontier models, decentralized training, and formal verification.
             Everything we publish is open access.
@@ -92,22 +106,17 @@ export default function Research() {
         <div className="border-t border-border">
           <div className="container mx-auto px-4 py-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div>
-                <p className="text-3xl md:text-4xl font-bold text-foreground">7</p>
-                <p className="text-sm text-muted-foreground mt-1">Papers</p>
-              </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold text-foreground">102</p>
-                <p className="text-sm text-muted-foreground mt-1">ZIP Specifications</p>
-              </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold text-foreground">15</p>
-                <p className="text-sm text-muted-foreground mt-1">Formal Proofs</p>
-              </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold text-foreground">45+</p>
-                <p className="text-sm text-muted-foreground mt-1">Open Models</p>
-              </div>
+              {[
+                { value: String(CORPUS.papers), label: 'Papers' },
+                { value: String(CORPUS.proposals), label: 'Proposals' },
+                { value: String(CORPUS.proofs), label: 'Formal proofs' },
+                { value: `${CORPUS.models}+`, label: 'Open models' },
+              ].map((s) => (
+                <div key={s.label}>
+                  <p className="text-3xl md:text-4xl font-bold text-foreground">{s.value}</p>
+                  <p className="eyebrow mt-1">{s.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -115,7 +124,19 @@ export default function Research() {
         {/* Papers */}
         <div className="border-t border-border">
           <div className="container mx-auto px-4 py-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Papers</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Selected papers</h2>
+            <p className="text-muted-foreground mb-12 max-w-2xl">
+              Seven of {CORPUS.papers}. Every one of them, as LaTeX source, is at{' '}
+              <a
+                href="https://github.com/zooai/papers"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground"
+              >
+                github.com/zooai/papers
+              </a>
+              .
+            </p>
             <div className="space-y-4">
               {papers.map((paper) => (
                 <div key={paper.title} className="bg-background border border-border rounded-xl p-6 hover:border-foreground/20 transition-colors">
@@ -158,8 +179,8 @@ export default function Research() {
           <div className="container mx-auto px-4 py-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Zoo Improvement Proposals</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl">
-              102 specifications governing everything from model architecture to tokenomics to governance.
-              Community-driven, publicly reviewed, formally specified.
+              {CORPUS.proposals} specifications governing everything from model architecture to
+              tokenomics to governance. Community-driven, publicly reviewed, formally specified.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-8">
               {[
@@ -182,9 +203,10 @@ export default function Research() {
               href="https://zips.zoo.ngo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-sm text-muted-foreground hover:text-foreground border border-border px-4 py-2 rounded-lg transition-colors"
+              className="action"
             >
-              View all 102 ZIPs →
+              View all {CORPUS.proposals} proposals
+              <Away />
             </a>
           </div>
         </div>
@@ -219,12 +241,19 @@ export default function Research() {
                   href="https://github.com/zooai/papers/tree/main/zoo-fund-impact-thesis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm border border-border text-foreground px-5 py-2.5 rounded-full hover:bg-card transition-colors"
+                  className="action"
                 >
                   Read the thesis
+                  <Away />
                 </a>
-                <a href="https://github.com/zooai" target="_blank" rel="noopener noreferrer" className="text-sm border border-border text-muted-foreground px-5 py-2.5 rounded-full hover:bg-card hover:text-foreground transition-colors">
+                <a
+                  href="https://github.com/zooai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="action"
+                >
                   View on GitHub
+                  <Away />
                 </a>
               </div>
             </div>
@@ -239,8 +268,13 @@ export default function Research() {
               Every donation funds open-source models, research papers, and formally verified systems.
               501(c)(3) tax-deductible.
             </p>
-            <Link href="/donation" className="inline-block bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors">
-              Support Our Research
+            <Link
+              href="/donation"
+              className="action"
+              data-fill
+              style={{ ['--fill']: 'var(--blue)' } as React.CSSProperties}
+            >
+              Support our research
             </Link>
           </div>
         </div>

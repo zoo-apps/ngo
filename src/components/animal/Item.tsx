@@ -1,105 +1,52 @@
-import Link from 'next/link';
-import dynamic from "next/dynamic";
-const ModelViewer = dynamic(() => import("@/components/ModelViewer"), {
-  ssr: false,
-});
-function Item({list, linkFlag=true}: {
-  list?: { title: string; href: string; usdz: string; glb: string; camera_orbit: string; camera_target: string;}[];
-  linkFlag?: boolean;
+import dynamic from 'next/dynamic';
+
+const ModelViewer = dynamic(() => import('@/components/ModelViewer'), { ssr: false });
+
+/**
+ * The three ages of one animal, as models you can turn around.
+ *
+ * This used to carry a second job — a hardcoded list of the six species, shown
+ * on /animals with a `linkFlag` deciding which of the two things it was. The
+ * species list is on the page that owns it now and reads animals.json, so this
+ * is one component doing one job and `list` is required.
+ *
+ * Each model sits on a `.plate` with a stated aspect ratio. The classes that
+ * used to size them — `aspect-square`, `md:py-32`, `xl:px-56` — are Tailwind
+ * names, and Tailwind has never been in this build; the stylesheet answers a
+ * fixed set of them and silently drops the rest. Nothing sized these, so a
+ * viewer that failed to paint left a hole the height of the page. The plate
+ * holds its shape and its colour whether or not WebGL gets there, which is the
+ * difference between a page with a dark panel on it and a page with a gap in it.
+ */
+export default function Item({
+  list,
+}: {
+  list: {
+    title: string;
+    href: string;
+    usdz: string;
+    glb: string;
+    camera_orbit: string;
+    camera_target: string;
+  }[];
 }) {
-    const animals = list != undefined ? list : [
-        {
-          title: "Nubian Giraffe",
-          href: "/animals/nubian_giraffe",
-          usdz: "/models/Giraffe/GIRAFFE_ADULT.usdz",
-          glb: "/models/Giraffe/GIRAFFE_ADULT.glb",
-          camera_orbit: "",
-          camera_target: "0m 28m 0m"
-        },
-        {
-          title: "Amur Leopard",
-          href: "/animals/amur_leopard",
-          usdz: "/models/Leopard/LEOPARD_ADULT.usdz",
-          glb: "/models/Leopard/LEOPARD_ADULT.glb",
-          camera_orbit: "",
-          camera_target: ""
-        },
-        {
-          title: "Sumatran Elephant",
-          href: "/animals/sumatran_elephant",
-          usdz: "/models/Elephant/ELEPHANT_ADULT.usdz",
-          glb: "/models/Elephant/ELEPHANT_ADULT.glb",
-          camera_orbit: "",
-          camera_target: ""
-        },
-        {
-          title: "Siberian Tiger",
-          href: "/animals/siberian_tiger",
-          usdz: "/models/Tiger/TIGER_ADULT.usdz",
-          glb: "/models/Tiger/TIGER_ADULT.glb",
-          camera_orbit: "",
-          camera_target: ""
-        },
-        {
-          title: "Pygmy Hippo",
-          href: "/animals/pygmy_hippo",
-          usdz: "/models/Hippo/HIPPO_ADULT.usdz",
-          glb: "/models/Hippo/HIPPO_ADULT.glb",
-          camera_orbit: "",
-          camera_target: ""
-        },
-        {
-          title: "Javan Rhino",
-          href: "/animals/javan_rhino",
-          usdz: "/models/Rhino/RHINO_ADULT.usdz",
-          glb: "/models/Rhino/RHINO_ADULT.glb",
-          camera_orbit: "",
-          camera_target: "0m 1m 0m"
-        }
-      ];
   return (
-    <div className="bg-background lg:py-52 md:py-32 max-md:py-8">
-      <div className='grid md:grid-cols-3 grid-cols-1 gap-8 xl:px-56 lg:px-40 md:px-24 max-md:px-4'>
-      {animals.map((data, index) => (
-        <div key={index} className='flex flex-col items-center space-y-4'>
-          <div className='w-full max-md:w-full flex flex-col items-center justify-between space-y-8'>
-              {/* <Image
-                  className='w-full'
-                  src={data.img}
-                  width='800'
-                  height='800'
-                  alt=''
-              /> */}
-              <ModelViewer className='aspect-square'
+    <section className='container' style={{ paddingBlock: 'var(--section-y-lg)' }}>
+      <div className='grid-cards'>
+        {list.map((data) => (
+          <figure key={data.title}>
+            <div className='plate' style={{ aspectRatio: '1 / 1', width: '100%' }}>
+              <ModelViewer
                 usdz={data.usdz}
                 glb={data.glb}
                 camera_orbit={data.camera_orbit}
                 camera_target={data.camera_target}
-              ></ModelViewer>
-              
-          </div>
-          {
-            linkFlag ? (
-              <Link
-                href={data.href}
-                className='w-full items-center flex justify-center cursor-pointer text-foreground md:text-sm lg:text-md xl:text-xl max-md:pb-10 '>
-                  <>
-                    <span className='pr-[15px]'>{data.title}</span>
-                    <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M6 5.5L1.19924 10.5L0 9.24901L3.59962 5.5L6.08905e-06 1.751L1.19924 0.5L6 5.5Z" fill="white"/>
-                    </svg>
-                  </>
-              </Link>
-            ) : (
-              <p className='text-foreground md:text-sm lg:text-md xl:text-xl max-md:pb-10'>{data.title}</p>
-            )
-          }
-          
-        </div>
-      ))}
+              />
+            </div>
+            <figcaption className='mt-3 text-center font-medium'>{data.title}</figcaption>
+          </figure>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
-
-export default Item;
