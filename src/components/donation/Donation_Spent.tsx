@@ -1,83 +1,121 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Link from 'next/link';
+import { Cpu, FlaskConical, PawPrint, ShieldCheck } from 'lucide-react';
+import Away from '@/components/Away';
 import { CORPUS } from '@/config/corpus';
 
-const ALLOCATION_AREAS = [
+/**
+ * Where the money goes.
+ *
+ * These three used to be drawn on `--surface-card`, a token @hanzo/design
+ * publishes at `:root` for its DARK theme — rgb(38 38 38 / .5). This site never
+ * mounts the light class, so the recipe resolved dark on a light page and the
+ * cards came out as grey slabs carrying the ink colour: 2.54:1 on the body copy,
+ * 2.95:1 on the heading. One card also read `--surface-card-emphasis` because a
+ * click "selected" it, which is why three identical cards were three different
+ * greys.
+ *
+ * They are `.card` now — the same rule the home page's three cards use — and the
+ * selection is gone with them. It set a colour and nothing else: a div with an
+ * onClick, no role, no key handler, and no consequence.
+ */
+
+/** A custom property, typed. --hue is what a card is coloured with. */
+const hue = (value: string) => ({ ['--hue']: value }) as React.CSSProperties;
+
+const AREAS = [
   {
-    title: 'Sanctuary & Rescue Operations',
-    desc: 'Direct veterinary care, anti-poaching patrol equipment, sanctuary habitat construction, and rescue missions for wildlife worldwide.',
-    icon: '🐅',
-    tag: 'Field Operations',
+    icon: PawPrint,
+    hue: 'var(--green)',
+    tag: 'Field operations',
+    title: 'Sanctuary and rescue',
+    body: 'Veterinary care, anti-poaching patrol equipment, sanctuary habitat construction, and rescue missions for wildlife worldwide.',
   },
   {
-    title: 'Decentralized Compute & Gym',
-    desc: 'Distributed GPU training framework, Zoo Gym (TF-GRPO), and open mining protocols democratizing AI alignment for public science.',
-    icon: '⚡',
-    tag: 'Open Infrastructure',
+    icon: Cpu,
+    hue: 'var(--blue)',
+    tag: 'Open infrastructure',
+    title: 'Compute and Zoo Gym',
+    body: 'The distributed GPU training framework, Zoo Gym (TF-GRPO), and open mining protocols that put AI alignment work within reach of public science.',
   },
   {
-    title: 'Open Science & Academic Research',
-    desc: `Publishing ${CORPUS.papers} papers, open model weights, and ${CORPUS.proposals} improvement proposals, all freely readable.`,
-    icon: '🧬',
-    tag: 'Frontier AI Science',
+    icon: FlaskConical,
+    hue: 'var(--pink)',
+    tag: 'Open science',
+    title: 'Research and publication',
+    body: `${CORPUS.papers} papers, ${CORPUS.proposals} improvement proposals and every model weight, published open access and free to read.`,
   },
 ];
 
 export default function Donation_Spent() {
-  const [selectedArea, setSelectedArea] = useState(0);
-
   return (
-    <section className="bg-card py-16 md:py-24 border-b border-white/10">
-      <div className="container mx-auto">
-        <div className="max-w-3xl mb-12">
-          <span className="badge badge-online mb-3">Direct Charitable Giving</span>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
-            Where Your Support Goes
-          </h2>
-          <p className="text-base md:text-lg text-secondary leading-relaxed">
-            Every contribution goes directly toward tangible wildlife care, habitat protection, and open-access foundation research.
+    <section className='container' style={{ paddingTop: 'var(--section-y-lg)' }}>
+      <div style={{ maxWidth: '58ch' }}>
+        <span className='pill eyebrow'>Direct charitable giving</span>
+        <h2 className='mt-5 text-3xl md:text-4xl font-bold'>Where your support goes</h2>
+        <p className='mt-4 text-secondary'>
+          Every contribution goes to wildlife care, habitat protection and open-access research.
+          Nothing here is a projection — it is what the money is spent on.
+        </p>
+      </div>
+
+      <div className='mt-12 grid-cards'>
+        {AREAS.map(({ icon: Icon, ...a }) => (
+          <article
+            key={a.title}
+            className='card p-8 flex flex-col'
+            style={{ ...hue(a.hue), background: '#ffffff' }}
+          >
+            <div className='flex items-center justify-between gap-4'>
+              <span className='disc'>
+                <Icon size={20} strokeWidth={1.75} aria-hidden />
+              </span>
+              <span className='tint'>{a.tag}</span>
+            </div>
+            <h3 className='mt-5 text-xl font-semibold'>{a.title}</h3>
+            <p className='mt-3 text-secondary flex-1'>{a.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div
+        className='card p-8 mt-12'
+        style={{
+          ...hue('var(--blue)'),
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: 'var(--space-8)',
+          alignItems: 'center',
+          background: 'color-mix(in oklab, var(--blue) 7%, #ffffff)',
+          borderColor: 'color-mix(in oklab, var(--blue) 18%, transparent)',
+        }}
+      >
+        <div>
+          <span className='disc' data-outline>
+            <ShieldCheck size={20} strokeWidth={1.75} aria-hidden />
+          </span>
+          <h3 className='mt-5 text-xl font-semibold'>Tax-deductible 501(c)(3) giving</h3>
+          <p className='mt-3 text-secondary' style={{ maxWidth: '52ch' }}>
+            Zoo Labs Foundation is a recognized 501(c)(3) public charity, EIN 88-3538992. Donations
+            are tax-deductible to the fullest extent the law permits.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {ALLOCATION_AREAS.map((area, idx) => {
-            const isSel = selectedArea === idx;
-            return (
-              <div
-                key={area.title}
-                onClick={() => setSelectedArea(idx)}
-                className={`card cursor-pointer transition-all ${
-                  isSel ? 'border-strong' : ''
-                }`}
-                style={{
-                  background: isSel ? 'var(--surface-card-emphasis)' : 'var(--surface-card)',
-                }}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-3xl">{area.icon}</span>
-                  <span className="badge badge-accent">{area.tag}</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">{area.title}</h3>
-                <p className="text-sm text-secondary leading-relaxed">{area.desc}</p>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-12 p-6 rounded-2xl bg-surface border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h4 className="text-lg font-bold text-white mb-1">Tax-Deductible 501(c)(3) Giving</h4>
-            <p className="text-sm text-secondary">
-              Zoo Labs Foundation is a recognized 501(c)(3) non-profit public charity. All donations are tax-deductible to the fullest extent permitted by law.
-            </p>
-          </div>
+        <div className='flex flex-wrap gap-3' style={{ justifySelf: 'start' }}>
           <a
-            href="https://www.paypal.biz/zoongo"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary px-8 py-3 rounded-full font-bold text-sm shrink-0"
+            href='https://www.paypal.biz/zoongo'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='action'
+            data-fill
+            style={{ ['--fill']: 'var(--blue)' } as React.CSSProperties}
           >
-            Donate Today &rarr;
+            Give today
+            <Away />
           </a>
+          <Link href='/donation/crypto' className='action'>
+            Give in crypto
+          </Link>
         </div>
       </div>
     </section>

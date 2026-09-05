@@ -1,31 +1,78 @@
-import Image from 'next/image';
-function Volunteer() {
+import React, { useState } from 'react';
+
+/**
+ * Volunteer.
+ *
+ * The button and the line beside it were laid out with `lg:space-x-16
+ * md:space-x-4` — none of which the stylesheet answers — so a 12rem-wide pill
+ * and a two-line sentence sat in a flex row with no gap between them and
+ * touched. They are stacked in a form now: the control ends the form, and the
+ * reassurance sits under it where it reads as a caption rather than as a label
+ * that ran into the button.
+ *
+ * Inert, like every other form on this site, and for the same reason: there is
+ * nowhere to post it. It used to be a bare <button> outside any <form>, which
+ * at least never pretended otherwise.
+ */
+export default function Volunteer() {
+  const [there, setThere] = useState(true);
+
   return (
-    <div className="bg-background md:pt-52 max-md:py-32" id='volunteer'>
-      <div className="flex max-md:flex-col max-md:flex-col-reverse items-center justify-between">
-        <div className='w-1/2 max-md:w-full flex flex-col justify-between  max-md:px-12 max-md:pt-4 2xl:pl-48 xl:px-32 lg:pl-16 md:pl-8 md:pr-4 2xl:pr-52'>
-            <p className='text-foreground md:text-lg lg:text-xl xl:text-2xl max-md:text-lg max-md:pb-4 md:pb-6'>Doing good feels great</p>
-            <h1 className='text-foreground md:text-5xl xl:text-6xl max-md:text-3xl max-md:my-5 md:pb-6'>Volunteer</h1>
-            <p className='text-foreground md:text-lg lg:text-xl xl:text-2xl lg:pb-12 max-md:pb-6 md:pb-6'>Share your details so we can get in touch!</p>
-            <input className='bg-white text-black pl-4 lg:py-4 py-2 rounded-full outline-none mb-4 md:text-sm lg:text-md' placeholder='First and Last Name' />
-            <input className='bg-white text-black pl-4 lg:py-4 py-2 rounded-full outline-none mb-8 md:text-sm lg:text-md' placeholder='Email' />
-            <div className='flex lg:space-x-16 md:space-x-4 max-md:space-x-4 items-center'>
-                <button className='bg-white hover:bg-background hover:text-foreground border border-white px-12 py-2 rounded-full font-medium text-black transition-colors'>Inquire</button>
-                <p className='text-foreground text-sm'>The future generations of endangered species thank you.</p>
+    <section id='volunteer' className='container' style={{ paddingBlock: 'var(--section-y-lg)' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 'var(--space-12)',
+          alignItems: 'center',
+        }}
+      >
+        <div>
+          <span className='pill eyebrow'>Doing good feels great</span>
+          <h2 className='mt-5 text-3xl md:text-4xl font-bold'>Volunteer</h2>
+          <p className='mt-4 text-secondary' style={{ maxWidth: '40ch' }}>
+            Share your details and we will get in touch.
+          </p>
+
+          <form className='mt-8' onSubmit={(e) => e.preventDefault()}>
+            <div className='field'>
+              <input name='name' placeholder='First and last name' aria-label='First and last name' />
             </div>
+            <div className='field mt-3'>
+              <input
+                type='email'
+                name='email'
+                placeholder='Email address'
+                aria-label='Email address'
+              />
+            </div>
+            <button
+              type='submit'
+              className='action mt-6'
+              data-fill
+              style={{ ['--fill']: 'var(--blue)' } as React.CSSProperties}
+            >
+              Inquire
+            </button>
+            <p className='mt-4 text-sm text-secondary' style={{ maxWidth: '36ch' }}>
+              The future generations of endangered species thank you.
+            </p>
+          </form>
         </div>
-        <div className='md:w-1/2 w-full'>
-            <Image
-                className='intro-bg'
-                src="/images/involved6.png"
-                width='1000'
-                height='1000'
-                alt=''
+
+        <div className='plate' style={{ aspectRatio: '4 / 3', width: '100%' }}>
+          {there && (
+            <img
+              src='/images/involved6.png'
+              alt='Veterinarians measuring a sedated tiger during a field health check'
+              width={1000}
+              height={1000}
+              decoding='async'
+              onError={() => setThere(false)}
             />
+          )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
-
-export default Volunteer;

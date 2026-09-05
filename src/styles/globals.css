@@ -75,9 +75,15 @@
      card, the pill under it, and the one button asking for money. Each hue is
      picked to carry white text as a fill AND to read as text on its own tint,
      so neither use needs a caveat. They were literals in six places below
-     before they had names. */
-  --blue: #1d4ed8; /* 6.31:1 with white */
-  --green: #15803d; /* 4.90:1 with white */
+     before they had names.
+
+     Of the two jobs it is the tint that binds, and only the fill was ever
+     measured here. Green at #15803d read 4.29:1 as text on its own tint —
+     under the floor, and the one hue on the site that was. One rung deeper
+     puts it back beside its siblings. Both figures now, both read off the
+     rendered page. */
+  --blue: #1d4ed8; /* 6.31:1 on white · 5.60:1 on its tint */
+  --green: #166534; /* 7.13:1 on white · 5.91:1 on its tint */
 
   /* The action. The Zoo mark's magenta (#ea018e) taken two steps deeper, because
      the mark's own value measures 4.29:1 against white and this hue's whole job
@@ -194,18 +200,19 @@
   --straddle: 0px;
 }
 
-/* The hero wash — the pastel, and it is made OF the palette rather than beside
-   it. Two radials of the action hue and a lift of the paper itself, anchored to
-   the top of the page and faded out by the fold, so a page opens with colour and
-   reads on flat cream. The seven-stop full-bleed version this replaces put a
-   different tint behind every card on the page. */
+/* One ground, and it is flat.
+
+   A wash of the action hue used to be painted across the top of every page.
+   The home page opens on the night, which covers it completely, so the one
+   page it was designed for never showed it; every inner page showed it as a
+   pink corner under a black bar — rgb(244,238,244), which reads as a printing
+   fault rather than as a decision. A gradient that is invisible where it was
+   intended and wrong everywhere else is not carrying anything.
+
+   Colour comes back on the page itself, where it means something: the disc on
+   a card, the tint under it, the hue on the button asking for money. */
 body {
   background-color: var(--paper);
-  background-image:
-    radial-gradient(60rem 34rem at 12% -6%, color-mix(in oklab, var(--berry) 13%, transparent) 0%, transparent 68%),
-    radial-gradient(52rem 30rem at 88% -10%, color-mix(in oklab, var(--paper) 55%, #ffffff) 0%, transparent 72%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   overflow-x: hidden;
   touch-action: manipulation;
 }

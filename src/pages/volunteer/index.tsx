@@ -33,8 +33,9 @@ export default function Volunteer() {
       <section className="bg-white py-20">
         <div className="container mx-auto px-4">
           <div className="border-4 border-black p-8 md:p-12 mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              🦈 URGENT: Shark Stewards Expedition - This Sunday, October 5th
+            <span className="pill eyebrow">Next expedition</span>
+            <h2 className="mt-5 text-3xl md:text-4xl font-bold mb-4">
+              Shark Stewards expedition, this Sunday
             </h2>
             <p className="text-xl text-gray-700 mb-6">
               Join us for an incredible Great White Shark expedition to the Farallone Islands
@@ -63,18 +64,17 @@ export default function Volunteer() {
                 </ul>
               </div>
             </div>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/experiences"
-                className="inline-block bg-background text-foreground px-8 py-4 font-bold hover:bg-gray-800 transition-all text-center"
+                className="action"
+                data-fill
+                style={{ ['--fill']: 'var(--blue)' } as React.CSSProperties}
               >
-                VIEW ALL EXPEDITIONS
+                View all expeditions
               </Link>
-              <Link
-                href="/donation"
-                className="inline-block border-2 border-black text-black px-8 py-4 font-bold hover:bg-background hover:text-foreground transition-all text-center"
-              >
-                DONATE TO SUPPORT
+              <Link href="/donation" className="action">
+                Donate to support
               </Link>
             </div>
           </div>
@@ -164,9 +164,11 @@ export default function Volunteer() {
           <div className="text-center mt-12">
             <Link
               href="/donation"
-              className="inline-block bg-background text-foreground px-12 py-5 font-bold text-xl hover:bg-gray-800 transition-all"
+              className="action"
+              data-fill
+              style={{ ['--fill']: 'var(--blue)' } as React.CSSProperties}
             >
-              DONATE NOW
+              Donate now
             </Link>
           </div>
         </div>

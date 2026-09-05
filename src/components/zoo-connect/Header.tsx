@@ -16,6 +16,9 @@ function Header() {
   };
   const handleSubmit = async () => {
     if(amount == null || amount == "$")return;
+      /* Null whenever the build carries no publishable key, which a static
+         export normally does not. */
+      if (!stripe) return;
       const response = await fetchPostJSON('/api/checkout_sessions', {
         amount: Number(amount.replace('$','')),
       })
@@ -25,7 +28,7 @@ function Header() {
         return
       }
 
-      const { error } = await stripe!.redirectToCheckout({
+      const { error } = await stripe.redirectToCheckout({
         sessionId: response.id,
       })
       console.warn(error.message)

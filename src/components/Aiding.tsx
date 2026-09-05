@@ -1,37 +1,44 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import ProgressBar from "@ramonak/react-progress-bar";
-function Aiding() {
-  return (
-    <div className="bg-background md:py-32 lg:py-52 max-md:py-28 max-md:px-8">
-      <div className='flex flex-col'>
-        <h1 className='text-foreground md:text-center xl:text-5xl md:text-4xl max-md:text-4xl '>Aiding Species with Digital Twins</h1>
-        <div className='flex max-md:flex-col  justify-between md:space-x-16 max-md:space-y-8 xl:px-64 lg:px-32 md:px-16 pt-16'>
-          <p className='w-1/2 max-md:w-full text-foreground text-xl'>Our endeavors are made possible through philanthropic donations and the proceeds garnered from the sale of our virtual animals and trading cards.</p>
-          <p className='w-1/2 max-md:w-full text-foreground text-xl'>We are developing intellectually stimulating content for both children and adults. Our  platform will host a variety of interactive experiences with our Zoo Animals, aimed at lasting impact and raising awareness.</p>
-        </div>
+import React from 'react';
 
-        <Link href='#' className="hidden max-md:flex bg-[#1E1F23] flex-col border border-[#1E1F23] mt-12 rounded-xl pb-4">
-          <>
-          <Image
-            className='w-full'
-            src='/images/zoo_connect.png'
-            width='1000'
-            height='1000'
-            alt=''
-          />
-          <p className='px-2 py-2 text-foreground text-base'>Fund Zoo Connect - A voice for neglected, mistreated and endangered animals globally</p>
-          <p className='px-2 text-foreground text-sm'><span className='text-[#3C9465]'>$7379</span> of $12,400 goal</p>
-          <ProgressBar className='px-2 pt-2' completed={80} isLabelVisible={false} bgColor='#3C9465' height="5px"/>
-          <div className='flex justify-between px-2 pt-2 text-foreground text-sm'>
-            <p><span className='text-[#3C9465]'>3,274</span> Donators</p>
-            <p><span className='text-[#3C9465]'>12</span> days left</p>
-          </div>
-          </>
-        </Link>
+/**
+ * Why there are 3D animals on a conservation site at all.
+ *
+ * The section used to reach for `md:py-32`, `lg:py-52`, `xl:px-64` and
+ * `w-1/2` — Tailwind names this build does not answer — so it had neither the
+ * padding nor the columns it was written for, and the two paragraphs ran the
+ * full width under a centred head. It is the section rhythm and the container
+ * every other band on the site is on.
+ *
+ * The phone-only campaign card that used to hang off the bottom is gone. It was
+ * marked `hidden max-md:flex`, a variant the stylesheet does not define, so it
+ * never drew at any width; and it advertised "$7,379 of $12,400" and "3,274
+ * donators" against `href='#'`. A charity does not publish a total it cannot
+ * point at, least of all next to a link that goes nowhere.
+ */
+export default function Aiding() {
+  return (
+    <section className='container' style={{ paddingBlock: 'var(--section-y-lg)' }}>
+      <h2 className='text-3xl md:text-4xl font-bold text-center mx-auto' style={{ maxWidth: '20ch' }}>
+        Aiding species with digital twins
+      </h2>
+
+      <div
+        className='mt-12'
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: 'var(--space-8)',
+        }}
+      >
+        <p className='text-secondary'>
+          Our work is paid for by philanthropic donations and by the proceeds from our virtual
+          animals and trading cards.
+        </p>
+        <p className='text-secondary'>
+          We are building content for children and adults alike: interactive experiences with the
+          Zoo animals, aimed at lasting impact and at raising awareness.
+        </p>
       </div>
-    </div>
+    </section>
   );
 }
-
-export default Aiding;
