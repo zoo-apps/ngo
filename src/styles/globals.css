@@ -504,10 +504,17 @@ select {
    beside the words, and a room in a 380px band is a letterbox. The height is
    what is left under the bar, less the distance the stats climb back into it,
    and `svh` because a phone's toolbars must not push the ask off the bottom. */
+/* THE HERO IS THE SCREEN, all of it. `svh` is the viewport with the browser's
+   toolbars showing, so the fold is where a phone actually puts it, and the bar
+   above is the only thing taken off — the stats card that climbs into this band
+   from below is deliberately NOT subtracted, because it should overlap the fold
+   rather than reserve room above it. */
 .hero {
   min-height: calc(100svh - var(--nav-h));
   display: flex;
   align-items: center;
+  padding-top: var(--space-10);
+  padding-bottom: calc(var(--space-10) + var(--straddle));
 }
 
 .hero-two {
