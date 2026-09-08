@@ -206,6 +206,9 @@
   /* How far the stats card climbs into the night above it. Zero on a phone,
      where a four-row card straddling a fold is just a card in the wrong place. */
   --straddle: 0px;
+
+  /* What a frosted surface tints itself with — the ground it floats on. */
+  --ground: #ffffff;
 }
 
 /* One ground, and it is flat.
@@ -381,6 +384,8 @@ select {
   background: var(--night);
   color: #ffffff;
 
+  --ground: var(--night);
+
   --carbon: #ffffff;
   --foreground: #ffffff;
   --text-primary: #ffffff;
@@ -410,9 +415,29 @@ select {
   display: block;
 }
 
+/* Frosted: the page shows through, blurred.
+   ONE material, stated once. Each ground supplies its own tint through
+   --ground, so the bar and the menus are the same thing on the night and on the
+   paper and neither needs a rule of its own. The border is the ground's ink at a
+   tenth, which is a hairline on white and on black without either being named.
+   `saturate` is what separates frosted glass from grey film: blur alone washes
+   the colour out of whatever is behind it. */
+.glass {
+  background: color-mix(in oklab, var(--ground) 72%, transparent);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid color-mix(in oklab, var(--carbon) 11%, transparent);
+}
+
+/* A browser that cannot blur gets the ground itself rather than a translucent
+   panel over unreadable text. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: var(--ground);
+  }
+}
+
 .menu {
-  background: color-mix(in oklab, var(--night) 86%, #ffffff);
-  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
 }
@@ -1396,4 +1421,37 @@ select {
   .max-md\:text-5xl { font-size: var(--text-5xl); line-height: var(--leading-5xl); }
   .max-md\:my-5 { margin-top: var(--space-5); margin-bottom: var(--space-5); }
   .max-md\:pb-2 { padding-bottom: var(--space-2); }
+}
+
+/* THE BAR IS NOT THERE UNTIL YOU MOVE.
+   At the top it is the page: no plate, no hairline, nothing between the reader
+   and the first thing the site has to say. The moment anything scrolls under it
+   the glass appears, because that is the moment it starts covering something. */
+.bar {
+  /* Transparent even on the night, where `.night` would otherwise paint it: the
+     bar must be ABSENT at rest, not merely the same colour as what is behind it
+     today. The two are indistinguishable until something scrolls under it, and
+     then only one of them is right. */
+  background: transparent;
+  transition: background 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease;
+  border-bottom: 1px solid transparent;
+}
+
+.bar.lifted {
+  background: color-mix(in oklab, var(--ground) 72%, transparent);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border-bottom-color: color-mix(in oklab, var(--carbon) 11%, transparent);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .bar.lifted {
+    background: var(--ground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    transition: none;
+  }
 }
