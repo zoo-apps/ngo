@@ -474,30 +474,260 @@ select {
   object-fit: cover;
 }
 
-/* Blue's room, shown inside this page. The still sits underneath as the poster
-   and the frame fades over it, so the plate is never empty and never white. */
-.deep-room {
+/* Blue, in the water, at the front of the site.
+
+   The clip IS the panel. What was here before was zoolabs.io in an iframe, and
+   an iframe brought the whole room with it — a second header, a second sign-in,
+   a second footer — into a hero that already has all three. So the animal is the
+   surface now, and the only things over it are the words being said and the line
+   to say them in.
+
+   Everything is laid out from the EDGES: Blue's turns against the left wall, the
+   reader's against the right, each no wider than three fifths. The middle column
+   of the frame is left alone on purpose, because that is where the whale is. */
+.portal {
   position: relative;
   width: 100%;
-  /* The room lays itself out against ITS OWN height, so a short frame is not a
-     small copy of the page — it is the page with its head and its ask pushed
-     off either end. Whatever the column gives it, it gets most of the fold. */
-  height: min(72svh, 30rem);
+  height: var(--portal-h, min(64svh, 26rem));
   overflow: hidden;
   border-radius: var(--radius-xl);
+  background: #04121c;
+  isolation: isolate;
 }
 
-.deep-room > .plate,
-.deep-room iframe {
+.portal-film {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: cover;
 }
 
-.deep-room iframe {
-  transition: opacity 240ms ease;
+/* Dark at the two ends, clear across the middle — the words get their contrast
+   from the bands they actually sit in, and the water in between keeps its own
+   light instead of being dimmed for text that is not there. */
+.portal-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(2 12 20 / 0.55) 0%,
+    rgb(2 12 20 / 0.12) 26%,
+    rgb(2 12 20 / 0.12) 46%,
+    rgb(2 12 20 / 0.82) 100%
+  );
+}
+
+.portal-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding: clamp(0.75rem, 2.2vw, 1.25rem);
+  color: #fff;
+}
+
+.portal-out {
+  position: absolute;
+  top: clamp(0.75rem, 2.2vw, 1.25rem);
+  right: clamp(0.75rem, 2.2vw, 1.25rem);
+  z-index: 2;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgb(0 0 0 / 0.42);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgb(255 255 255 / 0.22);
+  white-space: nowrap;
+}
+
+.portal-out:hover {
+  background: rgb(0 0 0 / 0.62);
+}
+
+/* The talk grows UP from the composer. It is the only thing that scrolls, and
+   it is capped so a long answer cannot swallow the animal. */
+.portal-talk {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 0;
+  flex: 1;
+}
+
+.portal-hello {
+  align-self: stretch;
+  max-width: 40ch;
+  text-shadow: 0 1px 14px rgb(0 0 0 / 0.75);
+}
+
+.portal-greet {
+  margin: 0;
+  font-size: clamp(1.0625rem, 2.4vw, 1.375rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.portal-lede {
+  margin: 0.25rem 0 0;
+  font-size: clamp(0.875rem, 1.7vw, 0.9375rem);
+  color: rgb(255 255 255 / 0.82);
+}
+
+/* ONE row, and it scrolls. Wrapped chips grow downward into the frame, and the
+   frame is the animal. A row keeps the cost of an opener fixed at one line
+   however many there are. */
+.portal-openers {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  /* The row runs to both edges of the panel and its padding is the panel's, so
+     a chip can sit against the wall rather than in from it. */
+  margin-inline: calc(clamp(0.75rem, 2.2vw, 1.25rem) * -1);
+  padding-inline: clamp(0.75rem, 2.2vw, 1.25rem);
+}
+
+.portal-openers::-webkit-scrollbar {
+  display: none;
+}
+
+.portal-chip {
+  white-space: nowrap;
+  flex: none;
+}
+
+.portal-chip {
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  line-height: 1.25;
+  text-align: left;
+  color: #fff;
+  background: rgb(255 255 255 / 0.14);
+  border: 1px solid rgb(255 255 255 / 0.26);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.portal-chip:hover {
+  background: rgb(255 255 255 / 0.26);
+}
+
+.portal-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  padding-bottom: 0.15rem;
+}
+
+.portal-thread::-webkit-scrollbar {
+  display: none;
+}
+
+/* A turn takes its own side. The shape of the exchange is legible before a word
+   of it is, and neither wall reaches the middle. */
+.portal-said {
+  align-self: flex-start;
+  max-width: min(46%, 42ch);
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius-xl);
+  border-bottom-left-radius: var(--radius-sm);
+  font-size: clamp(0.8125rem, 1.6vw, 0.9375rem);
+  line-height: 1.5;
+  color: #fff;
+  background: rgb(4 18 28 / 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(255 255 255 / 0.16);
+  animation: portal-rise 260ms ease both;
+}
+
+.portal-mine {
+  align-self: flex-end;
+  border-bottom-left-radius: var(--radius-xl);
+  border-bottom-right-radius: var(--radius-sm);
+  background: var(--blue);
+  border-color: rgb(255 255 255 / 0.26);
+}
+
+.portal-wait {
+  color: rgb(255 255 255 / 0.74);
+}
+
+.portal-wrong {
+  background: rgb(60 10 10 / 0.76);
+}
+
+@keyframes portal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portal-said {
+    animation: none;
+  }
+}
+
+.portal-ask {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.3rem 0.3rem 0.3rem 0.9rem;
+  border-radius: var(--radius-full);
+  background: rgb(4 18 28 / 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(255 255 255 / 0.22);
+}
+
+.portal-ask input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font: inherit;
+  font-size: clamp(0.875rem, 1.7vw, 0.9375rem);
+  /* iOS zooms the page for any field under 16px; the hero is the whole screen
+     here, so that zoom is the hero jumping when you tap the box. */
+  padding: 0.5rem 0;
+  outline: none;
+}
+
+.portal-ask input::placeholder {
+  color: rgb(255 255 255 / 0.6);
+}
+
+.portal-ask button {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--blue);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.portal-ask button:disabled {
+  opacity: 0.45;
+  cursor: default;
 }
 
 /* THE HERO IS THE SCREEN. Blue is a room you look into rather than a picture
@@ -520,23 +750,62 @@ select {
 .hero-two {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-10);
+  gap: var(--space-8);
   align-items: center;
   width: 100%;
 }
 
+/* ONE COLUMN: THE ANIMAL IS FIRST. A visitor on a phone should meet the whale,
+   not scroll to it — so the portal is lifted above the words, and it takes the
+   height the words leave rather than a fixed band. */
+.hero-two > .portal {
+  order: -1;
+  --portal-h: min(58svh, 32rem);
+}
+
+/* Tablet, and any phone held sideways: more of the frame, same order. */
+@media (min-width: 40rem) {
+  .hero-two > .portal {
+    --portal-h: min(64svh, 42rem);
+  }
+}
+
+/* The hero is the one band whose content is a picture rather than a paragraph.
+   70rem is a reading measure and it is right for every other band on the page;
+   here it crops the animal to keep a line of prose at 66 characters that is not
+   even in this column. So the hero opens to the design system's own wider
+   measure, and nothing else on the page moves. */
+@media (min-width: 80rem) {
+  /* The numbers straddle the seam, so they take the measure of the band above
+     them — otherwise the card's edges sit inside the hero's and the seam reads
+     as two pages rather than one. */
+  .hero > .container,
+  .container.straddle {
+    max-width: 80rem;
+  }
+}
+
 @media (min-width: 60rem) {
   .hero-two {
-    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    /* The animal takes the larger half. */
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
     gap: var(--space-12);
   }
 
-  /* The room is the larger half and it is TALL. A beluga in a letterbox is a
-     stock photo; a beluga in a window you can talk into is the foundation's
-     whole argument, so it gets the height the fold allows and the words fit
-     beside it rather than the other way round. */
-  .hero-two .deep-room {
-    height: min(72svh, 42rem);
+  /* Beside the words now, and TALL. A beluga in a letterbox is a stock photo; a
+     beluga in a window you can talk into is the foundation's whole argument, so
+     it gets the height the fold allows. */
+  .hero-two > .portal {
+    order: 0;
+    --portal-h: min(76svh, 44rem);
+  }
+}
+
+/* A laptop in landscape has width and no height. Without this the portal keeps
+   asking for 76svh of a 700px screen and the composer lands under the fold. */
+@media (min-width: 60rem) and (max-height: 44rem) {
+  .hero-two > .portal {
+    --portal-h: calc(100svh - var(--nav-h) - var(--space-12));
   }
 }
 

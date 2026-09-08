@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
-import Deep from '@/components/Deep';
+import Portal from '@/components/Portal';
 
 /**
  * Blue, in the corner of every page.
@@ -31,7 +31,7 @@ export default function Ask() {
   // opens on the room full height, so the disc waits until it has scrolled away
   // and then offers to bring it back.
   useEffect(() => {
-    const room = document.querySelector('.deep-room');
+    const room = document.querySelector('.portal');
     if (!room || typeof IntersectionObserver === 'undefined') return;
     const watch = new IntersectionObserver(([e]) => setNeeded(!e.isIntersecting), { threshold: 0.2 });
     watch.observe(room);
@@ -68,7 +68,7 @@ export default function Ask() {
             zIndex: 'var(--z-popover)' as unknown as number,
           }}
         >
-          <Deep />
+          <Portal />
           <button
             onClick={() => setOpen(false)}
             aria-label='Close'
