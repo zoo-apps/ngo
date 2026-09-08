@@ -696,6 +696,14 @@ select {
   background: rgb(60 10 10 / 0.76);
 }
 
+.portal-go {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
 @keyframes portal-rise {
   from {
     opacity: 0;
@@ -771,10 +779,16 @@ select {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: calc(100svh - var(--nav-h));
+  /* THE NIGHT REACHES THE TOP OF THE PAGE. The bar is transparent now, so
+     whatever is behind it is what a reader sees — and the page's own wrapper
+     pads itself clear of the fixed bar, which put a strip of paper up there.
+     The band climbs back over that padding and pays it again as its own, so the
+     ground runs under the bar and the words in the bar sit on the water. */
+  margin-top: calc(var(--nav-h) * -1);
+  min-height: 100svh;
   display: flex;
   align-items: center;
-  padding-top: var(--space-10);
+  padding-top: calc(var(--nav-h) + var(--space-10));
   padding-bottom: calc(var(--space-10) + var(--straddle));
 }
 
@@ -937,6 +951,10 @@ select {
 /* Room for four across, and the bar gets its full height back. */
 @media (min-width: 48rem) {
   :root {
+    /* Half on the night, half on the paper. The card belongs to both bands, so
+       it sits ON the seam rather than under it — and the hero pays for the
+       overlap in its own bottom padding, so nothing climbs over the animal. */
+    --straddle: 4rem;
     --nav-h: 64px;
   }
 

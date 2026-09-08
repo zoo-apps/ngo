@@ -110,11 +110,26 @@ export default function Ask() {
             border: 0,
             padding: 0,
             cursor: 'pointer',
-            boxShadow: open ? 'var(--shadow-xl), 0 0 0 3px var(--border-strong)' : 'var(--shadow-xl)',
+            // No plate and no ring. The mark is already a circle; anything drawn
+            // around it is a second circle around the first.
+            boxShadow: 'none',
+            overflow: 'hidden',
             zIndex: 'var(--z-popover)' as unknown as number,
           }}
         >
-          <img src='/favicon/logo.svg' alt='' width={56} height={56} style={{ display: 'block', borderRadius: 'var(--radius-full)' }} />
+          {/* logo.svg is a 1024 canvas holding a 540 disc — the mark is barely
+              half of what it ships, and at 56px the rest reads as a button that
+              missed. The image is drawn at the size that makes the disc 56 and
+              pulled back by the difference, so the colour goes to the edge. */}
+          <img
+            src='/favicon/logo.svg'
+            alt=''
+            width={106}
+            height={106}
+            // maxWidth, because the sheet clamps every image to its box and
+            // that clamp is exactly what would undo the crop.
+            style={{ display: 'block', width: 106, height: 106, maxWidth: 'none', margin: -25 }}
+          />
         </button>
       )}
     </>

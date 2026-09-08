@@ -27,9 +27,14 @@ const API = 'https://api.hanzo.ai/v1/chat/public';
  * can do nothing about.
  */
 const MODEL = 'zen-free';
+/** Where a reader of THIS site signs in. Zoo's own, not the lane's operator. */
+const SIGN_IN = 'https://zoolabs.id/';
 const ROOM = 'https://zoolabs.io/';
 
 type Turn = { who: 'blue' | 'me'; text: string };
+
+/** What went wrong, and where the reader goes about it. */
+type Wrong = { text: string; go?: string };
 
 /** What Blue is, and what this site has counted. Never a number it guessed. */
 const prompt = (c: Counts) =>
@@ -51,7 +56,7 @@ export default function Portal() {
   const [turns, setTurns] = useState<Turn[]>([]);
   const [draft, setDraft] = useState('');
   const [thinking, setThinking] = useState(false);
-  const [wrong, setWrong] = useState('');
+  const [wrong, setWrong] = useState<Wrong | null>(null);
   const tail = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,7 +69,7 @@ export default function Portal() {
     const said: Turn[] = [...turns, { who: 'me', text }];
     setTurns(said);
     setDraft('');
-    setWrong('');
+    setWrong(null);
     setThinking(true);
     let res: Response;
     try {
@@ -85,7 +90,7 @@ export default function Portal() {
       // failure or an API that is restarting, and the browser's own words for
       // all three are "Failed to fetch". A reader shown that concludes the site
       // is broken; what is true is that Blue cannot be reached this minute.
-      setWrong('Blue cannot be reached just now. Try again in a minute.');
+      setWrong({ text: 'Blue cannot be reached just now. Try again in a minute.' });
       setThinking(false);
       return;
     }
@@ -97,6 +102,18 @@ export default function Portal() {
       // away and tells a reader the site is broken when it is working.
       if (!res.ok || !res.body) {
         const body = await res.json().catch(() => null);
+        // The daily allowance running out is not a fault, it is the free lane
+        // working. The lane's own sentence points at hanzo.ai because that is
+        // who operates it; a reader of THIS site signs in at zoolabs.id, and the
+        // site knows that about itself. Read from the code rather than the
+        // prose — prose is the operator's to change.
+        if (body?.error?.code === 'public_allowance_spent') {
+          setWrong({
+            text: "That is today's free questions used up — they come back at midnight UTC. Sign in to keep talking to Blue.",
+            go: SIGN_IN,
+          });
+          return;
+        }
         throw new Error(body?.error?.message ?? `Blue is not answering (${res.status}).`);
       }
 
@@ -139,13 +156,13 @@ export default function Portal() {
       const done = text.replace(/\s*\[[^\]]{0,60}\]\s*$/, '').trim();
       setTurns((t) => [...t.slice(0, -1), { who: 'blue', text: done }]);
     } catch (e) {
-      setWrong(e instanceof Error ? e.message : String(e));
+      setWrong({ text: e instanceof Error ? e.message : String(e) });
     } finally {
       setThinking(false);
     }
   }
 
-  const spoken = turns.length > 0 || thinking || Boolean(wrong);
+  const spoken = turns.length > 0 || thinking || wrong !== null;
 
   return (
     <div className='portal'>
@@ -180,7 +197,15 @@ export default function Portal() {
               {thinking && <div className='portal-said portal-wait'>Blue is thinking…</div>}
               {wrong && (
                 <div className='portal-said portal-wrong' role='alert'>
-                  {wrong}
+                  {wrong.text}
+                  {wrong.go && (
+                    <>
+                      {' '}
+                      <a className='portal-go' href={wrong.go} target='_blank' rel='noopener noreferrer'>
+                        Sign in&nbsp;↗
+                      </a>
+                    </>
+                  )}
                 </div>
               )}
               <div ref={tail} />
