@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Away from '@/components/Away';
 import Blue from '@/components/Blue';
+import Deep from '@/components/Deep';
 import { useCorpus, type Counts } from '@/config/corpus';
 
 /**
@@ -75,21 +76,14 @@ export default function Home() {
       <Navbar ground="night" />
 
       <section
-        className='night'
+        className='night hero'
         style={{
           paddingTop: 'var(--section-y-lg)',
           paddingBottom: 'calc(var(--section-y-lg) + var(--straddle))',
         }}
       >
         <div className='container'>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: 'var(--space-12)',
-              alignItems: 'center',
-            }}
-          >
+          <div className='hero-two'>
             <div>
               <span className='pill eyebrow'>501(c)(3) non-profit • EIN 88-3538992</span>
 
@@ -105,6 +99,11 @@ export default function Home() {
                 open source — the weights, the papers, the code and the arguments.
               </p>
 
+              <p className='mt-4 text-secondary' style={{ maxWidth: '46ch' }}>
+                Blue is here, right now. Ask a beluga about the ocean and watch how it feels about
+                the answer — no account, nothing to install.
+              </p>
+
               <div className='mt-8 flex flex-wrap gap-3'>
                 <a
                   href='https://zoolabs.io'
@@ -113,7 +112,7 @@ export default function Home() {
                   className='action'
                   data-fill
                 >
-                  Ask Blue
+                  Open Blue
                   <Away />
                 </a>
                 <Link href='/donation' className='action'>
@@ -130,7 +129,7 @@ export default function Home() {
               </div>
             </div>
 
-            <Blue />
+            <Deep />
           </div>
         </div>
       </section>

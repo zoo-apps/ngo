@@ -120,7 +120,14 @@
   --primary-hover: #a30163;
   --primary-foreground: #ffffff;
 
-  --secondary: #ffffff;
+  /* The quiet surface — the well a segmented control is cut into, which is the
+     job @hanzo/design gives this role and the one @hanzo/appearance's tracks
+     read. It was #ffffff, which is a secondary BUTTON's face and not a surface
+     at all: on the white popover those tracks came out white on white, so the
+     control that groups four choices into one thing showed as four loose words.
+     The paper is the answer the site already has — a well is the page seen
+     through the card. */
+  --secondary: var(--paper);
   --secondary-hover: #ffffff;
   --secondary-foreground: var(--carbon);
   --accent: var(--berry);
@@ -147,6 +154,19 @@
   --surface-1: var(--card);
   --surface-2: rgb(255 255 255 / 0.62);
   --surface-3: #ffffff;
+
+  /* The two rungs a control cuts out of a surface, and the only ones this site
+     had left to @hanzo/design — whose `:root` is the DARK theme, so a shared
+     control mounted here drew a --surface-card of rgb(38 38 38 / .5): a muddy
+     grey pill on a white panel, and a track of #ffffff on #ffffff that was not
+     there at all. @hanzo/appearance's segmented tracks are where it showed.
+
+     Named off the ladder above rather than given a value, because it only has
+     to hold one relationship with --secondary: the well is the page seen
+     through the card, the chosen thing is a card raised back out of it. That is
+     the same figure the whole site draws — white cards on paper — one size
+     down. */
+  --surface-card: var(--surface-3);
 
   /* ─── what a control is made of ───
      A button varies in exactly two ways: the plate it sits on and the ink on
@@ -452,6 +472,65 @@ select {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Blue's room, shown inside this page. The still sits underneath as the poster
+   and the frame fades over it, so the plate is never empty and never white. */
+.deep-room {
+  position: relative;
+  width: 100%;
+  /* The room lays itself out against ITS OWN height, so a short frame is not a
+     small copy of the page — it is the page with its head and its ask pushed
+     off either end. Whatever the column gives it, it gets most of the fold. */
+  height: min(72svh, 30rem);
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.deep-room > .plate,
+.deep-room iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.deep-room iframe {
+  transition: opacity 240ms ease;
+}
+
+/* THE HERO IS THE SCREEN. Blue is a room you look into rather than a picture
+   beside the words, and a room in a 380px band is a letterbox. The height is
+   what is left under the bar, less the distance the stats climb back into it,
+   and `svh` because a phone's toolbars must not push the ask off the bottom. */
+.hero {
+  min-height: calc(100svh - var(--nav-h));
+  display: flex;
+  align-items: center;
+}
+
+.hero-two {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 60rem) {
+  .hero-two {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: var(--space-12);
+  }
+
+  /* The room is the larger half and it is TALL. A beluga in a letterbox is a
+     stock photo; a beluga in a window you can talk into is the foundation's
+     whole argument, so it gets the height the fold allows and the words fit
+     beside it rather than the other way round. */
+  .hero-two .deep-room {
+    height: min(72svh, 42rem);
+  }
 }
 
 /* The numbers straddle the fold: half on the night, half on the paper. The
