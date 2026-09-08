@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChevronDown, Menu, X } from 'lucide-react';
@@ -75,12 +75,26 @@ function Item({ to, onGo }: { to: Dest; onGo?: () => void }) {
  */
 export default function Navbar({ ground = 'paper' }: { ground?: 'night' | 'paper' }) {
   const [open, setOpen] = useState(false);
+  const [lifted, setLifted] = useState(false);
   const current = currentOf(useRouter().pathname);
   const night = ground === 'night';
 
+  // The bar has nothing to cover until something scrolls under it, so until then
+  // it is not drawn. `passive` because this listener must never be the reason a
+  // scroll stutters, and the state is a boolean rather than the offset so React
+  // re-renders twice a page rather than once a frame.
+  useEffect(() => {
+    const read = () => setLifted(window.scrollY > 8);
+    read();
+    window.addEventListener('scroll', read, { passive: true });
+    return () => window.removeEventListener('scroll', read);
+  }, []);
+
   return (
     <nav
-      className={`${night ? 'night' : ''} select-none`}
+      // An open menu covers the page whether the page has scrolled or not, so
+      // the glass comes with it.
+      className={`${night ? 'night' : ''} bar ${lifted || open ? 'lifted' : ''} select-none`}
       style={{
         position: 'fixed',
         top: 0,
@@ -90,7 +104,6 @@ export default function Navbar({ ground = 'paper' }: { ground?: 'night' | 'paper
         // rung there is, so the chat panel — a popover, and above the header by
         // construction — had nowhere left to sit.
         zIndex: 'var(--z-header)' as unknown as number,
-        ...(night ? {} : { background: 'var(--paper)', borderBottom: '1px solid var(--border)' }),
       }}
     >
       <div
@@ -132,7 +145,7 @@ export default function Navbar({ ground = 'paper' }: { ground?: 'night' | 'paper
 
                 {s.items && (
                   <div
-                    className='menu absolute'
+                    className='menu glass absolute'
                     style={{ left: '50%', transform: 'translateX(-50%)', marginTop: 10, padding: 6, width: 320 }}
                   >
                     {s.items.map((to) => (
@@ -176,7 +189,7 @@ export default function Navbar({ ground = 'paper' }: { ground?: 'night' | 'paper
             maxHeight: 'calc(100vh - var(--nav-h))',
             overflowY: 'auto',
             padding: '0 clamp(16px, 3vw, 32px) var(--space-6)',
-            borderTop: '1px solid var(--border)',
+            borderTop: '1px solid color-mix(in oklab, var(--carbon) 11%, transparent)',
           }}
         >
           {SECTIONS.map((s) => (
