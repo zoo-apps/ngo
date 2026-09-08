@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
 import Away from '@/components/Away';
 import Blue from '@/components/Blue';
-import Deep from '@/components/Deep';
+import Portal from '@/components/Portal';
 import { useCorpus, type Counts } from '@/config/corpus';
 
 /**
@@ -97,28 +97,22 @@ export default function Home() {
               </p>
 
               <p className='mt-4 text-secondary' style={{ maxWidth: '46ch' }}>
-                Blue is here, right now. Ask a beluga about the ocean and watch how it feels about
-                the answer — no account, nothing to install.
+                Blue is here, right now — a beluga whale who answers questions about the ocean and
+                about the research below it. No account, nothing to install; ask it anything.
               </p>
 
               <div className='mt-8 flex flex-wrap gap-3'>
-                <a
-                  href='https://zoolabs.io'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='action'
-                  data-fill
-                >
-                  Open Blue
-                  <Away />
-                </a>
-                <Link href='/donation' className='action'>
+                <Link href='/donation' className='action' data-fill>
                   Donate
                 </Link>
+                <a href='https://papers.zoo.ngo' target='_blank' rel='noopener noreferrer' className='action'>
+                  Read the research
+                  <Away />
+                </a>
               </div>
             </div>
 
-            <Deep />
+            <Portal />
           </div>
         </div>
       </section>
