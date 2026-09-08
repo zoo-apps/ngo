@@ -75,13 +75,10 @@ export default function Home() {
       {/* The landing opens on the night band and the bar is the top of it. */}
       <Navbar ground="night" />
 
-      <section
-        className='night hero'
-        style={{
-          paddingTop: 'var(--section-y-lg)',
-          paddingBottom: 'calc(var(--section-y-lg) + var(--straddle))',
-        }}
-      >
+      {/* The padding lives with the rule in globals.css, not here: an inline style
+          wins over the class, so stating it twice meant `.hero` could not decide
+          its own height. */}
+      <section className='night hero'>
         <div className='container'>
           <div className='hero-two'>
             <div>
@@ -118,14 +115,6 @@ export default function Home() {
                 <Link href='/donation' className='action'>
                   Donate
                 </Link>
-                <a
-                  href='https://github.com/zooai'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='action'
-                >
-                  Read the code
-                </a>
               </div>
             </div>
 
