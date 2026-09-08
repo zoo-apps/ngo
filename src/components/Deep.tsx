@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 /**
  * The deep — Blue's room, live, inside this page.
@@ -18,12 +18,19 @@ import React, { useEffect, useRef, useState } from 'react';
  * [Blue] is the still, and it is the poster: it paints immediately, the room
  * fades over it when it is ready, and if the frame never arrives what is left
  * is the beluga rather than a white rectangle.
+ *
+ * The counts ride along. On the foundation's front door most of what people ask
+ * Blue is about the foundation, so the room is told what this site has counted —
+ * papers, proposals and open models, from `useCorpus`, which counts the sources
+ * rather than remembering them. Blue states those numbers and guesses none.
  */
 import Blue from '@/components/Blue';
+import { useCorpus } from '@/config/corpus';
 
-const ROOM = 'https://zoolabs.io/?embed=1';
+const ROOM = 'https://zoolabs.io/';
 
 export default function Deep({ label = 'Talk to Blue' }: { label?: string }) {
+  const corpus = useCorpus();
   const box = useRef<HTMLDivElement>(null);
   const [near, setNear] = useState(false);
   const [ready, setReady] = useState(false);
@@ -42,12 +49,22 @@ export default function Deep({ label = 'Talk to Blue' }: { label?: string }) {
     return () => watch.disconnect();
   }, []);
 
+  const room = useMemo(() => {
+    const q = new URLSearchParams({
+      embed: '1',
+      papers: String(corpus.papers),
+      proposals: String(corpus.proposals),
+      models: String(corpus.models),
+    });
+    return `${ROOM}?${q}`;
+  }, [corpus]);
+
   return (
     <div ref={box} className='deep-room'>
       <Blue />
       {near && (
         <iframe
-          src={ROOM}
+          src={room}
           title={label}
           loading='lazy'
           allow='autoplay; microphone'

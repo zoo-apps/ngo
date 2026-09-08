@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MessageCircle, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import Deep from '@/components/Deep';
 
 /**
@@ -88,23 +88,34 @@ export default function Ask() {
       )}
 
       {(needed || open) && (
-      <button
-        onClick={() => setOpen(!open)}
-        aria-label={open ? 'Close Blue' : 'Ask Blue'}
-        aria-expanded={open}
-        style={{
-          ...disc,
-          position: 'fixed',
-          bottom: 'clamp(12px, 3vw, 24px)',
-          right: 'clamp(12px, 3vw, 24px)',
-          width: 56,
-          height: 56,
-          boxShadow: 'var(--shadow-xl)',
-          zIndex: 'var(--z-popover)' as unknown as number,
-        }}
-      >
-        {open ? <X size={24} /> : <MessageCircle size={24} />}
-      </button>
+        /* The mark IS the button. It is already a circle — three overlapping
+           discs clipped to one — so a coloured plate behind it would be a
+           second circle around the first, and a chat glyph on that plate would
+           say "some assistant" where the foundation's own mark says whose. */
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label={open ? 'Close Blue' : 'Ask Blue'}
+          aria-expanded={open}
+          style={{
+            position: 'fixed',
+            bottom: 'clamp(12px, 3vw, 24px)',
+            right: 'clamp(12px, 3vw, 24px)',
+            display: 'inline-flex',
+            width: 56,
+            height: 56,
+            borderRadius: 'var(--radius-full)',
+            // A button paints its own face; without this the mark sits on the
+            // browser's grey plate and the circle reads as a sticker on a disc.
+            background: 'transparent',
+            border: 0,
+            padding: 0,
+            cursor: 'pointer',
+            boxShadow: open ? 'var(--shadow-xl), 0 0 0 3px var(--border-strong)' : 'var(--shadow-xl)',
+            zIndex: 'var(--z-popover)' as unknown as number,
+          }}
+        >
+          <img src='/favicon/logo.svg' alt='' width={56} height={56} style={{ display: 'block', borderRadius: 'var(--radius-full)' }} />
+        </button>
       )}
     </>
   );
