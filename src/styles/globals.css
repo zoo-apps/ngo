@@ -593,6 +593,9 @@ select {
      a chip can sit against the wall rather than in from it. */
   margin-inline: calc(clamp(0.75rem, 2.2vw, 1.25rem) * -1);
   padding-inline: clamp(0.75rem, 2.2vw, 1.25rem);
+  /* The row is cut off at the wall on purpose. Faded, that reads as more to
+     the right; hard, it reads as a chip that failed to render. */
+  mask-image: linear-gradient(to right, #000 88%, transparent 100%);
 }
 
 .portal-openers::-webkit-scrollbar {
@@ -740,11 +743,35 @@ select {
    from below is deliberately NOT subtracted, because it should overlap the fold
    rather than reserve room above it. */
 .hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   min-height: calc(100svh - var(--nav-h));
   display: flex;
   align-items: center;
   padding-top: var(--space-10);
   padding-bottom: calc(var(--space-10) + var(--straddle));
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  /* Wider and taller than the band, because the falloff has to finish OUTSIDE
+     the frame — a gradient that ends at the edge draws the edge. */
+  inset: -30% -10%;
+  background: radial-gradient(
+    58% 52% at 50% 34%,
+    color-mix(in oklab, var(--blue) 46%, transparent) 0%,
+    color-mix(in oklab, var(--blue) 16%, transparent) 42%,
+    transparent 72%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.hero > .container {
+  position: relative;
 }
 
 .hero-two {
@@ -760,13 +787,13 @@ select {
    height the words leave rather than a fixed band. */
 .hero-two > .portal {
   order: -1;
-  --portal-h: min(58svh, 32rem);
+  --portal-h: min(66svh, 36rem);
 }
 
 /* Tablet, and any phone held sideways: more of the frame, same order. */
 @media (min-width: 40rem) {
   .hero-two > .portal {
-    --portal-h: min(64svh, 42rem);
+    --portal-h: min(70svh, 46rem);
   }
 }
 
@@ -786,6 +813,15 @@ select {
 }
 
 @media (min-width: 60rem) {
+  .hero::before {
+    background: radial-gradient(
+      46% 62% at 70% 50%,
+      color-mix(in oklab, var(--blue) 46%, transparent) 0%,
+      color-mix(in oklab, var(--blue) 16%, transparent) 42%,
+      transparent 72%
+    );
+  }
+
   .hero-two {
     /* The animal takes the larger half. */
     grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
@@ -797,7 +833,7 @@ select {
      it gets the height the fold allows. */
   .hero-two > .portal {
     order: 0;
-    --portal-h: min(76svh, 44rem);
+    --portal-h: min(82svh, 50rem);
   }
 }
 
@@ -876,7 +912,6 @@ select {
 /* Room for four across, and the bar gets its full height back. */
 @media (min-width: 48rem) {
   :root {
-    --straddle: 4rem;
     --nav-h: 64px;
   }
 
