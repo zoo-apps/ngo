@@ -21,6 +21,11 @@ import { useCorpus, type Counts } from '@/config/corpus';
  * a question never leaves.
  */
 const API = 'https://api.hanzo.ai/v1/chat/public';
+/**
+ * zen-free, not zen. Both are real and the lane serves both, but `zen` bills
+ * through to an upstream that answers "Insufficient credits" — a 402 a visitor
+ * can do nothing about.
+ */
 const MODEL = 'zen-free';
 const ROOM = 'https://zoolabs.io/';
 
@@ -61,29 +66,78 @@ export default function Portal() {
     setDraft('');
     setWrong('');
     setThinking(true);
+    let res: Response;
     try {
-      const res = await fetch(API, {
+      res = await fetch(API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: MODEL,
+          stream: true,
           messages: [
             { role: 'system', content: prompt(corpus) },
             ...said.map((t) => ({ role: t.who === 'me' ? 'user' : 'assistant', content: t.text })),
           ],
         }),
       });
-      const body = await res.json().catch(() => null);
+    } catch {
+      // fetch rejects without a response for a dropped connection, a DNS
+      // failure or an API that is restarting, and the browser's own words for
+      // all three are "Failed to fetch". A reader shown that concludes the site
+      // is broken; what is true is that Blue cannot be reached this minute.
+      setWrong('Blue cannot be reached just now. Try again in a minute.');
+      setThinking(false);
+      return;
+    }
+
+    try {
       // The lane says why in words when it refuses — a spent daily allowance
       // reads "sign in at hanzo.ai to keep going", which is both the true reason
       // and the useful next step. Printing a status code instead throws that
       // away and tells a reader the site is broken when it is working.
-      if (!res.ok) throw new Error(body?.error?.message ?? `Blue is not answering (${res.status}).`);
-      const answer = body?.choices?.[0]?.message?.content;
-      if (!answer) throw new Error('Blue answered with nothing.');
+      if (!res.ok || !res.body) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.error?.message ?? `Blue is not answering (${res.status}).`);
+      }
+
+      const reader = res.body.getReader();
+      const decode = new TextDecoder();
+      let held = '';
+      let text = '';
+      let started = false;
+
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        held += decode.decode(value, { stream: true });
+        const lines = held.split('\n');
+        held = lines.pop() ?? '';
+        for (const line of lines) {
+          if (!line.startsWith('data:')) continue;
+          const payload = line.slice(5).trim();
+          if (!payload || payload === '[DONE]') continue;
+          let piece = '';
+          try {
+            piece = JSON.parse(payload)?.choices?.[0]?.delta?.content ?? '';
+          } catch {
+            continue;
+          }
+          if (!piece) continue;
+          text += piece;
+          if (started) setTurns((t) => [...t.slice(0, -1), { who: 'blue', text }]);
+          else {
+            started = true;
+            setThinking(false);
+            setTurns((t) => [...t, { who: 'blue', text }]);
+          }
+        }
+      }
+
+      if (!started) throw new Error('Blue answered with nothing.');
       // Blue tags its own feeling for the room's clips; there is no clip to
       // change here, so the tag is dropped rather than printed as prose.
-      setTurns((t) => [...t, { who: 'blue', text: String(answer).replace(/\s*\[[^\]]{0,60}\]\s*$/, '').trim() }]);
+      const done = text.replace(/\s*\[[^\]]{0,60}\]\s*$/, '').trim();
+      setTurns((t) => [...t.slice(0, -1), { who: 'blue', text: done }]);
     } catch (e) {
       setWrong(e instanceof Error ? e.message : String(e));
     } finally {
