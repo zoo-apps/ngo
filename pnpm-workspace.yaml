@@ -17,7 +17,7 @@ allowBuilds:
   sharp: false
 minimumReleaseAgeExclude:
   - '@hanzo/appearance@0.2.3 || 0.2.4 || 0.2.5'
-  - '@hanzo/event@0.3.39'
+  - '@hanzo/event@0.3.41'
   - '@hanzo/observe@0.1.11'
   - '@hanzogui/telemetry@8.3.2 || 8.3.3'
   - '@hanzo/gui@8.3.2'
@@ -133,13 +133,17 @@ minimumReleaseAgeExclude:
   - '@hanzogui/z-index-stack@8.3.2'
 
 # One copy of the analytics client, not two. `@hanzo/gui` and `@hanzo/ui` pin
-# `@hanzogui/telemetry` to an exact version, and the older pin carries an older
-# `@hanzo/event` whose org key table names three projects that no longer exist —
-# so the bundle shipped both the live keys and three dead ones, and which of
-# them a beacon used depended on which module the import graph reached first.
-# The key belongs to the domain; there is one right answer per domain, so there
-# is one right copy of the table that holds it.
+# `@hanzogui/telemetry` to an exact version, and each pin drags its own
+# `@hanzo/event`, so a bundle can carry two org key tables and which one a beacon
+# uses depends on which module the import graph reached first. The key belongs to
+# the domain; there is one right answer per domain, so there is one copy here.
+#
+# That copy has to be a version whose table names projects that exist. 0.3.39 and
+# 0.3.40 name three that do not: all three keys answer `403 ingest_key_unknown`
+# against /v1/event, so this site reported nothing at all while looking healthy.
+# 0.3.41 carries the same values as universe's SPA_INGEST_KEYRING, checked one by
+# one against the endpoint.
 overrides:
-  '@hanzo/event': '0.3.39'
+  '@hanzo/event': '0.3.41'
   '@hanzo/observe': '0.1.11'
   '@hanzogui/telemetry': '8.3.3'
