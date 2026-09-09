@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@hanzo/event': 0.3.39
+  '@hanzo/event': 0.3.41
   '@hanzo/observe': 0.1.11
   '@hanzogui/telemetry': 8.3.3
 
@@ -1530,8 +1530,8 @@ packages:
     resolution: {integrity: sha512-f+/F5Ftysx29TL/ICm2uo2VGR/tZKrz69qpOFZfwfJEy2VU7u+yuz0fV+74WsIARnloRM1TAFMfdzvObWEq35w==}
     hasBin: true
 
-  '@hanzo/event@0.3.39':
-    resolution: {integrity: sha512-U3A2v3lbQbWFrzwb471FnaoFQVvbMWvPpdI2IipQpl3xyyza7bBbbNeDkREnd/ecixuaXpKZeP+FPSCk1fD8og==}
+  '@hanzo/event@0.3.41':
+    resolution: {integrity: sha512-xchy5iI06LFJhOwV7VyhFmweyGp5D41DzJNJopP13qZX/jI7K914EZngceI+6cQIU0BPMEEeWFObkZWJDKtG+g==}
     peerDependencies:
       react: '>=19.2.8'
     peerDependenciesMeta:
@@ -8289,7 +8289,7 @@ snapshots:
 
   '@hanzo/design@0.5.25': {}
 
-  '@hanzo/event@0.3.39(react@19.2.8)':
+  '@hanzo/event@0.3.41(react@19.2.8)':
     dependencies:
       '@hanzo/events': 0.2.2
     optionalDependencies:
@@ -8383,7 +8383,7 @@ snapshots:
 
   '@hanzo/observe@0.1.11(react@19.2.8)':
     dependencies:
-      '@hanzo/event': 0.3.39(react@19.2.8)
+      '@hanzo/event': 0.3.41(react@19.2.8)
     optionalDependencies:
       react: 19.2.8
 
@@ -9509,7 +9509,7 @@ snapshots:
 
   '@hanzogui/telemetry@8.3.3(react@19.2.8)':
     dependencies:
-      '@hanzo/event': 0.3.39(react@19.2.8)
+      '@hanzo/event': 0.3.41(react@19.2.8)
       '@hanzo/observe': 0.1.11(react@19.2.8)
       react: 19.2.8
 
