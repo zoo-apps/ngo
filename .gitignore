@@ -49,3 +49,8 @@ robots.txt
 sitemap.xml
 sitemap-*.xml
 .claude
+
+# Local symlinks to LLM.md
+CLAUDE.md
+AGENTS.md
+GEMINI.md
