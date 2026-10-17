@@ -21,9 +21,17 @@ import { useCorpus } from '@/config/corpus';
  * own abstract. One author, and it is the foundation.
  */
 
-type Post = { title: string; blurb: string; topic: string; paper: string };
+type Post = { title: string; blurb: string; topic: string; paper: string; customUrl?: string };
 
 const POSTS: Post[] = [
+  {
+    topic: 'Life preservation',
+    title: 'Training an autonomous system to value human life over its own hardware',
+    blurb:
+      'Factorial evaluations show surface syntax dominates output variance (72.57%) and models contradict themselves 51% of the time on opposing choices. Lifeguard introduces a tripartite objective and structural complement head to enforce human life preservation and eliminate hardware self-preservation bias.',
+    paper: 'lifeguard',
+    customUrl: 'https://github.com/zooai/lifeguard',
+  },
   {
     topic: 'Biodiversity',
     title: 'Identifying a species from almost no examples',
@@ -68,7 +76,7 @@ const POSTS: Post[] = [
   },
 ];
 
-const paperUrl = (id: string) => `https://github.com/zooai/papers/tree/main/${id}`;
+const postUrl = (post: Post) => post.customUrl || `https://github.com/zooai/papers/tree/main/${post.paper}`;
 
 export default function Blog() {
   const corpus = useCorpus();
@@ -109,10 +117,10 @@ export default function Blog() {
               <h2 className="mt-2 text-xl font-bold">{post.title}</h2>
               <p className="mt-3 text-secondary">{post.blurb}</p>
               <a
-                href={paperUrl(post.paper)}
+                href={postUrl(post)}
                 className="mt-4 inline-flex font-bold"
               >
-                Read the paper →
+                {post.customUrl ? 'View framework & dataset →' : 'Read the paper →'}
               </a>
             </li>
           ))}
