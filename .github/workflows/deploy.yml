@@ -10,13 +10,14 @@ name: Deploy
 # site while sitting in every build.
 #
 # The publish is bin/site in hanzoai/ci, through its action, the one every static
-# site in the fleet calls. It reads the deploy key from KMS with the pair below
-# and uploads under a prefix-scoped, short-lived grant, so no bucket credential
-# lives here. It needs, before it can publish:
-#   - KMS_CLIENT_ID / KMS_CLIENT_SECRET on this repo or on zoo-apps, the zoo
-#     identity (zooai/zoo holds the same pair);
-#   - the project `ngo` in org `zoo` on the Sites plane.
-# Without the pair the step fails and says so, rather than reading as a publish.
+# site in the fleet calls. It reads the deploy key from KMS and uploads under a
+# prefix-scoped, short-lived grant, so no bucket credential lives here. The KMS
+# credential is the run's own GitHub ID token (`id-token: write`), exchanged at
+# IAM for the CI application this repository speaks for; nothing is stored. A
+# KMS_CLIENT_ID / KMS_CLIENT_SECRET pair, where one is set, is the fallback. It
+# publishes once IAM answers this repository's token for org `zoo` and the
+# Sites plane holds the project `ngo` there; until then the step fails and says
+# which, rather than reading as a publish.
 #
 # Every pull request builds and checks the export; only main publishes.
 on:
@@ -27,6 +28,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 concurrency:
   group: deploy-${{ github.ref }}
