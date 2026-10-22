@@ -1,5 +1,6 @@
 'use client';
 
+import Head from 'next/head';
 import React, { useEffect, useRef, useState } from 'react';
 import { useCorpus, type Counts } from '@/config/corpus';
 
@@ -51,11 +52,108 @@ const OPENERS = [
   'How do scientists tell whales apart?',
 ];
 
+/**
+ * What Blue is doing, which the water answers: at rest, listening while the
+ * question is out and no word has come back, speaking while the answer streams.
+ */
+type Mood = 'rest' | 'listen' | 'speak';
+
+/** How fast Blue swims in each mood. The film eases between them. */
+const PACE: Record<Mood, number> = { rest: 1, listen: 0.8, speak: 1.35 };
+
+/**
+ * The film. One loop of the foundation's own footage, opened on the frame the
+ * poster is cut from, so the panel is the beluga from the first paint and stays
+ * the beluga when the film is late, refused or never asked for.
+ *
+ * It plays only when motion is welcome and the panel is on screen. Under
+ * `prefers-reduced-motion` nothing is fetched but the poster: there is no
+ * `autoplay` attribute for the static page to start before anyone has asked
+ * the reader's preference.
+ *
+ * AV1 first — about 390 KB — and H.264 for the browsers that cannot decode it,
+ * about 900 KB. Each source names its codec, so a browser skips the one it
+ * would only download to fail.
+ */
+function Film({ mood }: { mood: Mood }) {
+  const film = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = film.current;
+    if (!v) return;
+    const still = matchMedia('(prefers-reduced-motion: reduce)');
+    let seen = false;
+    const set = () => {
+      if (!seen || still.matches) {
+        v.pause();
+        return;
+      }
+      // A browser may refuse to play (low-power mode, a data saver). What it
+      // shows then is the poster, which is the outcome wanted, so there is
+      // nothing to recover and nothing to tell the reader.
+      v.play().catch(() => undefined);
+    };
+    const watch = new IntersectionObserver(([e]) => {
+      seen = e.isIntersecting;
+      set();
+    });
+    watch.observe(v);
+    still.addEventListener('change', set);
+    return () => {
+      watch.disconnect();
+      still.removeEventListener('change', set);
+    };
+  }, []);
+
+  // The pace eases toward the mood rather than jumping to it, a step a frame,
+  // and the loop ends when it arrives. Each step is one property on the media
+  // element: no layout, no paint, and nothing at all while Blue is at rest.
+  useEffect(() => {
+    const v = film.current;
+    if (!v) return;
+    const to = PACE[mood];
+    let frame = 0;
+    const step = () => {
+      // A twelfth of the way each frame, never less than a hundredth, so the
+      // tail arrives rather than creeping toward the mood forever.
+      const gap = to - v.playbackRate;
+      v.playbackRate = Math.abs(gap) <= 0.01 ? to : v.playbackRate + Math.sign(gap) * Math.max(Math.abs(gap) / 12, 0.01);
+      if (v.playbackRate !== to) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [mood]);
+
+  return (
+    <>
+      <Head>
+        {/* The poster is the first thing on the page; it should not wait for
+            the script that reads the preference to arrive. */}
+        <link rel='preload' as='image' href='/videos/blue.jpg' fetchPriority='high' />
+      </Head>
+      <video
+        ref={film}
+        className='portal-film'
+        poster='/videos/blue.jpg'
+        muted
+        loop
+        playsInline
+        preload='none'
+        aria-hidden
+      >
+        <source src='/videos/blue.webm' type='video/webm; codecs="av01.0.08M.08"' />
+        <source src='/videos/blue.mp4' type='video/mp4; codecs="avc1.640029"' />
+      </video>
+    </>
+  );
+}
+
 export default function Portal() {
   const corpus = useCorpus();
   const [turns, setTurns] = useState<Turn[]>([]);
   const [draft, setDraft] = useState('');
   const [thinking, setThinking] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
   const [wrong, setWrong] = useState<Wrong | null>(null);
   const tail = useRef<HTMLDivElement>(null);
 
@@ -145,6 +243,7 @@ export default function Portal() {
           else {
             started = true;
             setThinking(false);
+            setSpeaking(true);
             setTurns((t) => [...t, { who: 'blue', text }]);
           }
         }
@@ -159,14 +258,16 @@ export default function Portal() {
       setWrong({ text: e instanceof Error ? e.message : String(e) });
     } finally {
       setThinking(false);
+      setSpeaking(false);
     }
   }
 
   const spoken = turns.length > 0 || thinking || wrong !== null;
+  const mood: Mood = speaking ? 'speak' : thinking ? 'listen' : 'rest';
 
   return (
-    <div className='portal'>
-      <video className='portal-film' src='/videos/blue.mp4' autoPlay muted loop playsInline preload='metadata' aria-hidden />
+    <div className='portal' data-mood={mood}>
+      <Film mood={mood} />
       <div className='portal-veil' />
 
       <div className='portal-stage'>
