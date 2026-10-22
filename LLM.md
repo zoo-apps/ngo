@@ -117,9 +117,11 @@ staticFiles over `s3://hanzo-sites/zoo/ngo` (the in-cluster S3 gateway, whose
 bucket is AWS `hanzo-s3-hanzo-sites-532217001883`). GitHub Pages is off for
 this repo; nothing it published is served. `.github/workflows/deploy.yml` builds
 every push and pull request, holds the export to carrying the film, and on main
-publishes through `hanzoai/ci`'s site action as slug `ngo`, which needs the zoo
-KMS pair on this repo and the project `ngo` in org `zoo`. Until both exist the
-publish step fails and says which.
+publishes through `hanzoai/ci`'s site action as slug `ngo`. Its KMS credential
+is the run's own GitHub ID token (`id-token: write`) exchanged at IAM for the CI
+application the repository speaks for, with no stored secret; it publishes once
+IAM answers that token for org `zoo` and the Sites plane holds the project `ngo`
+there. Until then the publish step fails and says which.
 
 A copy placed in the prefix by hand must be the WHOLE export. The copies made
 in October left out `videos/`, `models/`, `document/`, `guidebook.pdf` and the
