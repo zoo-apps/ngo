@@ -70,38 +70,64 @@ Rules that hold the whole thing up:
   and caches at the edge; `SOURCE` in `corpus.tsx` is then one fetch.
 - A list on a page is a SELECTION, never a count.
 
-## Blue is one Blue, and it lives at zoolabs.io
+## Blue is the hero, in the water — `src/components/Portal.tsx`
 
-The hero used to be a still of the beluga beside the words, and the corner
-carried a second Blue: 380 lines with its own system prompt, its own transport
-and its own turns, answering the same questions the room at zoolabs.io answers
-and free to drift from it on every one of them. Two Blues is two Blues to be
-wrong.
+The panel is the clip, not an iframe: zoolabs.io is the full room (feelings,
+voice, history) and the panel links it as `Open Blue ↗` rather than framing it,
+because a frame brought a second header, sign-in and footer into this page.
+Turns are laid along the edges, Blue left and the reader right, so the middle of
+the frame, where the whale is, stays water. The panel asks the public lane
+(`api.hanzo.ai/v1/chat/public`, `zen-free`) with no credential; a spent daily
+allowance sends the reader to zoolabs.id.
 
-Now there is one. `src/components/Deep.tsx` shows zoolabs.io inside this page —
-Blue swimming on the foundation's own footage, answering for itself, changing
-clip with how it feels about what was just said, one of twenty-four feelings —
-and none of that is reimplemented here. `src/components/Ask.tsx` is a door onto
-the same room, so anything Blue learns to do it does in both places on the day
-it learns it. `src/components/Blue.tsx` stays what it always was, the still, and
-it is the room's poster: it paints at once, the frame fades over it, and if the
-frame never arrives what is left is the beluga rather than a white rectangle.
+The film is three files with one stem, all cut from the foundation's own render:
 
-`?embed=1` is the whole of what the room does differently in here: it drops the
-header this page already draws and the appearance panel, which is not ours to
-offer to someone reading their own page, and puts `Open Blue ↗` in their place —
-the full room, at the top of the window, carrying the question already asked
-(`?q=`, read by `lib/arrival.ts` over there). Nobody needs an account on either
-side of that link.
+| File | What | Size |
+|---|---|---|
+| `public/videos/blue.webm` | AV1, 1080p, 5.04 s loop, no audio | ~390 KB |
+| `public/videos/blue.mp4` | H.264 High 4.1, same loop, `+faststart` | ~900 KB |
+| `public/videos/blue.jpg` | the loop's first frame, the poster | ~42 KB |
 
-The hero is `.hero` + `.hero-two`: the height left under the bar, less the
-distance the stats climb back into it, in `svh` so a phone's toolbars cannot
-push the ask off the bottom. The room is the larger half and it is tall — a
-beluga in a letterbox is a stock photo, a beluga in a window you can talk into
-is the foundation's whole argument. The frame is fetched when it is about to be
-seen rather than when the page parses, because it is several megabytes of video,
-and the corner disc hides while the room is on screen: a door to the room you
-are already standing in is not a door.
+The loop opens on the source's frame 60 (the beluga centred, face up), so the
+poster, the first frame and what a reduced-motion reader sees are one picture.
+Re-cut from the source render with `trim` 60–121 then 0–60, `concat`, then
+libsvtav1 `-crf 27` and libx264 `-preset veryslow -crf 22`; each `<source>`
+names its codec so a browser skips the one it cannot decode.
 
-The donation band still uses the still, `<Blue ratio='4 / 3' />`. It is a
-picture there, and one live room per page is the right number.
+- **Never an empty box.** `poster` paints before the film and stays when it is
+  refused; the page head preloads it.
+- **Reduced motion gets the still and no film**: there is no `autoplay`
+  attribute and `preload='none'`; `Film` calls `play()` only when the panel is on
+  screen and motion is welcome, and pauses otherwise.
+- **The water answers** (`data-mood` on `.portal`): `listen` while a question is
+  out and no word has come back — the film eases to 0.8× and the frame breathes;
+  `speak` while the answer streams — 1.35×, leaned in 4%, a wash of light over
+  the animal; `rest` after, back to 1×. The pace is one property on the media
+  element eased a step a frame; the rest is transform and opacity. Reduced
+  motion keeps the light and drops the movement.
+- **Signed in or not, the panel is the same.** zoo.ngo holds no session: it is a
+  static export with no `/api` routes, `AuthContext` is mounted nowhere, and the
+  ask carries no cookie or bearer. A person signed in at zoolabs.id sees the
+  page a stranger sees.
+
+## Publishing — the Sites plane, `zoo/ngo`
+
+zoo.ngo is `infra/aws/routes/sites.yaml` `zoo-ngo` in hanzoai/universe:
+staticFiles over `s3://hanzo-sites/zoo/ngo` (the in-cluster S3 gateway, whose
+bucket is AWS `hanzo-s3-hanzo-sites-532217001883`). GitHub Pages is off for
+this repo; nothing it published is served. `.github/workflows/deploy.yml` builds
+every push and pull request, holds the export to carrying the film, and on main
+publishes through `hanzoai/ci`'s site action as slug `ngo`, which needs the zoo
+KMS pair on this repo and the project `ngo` in org `zoo`. Until both exist the
+publish step fails and says which.
+
+A copy placed in the prefix by hand must be the WHOLE export. The copies made
+in October left out `videos/`, `models/`, `document/`, `guidebook.pdf` and the
+sitemaps, and the hero answered 404 for its film while every build carried it;
+the bucket's version history holds no object under `zoo/ngo/videos/` before
+2026-10-22.
+
+`zooai/zoo` still carries a second lane for the same slug
+(`.github/workflows/deploy.yml`, slug `ngo`, from `foundation/**`), the site
+this repo replaced. Retire it before the project is created, or a push there
+puts the old foundation site on zoo.ngo.

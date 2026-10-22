@@ -1,37 +1,39 @@
 name: Deploy
 
-# THIS IS WHAT PUBLISHES. The site is served by GitHub Pages — `build_type:
-# workflow`, `cname: zoo.ngo` — with Cloudflare in front of it for DNS and
-# caching, which is why the response says `server: cloudflare` and why a
-# workflow that published to Pages was mistaken for one publishing into the
-# void. Deleting it on that reading froze the live site on 1 September, and
-# every commit since — the counted corpus, the class rules, Blue's room in the
-# hero — built green and reached nobody.
+# zoo.ngo is served from the Sites plane: universe infra/aws/routes/sites.yaml
+# routes the host to the staticFiles middleware `zoo-ngo-static`, root
+# s3://hanzo-sites/zoo/ngo — org `zoo`, slug `ngo`. It is NOT GitHub Pages any
+# more. Pages was switched off for this repo in September, so the Pages deploy
+# that used to close this file answered 404 on every push from then on and the
+# export never left the runner. The prefix was filled by hand instead, and the
+# hand copy never carried `videos/`: the hero's film answered 404 on the live
+# site while sitting in every build.
 #
-# One workflow, because a build that publishes already checks the build. The
-# check that used to live beside this could not run at all — it asked for
-# `linux-amd64`, and every run since 2 September sat in the queue
-# until GitHub cancelled it at 24 hours. A check that cannot run reads as a
-# check that passed.
+# The publish is bin/site in hanzoai/ci, through its action, the one every static
+# site in the fleet calls. It reads the deploy key from KMS with the pair below
+# and uploads under a prefix-scoped, short-lived grant, so no bucket credential
+# lives here. It needs, before it can publish:
+#   - KMS_CLIENT_ID / KMS_CLIENT_SECRET on this repo or on zoo-apps, the zoo
+#     identity (zooai/zoo holds the same pair);
+#   - the project `ngo` in org `zoo` on the Sites plane.
+# Without the pair the step fails and says so, rather than reading as a publish.
 #
-# `ubuntu-latest` because Pages takes its artifact from a GitHub-hosted job and
-# the org's own runner is not answering. When it is, this is one line.
+# Every pull request builds and checks the export; only main publishes.
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: deploy-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  build:
+  site:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,18 +55,32 @@ jobs:
         env:
           NODE_ENV: production
 
-      # `public/CNAME` carries the domain into `out/`, so the artifact already
-      # has it and nothing here writes one. `postbuild` writes the sitemap.
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
+      # The hero is the film. A publish that leaves it behind is the defect this
+      # file exists to stop, so the export is held to carrying it.
+      - name: The export carries Blue's film
+        run: |
+          set -euo pipefail
+          for f in out/videos/blue.webm out/videos/blue.mp4 out/videos/blue.jpg; do
+            [ -s "$f" ] || { echo "::error::$f is not in the export"; exit 1; }
+          done
+          grep -q 'src="/videos/blue.webm"' out/index.html || { echo "::error::the page does not name the film"; exit 1; }
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.publish.outputs.page_url }}
-    steps:
-      - id: publish
-        uses: actions/deploy-pages@v4
+      # The export a publish is made from, kept a week, so the bytes on the edge
+      # can be read back against the commit that built them.
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: site
+          path: out
+          retention-days: 7
+
+      - name: Publish zoo.ngo
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: hanzoai/ci/.github/actions/site@v2.1.8
+        with:
+          slug: ngo
+          dir: out
+        env:
+          KMS_CLIENT_ID: ${{ secrets.KMS_CLIENT_ID }}
+          KMS_CLIENT_SECRET: ${{ secrets.KMS_CLIENT_SECRET }}
+
